@@ -1,0 +1,172 @@
+LOCUS       34_pHW185_NP            4526 bp ds-DNA     circular     14-OCT-2011
+DEFINITION  This plasmid encodes the NP gene from the A/WSN/33 (H1N1) influenza
+            virus under control of both PolI and PolII polymerases, and so
+            transcribes both mRNA and vRNA.
+KEYWORDS    influenza; PR8; X31.
+SOURCE      
+  ORGANISM  
+COMMENT     
+            It encodes the NP gene from the A/WSN/33
+            influenza strain.The gene is flanked in the negative sense by a
+            PolI promoter and terminator, causing transcription of viral RNA
+            with authentic ends.The gene is also flanked in the positive sense
+            by a PolII promoter with a polyadenylation site, causing
+            transcription of mRNA.The reference describing this plasmid is:E
+            Hoffmann, G Neumann, Y Kawaoka, G Hobom, and RG Webster. "A
+            DNAtransfection system for generation of influenza A virus from
+            eight plasmids."  ProcNatl Acad Sci, 97:6108-6113
+            (2000).CHARACTERIZATION:* Confirmed by sequencing the regions from
+            nt 1-1650 (1-15-08).
+COMMENT     
+COMMENT     ApEinfo:methylated:1
+FEATURES             Location/Qualifiers
+     misc_signal     1848..2079
+                     /vntifkey="87"
+                     /note="polyadenylation site"
+                     /label=aBGH
+                     /ApEinfo_fwdcolor=pink
+                     /ApEinfo_revcolor=pink
+                     /ApEinfo_graphicformat=arrow_data {{0 1 2 0 0 -1} {} 0}
+                     width 5 offset 0
+     misc_marker     2302..2862
+                     /vntifkey="22"
+                     /note="colEI-origin of replication"
+                     /label=ori
+                     /ApEinfo_fwdcolor=pink
+                     /ApEinfo_revcolor=pink
+                     /ApEinfo_graphicformat=arrow_data {{0 1 2 0 0 -1} {} 0}
+                     width 5 offset 0
+     exon            3112..3972
+                     /vntifkey="61"
+                     /note="beta-lactamase (ampR)"
+                     /label=bla
+                     /ApEinfo_fwdcolor=cyan
+                     /ApEinfo_revcolor=green
+                     /ApEinfo_graphicformat=arrow_data {{0 1 2 0 0 -1} {} 0}
+                     width 5 offset 0
+     misc_signal     4113..4458
+                     /vntifkey="87"
+                     /note="HCMV-promoter-NdeI deletion"
+                     /label=pCMV
+                     /ApEinfo_fwdcolor=pink
+                     /ApEinfo_revcolor=pink
+                     /ApEinfo_graphicformat=arrow_data {{0 1 2 0 0 -1} {} 0}
+                     width 5 offset 0
+     misc_feature    11..45
+                     /vntifkey="21"
+                     /note="terminator for pol1"
+                     /label=tI
+                     /ApEinfo_fwdcolor=#6785ff
+                     /ApEinfo_revcolor=pink
+                     /ApEinfo_graphicformat=arrow_data {{0 1 2 0 0 -1} {} 0}
+                     width 5 offset 0
+     misc_feature    1611..1822
+                     /vntifkey="21"
+                     /note="human pol1 promoter"
+                     /label=pIh
+                     /ApEinfo_fwdcolor=#6785ff
+                     /ApEinfo_revcolor=pink
+                     /ApEinfo_graphicformat=arrow_data {{0 1 2 0 0 -1} {} 0}
+                     width 5 offset 0
+     misc_feature    complement(46..57)
+                     /vntifkey="21"
+                     /label=U12
+                     /ApEinfo_fwdcolor=#6785ff
+                     /ApEinfo_revcolor=pink
+                     /ApEinfo_graphicformat=arrow_data {{0 1 2 0 0 -1} {} 0}
+                     width 5 offset 0
+     misc_feature    complement(1599..1610)
+                     /vntifkey="21"
+                     /label=U13
+                     /ApEinfo_fwdcolor=#6785ff
+                     /ApEinfo_revcolor=pink
+                     /ApEinfo_graphicformat=arrow_data {{0 1 2 0 0 -1} {} 0}
+                     width 5 offset 0
+     CDS             91..1587
+                     /gene="NP"
+                     /product="NP"
+                     /SECDrawAs="Gene"
+                     /vntifkey="4"
+                     /label=NP
+                     /ApEinfo_fwdcolor=#55ff73
+                     /ApEinfo_revcolor=#5bff6c
+                     /ApEinfo_graphicformat=arrow_data {{0 1 2 0 0 -1} {} 0}
+                     width 5 offset 0
+ORIGIN
+        1 ctagcagtta accggagtac tggtcgacct ccgaagttgg gggggagcaa aagcagggta
+       61 gataatcact cacagagtga catcgaaatc atggcgacca aaggcaccaa acgatcttac
+      121 gaacagatgg agactgatgg agaacgccag aatgccactg aaatcagagc atctgtcgga
+      181 aaaatgattg atggaattgg acgattctac atccaaatgt gcaccgaact taaactcagt
+      241 gattatgagg gacggctgat tcagaacagc ttaacaatag agagaatggt gctctctgct
+      301 tttgacgaga ggaggaataa atatctagaa gaacatccca gtgcggggaa agatcctaag
+      361 aaaactggag gacctatata caggagagta gatggaaagt ggaggagaga actcatcctt
+      421 tatgacaaag aagaaataag acgaatctgg cgccaagcta ataatggtga cgatgcaacg
+      481 gctggtctga ctcacatgat gatctggcac tccaatttga atgatgcaac ttaccagagg
+      541 acaagagctc ttgttcgcac aggaatggat cccaggatgt gctcactgat gcagggttca
+      601 accctcccta ggaggtctgg ggccgcaggt gctgcagtca aaggagttgg aacaatggtg
+      661 atggaattga tcagaatgat caaacgtggg atcaatgatc ggaacttctg gaggggtgag
+      721 aatggacgga gaacaaggat tgcttatgaa agaatgtgca acattctcaa agggaaattt
+      781 caaacagctg cacaaagaac aatggtggat caagtgagag agagccggaa tccaggaaat
+      841 gctgagttcg aagatctcat ctttttagca cggtctgcac tcatattgag agggtcagtt
+      901 gctcacaagt cctgcctgcc tgcctgtgtg tatggatctg ccgtagccag tggatacgac
+      961 tttgaaagag agggatactc tctagtcgga atagaccctt tcagactgct tcaaaacagc
+     1021 caagtataca gcctaatcag accaaatgag aatccagcac acaagagtca actggtgtgg
+     1081 atggcatgcc attctgctgc atttgaagat ctaagagtat caagcttcat cagagggacg
+     1141 aaagtggtcc caagagggaa gctttccact agaggagttc aaattgcttc caatgaaaac
+     1201 atggagacta tggaatcaag tacccttgaa ctgagaagca gatactgggc cataaggacc
+     1261 agaagtggag ggaacaccaa tcaacagagg gcttcctcgg gccaaatcag catacaacct
+     1321 acgttctcag tacagagaaa tctccctttt gacagaccaa ccattatggc agcattcact
+     1381 gggaatacag aggggagaac atctgacatg agaaccgaaa tcataaggct gatggaaagt
+     1441 gcaagaccag aagatgtgtc tttccagggg cggggagtct tcgagctctc ggacgaaaag
+     1501 gcaacgagcc cgatcgtgcc ctcctttgac atgagtaatg aaggatctta tttcttcgga
+     1561 gacaatgcag aggagtacga caattaaaga aaaataccct tgtttctact aataacccgg
+     1621 cggcccaaaa tgccgactcg gagcgaaaga tatacctccc ccggggccgg gaggtcgcgt
+     1681 caccgaccac gccgccggcc caggcgacgc gcgacacgga cacctgtccc caaaaacgcc
+     1741 accatcgcag ccacacacgg agcgcccggg gccctctggt caaccccagg acacacgcgg
+     1801 gagcagcgcc gggccgggga cgccctcccg gcggtcacct aaatgctaga gctcgctgat
+     1861 cagcctcgac tgtgccttct agttgccagc catctgttgt ttgcccctcc cccgtgcctt
+     1921 ccttgaccct ggaaggtgcc actcccactg tcctttccta ataaaatgag gaaattgcat
+     1981 cgcattgtct gagtaggtgt cattctattc tggggggtgg ggtggggcag gacagcaagg
+     2041 gggaggattg ggaagacaat agcaggcatg ctggggatgc ggtgggctct atggcttctg
+     2101 aggcggaaag aaccagctgc attaatgaat cggccaacgc gcggggagag gcggtttgcg
+     2161 tattgggcgc tcttccgctt cctcgctcac tgactcgctg cgctcggtcg ttcggctgcg
+     2221 gcgagcggta tcagctcact caaaggcggt aatacggtta tccacagaat caggggataa
+     2281 cgcaggaaag aacatgtgag caaaaggcca gcaaaaggcc aggaaccgta aaaaggccgc
+     2341 gttgctggcg tttttccata ggctccgccc ccctgacgag catcacaaaa atcgacgctc
+     2401 aagtcagagg tggcgaaacc cgacaggact ataaagatac caggcgtttc cccctggaag
+     2461 ctccctcgtg cgctctcctg ttccgaccct gccgcttacc ggatacctgt ccgcctttct
+     2521 cccttcggga agcgtggcgc tttctcaatg ctcacgctgt aggtatctca gttcggtgta
+     2581 ggtcgttcgc tccaagctgg gctgtgtgca cgaacccccc gttcagcccg accgctgcgc
+     2641 cttatccggt aactatcgtc ttgagtccaa cccggtaaga cacgacttat cgccactggc
+     2701 agcagccact ggtaacagga ttagcagagc gaggtatgta ggcggtgcta cagagttctt
+     2761 gaagtggtgg cctaactacg gctacactag aaggacagta tttggtatct gcgctctgct
+     2821 gaagccagtt accttcggaa aaagagttgg tagctcttga tccggcaaac aaaccaccgc
+     2881 tggtagcggt ggtttttttg tttgcaagca gcagattacg cgcagaaaaa aaggatctca
+     2941 agaagatcct ttgatctttt ctacggggtc tgacgctcag tggaacgaaa actcacgtta
+     3001 agggattttg gtcatgagat tatcaaaaag gatcttcacc tagatccttt taaattaaaa
+     3061 atgaagtttt aaatcaatct aaagtatata tgagtaaact tggtctgaca gttaccaatg
+     3121 cttaatcagt gaggcaccta tctcagcgat ctgtctattt cgttcatcca tagttgcctg
+     3181 actccccgtc gtgtagataa ctacgatacg ggagggctta ccatctggcc ccagtgctgc
+     3241 aatgataccg cgagacccac gctcaccggc tccagattta tcagcaataa accagccagc
+     3301 cggaagggcc gagcgcagaa gtggtcctgc aactttatcc gcctccatcc agtctattaa
+     3361 ttgttgccgg gaagctagag taagtagttc gccagttaat agtttgcgca acgttgttgc
+     3421 cattgctaca ggcatcgtgg tgtcacgctc gtcgtttggt atggcttcat tcagctccgg
+     3481 ttcccaacga tcaaggcgag ttacatgatc ccccatgttg tgcaaaaaag cggttagctc
+     3541 cttcggtcct ccgatcgttg tcagaagtaa gttggccgca gtgttatcac tcatggttat
+     3601 ggcagcactg cataattctc ttactgtcat gccatccgta agatgctttt ctgtgactgg
+     3661 tgagtactca accaagtcat tctgagaata gtgtatgcgg cgaccgagtt gctcttgccc
+     3721 ggcgtcaata cgggataata ccgcgccaca tagcagaact ttaaaagtgc tcatcattgg
+     3781 aaaacgttct tcggggcgaa aactctcaag gatcttaccg ctgttgagat ccagttcgat
+     3841 gtaacccact cgtgcaccca actgatcttc agcatctttt actttcacca gcgtttctgg
+     3901 gtgagcaaaa acaggaaggc aaaatgccgc aaaaaaggga ataagggcga cacggaaatg
+     3961 ttgaatactc atactcttcc tttttcaata ttattgaagc atttatcagg gttattgtct
+     4021 catgagcgga tacatatttg aatgtattta gaaaaataaa caaatagggg ttccgcgcac
+     4081 atttccccga aaagtgccac ctgacgtcga tatgccaagt acgcccccta ttgacgtcaa
+     4141 tgacggtaaa tggcccgcct ggcattatgc ccagtacatg accttatggg actttcctac
+     4201 ttggcagtac atctacgtat tagtcatcgc tattaccatg gtgatgcggt tttggcagta
+     4261 catcaatggg cgtggatagc ggtttgactc acggggattt ccaagtctcc accccattga
+     4321 cgtcaatggg agtttgtttt ggcaccaaaa tcaacgggac tttccaaaat gtcgtaacaa
+     4381 ctccgcccca ttgacgcaaa tgggcggtag gcgtgtacgg tgggaggtct atataagcag
+     4441 agctctctgg ctaactagag aacccactgc ttactggctt atcgaaatta atacgactca
+     4501 ctatagggag acccaagctg ttaacg   
+//

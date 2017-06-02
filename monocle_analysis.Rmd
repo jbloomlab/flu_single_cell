@@ -1,0 +1,121 @@
+---
+title: "Monocle analysis of influenza-infected cells"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output: html_document
+---
+
+## Setup
+Load or install necessary packages.
+If `Monocle` is not already available, install it using `Bioconductor`.
+Note that Cole suggested that we might want to install the development version of GitHub; right now this does **not** do this.
+```{r, message=FALSE, warning=FALSE}
+
+if (!require("monocle")) {
+  source("http://bioconductor.org/biocLite.R")
+  biocLite()
+  biocLite("monocle")
+  }
+
+if (!require("ggExtra")) install.packages("ggExtra")
+if (!require("cowplot")) install.packages("cowplot")
+```
+```{r}
+cat("Using Monocle version", as.character(packageVersion("monocle")), "\n")
+```
+
+## Create and filter cell-gene dataset
+Read in cell-gene data of all samples.
+This is the merged cell-gene data set constructed essentially from `cellranger` using the iPython notebook.
+The cells are annotated by the number of wildtype and synonymous-barcoded influenza UMIs called for each cell.
+```{r}
+matrixfile <- "results/cellgenecounts/merged_humanplusflu_matrix.mtx"
+genesfile <- "results/cellgenecounts/merged_humanplusflu_genes.tsv"
+cellsfile <- "results/cellgenecounts/merged_humanplusflu_cells.tsv"
+
+all_cells <- newCellDataSet(readMM(matrixfile), 
+      phenoData=new("AnnotatedDataFrame", data=read.delim(cellsfile)), 
+      featureData=new("AnnotatedDataFrame", data=read.delim(genesfile)),
+      expressionFamily=negbinomial.size())
+```
+
+Filter on just the samples that interest us for this analysis.
+```{r}
+samples = c("Uninfected", "8hr-2", "8hr-2repeat", "10hr-2")
+
+cellfilter <- row.names(subset(pData(all_cells), Sample %in% samples))
+cells <- all_cells[,cellfilter]
+
+cat("Filtered all", nrow(pData(all_cells)), "cells down to the", nrow(pData(cells)), 
+      "in samples of interest.")
+```
+
+Compute the total number of mRNAs, cellular mRNAs, and influenza mRNAs per cell.
+```{r}
+pData(cells)$total_mRNAs <- Matrix::colSums(exprs(cells))
+
+flugenes = c("fluPB2", "fluPB1", "fluPA", "fluHA", "fluNP", "fluNA", "fluM", "fluNS")
+flu_id = row.names(subset(fData(cells), gene_short_name %in% flugenes))
+pData(cells)$flu_mRNAs <- Matrix::colSums(exprs(cells[flu_id,]))
+
+flugenes_id = row.names(subset(fData(cells), !(gene_short_name %in% flugenes)))
+pData(cells)$cellular_mRNAs <- Matrix::colSums(exprs(cells[flugenes_id,]))
+```
+
+```{r}
+scatterplot <- ggplot(pData(cells), aes(cellular_mRNAs, flu_mRNAs)) + geom_point()
+
+# next line uses eval substitute to get value of maxy as here: https://stackoverflow.com/a/10659563
+densityplot <- eval(substitute(
+    {stat_density(aes(x=cellular_mRNAs, y=maxy*(..scaled..)), geom="line", color='blue')}, 
+    list(maxy=layer_scales(scatterplot)$y$range$range[2])))  
+
+scatterplot + densityplot + theme(axis.text.x=element_text(angle=90, vjust=0.5)) + facet_wrap(~Sample)
+```
+The scatterplots above show the number of influenza mRNAs versus the number of cellular mRNAs for each sample. 
+The blue curves show the overall density on the number of cellular mRNAs.
+Note that these numbers are not equivalent across samples as the different samples were sequenced to different depths.
+The `Monocle` vignette suggests possibly filtering out cells with far more / less mRNAs than most cells.
+I have **not** done that here for the reason that this will filter out quite a few of the influenza-infected cells.
+This fact is made more clear by this next plot:
+```{r}
+all_densityplot <- ggplot(pData(cells), aes(total_mRNAs)) + geom_density()
+flugt100cells_id <- row.names(subset(pData(cells), flu_mRNAs > 100))
+flugt100_densityplot <- ggplot(pData(cells[,flugt100cells_id]), aes(total_mRNAs)) + geom_density()
+flugt100_densityplot + facet_wrap(~Sample)
+```
+
+
+```{r}
+min_expr <- 5
+num_cells <- 5
+cells <- detectGenes(cells, min_expr=min_expr)
+expressed_genes <- row.names(subset(fData(cells), num_cells_expressed >= num_cells))
+cat("Filtering to the", length(expressed_genes), "genes expressed at >=", min_expr,
+      "transcripts in at least", num_cells, "cells.\n")
+cells <- cells[expressed_genes,]
+
+cat("Plotting number of RNAs per cell for each sample\n")
+print(table(pData(cells)$Sample))
+pData(cells)$Total_mRNAs <- Matrix::colSums(exprs(cells))
+qplot(Total_mRNAs, data=pData(cells), geom="density", color=Sample)
+
+cat("Filtering out 6hr sample since it has a different distribution of RNA per cell")
+cells <- cells[, row.names(subset(pData(cells), Sample != "6hr"))]
+print(table(pData(cells)$Sample))
+```
+
+## Look at distribution of influenza genes.
+```{r}
+flu_id <- row.names(subset(fData(cells), substr(ShortGeneName, 1, 3) == "flu"))
+
+pData(cells)$Total_flu <- Matrix::colSums(exprs(cells[flu_id,]))
+qplot(Total_flu, data=pData(cells), color=Sample, log="x")
+
+cth <- newCellTypeHierarchy()
+cth <- addCellType(cth, "noFlu", classify_func=function(x) {colSums(x[flu_id,]) == 0})
+cth <- addCellType(cth, "highFlu", classify_func=function(x) {colSums(x[flu_id,]) >= 100}) 
+cells <- classifyCells(cells, cth)
+print(table(pData(cells)$Sample, pData(cells)$CellType))
+```
+
+

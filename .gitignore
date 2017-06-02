@@ -1,0 +1,8 @@
+.*
+*.pyc
+!.gitignore
+*.sbatch
+humanplusflu
+results
+_temp*
+*.out
