@@ -23,7 +23,7 @@ if (!require("cowplot")) install.packages("cowplot")
 cat("Using Monocle version", as.character(packageVersion("monocle")), "\n")
 ```
 
-## Create and filter cell-gene dataset
+## Create cell-gene dataset and examine some basic statistics about the number of influenza and cellular reads per cell
 Read in cell-gene data of all samples.
 This is the merged cell-gene data set constructed essentially from `cellranger` using the iPython notebook.
 The cells are annotated by the number of wildtype and synonymous-barcoded influenza UMIs called for each cell.
@@ -39,8 +39,9 @@ all_cells <- newCellDataSet(readMM(matrixfile),
 ```
 
 Filter on just the samples that interest us for this analysis.
+Right now this is all the samples in the cell-gene dataset.
 ```{r}
-samples = c("Uninfected", "8hr-2", "8hr-2repeat", "10hr-2")
+samples = c("Uninfected", "6hr-1", "8hr-2", "8hr-2repeat", "10hr-2")
 
 cellfilter <- row.names(subset(pData(all_cells), Sample %in% samples))
 cells <- all_cells[,cellfilter]
@@ -50,17 +51,23 @@ cat("Filtered all", nrow(pData(all_cells)), "cells down to the", nrow(pData(cell
 ```
 
 Compute the total number of mRNAs, cellular mRNAs, and influenza mRNAs per cell.
+Also compute the fraction of total mRNAs that are from influenza.
 ```{r}
 pData(cells)$total_mRNAs <- Matrix::colSums(exprs(cells))
 
-flugenes = c("fluPB2", "fluPB1", "fluPA", "fluHA", "fluNP", "fluNA", "fluM", "fluNS")
-flu_id = row.names(subset(fData(cells), gene_short_name %in% flugenes))
-pData(cells)$flu_mRNAs <- Matrix::colSums(exprs(cells[flu_id,]))
+flugenes <- c("fluPB2", "fluPB1", "fluPA", "fluHA", "fluNP", "fluNA", "fluM", "fluNS")
+flugenes_id <- row.names(subset(fData(cells), gene_short_name %in% flugenes))
+pData(cells)$flu_mRNAs <- Matrix::colSums(exprs(cells[flugenes_id,]))
 
-flugenes_id = row.names(subset(fData(cells), !(gene_short_name %in% flugenes)))
-pData(cells)$cellular_mRNAs <- Matrix::colSums(exprs(cells[flugenes_id,]))
+pData(cells)$frac_flu_mRNAs <- pData(cells)$flu_mRNAs / pData(cells)$total_mRNAs
+
+cellgenes_id <- row.names(subset(fData(cells), !(gene_short_name %in% flugenes)))
+pData(cells)$cellular_mRNAs <- Matrix::colSums(exprs(cells[cellgenes_id,]))
 ```
 
+Plot the number of influenza mRNAs versus the number of cellular RNAs as scatterplots.
+The blue curves show the overall density on the number of cellular mRNAs.
+Note that these numbers are not equivalent across samples as the different samples were sequenced to different depths.
 ```{r}
 scatterplot <- ggplot(pData(cells), aes(cellular_mRNAs, flu_mRNAs)) + geom_point()
 
@@ -71,17 +78,25 @@ densityplot <- eval(substitute(
 
 scatterplot + densityplot + theme(axis.text.x=element_text(angle=90, vjust=0.5)) + facet_wrap(~Sample)
 ```
-The scatterplots above show the number of influenza mRNAs versus the number of cellular mRNAs for each sample. 
-The blue curves show the overall density on the number of cellular mRNAs.
-Note that these numbers are not equivalent across samples as the different samples were sequenced to different depths.
+
+
 The `Monocle` vignette suggests possibly filtering out cells with far more / less mRNAs than most cells.
-I have **not** done that here for the reason that this will filter out quite a few of the influenza-infected cells.
-This fact is made more clear by this next plot:
+I have **not** done that for the reason that this will filter out quite a few of the influenza-infected cells.
+This fact is made more clear by this next plot, which shows that the cells that have greater than 1% of their reads derived from influenza tend to have more total mRNAs than other cells in the two samples with the greatest number of influenza reads
+I can think of several possible reasons for this trend: 
+  1. Cells infected with influenza are simply "bigger" or are stimulated to produce more mRNAs
+  2. Influenza infection preferentially leads to doublets due to cell clumping, perhaps mediated by hemagglutinin-based physical linkage of cells.
+In any case, it seems safer **not** to exclude the influenza infected cells as we'd then be preferentially excluded cells with high viral burden.
 ```{r}
-all_densityplot <- ggplot(pData(cells), aes(total_mRNAs)) + geom_density()
-flugt100cells_id <- row.names(subset(pData(cells), flu_mRNAs > 100))
-flugt100_densityplot <- ggplot(pData(cells[,flugt100cells_id]), aes(total_mRNAs)) + geom_density()
-flugt100_densityplot + facet_wrap(~Sample)
+pData(cells)$frac_flu_gt_0.01 <- pData(cells)$frac_flu_mRNAs > 0.01 
+
+ggplot(pData(cells[, row.names(subset(pData(cells), Sample %in% c("8hr-2", "10hr-2")))]), 
+        aes(total_mRNAs)) +
+    geom_density(aes(color=frac_flu_gt_0.01)) +
+    theme(axis.text.x=element_text(angle=90, vjust=0.5)) +
+    facet_wrap(~Sample)
+#flugt100cells_id <- row.names(subset(pData(cells), flu_mRNAs > 50))
+#flugt100_densityplot <- ggplot(pData(cells[,flugt100cells_id]), aes(total_mRNAs)) + geom_density()
 ```
 
 
