@@ -1,13 +1,13 @@
 ---
 title: "Monocle analysis of influenza-infected cells"
+author: "Alistair Russel, Cole Trapnell, Jesse Bloom"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output: html_document
 ---
 
 ## Setup
 Load or install necessary packages.
-If `Monocle` is not already available, install it using `Bioconductor`.
-Note that Cole suggested that we might want to install the development version of GitHub; right now this does **not** do this.
+Note that Cole suggested that we might want to install the development version of [Monocle](http://cole-trapnell-lab.github.io/monocle-release/) from GitHub; right now this does **not** do this.
 ```{r, message=FALSE, warning=FALSE}
 
 if (!require("monocle")) {
@@ -18,14 +18,27 @@ if (!require("monocle")) {
 
 if (!require("ggExtra")) install.packages("ggExtra")
 if (!require("cowplot")) install.packages("cowplot")
+if (!require("scales")) install.packages("scales")
+
+# scientific notation formatting: https://stackoverflow.com/a/24241954
+fancy_scientific <- function(l) {
+     l <- format(l, scientific=TRUE)
+     l <- gsub("^0e\\+00","0", l)
+     l <- gsub("^1e\\+00", "1", l)
+     l <- gsub("^(.*)e", "'\\1'e", l)
+     l <- gsub("e\\+","e", l)
+     l <- gsub("e", "%*%10^", l)
+     l <- gsub("^\'1\'\\%\\*\\%", "", l)
+     parse(text=l)
+}
 ```
 ```{r}
 cat("Using Monocle version", as.character(packageVersion("monocle")), "\n")
 ```
 
-## Create cell-gene dataset and examine some basic statistics about the number of influenza and cellular reads per cell
-Read in cell-gene data of all samples.
-This is the merged cell-gene data set constructed essentially from `cellranger` using the iPython notebook.
+## Create cell-gene dataset and examine basic statistics about number of influenza and cellular mRNAs per cell
+Read in cell-gene data for all samples.
+This is the merged cell-gene data set constructed with `cellranger` using the iPython notebook.
 The cells are annotated by the number of wildtype and synonymous-barcoded influenza UMIs called for each cell.
 ```{r}
 matrixfile <- "results/cellgenecounts/merged_humanplusflu_matrix.mtx"
@@ -38,7 +51,7 @@ all_cells <- newCellDataSet(readMM(matrixfile),
       expressionFamily=negbinomial.size())
 ```
 
-Filter on just the samples that interest us for this analysis.
+Filter on the samples that interest us.
 Right now this is all the samples in the cell-gene dataset.
 ```{r}
 samples = c("Uninfected", "6hr-1", "8hr-2", "8hr-2repeat", "10hr-2")
@@ -50,8 +63,7 @@ cat("Filtered all", nrow(pData(all_cells)), "cells down to the", nrow(pData(cell
       "in samples of interest.")
 ```
 
-Compute the total number of mRNAs, cellular mRNAs, and influenza mRNAs per cell.
-Also compute the fraction of total mRNAs that are from influenza.
+Compute the number of total mRNAs, cellular mRNAs, influenza mRNAs, and fraction of influenza mRNAs per cell.
 ```{r}
 pData(cells)$total_mRNAs <- Matrix::colSums(exprs(cells))
 
@@ -65,10 +77,10 @@ cellgenes_id <- row.names(subset(fData(cells), !(gene_short_name %in% flugenes))
 pData(cells)$cellular_mRNAs <- Matrix::colSums(exprs(cells[cellgenes_id,]))
 ```
 
-Plot the number of influenza mRNAs versus the number of cellular RNAs as scatterplots.
-The blue curves show the overall density on the number of cellular mRNAs.
-Note that these numbers are not equivalent across samples as the different samples were sequenced to different depths.
-```{r}
+Plot the number of influenza mRNAs versus the number of cellular RNAs.
+The blue curves show the overall density of the number of cellular mRNAs.
+Note that different samples were sequenced to somewhat different depths.
+```{r, fig.height=4, fig.width=6.5}
 scatterplot <- ggplot(pData(cells), aes(cellular_mRNAs, flu_mRNAs)) + geom_point()
 
 # next line uses eval substitute to get value of maxy as here: https://stackoverflow.com/a/10659563
@@ -76,61 +88,51 @@ densityplot <- eval(substitute(
     {stat_density(aes(x=cellular_mRNAs, y=maxy*(..scaled..)), geom="line", color='blue')}, 
     list(maxy=layer_scales(scatterplot)$y$range$range[2])))  
 
-scatterplot + densityplot + theme(axis.text.x=element_text(angle=90, vjust=0.5)) + facet_wrap(~Sample)
+scatterplot + densityplot + theme(axis.text.x=element_text(angle=90, vjust=0.5, hjust=1)) + 
+    facet_wrap(~Sample) + xlab("cellular mRNAs per cell") + ylab("influenza mRNAs per cell")
 ```
 
 
-The `Monocle` vignette suggests possibly filtering out cells with far more / less mRNAs than most cells.
-I have **not** done that for the reason that this will filter out quite a few of the influenza-infected cells.
-This fact is made more clear by this next plot, which shows that the cells that have greater than 1% of their reads derived from influenza tend to have more total mRNAs than other cells in the two samples with the greatest number of influenza reads
-I can think of several possible reasons for this trend: 
-  1. Cells infected with influenza are simply "bigger" or are stimulated to produce more mRNAs
-  2. Influenza infection preferentially leads to doublets due to cell clumping, perhaps mediated by hemagglutinin-based physical linkage of cells.
-In any case, it seems safer **not** to exclude the influenza infected cells as we'd then be preferentially excluded cells with high viral burden.
-```{r}
-pData(cells)$frac_flu_gt_0.01 <- pData(cells)$frac_flu_mRNAs > 0.01 
+The `Monocle` vignette suggests filtering cells with far more / less mRNAs than most cells.
+I have **not** done that because it filters out a lot of the influenza-infected cells.
+This fact is made more clear by the next plot, which shows that cells with >1% of their mRNAs from influenza tend to have more total mRNAs than other cells.
+I can think of several possible explanations: 
+
+  1. Influenza preferentially infects bigger cells.
+  
+  2. Influenza infection leads cells to produce more mRNAs.
+  
+  2. Influenza infection preferentially causes "doublets"" due to cell clumping, perhaps mediated by hemagglutinin-based cross-linking of cells.
+  
+In any case, it seems safer **not** to exclude the influenza-infected cells as we'd then be preferentially excluded cells with high viral burden.
+```{r, fig.height=2.75, fig.width=5.5}
+pData(cells)$frac_flu_0.01 <- ifelse(pData(cells)$frac_flu_mRNAs > 0.01, 
+    "more than 1%", "less than 1%")
 
 ggplot(pData(cells[, row.names(subset(pData(cells), Sample %in% c("8hr-2", "10hr-2")))]), 
-        aes(total_mRNAs)) +
-    geom_density(aes(color=frac_flu_gt_0.01)) +
-    theme(axis.text.x=element_text(angle=90, vjust=0.5)) +
+        aes(total_mRNAs, color=frac_flu_0.01, fill=frac_flu_0.01)) +
+    geom_density(alpha=0.2) +
+    theme(axis.text.x=element_text(angle=90, vjust=0.5, hjust=1)) +
+    scale_y_continuous(label=NULL, name="density of cells", breaks=NULL, limits=c(0, NA)) + 
+    scale_x_continuous(limits=c(0, NA)) +
+    xlab("total mRNAs per cell") + 
+    labs(color="mRNAs from\ninfluenza", fill="mRNAs from\ninfluenza") + 
     facet_wrap(~Sample)
-#flugt100cells_id <- row.names(subset(pData(cells), flu_mRNAs > 50))
-#flugt100_densityplot <- ggplot(pData(cells[,flugt100cells_id]), aes(total_mRNAs)) + geom_density()
 ```
 
+Here are some cumulative distribution plots showing the fraction of mRNAs derived from influenza across cells for each sample.
+For the 6 and 8 hour timepoints, less than a quarter of cells have any appreciable influenza mRNAs.
+For the 10 hour timepoint, about a quarter the cells have at least a tiny fraction of influenza mRNAs, but only about 10% have more than 0.1% of mRNAs from influenza.
+```{r, fig.width=5, fig.height=2.75}
+# some trickery around x minimum to avoid taking log of 0 while plotting x on log scale
+minx <- 1e-4 # minimum value on y-axis
+pData(cells)$log_frac_flu_plus <- (function(x){ifelse(x < minx, log10(minx), log10(x))}
+    )(pData(cells)$frac_flu_mRNAs) 
 
-```{r}
-min_expr <- 5
-num_cells <- 5
-cells <- detectGenes(cells, min_expr=min_expr)
-expressed_genes <- row.names(subset(fData(cells), num_cells_expressed >= num_cells))
-cat("Filtering to the", length(expressed_genes), "genes expressed at >=", min_expr,
-      "transcripts in at least", num_cells, "cells.\n")
-cells <- cells[expressed_genes,]
-
-cat("Plotting number of RNAs per cell for each sample\n")
-print(table(pData(cells)$Sample))
-pData(cells)$Total_mRNAs <- Matrix::colSums(exprs(cells))
-qplot(Total_mRNAs, data=pData(cells), geom="density", color=Sample)
-
-cat("Filtering out 6hr sample since it has a different distribution of RNA per cell")
-cells <- cells[, row.names(subset(pData(cells), Sample != "6hr"))]
-print(table(pData(cells)$Sample))
+ggplot(pData(cells), aes(log_frac_flu_plus, color=Sample)) + 
+    stat_ecdf() + 
+    scale_x_continuous(labels=function(x){fancy_scientific(10**x)},
+        limits=c(log10(minx), 0), expand=c(0, 0), name="fraction mRNAs from influenza") +
+    scale_y_continuous(limits=c(0, 1), name="fraction cells with > this\nmany influenza mRNAs") 
 ```
-
-## Look at distribution of influenza genes.
-```{r}
-flu_id <- row.names(subset(fData(cells), substr(ShortGeneName, 1, 3) == "flu"))
-
-pData(cells)$Total_flu <- Matrix::colSums(exprs(cells[flu_id,]))
-qplot(Total_flu, data=pData(cells), color=Sample, log="x")
-
-cth <- newCellTypeHierarchy()
-cth <- addCellType(cth, "noFlu", classify_func=function(x) {colSums(x[flu_id,]) == 0})
-cth <- addCellType(cth, "highFlu", classify_func=function(x) {colSums(x[flu_id,]) >= 100}) 
-cells <- classifyCells(cells, cth)
-print(table(pData(cells)$Sample, pData(cells)$CellType))
-```
-
 
