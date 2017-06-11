@@ -2,7 +2,7 @@
 title: "Monocle analysis of influenza-infected cells"
 author: "Alistair Russel, Cole Trapnell, Jesse Bloom"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
-output: html_document
+output: github_document
 ---
 
 ## Setup
@@ -16,20 +16,14 @@ if (!require("monocle")) {
   biocLite("monocle")
   }
 
-if (!require("ggExtra")) install.packages("ggExtra")
-if (!require("cowplot")) install.packages("cowplot")
-if (!require("scales")) install.packages("scales")
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load("ggplot2", "ggthemes", "ggExtra", "cowplot", "scales", "reshape2", "dplyr", "magrittr", "rmarkdown")
 
-# scientific notation formatting: https://stackoverflow.com/a/24241954
-fancy_scientific <- function(l) {
-     l <- format(l, scientific=TRUE)
-     l <- gsub("^0e\\+00","0", l)
-     l <- gsub("^1e\\+00", "1", l)
-     l <- gsub("^(.*)e", "'\\1'e", l)
-     l <- gsub("e\\+","e", l)
-     l <- gsub("e", "%*%10^", l)
-     l <- gsub("^\'1\'\\%\\*\\%", "", l)
-     parse(text=l)
+# scientific notation formatting, based loosely on this: https://stackoverflow.com/a/24241954
+fancy_scientific <- function(x) {
+     x %>% format(scientific=TRUE) %>% gsub("^0e\\+00","0", .) %>% gsub("^1e\\+00", "1", .) %>%
+        gsub("^(.*)e", "'\\1'e", .) %>% gsub("e\\+","e", .) %>% gsub("e", "%*%10^", .) %>%
+        gsub("^\'1\'\\%\\*\\%", "", .) %>% parse(text=.)
 }
 ```
 ```{r}
@@ -56,8 +50,7 @@ Right now this is all the samples in the cell-gene dataset.
 ```{r}
 samples = c("Uninfected", "6hr-1", "8hr-2", "8hr-2repeat", "10hr-2")
 
-cellfilter <- row.names(subset(pData(all_cells), Sample %in% samples))
-cells <- all_cells[,cellfilter]
+cells <- all_cells[, row.names(subset(pData(all_cells), Sample %in% samples))]
 
 cat("Filtered all", nrow(pData(all_cells)), "cells down to the", nrow(pData(cells)), 
       "in samples of interest.")
@@ -81,7 +74,10 @@ Plot the number of influenza mRNAs versus the number of cellular RNAs.
 The blue curves show the overall density of the number of cellular mRNAs.
 Note that different samples were sequenced to somewhat different depths.
 ```{r, fig.height=4, fig.width=6.5}
-scatterplot <- ggplot(pData(cells), aes(cellular_mRNAs, flu_mRNAs)) + geom_point()
+scatterplot <- ggplot(
+        transform(pData(cells), Sample=factor(Sample, levels=samples)), # order by sample 
+        aes(cellular_mRNAs, flu_mRNAs)) + 
+    geom_point()
 
 # next line uses eval substitute to get value of maxy as here: https://stackoverflow.com/a/10659563
 densityplot <- eval(substitute(
@@ -109,7 +105,9 @@ In any case, it seems safer **not** to exclude the influenza-infected cells as w
 pData(cells)$frac_flu_0.01 <- ifelse(pData(cells)$frac_flu_mRNAs > 0.01, 
     "more than 1%", "less than 1%")
 
-ggplot(pData(cells[, row.names(subset(pData(cells), Sample %in% c("8hr-2", "10hr-2")))]), 
+ggplot(
+        transform(pData(cells[, row.names(subset(pData(cells), Sample %in% c("8hr-2", "10hr-2")))]),
+            Sample=factor(Sample, samples)), # just keep two samples with most flu and order them 
         aes(total_mRNAs, color=frac_flu_0.01, fill=frac_flu_0.01)) +
     geom_density(alpha=0.2) +
     theme(axis.text.x=element_text(angle=90, vjust=0.5, hjust=1)) +
@@ -126,13 +124,81 @@ For the 10 hour timepoint, about a quarter the cells have at least a tiny fracti
 ```{r, fig.width=5, fig.height=2.75}
 # some trickery around x minimum to avoid taking log of 0 while plotting x on log scale
 minx <- 1e-4 # minimum value on y-axis
-pData(cells)$log_frac_flu_plus <- (function(x){ifelse(x < minx, log10(minx), log10(x))}
-    )(pData(cells)$frac_flu_mRNAs) 
+pData(cells)$log_frac_flu_plus <- ifelse(pData(cells)$frac_flu_mRNAs < minx, log10(minx), log10(pData(cells)$frac_flu_mRNAs))
 
-ggplot(pData(cells), aes(log_frac_flu_plus, color=Sample)) + 
+ggplot(
+        transform(pData(cells), Sample=factor(Sample, samples)), # order by sample 
+        aes(log_frac_flu_plus, color=Sample)) + 
     stat_ecdf() + 
     scale_x_continuous(labels=function(x){fancy_scientific(10**x)},
         limits=c(log10(minx), 0), expand=c(0, 0), name="fraction mRNAs from influenza") +
     scale_y_continuous(limits=c(0, 1), name="fraction cells with > this\nmany influenza mRNAs") 
 ```
 
+## Look at levels of influenza genes, using synonymous barcodes to detect co-infection and mRNA leakage
+Roughly half of the infecting influenza viruses had a synonymous barcode at the 3' end of each mRNA.
+If cells infected by a single virus (which we expect to be the most common case for infected cells since infection itself is rare), then they should generally have either all wildtype or all synonymously barcoded viruses.
+Looking for deviations from this expectation can identify both true co-infection and cells that just got some influenza mRNA by leakage, since such leakage is expected to introduce a mix of both wildtype and synonymously barcoded.
+Establishing when cells start to have influenza mRNA due to true infection versus simple leakage is important for figuring out the actual variation in influenza mRNA levels in truly infected cells.
+
+Note that we have counted influenza mRNAs from the standard 10X sequencing of the full transcriptome.
+However, we have also called the synonymous versus wildtype barcodes using some extra semi-specific PCR which is not included in the cell-gene count data due to the fact that it is biased towards some genes, but does provide extra depth on the barcode counts.
+We limit the analysis below to cells that meet the following criteria:
+
+  1. They have at least two influenza reads in the cell-gene matrix.
+  
+  2. They have at least two called barcodes (synonymous or wildtype) in the cell-gene matrix plus extra semi-specific PCR.
+  
+These criteria are a way to limit the analysis just to cells where there is actual information about the synonymous barcodes.
+First, we filter down to these cells and plot some information about them.
+Note that these plots show the number of influenza mRNAs on a log scale, and then color the bars by the fraction of reads from each barcode.
+So the heights of each color in the bars are proportional to the fraction of the reads with that barcode, they are **not** the log of the number of reads with each barcode.
+```{r, warning=FALSE}
+# filter on sufficiently barcoded cells and samples with such cells
+bc_cells <- filter(pData(cells), flu_mRNAs >= 2, flu.wt + flu.syn >= 2)
+samples_to_plot <- bc_cells[["Sample"]] %>% unlist %>% unique
+
+# make variables with product of log flu mRNAs times fraction with each barcode
+bc_cells <- bc_cells %>% mutate(frac_wt=(flu.wt / (flu.wt + flu.syn))) %>% 
+    mutate(wildtype=log10(flu_mRNAs) * frac_wt, synonymous=log10(flu_mRNAs) * (1 - frac_wt)) %>%
+    mutate(major=pmax(wildtype, synonymous), minor=pmin(wildtype, synonymous))
+
+# make some dummy rows with 0 or many influenza to "pad" between samples on the plot
+npad <- 5 # pad this many cells on each side of each sample
+bc_cells <- lapply(samples_to_plot, function(s){data.frame(Sample=rep(s , 2 * npad), flu_mRNAs=c(rep(0, npad), rep(1e8, npad)))}) %>% 
+    bind_rows(., bc_cells) %>% mutate_each(funs(replace(., is.na(.), 0)))
+
+# order bc_cells by sample and flu abundance
+bc_cells$Sample <- factor(bc_cells$Sample, samples_to_plot)
+bc_cells <- arrange(bc_cells, Sample, flu_mRNAs)
+bc_cells$indx <- as.numeric(row.names(bc_cells))
+
+# get min and max indx for each sample
+indxrange <- bc_cells %>% filter(major > 0) %>% group_by(Sample) %>% summarize(imax=max(indx), imin=min(indx)) %>% 
+    mutate(center=(imin + imax) / 2, label=sprintf("%s\n(%d cells)", Sample, imax - imin + 1)) 
+
+#' plot purity of barcoded cells
+#'
+#' @param barcodes type of barcodes to plot, \code{c("major", "minor")} or \code{c("wildtype", "synonymous")}
+#' @return plot of purity
+purityplot <- function (barcodes) {
+    ggplot(melt(bc_cells, id.vars=c("indx", "Sample"), measure.vars=barcodes, variable.name="barcode"), 
+        aes(x=indx, y=value)) +
+    geom_bar(aes(fill=barcode), stat="identity", position="stack", width=1) +
+    scale_y_continuous(name="influenza mRNAs", expand=c(0, 0), labels=function(y){fancy_scientific(10**y)}) +
+    scale_x_continuous(expand=c(0, 0), name=NULL, breaks=indxrange$center, labels=indxrange$label) +
+    theme(text=element_text(size=13), axis.ticks.x=element_blank(), legend.position=c(0.01, 1.05), 
+          legend.justification=c(0, 1), legend.direction="horizontal", 
+          legend.background=element_rect(fill="white", size=0.5, linetype="solid", color="black")) +
+    scale_fill_discrete("") +
+    geom_rect(data=data.frame(xmin=indxrange$imin[seq(2, nrow(indxrange), 2)] - npad,
+            xmax=indxrange$imax[seq(2, nrow(indxrange), 2)] + npad, ymin=-Inf, ymax=Inf),
+        aes(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax), alpha=0.1, inherit.aes=FALSE)
+}
+
+p_wt_syn <- purityplot(c("wildtype", "synonymous"))
+p_major_minor <- purityplot(c("major", "minor"))
+plot_grid(p_wt_syn + theme(axis.text.x=element_blank()), 
+    p_major_minor + scale_fill_manual(values=c("darkmagenta", "gold")), 
+    nrow=2, align='h', labels="AUTO", label_size=16, vjust=1)
+```
