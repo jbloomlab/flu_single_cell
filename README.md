@@ -15,13 +15,15 @@ Questions of interest include:
   2. Are there viral or host patterns associated with different outcomes?
 
 ## Organization
-The analysis consists of a set of iPython or RMarkdown notebooks.
+The analysis consists of a set of Jupyter notebooks.
 
 The whole analysis can be run via the bash script [`run_analysis.bash`](run_analysis.bash).
 
 This analysis consists of the following steps:
 
-   1. The iPython notebook [`align_and_annotate.ipynb`][] aligns the reads, annotates the flu synonymous barcodes, and generates the cell-gene matrix.
+   1. The Jupyter notebook [`align_and_annotate.ipynb`][] aligns the reads, annotates the flu synonymous barcodes, and generates the cell-gene matrix.
+
+   2. The Jupyter notebook [`monocle_analysis.ipynb`][] analyzes the cell-gene matrix, making use of [Monocle][]. Here effort is put into making high-quality figures.
 
 
 ## Input data
@@ -33,10 +35,15 @@ Other input data are in `./data`:
 
 ## Results and Conclusions
 The read alignment, construction of the cell-gene matrices, and annotation of the synonymous barcodes at the 3' end of the flu mRNAs was successful.
-The results are summarized in the iPython notebook [`align_and_annotate.ipynb`][].
+This part of the analysis is summarized in [`align_and_annotate.ipynb`][].
+
+A preliminary analysis of the cell-gene matrix is in [`monocle_analysis.ipynb`].
+This is where high-quality figures are being made.
 
 ## To-do
-The next step is to analyze the data with `Monocle` by reading in the cell-gene matrices.
+The next step is to further analyze the data with [Monocle][], and compare and harmonize with Alistair's analysis.
 
 
 [`align_and_annotate.ipynb`]: align_and_annotate.ipynb
+[`monocle_analysis.ipynb`]: monocle_analysis.ipynb
+[Monocle]: http://cole-trapnell-lab.github.io/monocle-release/
