@@ -17,7 +17,7 @@ The analysis is performed by a set of Jupyter notebooks.
 
 2. The R Jupyter notebook [monocle_analysis.ipynb][] analyzes the cell-gene matrix, making use of [Monocle][]. It generates most of the figures as well and places them in `./paper/figures`. The versions of R and associated packages are described in the notebook.
 
-3. The paper (in LaTex) is in the `./paper/` subdirectory. When compiled, the PDF is at [./papers/paper.pdf](./papers/paper.pdf).
+3. The paper (in LaTex) is in the `./paper/` subdirectory. When compiled, the PDF is at [./paper/paper.pdf](./paper/paper.pdf).
 
 The Jupyter notebooks can be run via the bash script [run_analysis.bash](run_analysis.bash).
 
@@ -29,7 +29,7 @@ In addition to the notebooks / scripts themselves, the following input data is u
 2. `./data/flu_sequences/` contains the influenza genomes for both the wildtype A/WSN/1933 virus and the variants with synonymous mutations barcoding the 3' end of the mRNA, as taken from the Bloom lab reverse-genetics plasmids used to grow these viruses.
 
 ## Results and Conclusions
-The final paper is in the `./papers/` subdirectory, and when the LaTex is compiled this is in the pdf [./papers/paper.pdf](./papers/paper.pdf).
+The final paper is in the `./paper/` subdirectory, and when the LaTex is compiled this is in the pdf [./paper/paper.pdf](./paper/paper.pdf).
 
 The Jupyter notebooks [align_and_annotate.ipynb][] and [monocle_analysis.ipynb][] contain detailed descriptions of the results.
 
