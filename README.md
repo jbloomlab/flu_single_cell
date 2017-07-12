@@ -27,10 +27,10 @@ In addition to the notebooks / scripts themselves, the following input data is u
 2. `./data/flu_sequences/` contains the influenza genomes for both the wildtype A/WSN/1933 virus and the variants with synonymous mutations barcoding the 3' end of the mRNA, as taken from the Bloom lab reverse-genetics plasmids used to grow these viruses.
 
 ## Results and Conclusions
+
+The Jupyter notebooks [align_and_annotate.ipynb][] and [monocle_analysis.ipynb][] contain detailed descriptions of the results.
+
 All of the output from the analyses are written to the `./results/` subdirectory.
-
-The Jupyter notebooks [align_and_annotate.ipynb][] [monocle_analysis.ipynb] contain a description of the results.
-
 
 [align_and_annotate.ipynb]: align_and_annotate.ipynb
 [monocle_analysis.ipynb]: monocle_analysis.ipynb
