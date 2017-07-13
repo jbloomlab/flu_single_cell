@@ -1,5 +1,5 @@
 # Single-cell sequencing of influenza-infected cells
-This repository is an analysis of the transcriptional dynamics of influenza virus infection at the single-cell level.
+This repository is an analysis of the transcriptional dynamics of influenza virus infection at the level of single cells.
 
 Briefly, A549 cells were infected with A/WSN/1933 influenza virus at a low MOI.
 The transcriptomes of the cells were then sequenced on the [Chromium 10X platform](https://www.10xgenomics.com/single-cell/).
