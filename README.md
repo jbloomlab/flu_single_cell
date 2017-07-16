@@ -28,7 +28,7 @@ In addition to the notebooks / scripts themselves, the following input data is u
 
 2. `./data/flu_sequences/` contains the influenza genomes for both the wildtype A/WSN/1933 virus and the variants with synonymous mutations barcoding the 3' end of the mRNA, as taken from the Bloom lab reverse-genetics plasmids used to grow these viruses.
 
-3. `./data/c5.all.v6.0.symbols.gmt` contains gene sets for enrichment analysis as downloaded from [GSEA]((http://www.bioconductor.org/packages/release/bioc/vignettes/piano/inst/doc/piano-vignette.pdf).
+3. `./data/h.all.v6.0.symbols.gmt` contains gene sets for enrichment analysis as downloaded from [GSEA](http://software.broadinstitute.org/gsea/index.jsp).
 
 ## Results and Conclusions
 The final paper is in the `./paper/` subdirectory, and when the LaTex is compiled this is in the pdf [./paper/paper.pdf](./paper/paper.pdf).
