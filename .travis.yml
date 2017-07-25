@@ -1,0 +1,27 @@
+build_image: harshjv/texlive-2015
+
+install:
+  # Check texlive version
+  - tlmgr version -v
+  # Update texlive
+  - tlmgr update --all
+
+before_script:
+  # Check texlive version
+  - tlmgr version -v
+  # Check which tex packages we have available
+  - tlmgr info --only-installed ||
+        echo "Couldn't retrieve the texlive package list!"
+
+script:
+  - latex -halt-on-error -interaction nonstopmode small2e
+  - pdflatex -halt-on-error -interaction nonstopmode small2e
+
+before_archive:
+  # Archive the TeX log files, and any generated output files
+  - mkdir -p shippable/;
+    cp -f *.log shippable/;
+    cp -f *.dvi shippable/;
+    cp -f *.pdf shippable/;
+
+archive: true
