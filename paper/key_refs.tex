@@ -1,0 +1,144 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ELIFE ARTICLE TEMPLATE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% PREAMBLE 
+\documentclass[9pt,lineno]{elife}
+% Use the onehalfspacing option for 1.5 line spacing
+% Use the doublespacing option for 2.0 line spacing
+% Please note that these options may affect formatting.
+
+\usepackage{lipsum} % Required to insert dummy text
+\usepackage[version=4]{mhchem}
+\usepackage{siunitx}
+\DeclareSIUnit\Molar{M}
+
+\begin{document}
+
+
+
+\section{Key background references}
+Here we list some key background references on some relevant points.
+
+\subsection{Stochasticity during viral infection}
+\begin{itemize}
+
+\item \citet{delbruck1945burst} showed that the amount of progeny virions released from bacteria infected with bacteriophage differed by over 2 orders of magnitude.
+
+\item \citet{zhu2009growth} showed that the number of progeny virions produced by mammalian cells infected with VSV differ by over 2 orders of magnitude. 
+They further suggest that the differences are mostly due to cellular factors, since they are not heritable.
+
+\item \citet{schulte2014single} examine single cells infected with poliovirus.
+They found that the amount of both positive-sense and negative-sense genome and progeny virus differed by over an order of magnitude across cells.
+Higher MOI was associated with more positive-sense genome but \emph{not} higher yields of progeny virus.
+
+\item \citet{akpinar2016high} examine VSV infection of single cells both in the presence and absence of defective interfering particles (DIPs). 
+They track both the amount of produced viral progeny and fluorescence of a reporter.
+One interesting finding is that the viral yield from individual isolated cells is consistently lower than that from populations of cells, suggesting that presence of some cell-cell signaling or secreted factor might help viral production.
+They find that adding more DIPs decreases both viral production and the expression of the reporter gene, although the former is decreased more.
+
+\item \citet{combe2015single} also look at the production of VSV from single infected cells, although immediately some of these cells are likely multiply infected. 
+They find that the yield of viral progeny differs by about two orders of magnitude across cells.
+
+\item \citet{heldt2015single} examine stochasticity during influenza virus infection.
+They show that the amount of infectious progeny virions produced per infection (at high MOI) ranged from one to almost 1000.
+They also show that the amount of vRNA per cell (again at high MOI infection) ranges by almost 3 orders of magnitude.
+The amount of vRNA and progeny virions is strongly correlated.
+For most segments, the amounts of different mRNAs is correlated.
+They also have a bunch of simulations that I looked at less closely.
+
+\item \citet{dou2017analysis} use an RNA-labeling method to look at the presence of vRNAs in single infected cells.
+By their method, they find that only about 20\% of cells contain all 8 vRNPs.
+They also show that there is a very limited window for co-infection.
+
+\end{itemize}
+
+\subsection{Influenza co-infection and defective particles}
+\begin{itemize}
+
+\item \citet{davis1980influenza} is an old paper that appears to be the original one showing that influenza defective RNAs have both termini and so represent some type of internal deletion.
+
+\item \citet{odagiri1997segment} look at a PA defective segment in the presence of an NS2 mutant.
+They show that the shorter defective PA segment is favored at both the levels of segment replication and genome packaging. 
+I remain a bit unclear about how the NS2 mutant plays into all of this, other than that apparently this NS2 mutant generates lots of PA defectives...
+
+\item \citet{hutchinson2008mutational} look at how many infected cells lack expression of at least one of two segments tested.
+They find that for wildtype virus this is about 20\%, but when there are synonymous mutations in the packaging signal of M, then it is about 50\%.
+
+\item \citet{saira2013sequence} shows that defective influenza particles are present in infected humans.
+
+\item \citet{brooke2013most} show that over half of cells infected with PR8 fail to express one of four proteins tested.
+High MOI infection alleviates this incomplete expression, presumably via co-infection with viruses each of which fails to express different genes.
+
+\item \citet{brooke2014influenza} find a mutation in NP that specifically reduces the packaging of NA in a way that is advantageous in guinea pigs.
+They do various things showing that co-infection occurs \textit{in vivo}, and also show that there is at least some amount of dose-response in terms of gene expression as cells that get lots of no-NA virus during co-infection express relatively less NA protein.
+
+
+\end{itemize}
+
+\subsection{Interferon induction}
+\begin{itemize}
+
+\item \citet{perez2014unbiased} looks at type I IFN induction in A549 cells with a fluorescent reporter.
+The wildtype virus induces IFN in a few percent of cells.
+A NS1-deletion virus induces in 15-20\% of cells.
+They passage in IFN-deficient cells to isolate various mutants that induce more than wildtype but less than the delta-NS1 virus.
+Most of these mutations are in proteins other than NS1, including some in M1 that were shown to induce IFN more effectively.
+They also argue that some of the inducing mutations lead to more defective segments to accumulate.
+
+\item \citet{killip2015influenza} reviews IFN induction by influenza, including the point that only a fraction of cells induce IFN upon infection.
+
+\item \citet{killip2017single} look at IFN induction by wildtype and NS1-defective influenza virus.
+Although some viruses (like Sendai) are able to induce IFN expression in almost all their cells, influenza only induces IFN in less than one percent of cells.
+An NS1-defective virus induced IFN in many more cells, but it was still only 5 to 20\%.
+In neither case is there an obvious correlation between NP protein production and IFN activation -- IFN is both present and absent in cells with little and lots of NP.
+
+\item \citet{shalek2013single} and \citet{shalek2014single} using single-cell RNA-seq to show that interferon induction is highly variable across individual cells in bone-marrow derived dendritic cells.
+Some cells express lots of IFN related genes, others express almost none.
+They suggest that some ``precocious'' cells are responsible for much of the IFN signaling.
+
+\item \citet{bhushal2017cell} look at expression of IFN in single cell using an RFP reporter.
+In epithelial cells, type I IFN induction is bimodal, with both the fraction of cells responding and the magnitude of response increasing with more IFNbeta, and saturating at near 100\% response.
+In contrast, for type III IFN, although the response is also bimodal, it saturates at less than 100\%, and there is less dose-response in the magnitude.
+They also did interesting experiments looking at ``memory'' in the response by separating responders and non-responders and then re-stimulating.
+Cells that did not express IFN first time still had a fraction the responded the second time, whereas responders the first time usually although not always responded the second time.
+So there is some but incomplete memory among responders.
+They show that at least for type III IFN, the difference between responders and non-responders is not at the level of STAT1 activation, but is rather downstream and may involve histone acetylation as it is affected by HDAC inhibitors.
+They also look in organoids and polarized cells, and find that in this more physiological setting the cells are more type III IFN responsive.
+
+\item \citet{lopez2014defective} reviews the idea that defective genomes are important for IFN induction by many viruses including influenza.
+
+\item \citet{baum2010preference} argues that RIG-I preferentially binds to short (defective) influenza segments.
+
+\item \citet{tapia2013defective} shows that mice infected with influenza with more defective particles have more IFN induction.
+
+\end{itemize}
+
+\subsection{Transcriptional dynamics}
+
+\begin{itemize}
+
+\item \citet{hatada1989control} examine the accumulation of each influenza mRNA by Northern blot.
+They find the same general hierarchy of expression as us: M and NS are the highest, then NP, then NA, then HA, then the three polymerases.
+Specifically estimates that the polymerase proteins reach about $10^3$ copies / cell, HA gets to about $7 \times 10^3$ per cell, NA to about $10^4$ per cell, NP to about $1.5 \times 10^4$ per cell, NS to almost $2 \times 10^4$ / cell, and M to over $2 \times 10^4$ cell.
+
+\citet{vreede2004model} This paper examines production of mRNA and cRNA in the presence of cycloheximide.
+They demonstrate the cRNA production requires the presence of the polymerase proteins (PB2, PB1, PA, NP) in excess of those in the initial vRNAs, although the PB1 can be inactive. 
+
+\item \citet{kawakami2011strand} use qPCR to look at the accumulation of NP and NA in infected cells.
+They suggest that NP mRNA reaches a peak around 6 hours of $5 \times 10^4$ / cell, whereas NA reaches a much lower peak and after more time.
+The paper also shows that mRNA levels peak at 4-6 hours regardless of the presence or absence of cycloheximide, but the mRNA production is less in the presence of cycloheximide indicating secondary transcription.
+
+\item \citet{shapiro1987influenza} examines gene expression using Northern blots.
+They find that the \emph{rate} of mRNA synthesis (at least for NP, M1, and NS1) generally peaks around 2.5 hours, with protein levels appearing to be near maximal by about 5.5 hours.
+The rate of mRNA synthesis had fallen to 5\% of the maximal rate by 4.5 hours. 
+Note that these times are for infection intiated \emph{after} absorption has been allowed to occur.
+
+\end{itemize}
+
+
+
+\nocite{*} % This command displays all refs in the bib file
+\bibliography{references}
+
+
+\end{document}
