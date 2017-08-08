@@ -77,9 +77,8 @@ def mergeCellGeneMatrices(mergedgenes, mergedcells, mergedmatrix,
             elif (list(sample_annotations.columns.values[1 : ]) !=
                     annotations[2 : ]):
                 raise ValueError("Different annotations for different samples")
-            sample_annotations['cellbarcode'] = map(lambda bc: 
-                    '{0}-{1}'.format(bc.strip().split('-')[0], sample), 
-                    sample_annotations['cellbarcode'])
+            sample_annotations['cellbarcode'] = sample_annotations.apply(lambda row:
+                   '{0}-{1}'.format(row['cellbarcode'].strip().split('-')[0], sample), axis = 1)
             annotated_barcodes = []
             for (bc, sample) in map(lambda line: line.split('\t'),
                     sample_barcodes):
