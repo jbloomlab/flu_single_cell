@@ -47,16 +47,52 @@ Overall, highlights remarkable heterogeneity in the outcome of infection.
 
 \section{Introduction}
 
-Your introduction goes here!
-\emph{Put each sentence on a separate line to enable tracking with git.}
+Heterogeneity is important in a lot of cellular processes even when isogenic~\citep{shalek2013single,shalek2014single}.
 
-Here's a second paragraph to test paragraph indents. \lipsum[1]
+Population (genetic) heterogeneity is also important. 
+Viral quasispecies, cancer single-cell, etc.
+Salmonella paper (PhoP).
+
+Literature on viral burst-size heterogeneity.
+This goes back to Delbruck, Andino polio paper~\citep{schulte2014single}, the MDCK / flu paper.
+
+Discuss segmented nature of influenza.
+Maybe in the context of how this could further increase heterogeneity because there is a lot of potential for entire genes to be missing.
+Includes Yewdell and Lowen papers.
 
 \section{Results}
 
-\subsection{Level 2 Heading}
+\subsection{Generation of influenza virus stocks for single-cell infections.}
 
-\lipsum[3]
+Schematic of how the experiment works and generation of barcoded virus (Figure~\ref{fig:workflow}).
+
+Validation of viral populations: wildtype and synonymous barcode (we need to pick some consistent nomenclature) grow about the same (Figure~\ref{fig:viruspopulations}A).
+Maybe need a sentence or two about defectives should be working in as background before the next sentence (Carolyn Lopes paper on flu, some other stuff).
+The ratio of HA molecules to infectious virus particles is much lower than for a high-defective population (Figure~\ref{fig:viruspopulations}B).
+These viruses don't induce very much IFN both overall and compared to a high-defective population (Figure~\ref{fig:viruspopulations}C).
+The number of HA-expressing infection events is not all that much higher than the number of actual infectious events, in contrast to a high-defective population (Figure~\ref{fig:viruspopulations}D).
+
+\begin{figure}
+\includegraphics[width=0.8\linewidth]{figures/Workflow/workflow.pdf}
+\caption{
+CAPTION}
+\label{fig:workflow}
+\end{figure}
+
+\begin{figure}
+\includegraphics[angle=270,width=0.7\linewidth]{figures/Validating_barcode_virus/validating_populations_D02.pdf}
+\caption{
+CAPTION}
+\label{fig:viruspopulations}
+\end{figure}
+
+\subsection{Global analysis of single-cell transcript counts reveals robustness of approach.}
+We got some reasonable number of cells at several timepoints (Figure~\ref{fig:cells}A).
+
+Most cells are uninfected, flu burden generally increases with time in the samples, show Figure~\ref{fig:cells}B maybe with inset.
+Also show Figure~\ref{fig:cells}C which basically shows the same thing in a different way.
+
+We observe both barcodes in influenza-infected cells, and can determine the barcode for about half the viral transcripts (Figure~\ref{fig:synbarcodes}).
 
 \begin{figure}
 \includegraphics[width=\linewidth]{figures/p_cell_mRNA_summary.pdf}
@@ -78,6 +114,23 @@ At later timepoints, a small number of cells had a very high number of viral mRN
 \figsupp{This is another supplementary figure.}{\includegraphics[width=6cm]{frog}}
 \figdata{This is a description of a data source.}
 \end{figure}
+
+\begin{figure}
+\includegraphics[width=\linewidth]{figures/synbarcodes_umistats.jpg}
+\caption{
+CAPTION}
+\label{fig:synbarcodes}
+\end{figure}
+
+\subsection{Barcodes enable systematic identification of infected and co-infected cells.}
+Few coinfections
+
+Setting threshold: Assumes rare barcode events are due to lysis (ormisannotation)  and that two values SHOULD correlate
+Validating evidence/assumption two values correlate - flow data, flow diagram and quantile-normalized data. Include replicates in supplement.
+
+Once defined, we have some statistics.
+
+Presumably this subsection basically covers \ref{fig:fracflu}.
 
 \begin{figure}
 \includegraphics[width=\linewidth]{figures/p_frac_flu_summary.pdf}
@@ -103,6 +156,75 @@ For all samples, there is a very wide distribution of the amount of viral mRNA.
 \label{fig:fracflu}
 \end{figure}
 
+\subsection{Absence of viral genes explains some of the heterogeneity in viral burden.}
+In the prior sections, we've pointed that there is a lot of variation in how much flu there is in each cell.
+One obvious explanation is some cells essential flu genes.
+Most obviously, viruses missing a polymerase gene are presumably have problems making transcripts.
+Possibly one could imagine that missing other genes would have an effect.
+
+Figure~\ref{fig:fluburdenbygene} shows that viruses missing polymerase genes never get up as high in flu burden.
+Also work in as a figure supplement the qPCR of the cycloheximide.
+
+Talk about caveats of calling polymerase absence.
+
+Potentially add a figure or figure panel showing that there is still a lot of heterogeneity in 8-segment virus.
+
+\begin{figure}
+\includegraphics[width=\linewidth]{figures/p_flu_burden_flu_gene_merge.pdf}
+\caption{
+The viral infection burden in individual cells as a function of the amount of each viral gene detected.
+{\bf (A)} 
+Fraction of mRNAs in each cell derived from virus as a function of the \emph{normalized} expression of each viral gene in that cell.
+This plot shows that all cells with very high viral burden express all of the RNP genes, but some cells with high viral burden lack each of the other four viral genes.
+{\bf (B)}
+Statistical tests confirming that absence of viral RNP genes is significantly associated with reduced viral burden, but that the absence of the non-RNP genes does not lead to a clear decrease in viral burden.
+}
+\label{fig:fluburdenbyflugene}
+\end{figure}
+
+\subsection{How many cells are missing influenza genes?}
+Look at the non-polymerase genes in highly infected cells, and see how often they are absent.
+This probably requires a new figure.
+
+Talk about how co-infection can rescue absence of genes.
+From our single-cell data, Figure~\ref{fig:coexpression} shows some of the relevant data.
+
+From the other data, talk about the flow cytometry data.
+Coinfection gives multiple 'chances' bring up flow data (hiDI and co-infection, as well as available data, bring up prior Yewdell data consistent with this).
+
+\begin{figure}
+\includegraphics[width=\linewidth]{figures/p_coinfection.pdf}
+\caption{
+Frequency of each viral gene segment in co-infected cells with at least 5\% of their mRNA derived from influenza.
+The bars indicate the logarithm of the number of each viral mRNA detected, and the bars are colored in proportion to the fraction of those mRNAs that are derived from either wildtype or synonymous barcoded virus.
+}
+\label{fig:coexpression}
+\figdata{The raw data plotted in this figure are in \texttt{p\_coinfection.csv}.}
+\end{figure}
+
+\subsection{Relative expression of different viral genes}
+Figure~\ref{fig:fluexpr} shows some of this.
+Cite \citet{hatada1989control} to show our relative expressions are consistent with that.
+Maybe show a panel with just the 8-segment infections.
+
+Maybe add a figure breaking this down among timepoints.
+
+\begin{figure}
+\includegraphics[width=\linewidth]{figures/p_flu_expr.pdf}
+\caption{
+Expression of individual influenza genes in highly infected cells (at least 5\% of total mRNA is viral).
+{\bf (A)} 
+The fraction of total mRNA from each influenza gene for each cell.
+{\bf (B)}
+Box plots showing the fraction of viral mRNA per cell that is derived from each influenza gene taken over all highly expressed cells.
+The black line at the notch in each box is the median, and the top and bottom of the box indicate the first and third quartiles.
+}
+\label{fig:fluexpr}
+\figdata{The raw data are in \texttt{p\_flu\_expr.csv}.}
+\end{figure}
+
+\subsection{Host stuff}
+
 \begin{figure}
 \includegraphics[width=\linewidth]{figures/p_pseudo_merge.pdf}
 \caption{
@@ -125,42 +247,6 @@ The one interferon-positive cell is lacking NS, but many other cells also lack N
 \label{fig:pseudotime}
 \end{figure}
 
-\begin{figure}
-\includegraphics[width=\linewidth]{figures/p_flu_burden_flu_gene_merge.pdf}
-\caption{
-The viral infection burden in individual cells as a function of the amount of each viral gene detected.
-{\bf (A)} 
-Fraction of mRNAs in each cell derived from virus as a function of the \emph{normalized} expression of each viral gene in that cell.
-This plot shows that all cells with very high viral burden express all of the RNP genes, but some cells with high viral burden lack each of the other four viral genes.
-{\bf (B)}
-Statistical tests confirming that absence of viral RNP genes is significantly associated with reduced viral burden, but that the absence of the non-RNP genes does not lead to a clear decrease in viral burden.
-}
-\label{fig:fluburdenbyflugene}
-\end{figure}
-
-\begin{figure}
-\includegraphics[width=\linewidth]{figures/p_flu_expr.pdf}
-\caption{
-Expression of individual influenza genes in highly infected cells (at least 5\% of total mRNA is viral).
-{\bf (A)} 
-The fraction of total mRNA from each influenza gene for each cell.
-{\bf (B)}
-Box plots showing the fraction of viral mRNA per cell that is derived from each influenza gene taken over all highly expressed cells.
-The black line at the notch in each box is the median, and the top and bottom of the box indicate the first and third quartiles.
-}
-\label{fig:fluexpr}
-\figdata{The raw data are in \texttt{p\_flu\_expr.csv}.}
-\end{figure}
-
-\begin{figure}
-\includegraphics[width=\linewidth]{figures/p_coinfection.pdf}
-\caption{
-Frequency of each viral gene segment in co-infected cells with at least 5\% of their mRNA derived from influenza.
-The bars indicate the logarithm of the number of each viral mRNA detected, and the bars are colored in proportion to the fraction of those mRNAs that are derived from either wildtype or synonymous barcoded virus.
-}
-\label{fig:coexpression}
-\figdata{The raw data plotted in this figure are in \texttt{p\_coinfection.csv}.}
-\end{figure}
 
 \begin{figure}
 \includegraphics[width=0.8\linewidth]{figures/p_cellular_heatmap.pdf}
