@@ -1,0 +1,63 @@
+---
+title: "Flow_Analysis"
+author: "Alistair Russell"
+date: "7/10/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r setup}
+# pipe operators
+suppressPackageStartupMessages(library(magrittr))
+# for manipulating factors
+suppressPackageStartupMessages(library(forcats))
+# tab data processing
+suppressPackageStartupMessages(library(tidyverse))
+# supress warnings
+options(warn = -1)
+# for low-level manipulation of ggplot
+suppressPackageStartupMessages(library(gridExtra))
+suppressPackageStartupMessages(library(ggforce))
+library(grid)
+#loading flow cytometry data
+suppressPackageStartupMessages(library(flowCore))
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r load data}
+# look for files ending in .fcs
+fcsfiles <- 'Data/HA' %>% 
+    list.files(full.names = T, pattern = '.fcs$')
+
+flowdata  <- fcsfiles %>% 
+    lapply(. %>%
+           # read FCS file without any transformations
+           flowCore::read.FCS(transformation = F, alter.names = T) %>% 
+           # extract counts alone
+           flowCore::exprs() %>% 
+           # convert to dplyr tibble
+           as_tibble() 
+          )
+
+names(flowdata) <- fcsfiles %>% 
+    # extract file name without .fcs extension and parent folders
+    lapply(. %>% 
+           stringr::str_match('([^/]+).fcs$') %>% 
+           extract2(2))
+
+# join all samples by 'file'
+flowdata %<>% bind_rows(.id = 'file')
+
+print(flowdata)
+write.table(flowdata, 'coinfection.tsv', sep='\t', row.names=FALSE)
+```
+
+
