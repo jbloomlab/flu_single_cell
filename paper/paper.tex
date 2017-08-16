@@ -16,7 +16,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% ARTICLE SETUP
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Transcriptional dynamics of influenza virus infection at the single-cell level}
+\title{Transcriptional dynamics of influenza virus infection in single cells}
 
 \author[1]{Alistair B. Russell}
 \author[2]{Cole Trapnell}
@@ -63,39 +63,73 @@ Includes Yewdell and Lowen papers.
 
 \section{Results}
 
-\subsection{Initial Steps to Generate Robust Single-Cell Kinetic Observations.}
+\subsection{Strategy to measure mRNA transcription in single infected cells.}
+% \subsection{Initial Steps to Generate Robust Single-Cell Kinetic Observations}
+We chose to perform single-cell mRNA sequencing using a droplet-based system that physically isolates single cells prior to performing reverse-transcription.
+Each droplet contains a unique \emph{cell barcode} that is used to tag all mRNAs from that cell during reverse-transcription.
+Each mRNA molecule is additionally tagged with a \emph{unique molecular identifier (UMI)} during reverse transcription.
+Sequencing of the 3' ends of the mRNAs therefore enables quantification of the number of different molecules of each mRNA species that are captured per cell.
 
-
-	In order to obtain detailed measurements at a single-cell resolution of influenza growth and replication we chose to use an approach dependent on a commercially available variant of DropSeq and InSeq (Figure~\ref{fig:workflow}A). In brief, we infected A549 cells --- a human lung carcinoma cell line frequently used in tissue-culture models of influenza infection --- using a relatively low infectious dose of WSN influenza --- a lab-adapted trypsin-independent strain. We then harvested cells by trypsonization, and generated libraries from total polyadenylated transcripts. These libraries consisted of a short region mapping to the 3' end of the original mRNA transcript, a barcode identifying the cell from which the transcript was derived, and a unique molecular identifier that serves for error-correction in transcript abundance measurements. As an additional control, we generated a 3' barcoded influenza strain containing two one base-pair synonymous mutations at the 3' end of all transcripts, allowing us to estimate co-infection and empirically derive thresholds for influenza infection. These barcodes were designed to lie within the 3' region sequenced in our library preparation as determined through examination of mapping distributions in uninfected A549 cells.
-	
-        	When generating viral stocks for our infections, we also considered that Influenza, like many viruses, can generate a diverse array of biologically active particles as it replicates --- particles that can differ significantly from the genomic consensus sequence. One of the most abundant of these, defective-interfering (DI) particles, predominantly result from deletions accrued in the three segments encoding the tripartite polymerase during growth at high infectious doses. Generation of these particles is highly stochastic and known to influence the behavior of influenza populations both with respect to replication kinetics and interferon induction. Therefore, for the sake of generating baseline, repeatable, observations of influenza replication kinetics and host interactions at a single cell level, we first sought to propagate populations of viruses that were relatively free of these particles using similar methods to those developed by \textit{Xue et al}. Concomitantly, we validated that both replication kinetics and relative abundance of DI particles were similar between our synonymously barcoded and wild-type populations. 
-	
-	First, we established that our barcoded variant progresses through infection with near-wild-type kinetics, as measured by hemagglutanin (HA) transcript abundance (Figure~\ref{fig:viruspopulations}A). After establishing that our mutations did not dramatically impact viral replication, we next sought to establish a rough ratio of biologically active particles to fully-infectious particles.  We therefore measured the abundance of the HA segment in viral stocks relative to their measured infectious dose (Figure~\ref{fig:viruspopulations}B). Notably, this ratio is dramatically skewed in a population grown to be replete in defective particles relative to our desired experimental populations. Measurements of HA staining corroborated this finding, as the percentage of infected cells tracked well with the desired MOI, as opposed to a dramatically increased abundance of HA staining noted in our high defective control  (Figure~\ref{fig:viruspopulations}C). Lastly, our populations induced far less interferon than a high defective control, consistent with prior observations that such stocks are more immunostimulatory (Figure~\ref{fig:viruspopulations}D).
-	
-	Using these validated populations, we tracked growth kinetics in our target cell line at an infectious dose targeting a final infection rate of 5 percent as determined by flow cytometry. We observed rapid transcript accumulation through 10 hours, which then tapered off --- potentially representing new rounds of infection rather than progression in initially infected cells (supplemental figure). We then chose three time points (6,8, and 10h) reflecting dramatically different influenza burden (and thus different stages in influenza replication) for this study.
-
-
-
- (Figure~\ref{fig:workflow}).
+Virally infected cells will express viral as well as cellular mRNAs.
+However, the cell barcodes and UMIs do not enable direct detection of whether a cell was initially infected by one or multiple viral particles.
+We therefore engineered an influenza virus that additionally carried \emph{viral barcodes} near the 3' end of each transcript (Figure~\ref{fig:workflow}A).
+These viral barcodes consisted of two synonymous mutations designed to fall in the 3' portion of the mRNAs sequenced by our approach.
+These barcodes were engineered into reverse-genetics plasmids encoding the A/WSN/1933 (H1N1) strain of influenza virus, which were then used to generate virus.
+We also generated wildtype virus of the same strain in parallel, and validated that the two viral strains exhibited similar growth kinetics (Figure~\ref{fig:workflow}B).
+We then infected A549 human lung carcinoma cells with an equal mix of the wildtype and synonymously barcoded viruses.
+Cells infected by a single virion should exclusively express mRNAs from either wildtype or synonymously barcoded virus, while cells that are co-infected with multiple virions will frequently express mRNAs from both the wildtype and synonymously barcoded viruses (Figure~\ref{fig:workflow}C).
 
 \begin{figure}
 \includegraphics[width=0.8\linewidth]{figures/Workflow/workflow.pdf}
 \caption{
-CAPTION}
+Possible changes:
+{\bf (A)} Put current panel B first, since we want to explain how the viruses are barcoded before describing the infections. Also, perhaps show an example barcode (e.g., \texttt{GGACAG}$\rightarrow$\texttt{GGcCAt}).
+{\bf (B)} The wildtype and synonymously barcoded variants grow similarly.
+This is the current Figure 2A.
+{\bf (C)} This would now be the current (A). We have plenty of space, so simply write out ``wildtype'', ``synonymously barcoded'', ``cell barcode'' even if it makes the figure a bit larger -- this will be much clearer than introducing a bunch of acronyms.
+Also, I think the matrix could be made clearer.
+Add ellipses indicating that there are lots of genes and just a few are being shown. Also, make it ``host gene A'', ``host gene B'', ...
+For the viruses, I think it would be clearer to have columns ``viral gene A, wildtype'', ``viral gene B, synonymous barcode'', etc.
+That way you can have numbers in those columns which is what is actually present in the matrix.
+}
+\figdata{Sequences of wildtype and synonymously barcoded viruses are in FASTA file XXX (add this FASTA file to the figures directory).}
 \label{fig:workflow}
 \end{figure}
+
+We also took great care to produce stocks of virus that we expected to be relatively ``pure.''
+Many viruses, including influenza, rapidly diversify into an array of biologically active viral particles, many of which can have mutations or deletions in essential viral genes.
+For influenza virus, one abundant forms of these defective particles arises from deletions that occur in the three viral segments encoding the tripartite viral polymerase.
+These defective particles become particularly abundant when the virus is grown at high multiplicities of infection, where virions with defective genes can be complemented by co-infection with other virions.
+To keep the level of these defective particles as low as possible, we propagated our viral populations at low multiplicity of infection.
+We then validated that compared to virus propagated at high multiplicity of infections, our viral populations exhibited a much greater purity of infectious particles.
+We validated this by assessing the ratio of infectious particles to viral-RNA molecules (Figure~\ref{fig:viruspopulations}A) and to particles that induce cellular expression of a single viral protein (Figure~\ref{fig:viruspopulations}B).
+We also showed that our viral populations induced much less interferon than a population propagated at higher multiplicity of infection as expected because...
+Lastly, our populations induced far less interferon than a high defective control, consistent with prior observations that such stocks are more immunostimulatory (Figure~\ref{fig:viruspopulations}D).
 
 \begin{figure}
 \includegraphics[width=0.7\linewidth]{figures/Validating_barcode_virus/validating_populations_D02.pdf}
 \caption{
-CAPTION}
+Panel A has now moved to the other figure.
+In panel A, the vertical alignment is a bit off for a few of the tick labels.
+Space between ``HA'' and ``TCID50'' on the y-axis.}
 \label{fig:viruspopulations}
 \end{figure}
 
 \subsection{Population-Level Measurements Validate Dataset.}
-Before proceeding with more detailed analyses, we first examined population-level data to confirm the validity of our approach. We not only generated data for our three time points and a matched uninfected control, but also performed a biological replicate at 8 hours to determine whether our findings could be dominated by inter-sample or technical variation rather than biological processes driven by influenza. We sampled roughly equivalent number of cells per time point at an equivalent sequencing depth per cell - granting similar probability to observe rare events across datasets (Figure~\ref{fig:cells}A) (ADD SUPPLEMENTAL OF DEPTH/CELL?). Overall we observed highly similar distributions of transcript abundance between samples (Figure~\ref{fig:cells}B). This suggests that, in a rough global sense, transcriptome dynamics are relatively unperturbed and that influenza, if it is driving dramatic changes in transcript abundance and/or growth state, must be doing so in only a small subset of cells. More importantly, with the confidence that the average cellular state is similar between time points, we can better regard changes in subpopulations between time points as bone-fide progression in influenza replication rather than inter-sample variation.
+Using these validated populations, we tracked growth kinetics in our target cell line at an infectious dose targeting a final infection rate of 5 percent as determined by flow cytometry. 
+We observed rapid transcript accumulation through 10 hours, which then tapered off --- potentially representing new rounds of infection rather than progression in initially infected cells (supplemental figure). 
+We then chose three time points (6,8, and 10h) reflecting dramatically different influenza burden (and thus different stages in influenza replication) for this study.
 
-In addition to analyses regarding global transcript abundance, we were also able to successfully detect increasing numbers of influenza transcripts as our experiment progressed (Figure~\ref{fig:cells}C). Moreover, there appeared to be only a few cells at each time point making considerable contributions to the influenza transcript pool, consistent with our desired low level of infection. With these metrics, we felt confident proceeding to more detailed analyses of influenza replication kinetics and impact on these populations.
+Before proceeding with more detailed analyses, we first examined population-level data to confirm the validity of our approach. 
+We not only generated data for our three time points and a matched uninfected control, but also performed a biological replicate at 8 hours to determine whether our findings could be dominated by inter-sample or technical variation rather than biological processes driven by influenza. 
+We sampled roughly equivalent number of cells per time point at an equivalent sequencing depth per cell - granting similar probability to observe rare events across datasets (Figure~\ref{fig:cells}A) (ADD SUPPLEMENTAL OF DEPTH/CELL?). 
+Overall we observed highly similar distributions of transcript abundance between samples (Figure~\ref{fig:cells}B). 
+This suggests that, in a rough global sense, transcriptome dynamics are relatively unperturbed and that influenza, if it is driving dramatic changes in transcript abundance and/or growth state, must be doing so in only a small subset of cells. 
+More importantly, with the confidence that the average cellular state is similar between time points, we can better regard changes in subpopulations between time points as bone-fide progression in influenza replication rather than inter-sample variation.
+
+In addition to analyses regarding global transcript abundance, we were also able to successfully detect increasing numbers of influenza transcripts as our experiment progressed (Figure~\ref{fig:cells}C). 
+Moreover, there appeared to be only a few cells at each time point making considerable contributions to the influenza transcript pool, consistent with our desired low level of infection. 
+With these metrics, we felt confident proceeding to more detailed analyses of influenza replication kinetics and impact on these populations.
 
 \begin{figure}
 \includegraphics[width=\linewidth]{figures/p_cell_mRNA_summary.pdf}
