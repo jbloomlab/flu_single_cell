@@ -64,10 +64,10 @@ Includes Yewdell and Lowen papers.
 \section{Results}
 
 \subsection{Strategy to measure mRNA transcription in single virus-infected cells.}
-We performed mRNA sequencing using a droplet-based system that physically isolates single cells prior to performing reverse-transcription.
+We measured the transcriptomic state of individual cells using a droplet-based system ? physically isolating cells prior to performing reverse-transcription.
 Each droplet is associated with a unique \emph{cell barcode} that tags all mRNAs from that cell during reverse-transcription.
 A random \emph{unique molecular identifier (UMI)} is additionally appended to each mRNA molecule during reverse transcription.
-Sequencing of the 3' ends of the mRNAs therefore quantifies the number of different molecules of each mRNA species that are captured per cell.
+Sequencing the 3' ends of the mRNAs provides a measure of transcript identity, that, when combined with the UMI and cell barcode, provides a measurement of the number of different molecules of each mRNA species captured per cell.
 
 Infected cells will express viral as well as cellular mRNAs, however the cell barcodes and UMIs cannot distinguish whether a cell was initially infected by one or multiple viral particles.
 We therefore engineered an influenza virus that additionally carried \emph{viral barcodes} consisting of synonymous mutations near the 3' end of each transcript (Figure~\ref{fig:workflow}A).
@@ -76,10 +76,10 @@ We infected A549 human lung carcinoma cells with an equal mix of the wildtype an
 Cells infected by a single virion should exclusively express mRNAs from either wild-type or synonymously barcoded virus, while cells that are co-infected with multiple virions will frequently express mRNAs from both the wildtype and synonymously barcoded viruses (Figure~\ref{fig:workflow}C).
 \begin{figure}
 \includegraphics[width=0.8\linewidth]{figures/Workflow/workflow.pdf}
-\caption{\label{fig:workflow} Experimental design.
-{\bf (A)}  Design of synonymously barcoded virus. Top, comparison of wild-type and mutant PB2 sequences, with nucleotide positions (as measured in mRNA) and amino acid identities. Bottom, locations of two mutations comprising synonymous viral barcode mapped on top of read depth of the \emph{FTL} locus in uninfected A549 cells.
-{\bf (B)} Growth kinetics are conserved between wild-type and synonymously barcoded virus. qPCR measurements of HA mRNA in A549 cells infected at MOI 0.5 at the indicated time points normalized to the housekeeping control, \emph{L32}.
-{\bf (C)}  Schematic of workflow. A549 cells were infected with an equal mixture of mutant and wild-type virus. Using a reverse-phase emulsion, cells are physically separated and cDNA libraries are generated containing the indicated barcodes. Subsequent amplification and sequencing of libraries permits the identification and assignation of transcript abundances to individual cells. Additional information from our influenza synonymous barcode allows for the generation of categorical data with respect to infection state. Abbreviations: WT ? wild-type, Syn ? Synonymous Barcode.
+\caption{\label{fig:workflow} Generation and validation of synonymously barcoded virus and overall experimental workflow.
+{\bf (A)}  Mutations introduced in synonymously barcoded virus. Top, comparison of wild-type and mutant PB2 sequences, with nucleotide positions (as measured in mRNA) and amino acid identities. Bottom, positions of the two mutations in each gene comprising the synonymous viral barcode mapped over a typical profile of read depth.
+{\bf (B)} Growth kinetics are conserved between wild-type and synonymously barcoded virus. qPCR measurements of HA mRNA in A549 cells infected at MOI 0.5 as calculated on MDCK-SIAT1 cells at the indicated time points normalized to the housekeeping control, \emph{L32}.
+{\bf (C)}  Schematic of workflow. A549 cells were infected with an equal mixture of mutant and wild-type virus. Using a reverse-phase emulsion, cells are physically separated and cDNA libraries are generated containing the indicated barcodes. Subsequent amplification and sequencing of libraries permits the identification and assignation of transcript abundances to individual cells. Additional information from our influenza synonymous barcode allows for the generation of categorical data with respect to infection state. Data are used to generate a cell-gene-category matrix containing the totality of our observations regarding cell transcriptomic state and infection state for further analysis. Abbreviations: WT --- wild-type, Syn --- Synonymous Barcode.
 }
 \figdata{Sequences of wild-type and synonymously barcoded viruses are in FASTA file XXX (add this FASTA file to the figures directory).}
 \end{figure}
