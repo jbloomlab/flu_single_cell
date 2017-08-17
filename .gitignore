@@ -1,4 +1,5 @@
 .*
+paper.pdf
 *.pyc
 !.gitignore
 *.sbatch
