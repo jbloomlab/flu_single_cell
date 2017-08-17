@@ -67,29 +67,21 @@ Includes Yewdell and Lowen papers.
 % \subsection{Initial Steps to Generate Robust Single-Cell Kinetic Observations}
 We chose to perform single-cell mRNA sequencing using a droplet-based system that physically isolates single cells prior to performing reverse-transcription.
 Each droplet contains a unique \emph{cell barcode} that is used to tag all mRNAs from that cell during reverse-transcription.
-Each mRNA molecule is additionally tagged with a \emph{unique molecular identifier (UMI)} during reverse transcription.
+a random \emph{unique molecular identifier (UMI)} is additionally appended to each mRNA molecule during reverse transcription.
 Sequencing of the 3' ends of the mRNAs therefore enables quantification of the number of different molecules of each mRNA species that are captured per cell.
 
-Virally infected cells will express viral as well as cellular mRNAs.
-However, the cell barcodes and UMIs do not enable direct detection of whether a cell was initially infected by one or multiple viral particles.
+While infected cells will express viral as well as cellular mRNAs, the cell barcodes and UMIs do not enable direct detection of whether a cell was initially infected by one or multiple viral particles.
 We therefore engineered an influenza virus that additionally carried \emph{viral barcodes} near the 3' end of each transcript (Figure~\ref{fig:workflow}A).
 These viral barcodes consisted of two synonymous mutations designed to fall in the 3' portion of the mRNAs sequenced by our approach.
-These barcodes were engineered into reverse-genetics plasmids encoding the A/WSN/1933 (H1N1) strain of influenza virus, which were then used to generate virus.
-We also generated wildtype virus of the same strain in parallel, and validated that the two viral strains exhibited similar growth kinetics (Figure~\ref{fig:workflow}B).
+Critically, these mutations did not appear to dramatically impact viral growth kinetics. (Figure~\ref{fig:workflow}B).
 We then infected A549 human lung carcinoma cells with an equal mix of the wildtype and synonymously barcoded viruses.
-Cells infected by a single virion should exclusively express mRNAs from either wildtype or synonymously barcoded virus, while cells that are co-infected with multiple virions will frequently express mRNAs from both the wildtype and synonymously barcoded viruses (Figure~\ref{fig:workflow}C).
+Cells infected by a single virion should exclusively express mRNAs from either wild-type or synonymously barcoded virus, while cells that are co-infected with multiple virions will frequently express mRNAs from both the wildtype and synonymously barcoded viruses (Figure~\ref{fig:workflow}C).
 \begin{figure}
 \includegraphics[width=0.8\linewidth]{figures/Workflow/workflow.pdf}
 \caption{\label{fig:workflow}
-Possible changes:
-{\bf (A)} Put current panel B first, since we want to explain how the viruses are barcoded before describing the infections. Also, perhaps show an example barcode (e.g., \texttt{GGACAG}$\rightarrow$\texttt{GGcCAt}).
-{\bf (B)} The wildtype and synonymously barcoded variants grow similarly.
-This is the current Figure 2A.
-{\bf (C)} This would now be the current (A). We have plenty of space, so simply write out ``wildtype'', ``synonymously barcoded'', ``cell barcode'' even if it makes the figure a bit larger -- this will be much clearer than introducing a bunch of acronyms.
-Also, I think the matrix could be made clearer.
-Add ellipses indicating that there are lots of genes and just a few are being shown. Also, make it ``host gene A'', ``host gene B'', ...
-For the viruses, I think it would be clearer to have columns ``viral gene A, wildtype'', ``viral gene B, synonymous barcode'', etc.
-That way you can have numbers in those columns which is what is actually present in the matrix.
+{\bf (A)}  Design of synonymously barcoded virus. Top, comparison of wild-type and mutant PB2 sequences, with nucleotide positions (as measured in mRNA) and amino acid identities. Bottom, locations of two mutations comprising synonymous viral barcode mapped on top of read depth of the \emph{FTL} locus in uninfected A549 cells.
+{\bf (B)} Growth kinetics are conserved between wild-type and synonymously barcoded virus. qPCR measurements of HA mRNA at the indicted time points normalized to the housekeeping control, \emph{L32}.
+{\bf (C)}  Schematic of workflow. A549 cells were infected with an equal mixture of mutant and wild-type virus. Using a reverse-phase emulsion, cells are physically separated and cDNA libraries are generated containing the indicated barcodes. Subsequent amplification and sequencing of libraries permits the identification and assignation of transcript abundances to individual cells. Additional information from our influenza synonymous barcode allows for the generation of categorical data with respect to infection state. Abbreviations WT: wild-type, Syn: Synonymous Barcode.
 }
 \figdata{Sequences of wildtype and synonymously barcoded viruses are in FASTA file XXX (add this FASTA file to the figures directory).}
 \end{figure}
@@ -189,16 +181,10 @@ For all samples, there is a very wide distribution of the amount of viral mRNA.
 The number of viral barcodes called for each sample and influenza gene segment. 
 Viral transcripts are classified as \emph{syn} if they mapped to a synonymously barcoded influenza transcript, \emph{wt} if they mapped to a wildtype influenza transcript, \emph{invalid} if multiple reads for the same UMI differed on the status of the viral barcode, and as \emph{uncalled} if none of the reads for that UMI overlapped the region of the viral transcript containing the viral barcode.
 }{\includegraphics[width=\linewidth]{figures/synbarcodes_umistats.jpg}}
-\figsupp[Total fraction of viral mRNA attributable to a given fraction of infected cells.\label{figsupp:flucumulfrac}]{
-The cumulative fraction of total viral mRNA among all infected cells that is attributable to a given fraction of cells.
-In all samples, more than half the total viral mRNA is derived from less than half the cells.
-}{\includegraphics[width=\linewidth]{figures/p_cumul_flu.pdf}}
 \end{figure}
 
 \subsection{Influenza Exhibits A Broad Distribution of Productivity Partially Explained By Segment Absence.}
-The absolute productivity of influenza infection as measured by the number of fully-infectious virions produced by a given cell is known to vary dramatically.  
-This observation is recapitulated in our data, wherein of the small portion of infected cells, a bare few contribute the majority of influenza transcripts (Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:flucumulfrac}). 
-As transcript abundance is highly dependent upon secondary transcript from de novo generated viral genomes, it can be presumed that when comparing between two cells, increased mRNA abundance is likely correlated with increased viral genome production, which in turn is highly predictive of viral productivity. It is thought that one driver of the observed variation in influenza productivity is the segmented nature of the influenza genome. Several groups have described that the majority of infections fail to express at least one of the eight influenza segments. Our datasets produce a similar pattern, even in cells that are otherwise expressing high levels of influenza transcripts (Figure~\ref{fig:fluburdenbyflugene}A). When we bin cells according to absence of a given segment we observe that, unsurprisingly, absence of the tripartite polymerase (PB1, PA, PB2) and nuceoprotein (NP) correlates strongly with decreased influenza burden (Figure~\ref{fig:fluburdenbyflugene}B).. Importantly, the gene products of all four of these segments are essential to the transition from primary mRNA transcription to replication and secondary mRNA transcription. This effect cannot be solely attributed to sampling error, as the polymerase genes exhibit the lowest expression and thus would be expected to be stochastically lost due to undersurveillance at much higher influenza transcript levels than would other genes. 
+The absolute productivity of influenza infection as measured by the number of fully-infectious virions produced by a given cell is known to vary dramatically.  This observation is recapitulated in our data, wherein of the small portion of infected cells, a bare few contribute the majority of influenza transcripts (Figure~\ref{fig:cells}A) (MAYBE A MORE SPECIFIC SUPPLEMENTAL). As transcript abundance is highly dependent upon secondary transcript from de novo generated viral genomes, it can be presumed that when comparing between two cells, increased mRNA abundance is likely correlated with increased viral genome production, which in turn is highly predictive of viral productivity. It is thought that one driver of the observed variation in influenza productivity is the segmented nature of the influenza genome. Several groups have described that the majority of infections fail to express at least one of the eight influenza segments. Our datasets produce a similar pattern, even in cells that are otherwise expressing high levels of influenza transcripts (Figure~\ref{fig:fluburdenbyflugene}A). When we bin cells according to absence of a given segment we observe that, unsurprisingly, absence of the tripartite polymerase (PB1, PA, PB2) and nuceoprotein (NP) correlates strongly with decreased influenza burden (Figure~\ref{fig:fluburdenbyflugene}B).. Importantly, the gene products of all four of these segments are essential to the transition from primary mRNA transcription to replication and secondary mRNA transcription. This effect cannot be solely attributed to sampling error, as the polymerase genes exhibit the lowest expression and thus would be expected to be stochastically lost due to undersurveillance at much higher influenza transcript levels than would other genes. 
 
 	Nevertheless, while segment absence can partially explain extreme components of influenza variability resulting from an inability to fully engage in secondary transcription, absence of the remaining segments does not appear to have any significant impact on influenza burden. Importantly, even cells expressing all eight segments still exhibit a wide distribution of influenza transcripts within each time point. We must instead therefore posit alternative mechanisms such as variability in host cells to explain the remainder of this distribution.  Our data do differ slightly on this point than prior observations by Brooke et al, inasmuch as their report described decreased influenza burden not only associated with loss of nucleoprotein, but also of the NS segment. However, significant strain-to-strain differences exist in the behavior of NS1, a major interferon antagonist encoded by the NS segment, and these differences might explain this discrepancy. 
 
