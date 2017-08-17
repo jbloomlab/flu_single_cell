@@ -109,9 +109,12 @@ Measurements of \emph{IFNB1} transcript by qPCR normalized to the housekeeping g
 \figdata{Full flow cytometry data from panel {\bf (B)}   (add pdf file to the figures directory).}
 \end{figure}
 
-\subsection{Population-Level Measurements Validate Dataset.}
-Using these validated populations, we generated a mixed population and  tracked growth kinetics in our target cell line and observed rapid transcript accumulation through 10 hours, which then tapered off --- potentially representing new rounds of infection rather than progression in initially infected cells (supplemental figure). 
-We then chose three time points (6,8, and 10h) reflecting dramatically different influenza burden (and thus different stages in influenza replication) for this study.
+\subsection{Single infected cells show a wide range of expression of viral transcripts.}
+We infected cells at low multiplicity of infection with a mix of the wildtype and synonymously barcoded viral populations and collected cells for mRNA sequencing at 6, 8, and 10 hours, including a replicate of the 8-hour timepoint.
+We recovered roughly 3,000 to 4,000 cells for each sample (Figure~\ref{fig:cells}A). 
+As expected, most cells expressed little or no viral mRNA (Figure~\ref{fig:cells}B).
+However, a small fraction of cells expressed substantial numbers of viral mRNA molecules, with the number of these molecules exceeding 10,000 in a few cells from the 10-hour timepoint (Figure~\ref{fig:cells}C). 
+There was a clear trend for increasing numbers of influenza transcripts at later timepoints, although there was also very wide cell-to-cell variability in the number of viral transcript at each timepoint (Figure~\ref{fig:cells}C).
 
 \begin{figure}
 \includegraphics[width=\linewidth]{figures/p_cell_mRNA_summary.pdf}
@@ -130,35 +133,21 @@ At later timepoints, a small number of cells had a very high number of viral mRN
 }
 \end{figure}
 
-Before proceeding with more detailed analyses, we first examined population-level data to confirm the validity of our approach. 
-We not only generated data for our three time points and a matched uninfected control, but also performed a biological replicate at 8 hours to determine whether our findings could be dominated by inter-sample or technical variation rather than biological processes driven by influenza. 
-We sampled roughly equivalent number of cells per time point at an equivalent sequencing depth per cell - granting similar probability to observe rare events across datasets (Figure~\ref{fig:cells}A) (ADD SUPPLEMENTAL OF DEPTH/CELL?). 
-Overall we observed highly similar distributions of transcript abundance between samples (Figure~\ref{fig:cells}B). 
-This suggests that, in a rough global sense, transcriptome dynamics are relatively unperturbed and that influenza, if it is driving dramatic changes in transcript abundance and/or growth state, must be doing so in only a small subset of cells. 
-More importantly, with the confidence that the average cellular state is similar between time points, we can better regard changes in subpopulations between time points as bone-fide progression in influenza replication rather than inter-sample variation.
+Uninfected cells could have small amounts of viral mRNA due to leakage of transcripts from lysed cells during the process single-cell sequencing.
+It is therefore important to establish a threshold for identifying truly infected cells.
+We can do this by taking advantage of our use of both wildtype and synonymously barcoded viruses.
+Reads derived from lysed cells should exhibit random partitioning among cells, and therefore cells that contain viral mRNA acquired only through leakage should often have transcripts from both viral barcodes.
+On the other hand, most infected cells will be infected by only a single virion, and so their reads should derive almost exclusively from one of the two viral barcodes. 
 
-In addition to analyses regarding global transcript abundance, we were also able to successfully detect increasing numbers of influenza transcripts as our experiment progressed (Figure~\ref{fig:cells}C). 
-Moreover, there appeared to be only a few cells at each time point making considerable contributions to the influenza transcript pool, consistent with our desired low level of infection. 
-With these metrics, we felt confident proceeding to more detailed analyses of influenza replication kinetics and impact on these populations.
+Figure~\ref{fig:viralbarcodes}A shows the fraction of viral reads in individual cells that are derived from each viral barcode, and Figure~\ref{fig:viralbarcodes}B indicates the fraction of viral reads from the most abundant barcode in that cell.
+As is clear from this figure, most cells expressing a large number of viral transcripts have these transcripts exclusively derived from just one of the viral barcodes -- indicating non-random partitioning as expected from viral infection.
+A very small fraction of these cells express viral transcripts with both barcodes, presumably indicating rare co-infection events.
+However, cells with very small numbers of viral transcripts often have a roughly equal mix of the two viral barcodes, indicating the random partitioning expected from simple mRNA leakage (Figure~\ref{fig:viralbarcodes}B).
+We therefore determined a threshold for the minimum amount of viral RNA that was present in cells in which the barcode partitioning appeared to result from infection rather than leakage (Figure~\ref{fig:viralbarcodes}C).
+We then used this threshold to annotate all cells that we were confident were truly infected with virus.
+Strikingly, among the infected the cells at each time point, a bare few contribute the majority of influenza transcripts (Figure~\ref{fig:viralbarcodes}D).
+Specifically, at the 6 and 8-hour timepoints 10\% or less of the infected cells are responsible for over half the viral transcripts, while at the 10-hour timepoint 15\% of the infected cells produce over half the viral transcripts (Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:cumulfracflu}.
 
-\subsection{Synonymous Barcodes Provide An Empirical Means of Setting Infection Thresholds.}
-As a first step in understanding influenza replication at a single-cell level, we must derive a threshold for identifying infected cells. 
-Crucial to our experimental design, we were able to detect both wild-type and synonymous influenza variants at all three timepoints in all eight segments, at levels permitting identification of cells infected with one, or both strains (Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:barcodescalled}). 
-This was true of about half of the transcripts surveyed, matching the read-density of our preliminary experiments. 
-These barcodes partitioned non-randomly between cells, as expected if derived from single infectious events (Figure~\ref{fig:viralbarcodes}A,B). 
-This grants us the power to develop an empirical threshold for calling influenza-infected cells versus those that might have reads derived from lysis of infected cells. 
-Reads derived from lysed cells should exhibit random partitioning ? sampling each barcode according to its overall abundance in the experiment. 
-Therefore, when ordering all cells at all timepoints according to the number of influenza reads observed and the relative abundance of each barcode, we can set our detection threshold as the point at which barcodes reliably exhibit non-random partitioning - that is when all segments in a given cell are frequently derived from either our synonymous or wild-type virus but not both (Figure~\ref{fig:viralbarcodes}C). 
-Notably, this strategy relies heavily on a relatively low MOI, as high rates of coinfection would stymie this approach (Figure~\ref{fig:viralbarcodes}D,E) . 
-
-Few coinfections
-
-Setting threshold: Assumes rare barcode events are due to lysis (or misannotation)  and that two values SHOULD correlate
-Validating evidence/assumption two values correlate - flow data, flow diagram and quantile-normalized data. Include replicates in supplement.
-
-Once defined, we have some statistics.
-
-Presumably this subsection basically covers \ref{fig:viralbarcodes}. 
 
 \begin{figure}
 \includegraphics[width=\linewidth]{figures/p_frac_flu_summary.pdf}
@@ -185,14 +174,17 @@ For all samples, there is a very wide distribution of the amount of viral mRNA.
 The number of viral barcodes called for each sample and influenza gene segment. 
 Viral transcripts are classified as \emph{syn} if they mapped to a synonymously barcoded influenza transcript, \emph{wt} if they mapped to a wildtype influenza transcript, \emph{invalid} if multiple reads for the same UMI differed on the status of the viral barcode, and as \emph{uncalled} if none of the reads for that UMI overlapped the region of the viral transcript containing the viral barcode.
 }{\includegraphics[width=\linewidth]{figures/synbarcodes_umistats.jpg}}
+\figsupp[Cumulative distribution.\label{figsupp:cumulfracflu}]{
+Description
+}{\includegraphics[width=\linewidth]{figures/p_cumul_flu.pdf}}
 \end{figure}
 
-\subsection{Influenza Exhibits A Broad Distribution of Productivity Partially Explained By Segment Absence.}
+\subsection{The broad distribution of viral gene expression is partially explained by the absence of some viral segments.}
+GENERAL THOUGHTS: I think discussion of connection of gene expression to productivity is better for the Discussion. I sort of wonder whether this section should be merged with the one that comes after it. Maybe comparison with Brooke in this section should be in Discussion?
+
 The absolute productivity of influenza infection as measured by the number of fully-infectious virions produced by a given cell is known to vary dramatically.  This observation is recapitulated in our data, wherein of the small portion of infected cells, a bare few contribute the majority of influenza transcripts (Figure~\ref{fig:cells}A) (MAYBE A MORE SPECIFIC SUPPLEMENTAL). As transcript abundance is highly dependent upon secondary transcript from de novo generated viral genomes, it can be presumed that when comparing between two cells, increased mRNA abundance is likely correlated with increased viral genome production, which in turn is highly predictive of viral productivity. It is thought that one driver of the observed variation in influenza productivity is the segmented nature of the influenza genome. Several groups have described that the majority of infections fail to express at least one of the eight influenza segments. Our datasets produce a similar pattern, even in cells that are otherwise expressing high levels of influenza transcripts (Figure~\ref{fig:fluburdenbyflugene}A). When we bin cells according to absence of a given segment we observe that, unsurprisingly, absence of the tripartite polymerase (PB1, PA, PB2) and nuceoprotein (NP) correlates strongly with decreased influenza burden (Figure~\ref{fig:fluburdenbyflugene}B).. Importantly, the gene products of all four of these segments are essential to the transition from primary mRNA transcription to replication and secondary mRNA transcription. This effect cannot be solely attributed to sampling error, as the polymerase genes exhibit the lowest expression and thus would be expected to be stochastically lost due to undersurveillance at much higher influenza transcript levels than would other genes. 
 
 	Nevertheless, while segment absence can partially explain extreme components of influenza variability resulting from an inability to fully engage in secondary transcription, absence of the remaining segments does not appear to have any significant impact on influenza burden. Importantly, even cells expressing all eight segments still exhibit a wide distribution of influenza transcripts within each time point. We must instead therefore posit alternative mechanisms such as variability in host cells to explain the remainder of this distribution.  Our data do differ slightly on this point than prior observations by Brooke et al, inasmuch as their report described decreased influenza burden not only associated with loss of nucleoprotein, but also of the NS segment. However, significant strain-to-strain differences exist in the behavior of NS1, a major interferon antagonist encoded by the NS segment, and these differences might explain this discrepancy. 
-
-
 
 Extrapolating these measurments to?.
 
