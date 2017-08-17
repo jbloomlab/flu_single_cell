@@ -78,35 +78,35 @@ We then infected A549 human lung carcinoma cells with an equal mix of the wildty
 Cells infected by a single virion should exclusively express mRNAs from either wild-type or synonymously barcoded virus, while cells that are co-infected with multiple virions will frequently express mRNAs from both the wildtype and synonymously barcoded viruses (Figure~\ref{fig:workflow}C).
 \begin{figure}
 \includegraphics[width=0.8\linewidth]{figures/Workflow/workflow.pdf}
-\caption{\label{fig:workflow}
+\caption{\label{fig:workflow} Experimental design.
 {\bf (A)}  Design of synonymously barcoded virus. Top, comparison of wild-type and mutant PB2 sequences, with nucleotide positions (as measured in mRNA) and amino acid identities. Bottom, locations of two mutations comprising synonymous viral barcode mapped on top of read depth of the \emph{FTL} locus in uninfected A549 cells.
-{\bf (B)} Growth kinetics are conserved between wild-type and synonymously barcoded virus. qPCR measurements of HA mRNA at the indicted time points normalized to the housekeeping control, \emph{L32}.
-{\bf (C)}  Schematic of workflow. A549 cells were infected with an equal mixture of mutant and wild-type virus. Using a reverse-phase emulsion, cells are physically separated and cDNA libraries are generated containing the indicated barcodes. Subsequent amplification and sequencing of libraries permits the identification and assignation of transcript abundances to individual cells. Additional information from our influenza synonymous barcode allows for the generation of categorical data with respect to infection state. Abbreviations WT: wild-type, Syn: Synonymous Barcode.
+{\bf (B)} Growth kinetics are conserved between wild-type and synonymously barcoded virus. qPCR measurements of HA mRNA in A549 cells infected at MOI 0.5 at the indicated time points normalized to the housekeeping control, \emph{L32}.
+{\bf (C)}  Schematic of workflow. A549 cells were infected with an equal mixture of mutant and wild-type virus. Using a reverse-phase emulsion, cells are physically separated and cDNA libraries are generated containing the indicated barcodes. Subsequent amplification and sequencing of libraries permits the identification and assignation of transcript abundances to individual cells. Additional information from our influenza synonymous barcode allows for the generation of categorical data with respect to infection state. Abbreviations: WT ? wild-type, Syn ? Synonymous Barcode.
 }
-\figdata{Sequences of wildtype and synonymously barcoded viruses are in FASTA file XXX (add this FASTA file to the figures directory).}
+\figdata{Sequences of wild-type and synonymously barcoded viruses are in FASTA file XXX (add this FASTA file to the figures directory).}
 \end{figure}
 
 We also took great care to produce stocks of virus that we expected to be relatively ``pure.''
 Many viruses, including influenza, rapidly diversify into an array of biologically active viral particles, many of which can have mutations or deletions in essential viral genes.
-For influenza virus, one abundant forms of these defective particles arises from deletions that occur in the three viral segments encoding the tripartite viral polymerase.
-These defective particles become particularly abundant when the virus is grown at high multiplicities of infection, where virions with defective genes can be complemented by co-infection with other virions.
-To keep the level of these defective particles as low as possible, we propagated our viral populations at low multiplicity of infection.
+For influenza virus, one abundant form of these defective particles arises from deletions that occur in the three viral segments encoding the tripartite viral polymerase.
+These defective particles become prevalent when the virus is grown at high multiplicities of infection, where virions with defective genes can be complemented by co-infection.
+To keep the level of these defective particles as low as possible, we propagated our viral populations at low multiplicity of infection and permitted only a few rounds of replication.
 We then validated that compared to virus propagated at high multiplicity of infections, our viral populations exhibited a much greater purity of infectious particles.
-We validated this by assessing the ratio of infectious particles to viral-RNA molecules (Figure~\ref{fig:viruspopulations}A) and to particles that induce cellular expression of a single viral protein (Figure~\ref{fig:viruspopulations}B).
-We also showed that our viral populations induced much less interferon than a population propagated at higher multiplicity of infection as expected because...
-Lastly, our populations induced far less interferon than a high defective control, consistent with prior observations that such stocks are more immunostimulatory (Figure~\ref{fig:viruspopulations}D).
+As a means of establishing relative purity, we assessed the ratio of infectious particles to viral-RNA molecules (Figure~\ref{fig:viruspopulations}A) and to particles that induce cellular expression of a single viral protein (Figure~\ref{fig:viruspopulations}B).
+Additionally, from the work of Lopez (and others), we know that high defective populations are significantly more immunostimulatory than their more ``pure" counterparts.
+We therefore confirmed that our viral populations induced much less interferon than a population propagated at higher multiplicity of infection. (Figure~\ref{fig:viruspopulations}D).
 
 \begin{figure}
 \includegraphics[width=0.7\linewidth]{figures/Validating_barcode_virus/validating_populations_D02.pdf}
-\caption{\label{fig:viruspopulations}
-Panel A has now moved to the other figure.
-In panel A, the vertical alignment is a bit off for a few of the tick labels.
-Space between ``HA'' and ``TCID50'' on the y-axis.}
+\caption{\label{fig:viruspopulations} Experimental viral populations are depleted in defective particles. 
+{\bf (A)} Experimental populations possess a higher abundance of infectious particles than a defective-replete population. Ratio of HA vRNA in viral stocks as measured by qPCR against a molecular standard to infectious dose as determined by fifty-percent tissue-culture infectious dose (TCID50) measurements.  
+{\bf (B)} Experimental populations infect cells at a ratio consistent with measured infectious dose. Percentage of A549 cells expressing HA protein at 9 hours post infection by antibody stain when infected at MOI 0.1 as calculated by TCID50 on MDCK-SIAT1 cells. 
+{\bf (C)} Experimental populations exhibit low immunostimulatory capacity. Measurements of \emph{IFNB1} transcript by qPCR normalized to the housekeeping gene \emph{L32} in A549 cells at 10 hours post infection at an MOI of 0.5 as calculated on MDCK-SIAT1 cells.
+\figdata{Full flow cytometry data from panel {\bf (B)}   (add pdf file to the figures directory).
 \end{figure}
 
 \subsection{Population-Level Measurements Validate Dataset.}
-Using these validated populations, we tracked growth kinetics in our target cell line at an infectious dose targeting a final infection rate of 5 percent as determined by flow cytometry. 
-We observed rapid transcript accumulation through 10 hours, which then tapered off --- potentially representing new rounds of infection rather than progression in initially infected cells (supplemental figure). 
+Using these validated populations, we generated a mixed population and  tracked growth kinetics in our target cell line and observed rapid transcript accumulation through 10 hours, which then tapered off --- potentially representing new rounds of infection rather than progression in initially infected cells (supplemental figure). 
 We then chose three time points (6,8, and 10h) reflecting dramatically different influenza burden (and thus different stages in influenza replication) for this study.
 
 \begin{figure}
@@ -247,10 +247,8 @@ The fraction of total mRNA from each influenza gene for each cell.
 {\bf (B)}
 Box plots showing the fraction of viral mRNA per cell that is derived from each influenza gene taken over all highly expressed cells.
 The black line at the notch in each box is the median, and the top and bottom of the box indicate the first and third quartiles.
-{\bf (C)}, {\bf (D)}
-Like panels (A) and (B), but only show cells that express all eight viral genes.
 }
-\figdata{The raw data are in \texttt{p\_flu\_expr\_all.csv}.}
+\figdata{The raw data are in \texttt{p\_flu\_expr.csv}.}
 \end{figure}
 
 \subsection{Host stuff}
