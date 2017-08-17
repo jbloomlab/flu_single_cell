@@ -81,7 +81,7 @@ Cells infected by a single virion should exclusively express mRNAs from either w
 
 \begin{figure}
 \includegraphics[width=0.8\linewidth]{figures/Workflow/workflow.pdf}
-\caption{
+\caption{\label{fig:workflow}
 Possible changes:
 {\bf (A)} Put current panel B first, since we want to explain how the viruses are barcoded before describing the infections. Also, perhaps show an example barcode (e.g., \texttt{GGACAG}$\rightarrow$\texttt{GGcCAt}).
 {\bf (B)} The wildtype and synonymously barcoded variants grow similarly.
@@ -93,7 +93,6 @@ For the viruses, I think it would be clearer to have columns ``viral gene A, wil
 That way you can have numbers in those columns which is what is actually present in the matrix.
 }
 \figdata{Sequences of wildtype and synonymously barcoded viruses are in FASTA file XXX (add this FASTA file to the figures directory).}
-\label{fig:workflow}
 \end{figure}
 
 We also took great care to produce stocks of virus that we expected to be relatively ``pure.''
@@ -108,11 +107,10 @@ Lastly, our populations induced far less interferon than a high defective contro
 
 \begin{figure}
 \includegraphics[width=0.7\linewidth]{figures/Validating_barcode_virus/validating_populations_D02.pdf}
-\caption{
+\caption{\label{fig:viruspopulations}
 Panel A has now moved to the other figure.
 In panel A, the vertical alignment is a bit off for a few of the tick labels.
 Space between ``HA'' and ``TCID50'' on the y-axis.}
-\label{fig:viruspopulations}
 \end{figure}
 
 \subsection{Population-Level Measurements Validate Dataset.}
@@ -120,20 +118,9 @@ Using these validated populations, we tracked growth kinetics in our target cell
 We observed rapid transcript accumulation through 10 hours, which then tapered off --- potentially representing new rounds of infection rather than progression in initially infected cells (supplemental figure). 
 We then chose three time points (6,8, and 10h) reflecting dramatically different influenza burden (and thus different stages in influenza replication) for this study.
 
-Before proceeding with more detailed analyses, we first examined population-level data to confirm the validity of our approach. 
-We not only generated data for our three time points and a matched uninfected control, but also performed a biological replicate at 8 hours to determine whether our findings could be dominated by inter-sample or technical variation rather than biological processes driven by influenza. 
-We sampled roughly equivalent number of cells per time point at an equivalent sequencing depth per cell - granting similar probability to observe rare events across datasets (Figure~\ref{fig:cells}A) (ADD SUPPLEMENTAL OF DEPTH/CELL?). 
-Overall we observed highly similar distributions of transcript abundance between samples (Figure~\ref{fig:cells}B). 
-This suggests that, in a rough global sense, transcriptome dynamics are relatively unperturbed and that influenza, if it is driving dramatic changes in transcript abundance and/or growth state, must be doing so in only a small subset of cells. 
-More importantly, with the confidence that the average cellular state is similar between time points, we can better regard changes in subpopulations between time points as bone-fide progression in influenza replication rather than inter-sample variation.
-
-In addition to analyses regarding global transcript abundance, we were also able to successfully detect increasing numbers of influenza transcripts as our experiment progressed (Figure~\ref{fig:cells}C). 
-Moreover, there appeared to be only a few cells at each time point making considerable contributions to the influenza transcript pool, consistent with our desired low level of infection. 
-With these metrics, we felt confident proceeding to more detailed analyses of influenza replication kinetics and impact on these populations.
-
 \begin{figure}
 \includegraphics[width=\linewidth]{figures/p_cell_mRNA_summary.pdf}
-\caption{
+\caption{\label{fig:cells}
 Overview of amounts of cellular and influenza virus mRNAs detected in each cell.
 {\bf (A)} 
 Number of cells captured for each sample.
@@ -146,35 +133,41 @@ The blue lines show the overall distribution of the number of cellular mRNAs per
 Cells that fell outside the red lines were removed as outliers.
 At later timepoints, a small number of cells had a very high number of viral mRNAs.
 }
-\label{fig:cells}
-\figsupp[Shorter caption for main text.]{This is a supplementary figure's full caption, which will be used at the end of the manuscript.}{\includegraphics[width=6cm]{frog}}
-\figsupp{This is another supplementary figure.}{\includegraphics[width=6cm]{frog}}
-\figdata{This is a description of a data source.}
 \end{figure}
+
+Before proceeding with more detailed analyses, we first examined population-level data to confirm the validity of our approach. 
+We not only generated data for our three time points and a matched uninfected control, but also performed a biological replicate at 8 hours to determine whether our findings could be dominated by inter-sample or technical variation rather than biological processes driven by influenza. 
+We sampled roughly equivalent number of cells per time point at an equivalent sequencing depth per cell - granting similar probability to observe rare events across datasets (Figure~\ref{fig:cells}A) (ADD SUPPLEMENTAL OF DEPTH/CELL?). 
+Overall we observed highly similar distributions of transcript abundance between samples (Figure~\ref{fig:cells}B). 
+This suggests that, in a rough global sense, transcriptome dynamics are relatively unperturbed and that influenza, if it is driving dramatic changes in transcript abundance and/or growth state, must be doing so in only a small subset of cells. 
+More importantly, with the confidence that the average cellular state is similar between time points, we can better regard changes in subpopulations between time points as bone-fide progression in influenza replication rather than inter-sample variation.
+
+In addition to analyses regarding global transcript abundance, we were also able to successfully detect increasing numbers of influenza transcripts as our experiment progressed (Figure~\ref{fig:cells}C). 
+Moreover, there appeared to be only a few cells at each time point making considerable contributions to the influenza transcript pool, consistent with our desired low level of infection. 
+With these metrics, we felt confident proceeding to more detailed analyses of influenza replication kinetics and impact on these populations.
 
 \subsection{Synonymous Barcodes Provide An Empirical Means of Setting Infection Thresholds.}
-As a first step in understanding influenza replication at a single-cell level, we must derive a threshold for identifying infected cells. Crucial to our experimental design, we were able to detect both wild-type and synonymous influenza variants at all three timepoints in all eight segments, at levels permitting identification of cells infected with one, or both strains (Figure~\ref{fig:synbarcodes}). This was true of about half of the transcripts surveyed, matching the read-density of our preliminary experiments. These barcodes partitioned non-randomly between cells, as expected if derived from single infectious events (Figure~\ref{fig:fracflu}A,B). This grants us the power to develop an empirical threshold for calling influenza-infected cells versus those that might have reads derived from lysis of infected cells. Reads derived from lysed cells should exhibit random partitioning ? sampling each barcode according to its overall abundance in the experiment. Therefore, when ordering all cells at all timepoints according to the number of influenza reads observed and the relative abundance of each barcode, we can set our detection threshold as the point at which barcodes reliably exhibit non-random partitioning - that is when all segments in a given cell are frequently derived from either our synonymous or wild-type virus but not both (Figure~\ref{fig:fracflu}C). Notably, this strategy relies heavily on a relatively low MOI, as high rates of coinfection would stymie this approach (Figure~\ref{fig:fracflu}D,E) . 
-
-\begin{figure}
-\includegraphics[width=\linewidth]{figures/synbarcodes_umistats.jpg}
-\caption{
-CAPTION}
-\label{fig:synbarcodes}
-\end{figure}
-
+As a first step in understanding influenza replication at a single-cell level, we must derive a threshold for identifying infected cells. 
+Crucial to our experimental design, we were able to detect both wild-type and synonymous influenza variants at all three timepoints in all eight segments, at levels permitting identification of cells infected with one, or both strains (Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:barcodescalled}). 
+This was true of about half of the transcripts surveyed, matching the read-density of our preliminary experiments. 
+These barcodes partitioned non-randomly between cells, as expected if derived from single infectious events (Figure~\ref{fig:viralbarcodes}A,B). 
+This grants us the power to develop an empirical threshold for calling influenza-infected cells versus those that might have reads derived from lysis of infected cells. 
+Reads derived from lysed cells should exhibit random partitioning ? sampling each barcode according to its overall abundance in the experiment. 
+Therefore, when ordering all cells at all timepoints according to the number of influenza reads observed and the relative abundance of each barcode, we can set our detection threshold as the point at which barcodes reliably exhibit non-random partitioning - that is when all segments in a given cell are frequently derived from either our synonymous or wild-type virus but not both (Figure~\ref{fig:viralbarcodes}C). 
+Notably, this strategy relies heavily on a relatively low MOI, as high rates of coinfection would stymie this approach (Figure~\ref{fig:viralbarcodes}D,E) . 
 
 Few coinfections
 
-Setting threshold: Assumes rare barcode events are due to lysis (ormisannotation)  and that two values SHOULD correlate
+Setting threshold: Assumes rare barcode events are due to lysis (or misannotation)  and that two values SHOULD correlate
 Validating evidence/assumption two values correlate - flow data, flow diagram and quantile-normalized data. Include replicates in supplement.
 
 Once defined, we have some statistics.
 
-Presumably this subsection basically covers \ref{fig:fracflu}.
+Presumably this subsection basically covers \ref{fig:viralbarcodes}. 
 
 \begin{figure}
 \includegraphics[width=\linewidth]{figures/p_frac_flu_summary.pdf}
-\caption{
+\caption{\label{fig:viralbarcodes}
 Synonymous barcodes near the 3' end of the influenza virus mRNAs were used to identify co-infection and distinguish true infections from cells that contained a few spurious viral reads.
 {\bf (A)}
 For all cells with at least two viral mRNAs for which the synonymous barcode could be called, each line is proportional to the logarithm of the number of viral mRNAs in that cell.
@@ -193,7 +186,10 @@ For all samples, the vast majority of cells were not infected, so for subsequent
 The distribution of the fraction of mRNA derived from virus for each sample for both infected and co-infected cells.
 For all samples, there is a very wide distribution of the amount of viral mRNA.
 }
-\label{fig:fracflu}
+\figsupp[Number of viral barcodes called.\label{figsupp:barcodescalled}]{
+The number of viral barcodes called for each sample and influenza gene segment. 
+Viral transcripts are classified as \emph{syn} if they mapped to a synonymously barcoded influenza transcript, \emph{wt} if they mapped to a wildtype influenza transcript, \emph{invalid} if multiple reads for the same UMI differed on the status of the viral barcode, and as \emph{uncalled} if none of the reads for that UMI overlapped the region of the viral transcript containing the viral barcode.
+}{\includegraphics[width=\linewidth]{figures/synbarcodes_umistats.jpg}}
 \end{figure}
 
 \subsection{Influenza Exhibits A Broad Distribution of Productivity Partially Explained By Segment Absence.}
@@ -207,7 +203,7 @@ Extrapolating these measurments to?.
 
 \begin{figure}
 \includegraphics[width=\linewidth]{figures/p_flu_burden_flu_gene_merge.pdf}
-\caption{
+\caption{\label{fig:fluburdenbyflugene}
 The viral infection burden in individual cells as a function of the amount of each viral gene detected.
 {\bf (A)} 
 Fraction of mRNAs in each cell derived from virus as a function of the \emph{normalized} expression of each viral gene in that cell.
@@ -215,7 +211,6 @@ This plot shows that all cells with very high viral burden express all of the RN
 {\bf (B)}
 Statistical tests confirming that absence of viral RNP genes is significantly associated with reduced viral burden, but that the absence of the non-RNP genes does not lead to a clear decrease in viral burden.
 }
-\label{fig:fluburdenbyflugene}
 \end{figure}
 
 \subsection{Influenza Infections Are Predominated By Nonproductive Events.}
@@ -234,11 +229,10 @@ Statistical tests confirming that absence of viral RNP genes is significantly as
 
 \begin{figure}
 \includegraphics[width=\linewidth]{figures/p_coinfection.pdf}
-\caption{
+\caption{\label{fig:coexpression}
 Frequency of each viral gene segment in co-infected cells with at least 5\% of their mRNA derived from influenza.
 The bars indicate the logarithm of the number of each viral mRNA detected, and the bars are colored in proportion to the fraction of those mRNAs that are derived from either wildtype or synonymous barcoded virus.
 }
-\label{fig:coexpression}
 \figdata{The raw data plotted in this figure are in \texttt{p\_coinfection.csv}.}
 \end{figure}
 
@@ -251,7 +245,7 @@ Maybe add a figure breaking this down among timepoints.
 
 \begin{figure}
 \includegraphics[width=\linewidth]{figures/p_flu_expr.pdf}
-\caption{
+\caption{\label{fig:fluexpr}
 Expression of individual influenza genes in highly infected cells (at least 5\% of total mRNA is viral).
 {\bf (A)} 
 The fraction of total mRNA from each influenza gene for each cell.
@@ -259,7 +253,6 @@ The fraction of total mRNA from each influenza gene for each cell.
 Box plots showing the fraction of viral mRNA per cell that is derived from each influenza gene taken over all highly expressed cells.
 The black line at the notch in each box is the median, and the top and bottom of the box indicate the first and third quartiles.
 }
-\label{fig:fluexpr}
 \figdata{The raw data are in \texttt{p\_flu\_expr.csv}.}
 \end{figure}
 
@@ -267,7 +260,7 @@ The black line at the notch in each box is the median, and the top and bottom of
 
 \begin{figure}
 \includegraphics[width=\linewidth]{figures/p_pseudo_merge.pdf}
-\caption{
+\caption{\label{fig:pseudotime}
 Visual layout of the cells according to ``pseudotime''.
 The layout is the same in all panels, but each panel colors the cells according to a different property.
 {\bf (A), (B)}
@@ -284,16 +277,14 @@ Cells colored by the expression of the interferon-stimulate gene ISG15.
 For cells with at least 1\% of their reads from influenza, are the cells expressing the viral NS protein?
 The one interferon-positive cell is lacking NS, but many other cells also lack NS but do not express interferon.
 }
-\label{fig:pseudotime}
 \end{figure}
 
 
 \begin{figure}
 \includegraphics[width=0.8\linewidth]{figures/p_cellular_heatmap.pdf}
-\caption{
+\caption{\label{fig:cellulargenes}
 Cellular genes that are differentially expressed with respect to the amount of influenza mRNA in individual cells infected with full influenza virus containing all eight genes.
 Shown are all genes differentially expressed with $Q < 0.1$.}
-\label{fig:cellulargenes}
 \figdata{The full results of the differential expression test is in \texttt{p\_sig\_cellular\_genes.csv}.}
 \figdata{The results of a gene-set analysis are in \texttt{p\_sig\_cellular\_genes.csv}.}
 \end{figure}
