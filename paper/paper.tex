@@ -171,19 +171,32 @@ For all samples, there is a very wide distribution of the amount of viral mRNA.
 }
 \figsupp[Number of viral barcodes called.\label{figsupp:barcodescalled}]{
 The number of viral barcodes called for each sample and influenza gene segment. 
-Viral transcripts are classified as \emph{syn} if they mapped to a synonymously barcoded influenza transcript, \emph{wt} if they mapped to a wildtype influenza transcript, \emph{invalid} if multiple reads for the same UMI differed on the status of the viral barcode, and as \emph{uncalled} if none of the reads for that UMI overlapped the region of the viral transcript containing the viral barcode.
+Viral transcripts are classified as \emph{syn} if they mapped to a synonymously barcoded influenza transcript, \emph{wt} if they mapped to a wild-type influenza transcript, \emph{invalid} if multiple reads for the same UMI differed on the status of the viral barcode, and as \emph{uncalled} if none of the reads for that UMI overlapped the region of the viral transcript containing the viral barcode.
 }{\includegraphics[width=\linewidth]{figures/synbarcodes_umistats.jpg}}
 \figsupp[Cumulative distribution.\label{figsupp:cumulfracflu}]{
 Description
 }{\includegraphics[width=\linewidth]{figures/p_cumul_flu.pdf}}
 \end{figure}
 
-\subsection{The broad distribution of viral gene expression is partially explained by the absence of some viral segments.}
-	 It is thought that one driver of the observed variation in influenza productivity is the segmented nature of the influenza genome. Several groups have described that the majority of infections fail to express at least one of the eight influenza segments. Our datasets produce a similar pattern, even in cells that are otherwise expressing high levels of influenza transcripts (Figure~\ref{fig:fluburdenbyflugene}A). When we bin cells according to absence of a given segment we observe that, unsurprisingly, absence of the tripartite polymerase (PB1, PA, PB2) and nuceoprotein (NP) correlates strongly with decreased influenza burden (Figure~\ref{fig:fluburdenbyflugene}B).. Importantly, the gene products of all four of these segments are essential to the transition from primary mRNA transcription to replication and secondary mRNA transcription. This effect cannot be solely attributed to sampling error, as the polymerase genes exhibit the lowest expression and thus would be expected to be stochastically lost due to undersurveillance at much higher influenza transcript levels than would other genes. 
+\subsection{Many infected cells are non-productive, explaining partially the broad distribution of viral gene expression.}
 
-	Nevertheless, while segment absence can partially explain extreme components of influenza variability resulting from an inability to fully engage in secondary transcription, absence of the remaining segments does not appear to have any significant impact on influenza burden. Importantly, even cells expressing all eight segments still exhibit a wide distribution of influenza transcripts within each time point. We must instead therefore posit alternative mechanisms such as variability in host cells to explain the remainder of this distribution.  Our data do differ slightly on this point than prior observations by Brooke et al, inasmuch as their report described decreased influenza burden not only associated with loss of nucleoprotein, but also of the NS segment. However, significant strain-to-strain differences exist in the behavior of NS1, a major interferon antagonist encoded by the NS segment, and these differences might explain this discrepancy. 
+It is thought that a major driver of variation in influenza productivity is the segmented nature of the influenza genome.
+Several groups have described that the majority of infections fail to express at least one of the eight influenza segments. 
+We make a similar observation (Figure~\ref{fig:fluburdenbyflugene}A). 
+When we bin cells according to absence of a given segment we observe that, unsurprisingly, absence of the tripartite polymerase (PB1, PA, PB2) and nuceoprotein (NP) correlates strongly with decreased influenza burden (Figure~\ref{fig:fluburdenbyflugene}B). 
+Importantly, the gene products of all four of these segments are essential to the transition from primary mRNA transcription to replication and secondary mRNA transcription. 
+This effect cannot be solely attributed to sampling error, as the polymerase genes exhibit the lowest expression and thus would be expected to be stochastically lost due to undersurveillance at much higher influenza transcript levels than would other genes. 
+Nevertheless, while segment absence can partially explain extreme components of influenza variability resulting from an inability to fully engage in secondary transcription, absence of the remaining segments does not appear to have any significant impact on influenza burden.
+Importantly, even cells expressing all eight segments still exhibit a wide distribution of influenza transcripts within each time point. We must instead therefore posit alternative mechanisms such as variability in host cells to explain the remainder of this distribution.  
 
-Extrapolating these measurments to?.
+We further wished to define metrics for presence/absence for a given segment and compare them to values obtained for other strains of influenza in order to understand the probability that a given infection could possibly produce infectious progeny. 
+However, we decided to omit these calculations for PB1, PA, PB2, and NP due to the confounding effect of decreased influenza transcript abundance. 
+In support of this decision, when we use cyclohexamide treatment to limit cells to primary transcription alone, we find a 2-3 log reduction in mRNA levels of PB1 or HA relative to a 10h time point (supplemental figure). 
+We therefore lack confidence that our approach has the power to detect all semi-infectious events that result from a lack of polymerase or nucleoprotein segments.
+However, given the lack of effect absence of other segments appears to have on mRNA production, we proceeded to calculate the relative abundance of infectious events absent a given gene segment for those time points in which we have relatively robust measurements of influenza (8h, 10h).
+
+
+
 
 \begin{figure}
 \includegraphics[width=\linewidth]{figures/p_flu_burden_flu_gene_merge.pdf}
@@ -201,9 +214,16 @@ The difference for NP is no longer statistically significant due to low counts o
 }{\includegraphics[width=\linewidth]{figures/p_10hr_flu_burden_flu_gene_test}}
 \end{figure}
 
-\subsection{Influenza Infections Are Predominated By Nonproductive Events.}
-	We further wished to define metrics for presence/absence for a given segment and compare them to values obtained for other strains of influenza in order to understand the probability that a given infection could possibly produce infectious progeny. We decided to omit these calculations for PB1, PA, PB2, and NP. Using cyclohexamide treatment to limit cells to primary transcription alone, we find a 2-3 log reduction in mRNA levels of PB1 or HA relative to a 10h time point (supplemental figure). We therefore are not confident that our approach has the power to detect all semi-infectious events that result from a lack of polymerase or nucleoprotein segments. However, given the lack of effect absence of other segments appears to have on mRNA production, we proceeded to calculate the relative abundance of infectious events absent a given gene segment. 
 
+\begin{figure}
+\includegraphics[width=\linewidth]{figures/p_missing_genes.pdf}
+\caption{\label{fig:missingseg}
+test
+}
+\end{figure}
+
+
+	
 \subsection{Influenza mRNA Ratios are Tightly Controlled}
 	
 	This and other reports have described the considerable heterogeneity produced as influenza infection progresses in tissue culture models. However, in stark contrast to our analyses above, the ratios of mRNAs generated by the eight segments appear to behave in a highly stereotyped fashion, with values roughly consistent with prior Northern Blot measurements of Influenza mRNA abundance. Staggeringly, this is true whether or not cells are expressing mRNAs from all eight segments, at all three time points,  and, in cells running the gamut of infectious burden -- although we must limit these conclusions to those cells engaging in secondary transcription given the caveats described above. Therefore while either noise in influenza replication or host variability can dramatically impact the amount of Influneza mRNA produced as a whole, these processes seem to, ignoring complete absence of a segment, act equally across the Influenza genome. This is consistent with more limited measurements showing positive correlations between several segments in vRNA measurements in single cells. It would therefore be inadvisable to search for the sources of the broad distribution in influenza replication in those steps that can impact segments independently of one-another, such as noise in the transition to cRNA or vRNA production, but rather only in those processes that could impact the kinetics of all segments equivalently, such as transport to the nucleus or availability of cellular resources. 
