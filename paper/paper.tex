@@ -64,24 +64,35 @@ Includes Yewdell and Lowen papers.
 \section{Results}
 
 \subsection{Strategy to measure mRNA in single virus-infected cells.}
-In order to understand influenza replication dynamics we measured the transcriptome of individual cells using a droplet-based system -- physically isolating cells prior to performing reverse-transcription.
+We performed single-cell mRNA sequencing using a droplet-based system that physically isolates individual cells prior to reverse transcription.
 Each droplet is associated with a unique \emph{cell barcode} that tags all mRNAs from that cell during reverse-transcription.
 A random \emph{unique molecular identifier (UMI)} is additionally appended to each mRNA molecule during reverse transcription.
-Sequencing the 3' ends of the mRNAs provides transcript identity, that, when combined with the UMI and cell barcode, allows the measurement of the number of different molecules of each mRNA species captured per cell.
+The 3' ends of the mRNAs are sequenced and mapped to the human and influenza transcriptomes to determine the transcript identities.
+This information is then combined with that provided by the UMIs and cell barcodes to quantify the number of molecules of each mRNA species that have been captured for each cell.
 
 Infected cells will express viral as well as cellular mRNAs, however the cell barcodes and UMIs cannot distinguish whether a cell was initially infected by one or multiple viral particles.
-We therefore engineered an influenza virus that additionally carried \emph{viral barcodes} consisting of synonymous mutations near the 3' end of each transcript (Figure~\ref{fig:workflow}A).
-Critically, these mutations did not dramatically impact viral growth kinetics. (Figure~\ref{fig:workflow}B).
+We therefore engineered an influenza virus (strain A/WSN/1933) that additionally carried \emph{viral barcodes} consisting of synonymous mutations near the 3' end of each transcript (Figure~\ref{fig:workflow}A).
+Critically, these synonymous mutations did not greatly impact viral growth kinetics (Figure~\ref{fig:workflow}B).
 We infected A549 human lung carcinoma cells with an equal mix of the wildtype and synonymously barcoded viruses.
-Cells infected by a single virion should exclusively express mRNAs from either wild-type or synonymously barcoded virus, whereas cells that are co-infected with multiple virions should instead express mRNAs from both the wildtype and synonymously barcoded viruses (Figure~\ref{fig:workflow}C).
+Cells infected by a single virion will exclusively express mRNAs from either wild-type or synonymously barcoded virus, whereas cells that are co-infected with multiple virions will often express mRNAs from both the wildtype and synonymously barcoded viruses (Figure~\ref{fig:workflow}C).
 \begin{figure}
 \includegraphics[width=0.8\linewidth]{figures/Workflow/workflow.pdf}
-\caption{\label{fig:workflow} Generation and validation of synonymously barcoded virus and overall experimental workflow.
-{\bf (A)}  Mutations introduced in synonymously barcoded virus. Top, comparison of wild-type and mutant PB2 sequences, with nucleotide positions (as measured in mRNA) and amino acid identities. Bottom, positions of the two mutations in each gene comprising the synonymous viral barcode mapped over a typical profile of read depth.
-{\bf (B)} Growth kinetics are conserved between wild-type and synonymously barcoded virus. qPCR measurements of HA mRNA in A549 cells infected at MOI 0.5 as calculated on MDCK-SIAT1 cells at the indicated time points normalized to the housekeeping control, \emph{L32}.
-{\bf (C)}  Schematic of workflow. A549 cells were infected with an equal mixture of mutant and wild-type virus. Using a reverse-phase emulsion, cells are physically separated and cDNA libraries are generated containing the indicated barcodes. Subsequent amplification and sequencing of libraries permits the identification and assignation of transcript abundances to individual cells. Additional information from our influenza synonymous barcode allows for the generation of categorical data with respect to infection. Data are used to generate a cell-gene-category matrix containing the totality of our observations regarding the cell transcriptome and infection state for further analysis. Abbreviations: WT -- wild-type, Syn -- Synonymous Barcode.
+\caption{\label{fig:workflow} Experimental design.
+{\bf (A)}  
+We engineered a virus that carried two synonymous mutations near the 3' end of each mRNA.
+At top are the specific mutations for the PB2 gene.
+At bottom are locations of the synonymous mutations relative to the typical distribution of read depth for the 3'-end sequencing of the mRNA.
+{\bf (B)} 
+The wild-type and synonymously barcoded viruses transcribe their genes with similar kinetics. 
+Shown is the abundance of the viral hemagglutinin (HA) transcript relative to the cellular housekeeping gene L32 as assessed by qPCR at the indicated time points in A549 cells infected at an MOI of 0.5 (as determined on MDCK-SIAT1 cells).
+{\bf (C)}  
+A549 cells were infected with an equal mixture of mutant and wild-type virus. 
+Using reverse-phase emulsion, cells were physically separated and cDNA libraries were generated containing the indicated barcodes. 
+The libraries were deep sequenced, and the data processed to create a matrix that gives the number of molecules of each transcript observed in each cell.
+Infected cells were further annotated based on whether their viral mRNAs derived from the wildtype virus, the synonymously barcoded virus, or a mix of both.
+Abbreviations: WT -- wild-type, Syn -- Synonymous Barcode.
 }
-\figdata{Sequences of wild-type and synonymously barcoded viruses are in FASTA file XXX (add this FASTA file to the figures directory).}
+\figdata{Sequences of wild-type and barcoded viruses are in \texttt{viralsequences.fasta}.}
 \end{figure}
 
 We also took care to generate stocks of virus that we expected to be relatively ``pure.''
