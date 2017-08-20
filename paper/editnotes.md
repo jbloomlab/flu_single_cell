@@ -11,3 +11,9 @@
     - I have shortened the first sentence to just say *"Experimental overview"* because I think the other title was too complex to be useful. I've also tried to clarify other parts.
     - I have removed the part about the mRNA numbering being in mRNA coordinates in panel A. I do think this is an important point, but it's too subtle and complex to make here. In fact, I think it would be better to **remove the mRNA sequencing numbering from panel A altogether.** It's not really important for conceptually understanding the idea, , and we give the full vRNA sequences in the figure source data.
     - I created the source data with the vRNA sequences.
+
+* Third paragraph, first section of Results:
+    - My main goal was to shorten this paragraph, which was too long for a point this technical.
+    - I have changed *"diversify into an array of biologically active particles"* to just indicate that the stocks typically are an array. In our case, it's not clear that the number of this particles are increasing due to ongoing diversification versus just being there the whole time.
+    - I've gotten rid of the part about the gene absence and deletions in the polymerase. This is too much detail for this point in the text, where the only point that we want to make is that some viruses are defective. We can come back to these details if they become relevant later
+    - I have re-written the text to say *higher ratio of infectious particles to RNA* because I think this is a more intuitive way to relate to the concept of *higher purity* than to say *lower ratio of RNA to infectious particles.* I know this makes the statement refer the inverse of what is plotted in Figure 2. We can either leave it like this, or invert the axis in Figure 2 by plotting the TCID50 / HA instead.

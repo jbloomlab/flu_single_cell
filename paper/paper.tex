@@ -68,7 +68,7 @@ We performed single-cell mRNA sequencing using a droplet-based system that physi
 Each droplet is associated with a unique \emph{cell barcode} that tags all mRNAs from that cell during reverse-transcription.
 A random \emph{unique molecular identifier (UMI)} is additionally appended to each mRNA molecule during reverse transcription.
 The 3' ends of the mRNAs are sequenced and mapped to the human and influenza transcriptomes to determine the transcript identities.
-This information is then combined with that provided by the UMIs and cell barcodes to quantify the number of molecules of each mRNA species that have been captured for each cell.
+This information is combined with that provided by the UMIs and cell barcodes to quantify the number of molecules of each mRNA species that have been captured for each cell.
 
 Infected cells will express viral as well as cellular mRNAs, however the cell barcodes and UMIs cannot distinguish whether a cell was initially infected by one or multiple viral particles.
 We therefore engineered an influenza virus (strain A/WSN/1933) that additionally carried \emph{viral barcodes} consisting of synonymous mutations near the 3' end of each transcript (Figure~\ref{fig:workflow}A).
@@ -95,29 +95,28 @@ Abbreviations: WT -- wild-type, Syn -- Synonymous Barcode.
 \figdata{Sequences of wild-type and barcoded viruses are in \texttt{viralsequences.fasta}.}
 \end{figure}
 
-We also took care to generate stocks of virus that we expected to be relatively ``pure.''
-Many viruses, including influenza, rapidly diversify into an array of biologically active viral particles, some of which are defective for replication owing to mutations or deletions in essential viral genes -- or even lack one or more gene segments altogether.
-For influenza virus, one abundant form of these defective particles arises from deletions that occur in the three viral segments encoding the tripartite viral polymerase.
-These particles become prevalent when the virus is grown at high multiplicities of infection, where complementation by co-infection permits the growth of otherwise deleterious genotypes.
-To keep the level of these defective particles as low as possible, we propagated our viral populations at low multiplicity of infection for a relatively brief period of time~\citep{xue2016propagation}.
-We then validated that, compared to virus propagated at high multiplicity of infections, our viral populations exhibited a much greater purity of infectious particles.
-In contrast to a high defective population, our ``pure" viral stocks exhibited a much lower ratio of viral-RNA molecules to infectious particles (Figure~\ref{fig:viruspopulations}A) and infectious particles to particles that induce cellular expression of a single viral protein (Figure~\ref{fig:viruspopulations}B).
-Additionally, from the work of \emph{Tapia et al} as well as others, we know that high defective populations are significantly more immunostimulatory than their more ``pure" counterparts.
-We therefore confirmed that our viral populations induced much less interferon than a population propagated at higher multiplicity of infection. (Figure~\ref{fig:viruspopulations}D).
+We also took care to generate stocks of virus that were relatively ``pure'' of defective particles.
+Stocks of viruses typically contain an array of biologically active viral particles, some of which are defective for replication owing to mutations or deletions in essential viral genes.
+These defective particles become prevalent when a virus is grown at high multiplicity of infection (MOI), where complementation permits the growth of otherwise deleterious genotypes.
+To minimize the levels of defective particles, we propagated our viral stocks at low MOI for a relatively brief period of time~\citep{xue2016propagation}.
+We then validated that our stocks exhibited greater purity of infectious particles than a stock propagated at high MOI by verifying that they had a higher ratio of infectious particles to both virion RNA (Figure~\ref{fig:viruspopulations}A) and particles capable of inducing expression of a single viral protein (Figure~\ref{fig:viruspopulations}B).
+In addition, viral stocks with many defective particles are more immunostimulatory~\citep{tapia2013defective}.
+We confirmed that our viral stocks induced much less interferon than a stock propagated at higher MOI (Figure~\ref{fig:viruspopulations}D).
 
 \begin{figure}
 \includegraphics[width=0.7\linewidth]{figures/Validating_barcode_virus/validating_populations_D02.pdf}
-\caption{\label{fig:viruspopulations} The viral populations used in our experiments have a relatively low number of defective particles. 
+\caption{\label{fig:viruspopulations} The viral stocks used in our experiments have relatively low numbers of defective particles. 
 {\bf (A)}
 Quantification of the relative amounts of physical viral particles and infectious particles.
-Virions in the wildtype and synonymously barcoded viral populations used in our experiments have a lower ratio of HA viral RNA molecules to infectious particles compared to a population propagated at high MOI.
-Infectious particles were quantified by TCID50 on MDCK-SIAT1 cells, and HA vRNA by qPCR. 
+Virions in the wildtype and synonymously barcoded viral stocks used in our experiments have a lower ratio of HA viral RNA to infectious particles compared to a high-defective stock propagated at high MOI.
+Infectious particles were quantified by TCID50 on MDCK-SIAT1 cells, and HA vRNA by qPCR on virions. 
 {\bf (B)} 
-Quantification of the relative amounts of particles capable of expressing one specific viral gene to infectious particles.
-A549 cells were infected with all three viral populations at an MOI of 0.1 as calculated on MDCK-SIAT1 cells, and the percentage of infected cells expressing HA protein at 9 hours post-infection was quantified by antibody staining.
-{\bf (C)} Our experimental viral populations exhibit low immunostimulatory capacity compared to virus propagated at high MOI. 
-Measurements of \emph{IFNB1} transcript by qPCR normalized to the housekeeping gene \emph{L32} in A549 cells at 10 hours post infection at an MOI of 0.5 as calculated on MDCK-SIAT1 cells.}
-\figdata{Full flow cytometry data from panel {\bf (B)}   (add pdf file to the figures directory).}
+Quantification of the relative amounts of particles capable of expressing the viral protein HA to infectious particles.
+A549 cells were infected with all three viral stocks at an MOI of 0.1 as calculated on MDCK-SIAT1 cells, and the percentage of cells expressing HA protein at 9 hours post-infection was quantified by antibody staining and flow cytometry.
+{\bf (C)} 
+Our viral stocks are less immunostimulatory than virus propagated at high MOI. 
+Measurements of \textit{IFNB1} transcript by qPCR normalized to the housekeeping gene L32 in A549 cells at 10 hours post infection at an MOI of 0.5 as calculated on MDCK-SIAT1 cells.}
+\figsupp[Flow cytometry data for calculating the percentage of HA-expressing cells.]{Longer caption}{\emph{HA-expression flow cytometry supplemental figure needs to be created.}}
 \end{figure}
 
 \subsection{Single infected cells show a wide range of expression of viral transcripts.}
