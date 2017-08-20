@@ -13,7 +13,7 @@
 \DeclareSIUnit\Molar{M}
 \usepackage{indentfirst} %I prefer to have indents following section headings, I find it to be more consistent in style throughout document
 
-\renewcommand{\floatpagefraction}{0.8}
+\renewcommand{\floatpagefraction}{1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% ARTICLE SETUP
@@ -168,8 +168,7 @@ The fraction of viral mRNA per infected cell follows a roughly exponential distr
 In fact, a bare few infected cells contribute the majority of influenza transcripts.
 Specifically, at 6 and 8 hours $<$10\% of infected cells are responsible for over half the viral transcripts, while at 10 hours $\approx$15\% of infected cells produce over half the viral transcripts (Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:cumulfracflu}).
 
-
-\begin{figure}
+\begin{figure}[t!]
 \centerline{\includegraphics[width=0.9\linewidth]{figures/p_frac_flu_summary.pdf}}
 \caption{\label{fig:viralbarcodes}
 Synonymous barcodes on the viral mRNAs can help distinguish true infections from cells that contain viral mRNAs derived from leakage of lysed cells.
@@ -200,51 +199,53 @@ For instance, the plot for the 8-hour sample shows that roughly 50\% of all vira
 }{\includegraphics[width=\linewidth]{figures/p_cumul_flu.pdf}}
 \end{figure}
 
-\subsection{Many infected cells are non-productive, explaining partially the broad distribution of viral gene expression.}
+\subsection{Absence of viral genes partially explains cell-to-cell variability in viral transcript abundance.}
+The influenza genome is segmented, and cells can fail to express a viral mRNA if the encoding gene segment is not packaged in the infecting virion or fails to initiate transcription after infection.
+Indeed, several groups have reported that the majority of infected cells fail to express at least one viral gene~\citep{brooke2013most}. 
+We therefore wondered if the absence of specific viral genes might be associated with reduced amounts of viral mRNA within single infected cells.
+In particular, transcription of influenza virus mRNAs is performed by the viral ribonucleoprotein (RNP) complex, which consists of the three proteins that encode the tripartite polymerase (PB2, PB1, and PA) as well as nucleoprotein (NP).
+Each viral gene segment is associated with one RNP in the incoming infection virions, but secondary transcription by newly synthesized RNPs requires the presence of the viral genes that direct the synthesis of each of the four constituent RNP proteins.
+This secondary transcription is a major source of viral mRNAs, as evidenced by the fact that blocking synthesis of the RNP proteins reduces the amount of viral mRNA by several orders of magnitude in bulk cells (Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:cyclohexamide}).
 
-It is thought that a major driver of variation in influenza productivity is the segmented nature of the influenza genome.
-Several groups have described that the majority of infections fail to express at least one of the eight influenza segments. 
-Our data reveal a similar trend is true for this strain of influenza (Figure~\ref{fig:fluburdenbyflugene}A). 
-When we bin cells according to absence of a given segment we observe that, unsurprisingly, absence of the tripartite polymerase (PB1, PA, PB2) and nuceoprotein (NP) correlates strongly with decreased influenza burden (Figure~\ref{fig:fluburdenbyflugene}B). 
-This was true even when accounting for temporal variation, as seen by analyzing a single time point (10h) alone, with the caveat that there were too few NP absences detected to achieve statistical significance (supplemental figure).
-Importantly, the gene products of all four of these segments are essential to the transition from primary mRNA transcription to replication and secondary mRNA transcription. 
-This effect cannot be solely attributed to sampling error, as the polymerase genes exhibit the lowest expression and thus would be expected to be stochastically lost due to undersurveillance at much higher influenza transcript levels than would other genes. 
-Nevertheless, while segment absence can partially explain extreme components of influenza variability resulting from an inability to fully engage in secondary transcription, absence of the remaining segments does not appear to have any significant impact on influenza burden.
-Importantly, even cells expressing all eight segments still exhibit a wide distribution of influenza transcripts within each time point. We must instead therefore posit alternative mechanisms such as variability in host cells to explain the remainder of this distribution.  
-
-We further wished to define metrics for absence for a given segment in order to understand the probability that a given infection could potentially produce infectious progeny. 
-However, we decided to omit these calculations for PB1, PA, PB2, and NP due to the confounding effect of decreased influenza transcript abundance. 
-In support of this decision, when we use cyclohexamide treatment to limit cells to primary transcription alone, we find a 2-3 log reduction in mRNA levels of PB1 or HA relative to a 10h time point (supplemental figure). 
-We therefore lack confidence that our approach has the power to detect all semi-infectious events that result from a lack of polymerase or nucleoprotein segments.
-Examining the remaining segments in only those cells expressing active polymerase, we find their absence at late timepoints (8h, 10h) ranges between 5 and 17 percent of infections, with reasonable agreement between samples (Figure~\ref{fig:fluburdenbyflugene}C).
-Absence of a given segment appears to be an independent event, as presence of all four segments in an infection is well predicted by simply multiplying individual segment probabilities. 
-We find our results within the range previously described for other influenza strains and consistent with the hypothesis that the majority of influenza infections are non-productive.
-
-
-
-
-
-
-
-\begin{figure}
+\begin{figure}[t!]
 \centerline{\includegraphics[width=0.9\linewidth]{figures/p_flu_burden_flu_gene_merge.pdf}}
 \caption{\label{fig:fluburdenbyflugene}
-The viral infection burden in individual cells as a function of the amount of each viral gene detected.
+The absence of viral genes explains some of the variability in the amount of viral mRNA per cell.
 {\bf (A)} 
-Fraction of mRNAs in each cell derived from virus as a function of the \emph{normalized} expression of each viral gene in that cell.
-This plot shows that all cells with very high viral burden express all of the RNP genes, but some cells with high viral burden lack each of the other four viral genes.
+Fraction of mRNAs in each infected cell derived from virus as a function of the \emph{normalized} expression of each viral gene in that cell, taken over all time points.
+Cells with high viral burden express all the RNP genes, but some cells with high viral burden lack each of the other viral genes.
 {\bf (B)}
-Statistical tests confirming that absence of viral RNP genes is significantly associated with reduced viral burden, but that the absence of the non-RNP genes does not lead to a clear decrease in viral burden.
+Box plots showing the per-cell viral burden among cells with $>$0.5\% of their mRNA from virus, binned by whether or not the cells express each viral gene.
+A Wilcoxon signed-rank test was used to test the null hypothesis that absence of each gene does not affect viral burden: **** = $P < 10^{-4}$, *** = $P < 10^{-3}$,  * = $P < 0.05$.
+Similar results are obtained if we examine only the 10-hour timepoint (Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:10hrfluburdenbyflugene}).
 {\bf (C)}
-Per time point measurements of segment presence or absence in influenza infected cells that express all four genes of the polymerase complex. 
+Fraction of infected cells that express all four RNP genes and also express each of the four other genes, as well as the fraction that express \emph{all} four of the other genes.
+The fraction of cells that express all four of the other genes is well predicted by simply multiplying the frequencies of cells that express each of the four genes individually, indicating that the rate of segment absence is approximately independent across these four segments.
 }
+\figsupp[Secondary transcription from newly synthesized RNPs is a major source of viral mRNA during bulk infections.\label{figsupp:cyclohexamide}]{
+A549 cells were infected at an MOI of {\color{red}??} in either the presence or absence of the protein-translation inhibitor cyclohexamide, and viral mRNA was quantified at 10 hours post-infection by qPCR.
+The cyclohexamide prevents translation of new PB2, PB1, PA, and NP protein, and so prevents the formation of the new RNPs needed for secondary transcription.
+The bars show the relative amount of HA and PB2 mRNA in the absence versus the presence of cyclohexamide.
+}{\includegraphics[width=0.3\linewidth]{figures/Primary_transcription_measurements/Cyclohexamide.pdf}}
 \figsupp[Like panel (B) but for the 10-hr sample only.\label{figsupp:10hrfluburdenbyflugene}]{
-The absence of viral RNP genes but \emph{not} non-RNP genes remains significantly associated with reduced viral burden when we examine only the 10-hr sample, which is the single timepoint with the most data points.
-The difference for NP is no longer statistically significant due to low counts of infected cells lacking NP, but the qualitative trend remains.
+The absence of viral RNP genes but \emph{not} non-RNP genes remains significantly associated with reduced viral burden when we examine only the 10-hr sample, which is the single time point with the most data points.
+The difference for NP is no longer statistically significant due to low counts of infected cells lacking NP, but the trend remains.
 }{\includegraphics[width=\linewidth]{figures/p_10hr_flu_burden_flu_gene_test}}
+\figdata{The numerical data for panel (C) are in \texttt{p\_missing\_genes.csv}.}
 \end{figure}
 
+We examined the total fraction of mRNA in each cell that derives from virus versus the relative expression of each viral gene in that cell (Figure~\ref{fig:fluburdenbyflugene}A). 
+Cells that lack one of the RNP genes never derive more than a few percent of their mRNAs from virus, demonstrating that the presence of these RNP genes are essential for high levels of viral transcription.
+However, we observe cells that lack each of the other non-RNP genes but still derive $\approx$40\% of their mRNAs from virus, suggesting that none of the other genes are important for high levels of viral transcription.
+These results are statistically supported by the analysis in Figure~\ref{fig:fluburdenbyflugene}B, which shows that absence of any of the four RNP genes but \emph{not} any of the other viral genes is associated with reduced amounts of viral mRNA. 
+However, gene absence clearly does not explain all of the variability in viral gene expression, since even cells expressing all eight segments exhibit a very wide distribution in the number of viral mRNAs that they express. 
+Additional mechanisms, such as differences in host-cell state or viral mutations not detectable by our 3'-end sequencing approach, must explain the remainder of this variability.  
 
+We also sought to quantify the fraction of infected cells that completely failed to express a given gene.
+We limited this analysis to examining the presence / absence of the non-RNP genes in cells expressing all four RNP genes, since we might fail to detect viral transcripts that are actually present at low levels in RNP-deficient cells due to the lower viral burden in these cells.
+At the 8- and 10-hour time points, between 5\% and 17\% of cells fail to express any one of the four non-RNP genes (Figure~\ref{fig:fluburdenbyflugene}C).
+The absence of segments appears to be an independent event, as the probability of observing all four non-RNP segments in a cell is well predicted by simply multiplying the probabilities of observing each of the four segments individually (Figure~\ref{fig:fluburdenbyflugene}C). 
+These numbers on the frequency at which infected cells fail to express individual viral genes are roughly consistent with measurements made by others using different means~\citep{brooke2013most}.
 	
 \subsection{Influenza mRNA Ratios are Tightly Controlled}
 	
@@ -255,6 +256,19 @@ The difference for NP is no longer statistically significant due to low counts o
 	This is consistent with more limited measurements showing positive correlations between several segments in vRNA measurements in single cells.
 	It would therefore be inadvisable to search for the sources of the broad distribution in influenza replication in those steps that can impact segments independently of one-another, such as noise in the transition to cRNA or vRNA production, but rather only in those processes that could impact the kinetics of all segments equivalently, such as transport to the nucleus or availability of cellular resources. 
 
+\begin{figure}
+\centerline{\includegraphics[width=0.9\linewidth]{figures/p_flu_expr.pdf}}
+\caption{\label{fig:fluexpr}
+Expression of individual influenza genes in highly infected cells (at least 5\% of total mRNA is viral).
+{\bf (A)} 
+The fraction of total mRNA from each influenza gene for each cell.
+{\bf (B)}
+Box plots showing the fraction of viral mRNA per cell that is derived from each influenza gene taken over all highly expressed cells.
+The black line at the notch in each box is the median, and the top and bottom of the box indicate the first and third quartiles.
+}
+\figdata{The raw data are in \texttt{p\_flu\_expr.csv}.}
+\end{figure}
+Cite \citet{hatada1989control} to show our relative expressions are consistent with that.
 
 \subsection{co-infection Occurs Early and Is Likely Adaptive For Influenza}
 	While relatively rare in our dataset, those cells positively identified as containing both wild-type and synonymously barcoded influenza provide important insight into the nature of co-infection. 
@@ -270,9 +284,6 @@ The difference for NP is no longer statistically significant due to low counts o
 	Moreover, a portion of the population expressing only low HA -- likely corresponding to primary transcription alone -- is greatly reduced. 
 	These data give credence to the sentiments of others that non-productive events are perhaps just productive events waiting to occur, and that the true dynamics underlying descriptions of MOI are far more complex than we frequently give them credence, relying on assumptions that may frequently not accurately reflect reality.
 
-
-
-
 \begin{figure}
 \centerline{\includegraphics[width=0.9\linewidth]{figures/p_coinfection.pdf}}
 \caption{\label{fig:coexpression}
@@ -282,25 +293,6 @@ The bars indicate the logarithm of the number of each viral mRNA detected, and t
 \figdata{The raw data plotted in this figure are in \texttt{p\_co-infection.csv}.}
 \end{figure}
 
-\subsection{Relative expression of different viral genes}
-Figure~\ref{fig:fluexpr} shows some of this.
-Cite \citet{hatada1989control} to show our relative expressions are consistent with that.
-Maybe show a panel with just the 8-segment infections.
-
-Maybe add a figure breaking this down among timepoints.
-
-\begin{figure}
-\centerline{\includegraphics[width=0.9\linewidth]{figures/p_flu_expr.pdf}}
-\caption{\label{fig:fluexpr}
-Expression of individual influenza genes in highly infected cells (at least 5\% of total mRNA is viral).
-{\bf (A)} 
-The fraction of total mRNA from each influenza gene for each cell.
-{\bf (B)}
-Box plots showing the fraction of viral mRNA per cell that is derived from each influenza gene taken over all highly expressed cells.
-The black line at the notch in each box is the median, and the top and bottom of the box indicate the first and third quartiles.
-}
-\figdata{The raw data are in \texttt{p\_flu\_expr.csv}.}
-\end{figure}
 
 \subsection{Host stuff}
 
