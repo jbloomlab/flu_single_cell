@@ -13,6 +13,8 @@
 \DeclareSIUnit\Molar{M}
 \usepackage{indentfirst} %I prefer to have indents following section headings, I find it to be more consistent in style throughout document
 
+\renewcommand{\floatpagefraction}{0.8}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% ARTICLE SETUP
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -76,7 +78,7 @@ Critically, these synonymous mutations did not greatly impact viral growth kinet
 We infected A549 human lung carcinoma cells with an equal mix of the wildtype and synonymously barcoded viruses.
 Cells infected by a single virion will exclusively express mRNAs from either wild-type or synonymously barcoded virus, whereas cells that are co-infected with multiple virions will often express mRNAs from both the wildtype and synonymously barcoded viruses (Figure~\ref{fig:workflow}C).
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{figures/Workflow/workflow.pdf}
+\centerline{\includegraphics[width=0.8\linewidth]{figures/Workflow/workflow.pdf}}
 \caption{\label{fig:workflow} Experimental design.
 {\bf (A)}  
 We engineered a virus that carried two synonymous mutations near the 3' end of each mRNA.
@@ -84,12 +86,12 @@ At top are the specific mutations for the PB2 gene.
 At bottom are locations of the synonymous mutations relative to the typical distribution of read depth for the 3'-end sequencing of the mRNA.
 {\bf (B)} 
 The wild-type and synonymously barcoded viruses transcribe their genes with similar kinetics. 
-Shown is the abundance of the viral hemagglutinin (HA) transcript relative to the cellular housekeeping gene L32 as assessed by qPCR at the indicated time points in A549 cells infected at an MOI of 0.5 (as determined on MDCK-SIAT1 cells).
+Shown is the abundance of the viral hemagglutinin (HA) transcript relative to the cellular housekeeping gene L32 as assessed by qPCR in A549 cells infected at an MOI of 0.5 (as determined on MDCK-SIAT1 cells).
 {\bf (C)}  
 A549 cells were infected with an equal mixture of mutant and wild-type virus. 
-Using reverse-phase emulsion, cells were physically separated and cDNA libraries were generated containing the indicated barcodes. 
+Immediately prior to sequencing, cells were physically separated into droplets and cDNA libraries were generated containing the indicated barcodes. 
 The libraries were deep sequenced, and the data processed to create a matrix that gives the number of molecules of each transcript observed in each cell.
-Infected cells were further annotated based on whether their viral mRNAs derived from the wildtype virus, the synonymously barcoded virus, or a mix of both.
+Infected cells were further annotated by whether their viral mRNAs derived from wildtype virus, synonymously barcoded virus, or both.
 Abbreviations: WT -- wild-type, Syn -- Synonymous Barcode.
 }
 \figdata{Sequences of wild-type and barcoded viruses are in \texttt{viralsequences.fasta}.}
@@ -104,88 +106,97 @@ In addition, viral stocks with many defective particles are more immunostimulato
 We confirmed that our viral stocks induced much less interferon than a stock propagated at higher MOI (Figure~\ref{fig:viruspopulations}D).
 
 \begin{figure}
-\includegraphics[width=0.7\linewidth]{figures/Validating_barcode_virus/validating_populations_D02.pdf}
-\caption{\label{fig:viruspopulations} The viral stocks used in our experiments have relatively low numbers of defective particles. 
+\centerline{\includegraphics[width=0.7\linewidth]{figures/Validating_barcode_virus/validating_populations_D02.pdf}}
+\caption{\label{fig:viruspopulations} The viral stocks in our experiments are relatively pure of defective particles. 
 {\bf (A)}
-Quantification of the relative amounts of physical viral particles and infectious particles.
-Virions in the wildtype and synonymously barcoded viral stocks used in our experiments have a lower ratio of HA viral RNA to infectious particles compared to a high-defective stock propagated at high MOI.
-Infectious particles were quantified by TCID50 on MDCK-SIAT1 cells, and HA vRNA by qPCR on virions. 
+Our viral stocks have a higher ratio of infectious particles to HA virion RNA compared to a high-defective stock propagated at high MOI.
+HA viral RNA was quantified by qPCR on virions. 
 {\bf (B)} 
-Quantification of the relative amounts of particles capable of expressing the viral protein HA to infectious particles.
-A549 cells were infected with all three viral stocks at an MOI of 0.1 as calculated on MDCK-SIAT1 cells, and the percentage of cells expressing HA protein at 9 hours post-infection was quantified by antibody staining and flow cytometry.
+Our viral stocks have a higher ratio of infectious particles to particles capable of expressing the viral HA protein.
+A549 cells were infected with all three viral stocks at an MOI of 0.1, and the percentage of cells expressing HA protein at 9 hours post-infection was quantified by antibody staining and flow cytometry.
 {\bf (C)} 
 Our viral stocks are less immunostimulatory than virus propagated at high MOI. 
-Measurements of \textit{IFNB1} transcript by qPCR normalized to the housekeeping gene L32 in A549 cells at 10 hours post infection at an MOI of 0.5 as calculated on MDCK-SIAT1 cells.}
+Measurements of \textit{IFNB1} transcript by qPCR normalized to the housekeeping gene L32 in A549 cells at 10 hours post infection at an MOI of 0.5.
+MOIs were calculated by TCID50 on MDCK-SIAT1 cells.}
 \figsupp[Flow cytometry data for calculating the percentage of HA-expressing cells.]{Longer caption}{\emph{HA-expression flow cytometry supplemental figure needs to be created.}}
 \end{figure}
 
-\subsection{Single infected cells show a wide range of expression of viral transcripts.}
-We infected cells at low MOI with a mixture of the wildtype and synonymously barcoded viruses and collected cells for sequencing at 6, 8, and 10 hours post-infection, including a replicate of the 8-hour timepoint.
+\subsection{Single cells show a wide range of expression of viral transcripts.}
+We infected at low MOI with a mixture of the wildtype and synonymously barcoded viruses, and collected cells for sequencing at 6, 8, and 10 hours post-infection, including a replicate of the 8-hour timepoint.
 We recovered between 3,000 and 4,000 cells for each sample (Figure~\ref{fig:cells}A). 
 As expected for a low-MOI infection, most cells expressed little or no viral mRNA (Figure~\ref{fig:cells}B).
 Also as expected, the amount of viral mRNA per cell among infected cells increased over time (Figure~\ref{fig:cells}B).
-But what was most striking was how widely the number of viral mRNA molecules varied among infected cells.
+But what was most notable was how widely the number of viral mRNA molecules varied among infected cells.
 While the fraction of mRNA derived from virus was $<$0.1\% for most infected cells, viral mRNA constituted close to half the transcriptome in a few cells at 8 and 10 hours (Figure~\ref{fig:cells}C).
 Therefore, there is extraordinary variability in the number of viral transcripts per infected cell.
 
 \begin{figure}
-\includegraphics[width=\linewidth]{figures/p_cell_mRNA_summary.pdf}
+\centerline{\includegraphics[width=0.9\linewidth]{figures/p_cell_mRNA_summary.pdf}}
 \caption{\label{fig:cells}
-There is a very wide distribution of the number of viral mRNAs detected per cell.
+There is a very wide distribution in the number of viral mRNAs detected per cell.
 {\bf (A)} 
 Number of cells sequenced for each sample.
 {\bf (B)} 
-Cumulative distribution plot showing the fraction of all mRNA derived from influenza virus for each sample.
-For each point on the x-axis, the y-axis indicates the fraction of cells with at least that much of their mRNA derived from virus.
+Cumulative distribution of the fraction of mRNA derived from influenza virus for each sample.
+For each point on the x-axis, the y-axis indicates the fraction of cells with at least that much of their mRNA from virus.
 {\bf (C)} 
 The number of cellular and viral mRNAs for each cell is plotted as a point.
-The blue lines show the overall distribution of the number of cellular mRNAs per sample.
-Cells that fell outside the red lines were considered outliers (possibly derived from two cells per droplet), and so were excluded from all subsequent analyses.
+The blue lines show the overall distribution of the number of cellular mRNAs per cell.
+Cells outside the red lines were considered outliers (possibly derived from two cells per droplet), and were excluded from subsequent analyses.
 }
 \end{figure}
 
-When calling infected cells we must be aware that uninfected cells could have small amounts of viral mRNA due to leakage of transcripts from lysed cells.
+A complicating factor is that uninfected cells could have small amounts of viral mRNA due to leakage of transcripts from lysed cells.
 It is therefore important to establish a threshold for identifying truly infected cells.
-We can do this by taking advantage of our use of both wild-type and synonymously barcoded viruses.
-Reads derived from lysed cells will likely be drawn from both viral populations, and therefore cells that contain viral mRNA exclusibely acquired  through leakage should more frequently exhibit cooccurrence of viral barcodes.
-Conversely, most infected cells will be infected by only a single virion, and so their reads should derive almost entirely from one of the two viral barcodes. 
+We can do this by taking advantage of the fact that roughly half the infecting virions bear synonymous barcodes.
+Reads derived from lysed cells will be drawn from both wildtype and synonymously barcoded viral transcripts.
+However, most cells are infected by at most one single virion, and so the reads from truly infected cells will usually derive almost entirely from one of the two viral variants. 
+Figure~\ref{fig:viralbarcodes}A shows the fraction of viral reads in individual cells from each viral variant, and Figure~\ref{fig:viralbarcodes}B indicates the fraction of viral reads from the most abundant variant in that cell.
+Most cells with a large amount of viral mRNA have viral transcripts exclusively derived from one viral variant -- indicating non-random partitioning as expected from viral infection.
+However, cells with a small amount of viral mRNA often have viral transcripts from a mix of both variants, as expected from the random partitioning associated with simple mRNA leakage.
+Finally, a few cells with a large amount of viral mRNA have viral transcripts from both variants, reflecting co-infection with both variants.
 
-Figure~\ref{fig:viralbarcodes}A shows the fraction of viral reads in individual cells that are derived from each viral barcode, and Figure~\ref{fig:viralbarcodes}B indicates the fraction of viral reads from the most abundant barcode in that cell.
-As is clear from this figure, most cells expressing a large number of viral transcripts have these transcripts exclusively derived from just one of the viral barcodes -- indicating non-random partitioning as expected from viral infection.
-A very small fraction of these cells express viral transcripts with both barcodes, presumably indicating rare co-infection events.
-However, cells expressing a small number of viral transcripts often have a mixture of the two viral barcodes, as predicted by random partitioning from simple mRNA leakage (Figure~\ref{fig:viralbarcodes}B).
-We therefore determined a threshold for the minimum amount of viral RNA that was present in cells in which the barcode partitioning appeared to result from infection rather than leakage (Figure~\ref{fig:viralbarcodes}C), and used this threshold to annotate all cells that we were confident were truly infected with virus.
-Strikingly, among the infected the cells at each time point, a bare few contribute the majority of influenza transcripts (Figure~\ref{fig:viralbarcodes}D).
-Specifically, at the 6 and 8-hour timepoints 10\% or less of the infected cells are responsible for over half the viral transcripts, while at the 10-hour timepoint 15\% of the infected cells produce over half the viral transcripts (Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:cumulfracflu}).
+We determined the threshold amount of viral mRNA per cell at which the barcode partitioning clearly resulted from infection rather than leakage (Figure~\ref{fig:viralbarcodes}C), and used this threshold to annotate cells that we were confident were truly infected.
+We also annotated as co-infected cells above this threshold that had mRNA from both viral variants.
+Figure~\ref{fig:viralbarcodes}D shows the number of cells annotated as infected and co-infected for each sample -- these cells are just a small fraction of the number of cells with any viral read.
+These annotation thresholds are conservative, and will miss some true low-level infections, as well as any co-infections with the same viral variant.
+However, it is important that the analyses below are restricted to cells that are truly infected with virus, so we accepted the loss of some low-level infections in order to avoid false positives.
+Because the bulk of cells are not infected, we subsampled the uninfected cells to the numbers shown in Figure~\ref{fig:viralbarcodes}D to balance the proportions of infected and uninfected cells for all subsequent analyses.
+
+Strikingly, the extreme variation in the number of viral transcripts per cell remains even after we apply these rigorous criteria for annotating infected cells (Figure~\ref{fig:viralbarcodes}E). 
+The fraction of viral mRNA per infected cell follows a roughly exponential distribution, with many cells having few viral transcripts and a few cells having many.
+In fact, a bare few infected cells contribute the majority of influenza transcripts.
+Specifically, at 6 and 8 hours $<$10\% of infected cells are responsible for over half the viral transcripts, while at 10 hours $\approx$15\% of infected cells produce over half the viral transcripts (Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:cumulfracflu}).
 
 
 \begin{figure}
-\includegraphics[width=\linewidth]{figures/p_frac_flu_summary.pdf}
+\centerline{\includegraphics[width=0.9\linewidth]{figures/p_frac_flu_summary.pdf}}
 \caption{\label{fig:viralbarcodes}
-Synonymous barcodes near the 3' end of the influenza virus mRNAs were used to identify co-infection and distinguish true infections from cells that contained spurious viral reads.
+Synonymous barcodes on the viral mRNAs can help distinguish true infections from cells that contain viral mRNAs derived from leakage of lysed cells.
 {\bf (A)}
-All cells with at least two viral mRNAs for which the viral barcode could be called, arranged in order of increasing influenza transcript counts.
-Bar heights denote the viral mRNAs on a log\textsubscript{10} scale, bar coloring is linearly proportional to the fraction of viral mRNAs derived from either wild-type or synonymously barcoded virus.
+Cells with at least two viral mRNAs for which the barcode could be called, arranged in order of increasing influenza transcript counts.
+Bar heights denote the number viral mRNAs on a log\textsubscript{10} scale, bar coloring is linearly proportional to the fractions of viral mRNAs derived from wild-type and synonymously barcoded virus.
 {\bf (B)}
-Same as (A), but now each bar is colored according to the relative proportions of the more common (major) and less common (minor) barcoded virus variant within each cell.
-At low levels of viral mRNA there is often a roughly equal mix of barcodes, suggesting that many of these cells have simply picked up extracellular mRNA.
-At higher levels of viral mRNA, cells generally associate with only one barcode, suggesting a single viral particle initiating infection, save for a few cells that are truly co-infected.
+Same as (A), but each bar is colored according to the relative fraction of the more common (major) and less common (minor) virus variant.
+At low levels of viral mRNA there is often a roughly equal mix, suggesting contamination with viral mRNAs leaked from lysed cells.
+At higher levels of viral mRNA, cells generally have only one viral variant, suggesting infection initiated by a single particle.
+A few cells are also obviously co-infected with both viral variants.
 {\bf (C)}
 We determined a cutoff for calling ``true'' infections by fitting a curve to the mean barcode purity of all cells with greater than a given fraction of their mRNA derived from virus.
 We called the cutoff at the point at which purity stops increasing with the fraction of viral mRNA.
 {\bf (D)}
-The number of cells identified as infected and co-infected for each sample.
-For all samples, the vast majority of cells were not infected, so for subsequent analyses we subsampled to a number of uninfected cells to either 50 or the number of infected cells, whichever was greater.
+The number of cells identified as infected and co-infected for each sample, as well as the number of cells with any viral read.
+For all subsequent analyses, we subsampled to a number of uninfected cells per sample to the greater of 50 or the number of infected cells.
 {\bf (E)} 
-The distribution of the fraction of mRNA derived from virus for each sample for both infected and co-infected cells.
-For all samples, there is a very wide distribution of the amount of viral mRNA.
+Distribution of the fraction of mRNA per cell derived from virus for both infected and co-infected cells.
 }
 \figsupp[Number of viral barcodes called.\label{figsupp:barcodescalled}]{
 The number of viral barcodes called for each sample and influenza gene segment. 
 Viral transcripts are classified as \emph{syn} if they mapped to a synonymously barcoded influenza transcript, \emph{wt} if they mapped to a wild-type influenza transcript, \emph{invalid} if multiple reads for the same UMI differed on the status of the viral barcode, and as \emph{uncalled} if none of the reads for that UMI overlapped the region of the viral transcript containing the viral barcode.
 }{\includegraphics[width=\linewidth]{figures/synbarcodes_umistats.jpg}}
-\figsupp[Cumulative distribution.\label{figsupp:cumulfracflu}]{
-Description
+\figsupp[Fraction of total viral mRNA derived from a given fraction of infected cells.\label{figsupp:cumulfracflu}]{
+The total fraction of all viral mRNA among infected cells that is attributable to a given fraction of these cells.
+For instance, the plot for the 8-hour sample shows that roughly 50\% of all viral mRNA is derived from 10\% of the infected cells.
 }{\includegraphics[width=\linewidth]{figures/p_cumul_flu.pdf}}
 \end{figure}
 
@@ -216,7 +227,7 @@ We find our results within the range previously described for other influenza st
 
 
 \begin{figure}
-\includegraphics[width=\linewidth]{figures/p_flu_burden_flu_gene_merge.pdf}
+\centerline{\includegraphics[width=0.9\linewidth]{figures/p_flu_burden_flu_gene_merge.pdf}}
 \caption{\label{fig:fluburdenbyflugene}
 The viral infection burden in individual cells as a function of the amount of each viral gene detected.
 {\bf (A)} 
@@ -263,7 +274,7 @@ The difference for NP is no longer statistically significant due to low counts o
 
 
 \begin{figure}
-\includegraphics[width=\linewidth]{figures/p_coinfection.pdf}
+\centerline{\includegraphics[width=0.9\linewidth]{figures/p_coinfection.pdf}}
 \caption{\label{fig:coexpression}
 Frequency of each viral gene segment in co-infected cells with at least 5\% of their mRNA derived from influenza.
 The bars indicate the logarithm of the number of each viral mRNA detected, and the bars are colored in proportion to the fraction of those mRNAs that are derived from either wildtype or synonymous barcoded virus.
@@ -279,7 +290,7 @@ Maybe show a panel with just the 8-segment infections.
 Maybe add a figure breaking this down among timepoints.
 
 \begin{figure}
-\includegraphics[width=\linewidth]{figures/p_flu_expr.pdf}
+\centerline{\includegraphics[width=0.9\linewidth]{figures/p_flu_expr.pdf}}
 \caption{\label{fig:fluexpr}
 Expression of individual influenza genes in highly infected cells (at least 5\% of total mRNA is viral).
 {\bf (A)} 
@@ -294,7 +305,7 @@ The black line at the notch in each box is the median, and the top and bottom of
 \subsection{Host stuff}
 
 \begin{figure}
-\includegraphics[width=\linewidth]{figures/p_small_tsne_merge.pdf}
+\centerline{\includegraphics[width=0.9\linewidth]{figures/p_small_tsne_merge.pdf}}
 \caption{\label{fig:tsne}
 tSNE plots.
 The layout is the same in all panels, but each panel colors the cells according to a different property.
@@ -316,7 +327,7 @@ The one interferon-positive cell is lacking NS, but many other cells also lack N
 
 
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{figures/p_cellular_heatmap.pdf}
+\centerline{\includegraphics[width=0.8\linewidth]{figures/p_cellular_heatmap.pdf}}
 \caption{\label{fig:cellulargenes}
 Cellular genes that are differentially expressed with respect to the amount of influenza mRNA in individual cells infected with full influenza virus containing all eight genes.
 Shown are all genes differentially expressed with $Q < 0.1$.}
