@@ -136,8 +136,8 @@ At later timepoints, a small number of cells had a very high number of viral mRN
 When calling infected cells we must be aware that uninfected cells could have small amounts of viral mRNA due to leakage of transcripts from lysed cells.
 It is therefore important to establish a threshold for identifying truly infected cells.
 We can do this by taking advantage of our use of both wild-type and synonymously barcoded viruses.
-Reads derived from lysed cells should exhibit random partitioning among cells, and therefore cells that contain viral mRNA exclusively acquired  through leakage should more frequently exhibit cooccurrence of viral barcodes.
-Conversely, most infected cells will be infected by only a single virion, and so their reads should derive almost exclusively from one of the two viral barcodes. 
+Reads derived from lysed cells will likely be drawn from both viral populations, and therefore cells that contain viral mRNA exclusibely acquired  through leakage should more frequently exhibit cooccurrence of viral barcodes.
+Conversely, most infected cells will be infected by only a single virion, and so their reads should derive almost entirely from one of the two viral barcodes. 
 
 Figure~\ref{fig:viralbarcodes}A shows the fraction of viral reads in individual cells that are derived from each viral barcode, and Figure~\ref{fig:viralbarcodes}B indicates the fraction of viral reads from the most abundant barcode in that cell.
 As is clear from this figure, most cells expressing a large number of viral transcripts have these transcripts exclusively derived from just one of the viral barcodes -- indicating non-random partitioning as expected from viral infection.
@@ -182,18 +182,24 @@ Description
 
 It is thought that a major driver of variation in influenza productivity is the segmented nature of the influenza genome.
 Several groups have described that the majority of infections fail to express at least one of the eight influenza segments. 
-We make a similar observation (Figure~\ref{fig:fluburdenbyflugene}A). 
+Our data reveal a similar trend is true for this strain of influenza (Figure~\ref{fig:fluburdenbyflugene}A). 
 When we bin cells according to absence of a given segment we observe that, unsurprisingly, absence of the tripartite polymerase (PB1, PA, PB2) and nuceoprotein (NP) correlates strongly with decreased influenza burden (Figure~\ref{fig:fluburdenbyflugene}B). 
+This was true even when accounting for temporal variation, as seen by analyzing a single time point (10h) alone, with the caveat that there were too few NP absences detected to achieve statistical significance (supplemental figure).
 Importantly, the gene products of all four of these segments are essential to the transition from primary mRNA transcription to replication and secondary mRNA transcription. 
 This effect cannot be solely attributed to sampling error, as the polymerase genes exhibit the lowest expression and thus would be expected to be stochastically lost due to undersurveillance at much higher influenza transcript levels than would other genes. 
 Nevertheless, while segment absence can partially explain extreme components of influenza variability resulting from an inability to fully engage in secondary transcription, absence of the remaining segments does not appear to have any significant impact on influenza burden.
 Importantly, even cells expressing all eight segments still exhibit a wide distribution of influenza transcripts within each time point. We must instead therefore posit alternative mechanisms such as variability in host cells to explain the remainder of this distribution.  
 
-We further wished to define metrics for presence/absence for a given segment and compare them to values obtained for other strains of influenza in order to understand the probability that a given infection could possibly produce infectious progeny. 
+We further wished to define metrics for absence for a given segment in order to understand the probability that a given infection could potentially produce infectious progeny. 
 However, we decided to omit these calculations for PB1, PA, PB2, and NP due to the confounding effect of decreased influenza transcript abundance. 
 In support of this decision, when we use cyclohexamide treatment to limit cells to primary transcription alone, we find a 2-3 log reduction in mRNA levels of PB1 or HA relative to a 10h time point (supplemental figure). 
 We therefore lack confidence that our approach has the power to detect all semi-infectious events that result from a lack of polymerase or nucleoprotein segments.
-However, given the lack of effect absence of other segments appears to have on mRNA production, we proceeded to calculate the relative abundance of infectious events absent a given gene segment for those time points in which we have relatively robust measurements of influenza (8h, 10h).
+Examining the remaining segments in only those cells expressing active polymerase, we find their absence at late timepoints (8h, 10h) ranges between 5 and 17 percent of infections, with reasonable agreement between samples (Figure~\ref{fig:fluburdenbyflugene}C).
+Absence of a given segment appears to be an independent event, as presence of all four segments in an infection is well predicted by simply multiplying individual segment probabilities. 
+We find our results within the range previously described for other influenza strains and consistent with the hypothesis that the majority of influenza infections are non-productive.
+
+
+
 
 
 
@@ -207,6 +213,8 @@ Fraction of mRNAs in each cell derived from virus as a function of the \emph{nor
 This plot shows that all cells with very high viral burden express all of the RNP genes, but some cells with high viral burden lack each of the other four viral genes.
 {\bf (B)}
 Statistical tests confirming that absence of viral RNP genes is significantly associated with reduced viral burden, but that the absence of the non-RNP genes does not lead to a clear decrease in viral burden.
+{\bf (C)}
+Per time point measurements of segment presence or absence in influenza infected cells that express all four genes of the polymerase complex. 
 }
 \figsupp[Like panel (B) but for the 10-hr sample only.\label{figsupp:10hrfluburdenbyflugene}]{
 The absence of viral RNP genes but \emph{not} non-RNP genes remains significantly associated with reduced viral burden when we examine only the 10-hr sample, which is the single timepoint with the most data points.
@@ -215,22 +223,30 @@ The difference for NP is no longer statistically significant due to low counts o
 \end{figure}
 
 
-\begin{figure}
-\includegraphics[width=0.6\linewidth]{figures/p_missing_genes.pdf}
-\caption{\label{fig:missingseg}
-test
-}
-\end{figure}
-
-
 	
 \subsection{Influenza mRNA Ratios are Tightly Controlled}
 	
-	This and other reports have described the considerable heterogeneity produced as influenza infection progresses in tissue culture models. However, in stark contrast to our analyses above, the ratios of mRNAs generated by the eight segments appear to behave in a highly stereotyped fashion, with values roughly consistent with prior Northern Blot measurements of Influenza mRNA abundance. Staggeringly, this is true whether or not cells are expressing mRNAs from all eight segments, at all three time points,  and, in cells running the gamut of infectious burden -- although we must limit these conclusions to those cells engaging in secondary transcription given the caveats described above. Therefore while either noise in influenza replication or host variability can dramatically impact the amount of Influneza mRNA produced as a whole, these processes seem to, ignoring complete absence of a segment, act equally across the Influenza genome. This is consistent with more limited measurements showing positive correlations between several segments in vRNA measurements in single cells. It would therefore be inadvisable to search for the sources of the broad distribution in influenza replication in those steps that can impact segments independently of one-another, such as noise in the transition to cRNA or vRNA production, but rather only in those processes that could impact the kinetics of all segments equivalently, such as transport to the nucleus or availability of cellular resources. 
+	This and other reports have described the considerable heterogeneity produced as influenza infection progresses in tissue culture models. 
+	However, in stark contrast to our analyses above, the ratios of influenza mRNAs within a given cell appears to behave in a highly stereotyped fashion, with values roughly consistent with prior population-level measurements of influenza mRNA abundance. 
+	Staggeringly, this is true whether or not cells are expressing mRNAs from all eight segments, at all three time points,  and, in cells running the gamut of infectious burden.
+	Therefore while either noise in influenza replication or host variability can dramatically impact the amount of Influneza mRNA produced as a whole, these processes seem to, ignoring complete absence of a segment, act equally across the influenza genome.
+	This is consistent with more limited measurements showing positive correlations between several segments in vRNA measurements in single cells.
+	It would therefore be inadvisable to search for the sources of the broad distribution in influenza replication in those steps that can impact segments independently of one-another, such as noise in the transition to cRNA or vRNA production, but rather only in those processes that could impact the kinetics of all segments equivalently, such as transport to the nucleus or availability of cellular resources. 
 
 
 \subsection{co-infection Occurs Early and Is Likely Adaptive For Influenza}
-	While relatively rare in our dataset, those cells positively identified as containing both wild-type and synonymously barcoded influenza provide important insight into the nature of co-infection. It has been posited that co-infection can rescue nonproductive infections, potentially by providing missing genome equivalents. Brooke et al., for example observed increased co-occurrence of a given gene-segment pair as MOI was increased. When we examine our co-infected cells, we observe a much higher rate of expression of all eight segments (metric). Consistent with this model, we also observe that if we consider only one barcode or the other, that many of these infections would instead have been non-productive. Another observation that can be immediately procured is that, on the whole, co-infections have roughly balanced amounts of wild-type and barcoded segments. Others have noted that windows for co-infection are relatively narrow, and, these data directly suggest that this window is specifically narrow with respect to cRNA and vRNA production. If significant replication of viral genomes had already occurred, one would expect a much wider distribution of ratios than those observed. To support these observations, we used a virus in which the HA segment was replaced by GFP, allowing us to detect co-infection by this modified virus and wild-type WSN by flow cytometry. When we examine strictly co-infected cells, we observe that, as in our single-cell analysis, both HA and GFP are highly correlated -- indicating a tight window of co-infection -- and that a peak of low HA -- likely corresponding to primary transcription alone -- is greatly reduced. These data give credence to the sentiments of others that non-productive events are perhaps just productive events waiting to occur, and that the true dynamics underlying descriptions of ?MOI? are far more complex than we frequently give them credence and rely on assumptions that frequently prove incorrect. 
+	While relatively rare in our dataset, those cells positively identified as containing both wild-type and synonymously barcoded influenza provide important insight into the nature of co-infection. 
+	It has been posited that co-infection can rescue nonproductive infections, potentially by providing missing genome equivalents.
+	\emph{Brooke et al}, for example observed increased co-occurrence of a given gene-segment pair as MOI was increased. 
+	When we examine our coinfected cells, we observe a much higher rate of expression of all eight segments (metric).
+	Consistent with this model, we also observe that if we consider only one barcode or the other, that many of these infections would instead have been non-productive. 
+	Another observation that can be immediately procured is that, on the whole, co-infections have roughly balanced amounts of wild-type and barcoded segments. 
+	Others have noted that windows for coinfection are relatively narrow, and, these data directly suggest that this window is specifically narrow with respect to cRNA and vRNA production.
+	If significant replication of viral genomes had already occurred, one would expect a much wider distribution of ratios than those observed. 
+	To support these observations, we generated a virus in which the HA segment was replaced by GFP, allowing us to detect coinfection by both wild-type and mutant virus by flow cytometry. 
+	When we examine strictly co-infected cells, we observe that, as in our single-cell analysis, both HA and GFP are highly correlated -- indicating a tight window of coinfection.
+	Moreover, a portion of the population expressing only low HA -- likely corresponding to primary transcription alone -- is greatly reduced. 
+	These data give credence to the sentiments of others that non-productive events are perhaps just productive events waiting to occur, and that the true dynamics underlying descriptions of MOI are far more complex than we frequently give them credence, relying on assumptions that may frequently not accurately reflect reality.
 
 
 
@@ -342,6 +358,11 @@ If your manuscript is accepted, the eLife production team will re-format the ref
 Additional information can be given in the template, such as to not include funder information in the acknowledgments section.
 
 \nocite{*} % This command displays all refs in the bib file
+\bibliography{references}
+
+
+\end{document}
+ommand displays all refs in the bib file
 \bibliography{references}
 
 
