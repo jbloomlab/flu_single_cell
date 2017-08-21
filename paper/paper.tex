@@ -223,7 +223,7 @@ Fraction of infected cells that express all four RNP genes and also express each
 The fraction of cells that express all four of the other genes is well predicted by simply multiplying the frequencies of cells that express each of the four genes individually, indicating that the rate of segment absence is approximately independent across these four segments.
 }
 \figsupp[Secondary transcription from newly synthesized RNPs is a major source of viral mRNA during bulk infections.\label{figsupp:cyclohexamide}]{
-A549 cells were infected at an MOI of {\color{red}??} in either the presence or absence of the protein-translation inhibitor cyclohexamide, and viral mRNA was quantified at 10 hours post-infection by qPCR.
+A549 cells were infected at an MOI of 0.2 as calculated on MDCK-SIAT1 cels in either the presence or absence of the protein-translation inhibitor cyclohexamide, and viral mRNA was quantified at 8 hours post-infection by qPCR.
 The cyclohexamide prevents translation of new PB2, PB1, PA, and NP protein, and so prevents the formation of the new RNPs needed for secondary transcription.
 The bars show the relative amount of HA and PB2 mRNA in the absence versus the presence of cyclohexamide.
 }{\includegraphics[width=0.3\linewidth]{figures/Primary_transcription_measurements/Cyclohexamide.pdf}}
@@ -244,45 +244,45 @@ Additional mechanisms, such as differences in host-cell state or viral mutations
 We also sought to quantify the fraction of infected cells that completely failed to express a given gene.
 We limited this analysis to examining the presence / absence of the non-RNP genes in cells expressing all four RNP genes, since we might fail to detect viral transcripts that are actually present at low levels in RNP-deficient cells due to the lower viral burden in these cells.
 At the 8- and 10-hour time points, between 5\% and 17\% of cells fail to express any one of the four non-RNP genes (Figure~\ref{fig:fluburdenbyflugene}C).
-The absence of segments appears to be an independent event, as the probability of observing all four non-RNP segments in a cell is well predicted by simply multiplying the probabilities of observing each of the four segments individually (Figure~\ref{fig:fluburdenbyflugene}C). 
+The absence of a given segment appears to be an independent event, as the probability of observing all four non-RNP segments in a cell is well predicted by simply multiplying the probabilities of observing each of the four segments individually (Figure~\ref{fig:fluburdenbyflugene}C). 
 These numbers on the frequency at which infected cells fail to express individual viral genes are roughly consistent with measurements made by others using different means~\citep{brooke2013most}.
 	
 \subsection{Despite variability in absolute abundance, relative amounts of influenza mRNAs are comparatively constrained}
 	
-This and other reports have described the considerable heterogeneity in influenza infection in tissue culture. 
-However, in contrast to our analyses above, the fraction of influenza mRNAs derived from a given segment behaves in a stereotyped fashion, with median values consistent with prior population-level measurements.
-Rather than the several order of magnitude degree of variance observed in influenza mRNA abundance, the inter-quartile range of influenza ratios observed tends to be relatively tight (add a percentage here).
-This trend appears to hold  whether or not cells are expressing mRNAs from all eight segments, at all three time points,  and, in cells running the gamut of infectious burden.
-Therefore while either noise in influenza replication or host variability can dramatically impact the amount of influneza mRNA produced as a whole, these processes seem to, ignoring complete absence of a segment, act equally across the influenza genome.
-This is consistent with more limited experiments showing relatively consistent positive correlations between several segments in vRNA measurements in single cells.
+In contrast to our analyses above, the fraction of influenza mRNAs derived from a given segment behaves in a more stereotyped fashion -- regardless of how many influenza transcripts are observed in a given cell (Figure ~\ref{fig:fluexpr}A).
+Rather than the several order of magnitude degree of variance observed in influenza mRNA abundance, the inter-quartile range of influenza ratios observed tends to be relatively tight, clustered around a median value consistent with prior population-level measurements (Figure ~\ref{fig:fluexpr}B).
+The greatest degree of variance between the first and third quartile of any segment in our analysis only exhibited a \textasciitilde3-fold range.
+These values appear consistent whether or not we limit the analysis to only those cells expressing all eight segments (Figure ~\ref{fig:fluexpr}C,D).
+Therefore while either noise in influenza replication or host variability can dramatically impact the amount of influenza mRNA produced as a whole, these processes seem to, ignoring complete absence of a segment, act equally across the influenza genome.
+This is consistent with more limited experiments showing positive correlations between several segments in vRNA measurements in single cells.
 Therefore it can be inferred that the process by which influenza generates relative mRNA abundances is robust to the noise inherent in infection, or at least significantly more so than those processes that drive total mRNA abundance.
 
 \begin{figure}
-\centerline{\includegraphics[width=0.9\linewidth]{figures/p_flu_expr.pdf}}
+\centerline{\includegraphics[width=0.9\linewidth]{figures/p_flu_expr_aledit.pdf}}
 \caption{\label{fig:fluexpr}
 Expression of individual influenza genes in highly infected cells (at least 5\% of total mRNA is viral).
 {\bf (A)} 
-The fraction of total mRNA from each influenza gene for each cell.
+The fraction of total mRNA from each influenza gene for each cell. 
 {\bf (B)}
 Box plots showing the fraction of viral mRNA per cell that is derived from each influenza gene taken over all highly expressed cells.
 The black line at the notch in each box is the median, and the top and bottom of the box indicate the first and third quartiles.
+{\bf (C,D)} As in {\bf(A,B)} save only for cells in which all eight gene segments are observed.
 }
 \figdata{The raw data are in \texttt{p\_flu\_expr.csv}.}
 \end{figure}
-Cite \citet{hatada1989control} to show our relative expressions are consistent with that.
 
-\subsection{Co-infection }
+\subsection{Co-infection potentially increases successful viral infections}
 While relatively rare in our dataset, those cells positively identified as containing both wild-type and synonymously barcoded influenza provide important insight into the nature of co-infection. 
 It has been posited that co-infection can rescue infections missing one or more segments, potentially by providing missing genome equivalents.
 \emph{Brooke et al}, for example observed increased co-occurrence of a given gene-segment pair as MOI was increased. 
-When we examine our co-infected cells, we observe a higher rate of expression of all eight segments (metric).
-Consistent with this model, we frequently observe a single barcode for a given gene segment, suggesting it was only provided by one virion.
-This does, of course, make the assumption that absence is not instead driven by competition between segments.
+Consistent with this model, we frequently observe a single barcode for a given gene segment, suggesting it was only provided by one virion (Figure ~\ref{fig:coexpression}).
+This interpretation does however, make the assumption that absence is not instead driven by competition between segments.
+When we examine our co-infected cells, we observe a higher rate of co-expression of the four non-RNP segments than calculated above (80\% as compared to 63-70\%), with the caveat that this is an incredibly small sample size to draw from.
 Another observation that can be immediately procured is that, on the whole, co-infections have roughly balanced amounts of wild-type and barcoded segments. 
 Others have noted that windows for co-infection are relatively narrow, and, these data suggest that the co-infections we observe likely occurred before significant genome replication -- a process which would dramatically advantage the earlier virion.
-To support these conclusions, we generated a virus in which the HA segment was replaced by GFP, allowing us to detect co-infection by both wild-type and mutant virus by flow cytometry. 
-When we examine strictly co-infected cells, we observe that, as in our single-cell analysis, both HA and GFP are highly correlated -- indicating a tight window of coinfection.
-Moreover, a portion of the population expressing only low HA, which likely includes those viruses only engaging in primary transcription, is greatly reduced, suggesting rescue of this phenotype by co-infection. 
+To support these conclusions using a larger dataset, we generated a virus in which the HA segment was replaced by GFP, allowing us to detect co-infection by both wild-type and mutant virus by flow cytometry (Figure ~\ref{fig:flowcyto}A).
+When we examine strictly co-infected cells, we observe that, as in our single-cell analysis, both HA and GFP are highly correlated -- indicating a tight window of co-infection (Figure ~\ref{fig:flowcyto}B).
+Moreover, a portion of the population expressing only low HA, which likely includes those viruses only engaging in primary transcription, is greatly reduced, suggesting rescue of this phenotype by co-infection (Figure ~\ref{fig:flowcyto}C). 
 These data give credence to the sentiments of others that co-infection may be a significant contributor to influenza pathogenesis.
 
 \begin{figure}
@@ -294,6 +294,18 @@ The bars indicate the logarithm of the number of each viral mRNA detected, and t
 \figdata{The raw data plotted in this figure are in \texttt{p\_co-infection.csv}.}
 \end{figure}
 
+\begin{figure}
+\centerline{\includegraphics[width=0.9\linewidth]{figures/Pseudovirus_flow_cytometry/coinfFlow_D01.pdf}}
+\caption{\label{fig:flowcyto} Co-infection occurs relatively early and potentially provides an advantage. 
+{\bf(A)} Cells were infected with wild-type virus and a virus in which HA has been replaced by eGFP at an MOI of 0.1 of each virus as calculated on MDCK-SIAT1 cells or MDCK-SIAT1 cells expressing HA, respectively.
+Cells were stained for HA and additionally analyzed for eGFP expression at 10h post infection. Full flow cytometric analysis shown.
+{\bf(B)} HA and eGFP signal are correlated in co-infected cells. Quantile-normalized HA and eGFP signal for those cells identified as eGFP\textsuperscript{+} HA\textsuperscript{+}. Cells colored by density, using a Gaussian kernel density estimate. 
+{\bf(C)} Low-HA cells are reduced in co-infections. Guassian density estimates for HA signal in HA\textsuperscript{+} cells either expressing or failing to express eGFP. 
+{\bf(D)} Uninfected control used to set gates for {\bf(A)}
+}
+\figsupp[Additional replicates and gating controls.\label{}]{
+}{\includegraphics[width=\linewidth]{}}
+\end{figure}
 
 \subsection{Host stuff}
 
