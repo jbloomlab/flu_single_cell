@@ -274,40 +274,43 @@ The cell-to-cell consistency in the relative expression of different viral genes
 Therefore, with the exception of complete gene absence, the factors that drive the dramatic cell-to-cell variability in the amount of viral mRNA appear to have roughly similar effects on all viral genes in a given cell.
 This finding is consistent with prior work showing positive correlations among the abundance of several viral gene segments in individual cells.
 
-\subsection{Co-infection potentially increases successful viral infections}
-While relatively rare in our dataset, those cells positively identified as containing both wild-type and synonymously barcoded influenza provide important insight into the nature of co-infection. 
-It has been posited that co-infection can rescue infections missing one or more segments, potentially by providing missing genome equivalents.
-\emph{Brooke et al}, for example observed increased co-occurrence of a given gene-segment pair as MOI was increased. 
-Consistent with this model, we frequently observe a single barcode for a given gene segment, suggesting it was only provided by one virion (Figure ~\ref{fig:coexpression}).
-This interpretation does however, make the assumption that absence is not instead driven by competition between segments.
-When we examine our co-infected cells, we observe a higher rate of co-expression of the four non-RNP segments than calculated above (80\% as compared to 63-70\%), with the caveat that this is an incredibly small sample size to draw from.
-Another observation that can be immediately procured is that, on the whole, co-infections have roughly balanced amounts of wild-type and barcoded segments. 
-Others have noted that windows for co-infection are relatively narrow, and, these data suggest that the co-infections we observe likely occurred before significant genome replication -- a process which would dramatically advantage the earlier virion.
-To support these conclusions using a larger dataset, we generated a virus in which the HA segment was replaced by GFP, allowing us to detect co-infection by both wild-type and mutant virus by flow cytometry (Figure ~\ref{fig:flowcyto}A).
-When we examine strictly co-infected cells, we observe that, as in our single-cell analysis, both HA and GFP are highly correlated -- indicating a tight window of co-infection (Figure ~\ref{fig:flowcyto}B).
-Moreover, a portion of the population expressing only low HA, which likely includes those viruses only engaging in primary transcription, is greatly reduced, suggesting rescue of this phenotype by co-infection (Figure ~\ref{fig:flowcyto}C). 
-These data give credence to the sentiments of others that co-infection may be a significant contributor to influenza pathogenesis.
+\subsection{Co-infection can provide infected cells with the full complement of viral genes.}
+Our sequencing enables us to identify the rare cells that were co-infected with both wild-type and synonymous barcoded viral variants.
+Overall, we captured 10 such co-infected cells that had $>$5\% of their mRNA derived from virus (Figure~\ref{fig:coexpression}).
+Seven of these 10 cells expressed all eight viral genes.
+Remarkably, the majority (4 of 7) of these cells would \emph{not} have expressed all the viral genes in the absence of co-infection, since they have at least one gene exclusively derived from each viral variant.
+For instance, the cell with 11.2\% of its mRNA from virus in the upper right of Figure~\ref{fig:coexpression} expresses M only from the wildtype viral variant, and NP and HA only from the synonymously barcoded variant.
+Our data therefore provide direct single-cell support for the idea that co-infection can rescue missing viral genes~\citep{brooke2013most}.
 
 \begin{figure}
 \centerline{\includegraphics[width=0.9\linewidth]{figures/p_coinfection.pdf}}
 \caption{\label{fig:coexpression}
-Frequency of each viral gene segment in co-infected cells with at least 5\% of their mRNA derived from influenza.
-The bars indicate the logarithm of the number of each viral mRNA detected, and the bars are colored in proportion to the fraction of those mRNAs that are derived from either wild-type or synonymous barcoded virus.
+The abundance of each viral transcript in cells that are co-infected with the two viral variants and have $>$5\% of their mRNA derived from virus.
+The bars show the logarithm of the numbers of each viral mRNA detected, and are colored in linear proportion to the fraction of that mRNAs derived from wild-type or synonymously barcoded virus.
 }
 \figdata{The raw data plotted in this figure are in \texttt{p\_co-infection.csv}.}
 \end{figure}
 
+Another observation from Figure~\ref{fig:coexpression} is that co-infected cells usually express roughly equal amounts of transcripts from each of the two viral variants.
+This observation is consistent with the finding by \citet{dou2017analysis} that the temporal window for co-infection is short -- if both viral variants infect a cell at about the same time, then neither will have a headstart and so each will have a roughly equal opportunity to transcribe its genes.
+
+To support this idea with a larger dataset albeit at lower resolution, we generated a virus in which the HA coding sequence was replaced by GFP.
+We then co-infected cells with a mix, of wildtype and $\Delta$HA-GFP virus and used flow cytometry to score cells for the presence of HA only (infection by wildtype virus), GFP only (infection by $\Delta$HA-GFP virus), or both (co-infection) as shown in Figure~\ref{fig:flowcyto}A.
+As in our single-cell sequencing data, we found that expression of HA and GFP were highly correlated (Figure~\ref{fig:flowcyto}B), indicating that co-infected cells typically expressed roughly equal amounts of transcript from each viral variant.
+
 \begin{figure}
 \centerline{\includegraphics[width=0.9\linewidth]{figures/Pseudovirus_flow_cytometry/coinfFlow_D01.pdf}}
-\caption{\label{fig:flowcyto} Co-infection occurs relatively early and potentially provides an advantage. 
-{\bf(A)} Cells were infected with wild-type virus and a virus in which HA has been replaced by eGFP at an MOI of 0.1 of each virus as calculated on MDCK-SIAT1 cells or MDCK-SIAT1 cells expressing HA, respectively.
-Cells were stained for HA and additionally analyzed for eGFP expression at 10h post infection. Full flow cytometric analysis shown.
-{\bf(B)} HA and eGFP signal are correlated in co-infected cells. Quantile-normalized HA and eGFP signal for those cells identified as eGFP\textsuperscript{+} HA\textsuperscript{+}. Cells colored by density, using a Gaussian kernel density estimate. 
-{\bf(C)} Low-HA cells are reduced in co-infections. Guassian density estimates for HA signal in HA\textsuperscript{+} cells either expressing or failing to express eGFP. 
-{\bf(D)} Uninfected control used to set gates for {\bf(A)}
+\caption{\label{fig:flowcyto} Co-infected cells express roughly equal amounts of a gene from each infecting viral variant. 
+{\bf(A)} Cells were co-infected with a mix of wild-type virus and virus in which the HA gene was replaced by GFP flanked by the terminal regions of the HA gene segment. 
+At 10 hours post-infection, cells were analyzed by flow cytometry for HA and eGFP expression.
+{\bf(B)} The expression of HA and GFP are correlated in co-infected cells. 
+Shown are the quantile-normalized HA and eGFP signals for double-positive cells. 
+Cells are colored by density, using a Gaussian kernel density estimate. 
+{\bf(C)} {\color{red} Get rid of this.} 
+{\bf(D)} {\color{red} Include this in supplement for figure.} 
 }
-%\figsupp[Additional replicates and gating controls.\label{}]{
-%}{\includegraphics[width=\linewidth]{}}
+\figsupp[Additional replicates and gating controls.\label{figsupp:flowcyto}]{
+}{Figure showing additional replicates and gating controls.}
 \end{figure}
 
 \subsection{Identifying host features of influenza infection}
