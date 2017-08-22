@@ -247,29 +247,32 @@ At the 8- and 10-hour time points, between 5\% and 17\% of cells fail to express
 The absence of a given gene appears to be an independent event, as the probability of observing all four non-RNP genes in a cell is well predicted by simply multiplying the probabilities of observing each gene individually (Figure~\ref{fig:fluburdenbyflugene}C). 
 Our measurements of the frequency at which infected cells fail to express individual viral genes are roughly consistent with measurements made by others using different means~\citep{brooke2013most}.
 	
-\subsection{Despite variability in absolute abundance, relative amounts of influenza mRNAs are comparatively constrained}
-	
-In contrast to our analyses above, the fraction of influenza mRNAs derived from a given segment behaves in a more stereotyped fashion -- regardless of how many influenza transcripts are observed in a given cell (Figure ~\ref{fig:fluexpr}A).
-Rather than the several order of magnitude degree of variance observed in influenza mRNA abundance, the inter-quartile range of influenza ratios observed tends to be relatively tight, clustered around a median value consistent with prior population-level measurements (Figure ~\ref{fig:fluexpr}B).
-The greatest degree of variance between the first and third quartile of any segment in our analysis only exhibited a \textasciitilde3-fold range.
-These values appear consistent whether or not we limit the analysis to only those cells expressing all eight segments (Figure ~\ref{fig:fluexpr}C,D).
-Therefore while either noise in influenza replication or host variability can dramatically impact the amount of influenza mRNA produced as a whole, these processes seem to, ignoring complete absence of a segment, act equally across the influenza genome.
-This is consistent with more limited experiments showing positive correlations between several segments in vRNA measurements in single cells.
-Therefore it can be inferred that the process by which influenza generates relative mRNA abundances is robust to the noise inherent in infection, or at least significantly more so than those processes that drive total mRNA abundance.
+\subsection{The relative amounts of different viral mRNAs are fairly consistent across cells.}
+The results above show that the total amount of viral mRNA in infected cells varies over orders of magnitude.
+Does the relative expression of viral genes exhibit similar cell-to-cell variability?
+To address this question, we focused on cells that derived $>$5\% of their mRNA from virus, since estimates of relative viral gene expression will be less noisy in cells with more viral mRNAs.
 
 \begin{figure}
 \centerline{\includegraphics[width=0.9\linewidth]{figures/p_flu_expr_aledit.pdf}}
 \caption{\label{fig:fluexpr}
-Expression of individual influenza genes in highly infected cells (at least 5\% of total mRNA is viral).
+Relative expression of influenza virus genes in highly infected cells (>5\% of total mRNA from virus).
 {\bf (A)} 
-The fraction of total mRNA from each influenza gene for each cell. 
+The fraction of viral mRNA from each viral gene for each cell. 
 {\bf (B)}
-Box plots showing the fraction of viral mRNA per cell that is derived from each influenza gene taken over all highly expressed cells.
-The black line at the notch in each box is the median, and the top and bottom of the box indicate the first and third quartiles.
-{\bf (C,D)} As in {\bf(A,B)} save only for cells in which all eight gene segments are observed.
+Box plots showing the distribution of the fraction of viral mRNA per cell from each viral gene.
+The black lines at the notches are the medians, and the tops and bottoms of boxes indicate the first and third quartiles.
+{\bf (C)}, {\bf (D)} 
+The same plots, but only including cells for which we observed at least one molecule of each viral gene.
 }
 \figdata{The raw data are in \texttt{p\_flu\_expr.csv}.}
 \end{figure}
+
+In contrast to the extreme variability in the total viral mRNA per cell, the fraction of this mRNA derived from each gene is much more consistent across cells (Figure~\ref{fig:fluexpr}A).
+Total viral mRNA varies by orders of magnitude, but the fraction from any given viral gene is fairly tightly clustered around the median value for all cells (Figure~\ref{fig:fluexpr}B).
+The median fractions of viral mRNA from each gene in our cells are similar to prior bulk measurements made on large numbers of infected cells by Northern blots~\citep{hatada1989control}, which also found an expression hierarchy of M $>$ NS $\gg$ NP $>$ NA $>$ HA $\gg$ PB2 $\sim$ PB1 $\sim$ PA.
+The cell-to-cell consistency in the relative expression of different viral genes generally becomes even tighter if we limit the analysis only to cells that express all eight viral genes (Figure~\ref{fig:fluexpr}C,D).
+Therefore, with the exception of complete gene absence, the factors that drive the dramatic cell-to-cell variability in the amount of viral mRNA appear to have roughly similar effects on all viral genes in a given cell.
+This finding is consistent with prior work showing positive correlations among the abundance of several viral gene segments in individual cells.
 
 \subsection{Co-infection potentially increases successful viral infections}
 While relatively rare in our dataset, those cells positively identified as containing both wild-type and synonymously barcoded influenza provide important insight into the nature of co-infection. 
