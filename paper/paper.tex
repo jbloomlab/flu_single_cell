@@ -288,6 +288,14 @@ Our data therefore provide direct single-cell support for the idea that co-infec
 The abundance of each viral transcript in cells that are co-infected with the two viral variants and have $>$5\% of their mRNA derived from virus.
 The bars show the logarithm of the numbers of each viral mRNA detected, and are colored in linear proportion to the fraction of that mRNAs derived from wild-type or synonymously barcoded virus.
 }
+\figsupp[Co-infected cells express roughly equal amounts of a gene from each infecting viral variant. \label{figsupp:flowcyto}]{
+{\bf(A)} Cells were co-infected with a mix of wild-type virus and virus in which the HA gene was replaced by GFP flanked by the terminal regions of the HA gene segment. 
+At 10 hours post-infection, cells were analyzed by flow cytometry for HA and eGFP expression.
+{\bf(B)} The expression of HA and GFP are correlated in co-infected cells. 
+Shown are the quantile-normalized HA and eGFP signals for double-positive cells. 
+Cells are colored by density, using a Gaussian kernel density estimate. 
+{\bf(C)},{\bf(D)},{\bf(E)} Gating controls, single infection with eGFP virus, single infection with wild-type virus, and uninfected cells, respectively. 
+}{\includegraphics[width=\linewidth]{figures/Pseudovirus_flow_cytometry/coinfFlow_D02.pdf}}
 \figdata{The raw data plotted in this figure are in \texttt{p\_co-infection.csv}.}
 \end{figure}
 
@@ -295,28 +303,22 @@ Another observation from Figure~\ref{fig:coexpression} is that co-infected cells
 This observation is consistent with the finding by \citet{dou2017analysis} that the temporal window for co-infection is short -- if both viral variants infect a cell at about the same time, then neither will have a headstart and so each will have a roughly equal opportunity to transcribe its genes.
 
 To support this idea with a larger dataset albeit at lower resolution, we generated a virus in which the HA coding sequence was replaced by GFP.
-We then co-infected cells with a mix, of wildtype and $\Delta$HA-GFP virus and used flow cytometry to score cells for the presence of HA only (infection by wildtype virus), GFP only (infection by $\Delta$HA-GFP virus), or both (co-infection) as shown in Figure~\ref{fig:flowcyto}A.
-As in our single-cell sequencing data, we found that expression of HA and GFP were highly correlated (Figure~\ref{fig:flowcyto}B), indicating that co-infected cells typically expressed roughly equal amounts of transcript from each viral variant.
+We then co-infected cells with a mix, of wildtype and $\Delta$HA-GFP virus and used flow cytometry to score cells for the presence of HA only (infection by wildtype virus), GFP only (infection by $\Delta$HA-GFP virus), or both (co-infection) as shown in Figure~supplement~\ref{figsupp:flowcyto}.
+As in our single-cell sequencing data, we found that expression of HA and GFP were highly correlated, indicating that co-infected cells typically expressed roughly equal amounts of transcript from each viral variant.
 
-\begin{figure}
-\centerline{\includegraphics[width=0.9\linewidth]{figures/Pseudovirus_flow_cytometry/coinfFlow_D01.pdf}}
-\caption{\label{fig:flowcyto} Co-infected cells express roughly equal amounts of a gene from each infecting viral variant. 
-{\bf(A)} Cells were co-infected with a mix of wild-type virus and virus in which the HA gene was replaced by GFP flanked by the terminal regions of the HA gene segment. 
-At 10 hours post-infection, cells were analyzed by flow cytometry for HA and eGFP expression.
-{\bf(B)} The expression of HA and GFP are correlated in co-infected cells. 
-Shown are the quantile-normalized HA and eGFP signals for double-positive cells. 
-Cells are colored by density, using a Gaussian kernel density estimate. 
-{\bf(C)} {\color{red} Get rid of this.} 
-{\bf(D)} {\color{red} Include this in supplement for figure.} 
-}
-\figsupp[Additional replicates and gating controls.\label{figsupp:flowcyto}]{
-}{Figure showing additional replicates and gating controls.}
-\end{figure}
+
+
 
 \subsection{Identifying host features of influenza infection}
 Single cell measurements not only allow us to observe heterogeneity with respect to progression through a process, but also to capture cell states of subpopulations within complex mixtures.
 Prior measurements of the host response to influenza have been confounded by the complexity of the infectious process, visualizing only the magnitude of a response -- blind to the prevalence of response in the population or its specific association with infection state.
-To begin to understand the cellular response to influenza, or, alternatively, influenza remodeling of the cellular state, we first needed to understand whether we have the power to distinguish features associated with in.
+To begin to understand the cellular response to influenza, or, alternatively, influenza remodeling of the cellular state, we first needed to understand whether we have the power to distinguish features associated with infected cells.
+We first binned our cells according to infection state, dividing  broadly into infected and uninfected populations.
+Of those infected cells, we added additional qualifiers depending on the percentage of influenza transcripts observed. 
+After defining these states, we undertook tSNE analysis to determine whether these populations could be distinguished by transcriptome state.
+Suggesting that there is underlying biologically relevant variability, we do observe appropriate separation of these populations, in a manner consistent with increasing influenza transcript burden. 
+
+
 
 We therefore undertook tSNE analysis to determine whether influenza drives changes in transcriptomic state above-and-beyond between-cell variability independent of infection. 
 When visualized in two-dimensions, we find that unsupervised clustering does indeed indicate an overal
@@ -431,6 +433,92 @@ ommand displays all refs in the bib file
 
 \end{document}
 iography{references}
+
+
+\end{document}
+ent}
+eferences}
+
+
+\end{document}
+ent}
+e
+\bibliography{references}
+
+
+\end{document}
+ refs in the bib file
+\bibliography{references}
+
+
+\end{document}
+ommand displays all refs in the bib file
+\bibliography{references}
+
+
+\end{document}
+iography{references}
+
+
+\end{document}
+ent}
+eferences}
+
+
+\end{document}
+ent}
+ly-modified Vancouver bibliography style. 
+If your manuscript is accepted, the eLife production team will re-format the references into the final published form. 
+\emph{It is not necessary to attempt to format the reference list yourself to mirror the final published form.}
+
+
+\section{Acknowledgments}
+
+Additional information can be given in the template, such as to not include funder information in the acknowledgments section.
+
+\nocite{*} % This command displays all refs in the bib file
+\bibliography{references}
+
+
+\end{document}
+ommand displays all refs in the bib file
+\bibliography{references}
+
+
+\end{document}
+ent}
+{document}
+ This command displays all refs in the bib file
+\bibliography{references}
+
+
+\end{document}
+ommand displays all refs in the bib file
+\bibliography{references}
+
+
+\end{document}
+ refs in the bib file
+\bibliography{references}
+
+
+\end{document}
+ommand displays all refs in the bib file
+\bibliography{references}
+
+
+\end{document}
+iography{references}
+
+
+\end{document}
+ent}
+eferences}
+
+
+\end{document}
+ent}
+graphy{references}
 
 
 \end{document}
