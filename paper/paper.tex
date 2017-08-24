@@ -310,26 +310,26 @@ As in our single-cell sequencing data, we found that expression of HA and GFP we
 
 
 \subsection{Host data indicate multifaceted interferon suppression by influenza}
-In addition to detailed information regarding influenza transcription, we obtained concurrent data describing the host transcriptome, granting insight into the impact of influenza replication on its host.
+By sequencing all polyadenylated transcripts we not only were able to analyze viral kinetics, but also the impact of the virus on the host transcriptome.
 Using metrics as defined above, we first binned cells according to infection state, dividing them broadly into infected and uninfected populations.
 As we might expect cells bearing more influenza transcripts to be subject to more extreme pressures, we additionally generated categories describing increasing influenza transcript abundance (<2\% and <20\% transcripts influenza-derived).
-After defining these states, we undertook tSNE dimensionality reduction to determine whether these populations could be distinguished by transcriptome state.
-Indeed these populations did appear to be discriminable, indicative of underlying biological variability.
-Moreover, uninfected cells group relatively well, regardless of timepoint, suggesting the most important factor driving these differences is influenza infection, and not additional sample variation or paracrine signaling.
+After defining these states, we undertook tSNE dimensionality reduction to determine whether these populations could be distinguished using the data we procured (Figure~\ref{fig:tsne}A).
+Indeed these populations did appear to be discriminable, indicative of underlying biological variability (Figure~\ref{fig:tsne}B,C).
+Moreover, uninfected cells group relatively well, regardless of time point, suggesting the most important factor driving these differences is influenza infection, and not additional sample variation or paracrine signaling(Figure~\ref{fig:tsne}A,C).
 
 We then wished to map one of the most potent responses to viral infection, the production of interferon and subsequent generation of interferon-stimulated genes (ISGs). 
 Prior reports indicate that influenza  very rarely induces the production of interferon, and, moreover, that interferon production is  bimodal -- either on or off. 
-When we look for cells expressing either type I or type III interferons, we find a single cell expressing both signaling pathways. 
-As type I and III interferons are thought to be expressed after activation of MAVS downstream of RIG-I recognition of influneza, their cooccurrence is unsurprising.
-Even rare cells expressing interferon could have an outsized effect on ISG expression in the population.
+When we look for cells expressing either type I or type III interferons, we find a single cell producing transcripts for both classes of signaling molecule (Figure~\ref{fig:tsne}D). 
+As both type I and III interferons are thought to be expressed after activation of MAVS, downstream of RIG-I recognition of influenza, their cooccurrence is unsurprising.
+Despite the scarcity of interferon procution, even rare cells expressing interferon could have an outsized effect on ISG expression in the population.
 We therefore extended our analysis to examining a prototypical ISG, IFIT1. 
-Several cells express higher than baseline levels of IFIT1 (should we look at all datasets and see if more at 10h??), but on the whole there appears to be little paracrine signaling.
+Several cells express higher than baseline levels of IFIT1 (should we look at all datasets and see if more at 10h??), but on the whole there appears to be little paracrine signaling (Figure~\ref{fig:tsne}E).
 The cell with the highest expression of IFIT1 is also the cell generating interferon, potentially due to the high efficiency of autocrine signaling. 
 
-The lack of interferon production in influenza-infected cells is somewhat surprising given the frequent absence of the major interferon atnagonist, NS1. 
+The lack of interferon production in influenza-infected cells is somewhat surprising given the frequent absence of the major interferon antagonist, NS1. 
 Mutant stains lacking this protein generate high levels of interferon.
-Nevertheless, when we examine absence of NS in this dataset, we see that while the single interferon positive cell does lack expression from the NS gene segment, many cells lack NS and yet do not express interferon. 
-This is consistent with prior reports that, despite high levels of interferon induction, even NS1 mutants do not induce interferon deterministically. 
+Nevertheless, when we examine absence of NS in this dataset, we see that while the single interferon positive cell does lack expression from the NS gene segment, many cells lack NS and yet do not express interferon (Figure~\ref{fig:tsne}D,F). 
+This supports prior observations using an interferon reporter that mutant virus defective for NS1 does not induce interferon deterministically in all infected cells, but rather manifests its effects as a moderate increase in the percentage of cells producing interferon.
 Moreover, it suggests that influenza engages multiple mechanisms to evade innate immune activation, perhaps necessary due to its lifestyle as a segmented virus. 
 
 \subsection{Influenza infection is associated with the antioxidant response}
@@ -343,10 +343,21 @@ Of these cells, we furthermore normalized to host transcripts alone -- influenza
 We then looked for genes whose expression appeared to covary with the number of influenza transcripts recovered from a cell, with a few additional caveats covered in Methods. 
 With a q value threshold of 10\%, we identified a total of 45 genes.
 
-We then ordered our influenza-infected cells in pseudotime, from few influenza transcripts observed to many, and visualized expression data for these 45 genes with respect to this timecourse.
+We then ordered our influenza-infected cells in pseudotime, from few influenza transcripts observed to many, and visualized expression data for these 45 genes with respect to this time course(Figure~\ref{fig:cellulargenes}).
 We observe broad patterns of both repression and increased expression.
-One of the most striking 
+One of the most striking features of this dataset is the concomitant increase of antioxidant response genes with influenza transcript abundance.
+Many of these genes are known or suspected to be regulated by the Nrf2 master regulator in response to oxidative stress, and include genes whose products are involved in detoxification of reactive oxygen species or resultant products, the management of misfolded proteins, the function of the electron transport chain, or of regulating a general stress response (Figure~supplement~\ref{figsupp:ROStable}). 
+We additionally see downregulation of NOSIP, (Nitric oxide synthase interacting protein), potentially leading to elevated levels of nitric oxide. 
+Transient oxidative stress has been reported in tissue culture models of influenza infection, and is thought to act in a proviral fashion through MAPK activation driving subsequent vRNP export.
+We can observe here the cellular response to this stress, with multiple mechanisms driving an attempted return to homeostasis.
+Curiously, the antioxidant response is thought to be largely antiviral, potentially through inhibition of MAPK activity.
+Our data do not allow us to deconvolute whether the antioxidant response is driven by high levels of influenza, or vice-versa, however prior literature do suggest the former -- nevertheless we must allow that the anti-apoptotic activity of this response might be permitting cells to accumulate influenza mRNA that would otherwise have already succumbed to cell death..
+We therefore suspect that the antioxidant response is the major cellular response to increasing influenza burden.
+Nevertheless, its association with high levels of influenza mRNA suggests that if this response is antiviral, it must act at a level outside of transcription, or, in these experiments, it is likely engaged far too late to limit influenza in a meaningful fashion. 
 
+
+
+\subsection{Influenza infection drives a global shift in transcript abundance}
 
 \begin{figure}
 \centerline{\includegraphics[width=0.9\linewidth]{figures/p_small_tsne_merge.pdf}}
@@ -357,7 +368,6 @@ The layout is the same in all panels, but each panel colors the cells according 
 Cells colored by the fraction of their mRNA that is viral.
 {\bf (C)}
 Cells colored by experimental sample.
-While it is clear that cells from later timepoints often have more viral RNA, there are cells from earlier timepoints with a high viral burden and cells from late timepoints with a low viral burden.
 {\bf (D)}
 Cells colored by the number of type I and III interferon transcripts detected.
 Only one cell has high expression of these interferons.
@@ -367,6 +377,7 @@ Cells colored by the expression of the interferon-stimulated gene IFIT1.
 For cells with at least 1\% of their reads from influenza, are the cells expressing the viral NS protein?
 The one interferon-positive cell is lacking NS, but many other cells also lack NS but do not express interferon.
 }
+
 \end{figure}
 
 
@@ -377,6 +388,9 @@ Cellular genes that are differentially expressed with respect to the amount of i
 Shown are all genes differentially expressed with $Q < 0.1$.}
 \figdata{The full results of the differential expression test is in \texttt{p\_sig\_cellular\_genes.csv}.}
 \figdata{The results of a gene-set analysis are in \texttt{p\_sig\_cellular\_genes.csv}.}
+\figsupp[Many of the genes that exhibit co-regulation with influenza are involved in the antioxidant response. \label{figsupp:ROStable}]{
+Table delineating those genes in (Figure~\ref{fig:cellulargenes}) associated with the antioxidant response.
+}{\includegraphics[width=0.7\linewidth]{figures/ROStable.pdf}}
 \end{figure}
 
 \section{Discussion}
