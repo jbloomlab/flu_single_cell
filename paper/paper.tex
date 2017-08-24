@@ -309,14 +309,20 @@ As in our single-cell sequencing data, we found that expression of HA and GFP we
 
 
 
-\subsection{Host transcriptome dynamics}
+\subsection{Transcriptome measurements consistent with interferon suppression by influneza}
 In addition to detailed information regarding influenza transcription, we obtained concurrent data describing the host transcriptome, granting insight into the impact of influenza replication on its host.
-Using metrics as defined above, we first binned cells according to infection state, dividing broadly into infected and uninfected populations.
-As we might expect cells bearing more influenza transcripts to be subject to more extreme effects 
-Of those infected cells, we added additional qualifiers depending on the percentage of influenza transcripts observed. 
+Using metrics as defined above, we first binned cells according to infection state, dividing them broadly into infected and uninfected populations.
+As we might expect cells bearing more influenza transcripts to be subject to more extreme pressures, we additionally generated categories describing increasing influenza transcript abundance (<2\% and <20\% transcripts influenza-derived).
 After defining these states, we undertook tSNE analysis to determine whether these populations could be distinguished by transcriptome state.
-Suggesting that there is underlying biologically relevant variability, we do observe separation of these populations, in a manner consistent with increasing influenza transcript burden. 
+Suggesting that there is  biologically relevant variability, we do observe separation of these populations.
+Moreover, uninfected cells group relatively well, regardless of timepoint, suggesting the most important factor driving these differences is influenza infection, and not additional sample variation or paracrine signaling.
 
+We then wished to map one of the most potent responses to viral infection, the production of interferon and subsequent generation of interferon-stimulated genes (ISGs). 
+Prior reports indicate that influenza only very rarely induces the production of interferon, and, moreover, that interferon production is  bimodal -- either on or off. 
+When we look for cells expressing either type I or type III interferons, we find a single cell expressing both signaling pathways. 
+As type I and III interferons are thought to be expressed after activation of MAVS downstream of RIG-I recognition of influneza, their cooccurrence is unsurprising.
+Even rare cells expressing interferon could have an outsized effect on ISG expression in the population.
+however when we examine one prototypical ISG, IFIT1, we see variable expression with 
 
 \subsection{Influenza infection is associated with the antioxidant response}
 
@@ -599,4 +605,6 @@ eferences}
 
 
 \end{document}
+ent}
+
 ent}
