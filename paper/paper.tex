@@ -309,22 +309,44 @@ As in our single-cell sequencing data, we found that expression of HA and GFP we
 
 
 
-\subsection{Transcriptome measurements consistent with interferon suppression by influneza}
+\subsection{Host data indicate multifaceted interferon suppression by influenza}
 In addition to detailed information regarding influenza transcription, we obtained concurrent data describing the host transcriptome, granting insight into the impact of influenza replication on its host.
 Using metrics as defined above, we first binned cells according to infection state, dividing them broadly into infected and uninfected populations.
 As we might expect cells bearing more influenza transcripts to be subject to more extreme pressures, we additionally generated categories describing increasing influenza transcript abundance (<2\% and <20\% transcripts influenza-derived).
-After defining these states, we undertook tSNE analysis to determine whether these populations could be distinguished by transcriptome state.
-Suggesting that there is  biologically relevant variability, we do observe separation of these populations.
+After defining these states, we undertook tSNE dimensionality reduction to determine whether these populations could be distinguished by transcriptome state.
+Indeed these populations did appear to be discriminable, indicative of underlying biological variability.
 Moreover, uninfected cells group relatively well, regardless of timepoint, suggesting the most important factor driving these differences is influenza infection, and not additional sample variation or paracrine signaling.
 
 We then wished to map one of the most potent responses to viral infection, the production of interferon and subsequent generation of interferon-stimulated genes (ISGs). 
-Prior reports indicate that influenza only very rarely induces the production of interferon, and, moreover, that interferon production is  bimodal -- either on or off. 
+Prior reports indicate that influenza  very rarely induces the production of interferon, and, moreover, that interferon production is  bimodal -- either on or off. 
 When we look for cells expressing either type I or type III interferons, we find a single cell expressing both signaling pathways. 
 As type I and III interferons are thought to be expressed after activation of MAVS downstream of RIG-I recognition of influneza, their cooccurrence is unsurprising.
 Even rare cells expressing interferon could have an outsized effect on ISG expression in the population.
-however when we examine one prototypical ISG, IFIT1, we see variable expression with 
+We therefore extended our analysis to examining a prototypical ISG, IFIT1. 
+Several cells express higher than baseline levels of IFIT1 (should we look at all datasets and see if more at 10h??), but on the whole there appears to be little paracrine signaling.
+The cell with the highest expression of IFIT1 is also the cell generating interferon, potentially due to the high efficiency of autocrine signaling. 
+
+The lack of interferon production in influenza-infected cells is somewhat surprising given the frequent absence of the major interferon atnagonist, NS1. 
+Mutant stains lacking this protein generate high levels of interferon.
+Nevertheless, when we examine absence of NS in this dataset, we see that while the single interferon positive cell does lack expression from the NS gene segment, many cells lack NS and yet do not express interferon. 
+This is consistent with prior reports that, despite high levels of interferon induction, even NS1 mutants do not induce interferon deterministically. 
+Moreover, it suggests that influenza engages multiple mechanisms to evade innate immune activation, perhaps necessary due to its lifestyle as a segmented virus. 
 
 \subsection{Influenza infection is associated with the antioxidant response}
+
+The innate immune response, often observed to be one of the most dramatic feature of influenza infection, does not appear to be a major feature of the influenza-associated host transcriptome in our single-cell data.
+We therefore sought to understand whether there are additional host pathways that are significantly altered as influenza infection progresses.
+Our data with respect to the NS segment suggests that presence or absence of segments might drive elements of the host response.
+While of significant interest, we did not feel that we had sufficient depth to analyze such fringe elements.
+We therefore restricted our analysis to only those cells in which transcripts from all eight segments were observed.
+Of these cells, we furthermore normalized to host transcripts alone -- influenza is known to depress the host transcriptome and our interest lies in those cells that are more highly expressed or repressed relative to other host elements.
+We then looked for genes whose expression appeared to covary with the number of influenza transcripts recovered from a cell, with a few additional caveats covered in Methods. 
+With a q value threshold of 10\%, we identified a total of 45 genes.
+
+We then ordered our influenza-infected cells in pseudotime, from few influenza transcripts observed to many, and visualized expression data for these 45 genes with respect to this timecourse.
+We observe broad patterns of both repression and increased expression.
+One of the most striking 
+
 
 \begin{figure}
 \centerline{\includegraphics[width=0.9\linewidth]{figures/p_small_tsne_merge.pdf}}
@@ -340,7 +362,7 @@ While it is clear that cells from later timepoints often have more viral RNA, th
 Cells colored by the number of type I and III interferon transcripts detected.
 Only one cell has high expression of these interferons.
 {\bf (E)}
-Cells colored by the expression of the interferon-stimulate gene ISG15.
+Cells colored by the expression of the interferon-stimulated gene IFIT1.
 {\bf (F)}
 For cells with at least 1\% of their reads from influenza, are the cells expressing the viral NS protein?
 The one interferon-positive cell is lacking NS, but many other cells also lack NS but do not express interferon.
@@ -605,6 +627,4 @@ eferences}
 
 
 \end{document}
-ent}
-
 ent}
