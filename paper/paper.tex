@@ -307,125 +307,90 @@ As in our single-cell sequencing data, we found that expression of HA and GFP we
 
 \subsection{Activation of the anti-viral response is rare in single infected cells.}
 Because our sequencing captured all polyadenylated transcripts, we can examine whether there are prominent changes in the host-cell transcriptome in sub-populations of infected cells.
-In particular, influenza virus infection can activate innate-immune sensors that lead to the transcriptional induction of type I and III interferons, and subsequently of anti-viral interferon-stimulated genes.
+In particular, influenza virus infection can trigger innate-immune sensors that lead to the transcriptional induction of type I and III interferons, and subsequently of anti-viral interferon-stimulated genes.
 In bulk cells, this interferon response is one of the most prominent transcriptional signatures of influenza-virus infection.
-However, activation of the interferon response is known to be stochastic and bi-modal at the level of single cells~\citep{shalek2013single,shalek2014single,bhushal2017cell}.
-We therefore hypothesized that we might see two sub-populations of infected cells: one in which activation of the interferon response inhibited viral transcription, and another in which the virus was able to express high levels of its mRNA by evading or blocking this response.
+However, activation of the interferon response is stochastic and bi-modal at the level of single cells~\citep{shalek2013single,shalek2014single,bhushal2017cell}.
+We therefore hypothesized that we might see two sub-populations of infected cells: one in which the interferon response inhibited viral transcription, and another in which the virus was able to express high levels of its mRNA by evading or blocking this response.
 
 \begin{figure}
 \centerline{\includegraphics[width=0.8\linewidth]{figures/p_small_tsne_merge.pdf}}
 \caption{\label{fig:tsne}
-tSNE plots.
-The layout is the same in all panels, but each panel colors the cells according to a different property.
+A t-SNE plot created by semi-supervised clustering of the cells using genes that co-vary with viral infection status.
+Each point is a single cell, and each panel shows an identical layout but colors the cells according to a different property.
 {\bf (A), (B)}
-Cells colored by the fraction of their mRNA that is viral.
+Cells colored by the fraction of their mRNA that is derived from virus.
 {\bf (C)}
-Cells colored by experimental sample.
-{\bf (D)}
-Cells colored by the number of type I and III interferon transcripts detected.
-Only one cell has high expression of these interferons.
+Cells colored by the experimental sample from which they are derived.
+{\bf (D), (E)}
+Cells colored by the number of detected transcripts from type I and III interferons (IFN).
+Only one cell has detectable interferon expression.
 {\bf (E)}
 Cells colored by the expression of the interferon-stimulated gene IFIT1.
 {\bf (F)}
-For cells with at least 1\% of their reads from influenza, are the cells expressing the viral NS protein?
-The one interferon-positive cell is lacking NS, but many other cells also lack NS but do not express interferon.
+Cells colored by whether they express the viral NS gene.
+The one interferon-positive cell is lacking NS, but many interferon-negative cells also lack NS.
 }
 
 \end{figure}
 
-To examine whether there were distinct sub-populations among the virus-infected cells, we first used a semi-supervised t-SNE approach to cluster cells using genes that co-varied with viral infection status.
+To examine whether there were distinct sub-populations of virus-infected cells, we used a semi-supervised t-SNE approach to cluster cells by genes that co-varied with viral infection status.
 As shown in Figure~\ref{fig:tsne}A,B, this approach effectively grouped cells by the amount of viral mRNA that they expressed.
-Any sample-to-sample variation was largely regressed away during the clustering, as the cells did not obviously group by time-point with the exception of the fact that the uninfected and 6-hour samples had few cells in the region of the plot corresponding to large amounts of viral mRNA (Figure~\ref{fig:tsne}C).
+Sample-to-sample variation was regressed away during the clustering, as cells did not obviously group by time-point, with expected exception that the uninfected and 6-hour samples had few cells in the region of the plot corresponding to large amounts of viral mRNA (Figure~\ref{fig:tsne}C).
 
-But to our surprise, we did not see a prominent clustering of infected cells into sub-populations as might be expected if the interferon response was strongly activated in some cells.
-To investigate further, we annotated each cell by the total number of type I and III interferon transcripts observed.
+But to our surprise, we did not see a prominent clustering of infected cells into sub-populations as expected if the interferon response was strongly activated in some cells.
+To investigate further, we annotated each cell by the total number of type I and III interferon transcripts detected.
 Remarkably, only a single cell expressed detectable interferon (Figure~\ref{fig:tsne}D).
 We also examined interferon-stimulated genes, which are induced by autocrine and paracrine interferon signaling.
-Figure~\ref{fig:tsne}E shows expression of one such interferon-stimulated gene, IFIT1.
+Figure~\ref{fig:tsne}E shows expression of one such gene, IFIT1.
 As with interferon itself, expression of IFIT1 was rare and most prominent in the single interferon-positive cell, presumably due to the higher efficiency of autocrine versus paracrine signaling.
 Notably, interferon and interferon-stimulated genes were also relatively ineffective at blocking viral transcription in the single cell in which they were potently induced, since $>$10\% of the mRNA in this cell was derived from virus (Figure~\ref{fig:tsne}A,B,D,E).
 
-We posited that the paucity of interferon activation might be due to the activity of influenza virus's major interferon antagonist, the NS1 protein.
+We posited that the paucity of interferon induction might be due to the activity of influenza virus's major interferon antagonist, the NS1 protein.
 We therefore identified cells that expressed substantial amounts of viral mRNA but lacked the NS gene (Figure~\ref{fig:tsne}F).
 Consistent with the idea that NS1 is important for suppressing interferon, the one interferon-positive cell lacked detectable expression of the NS gene.
-But other cells also that lacked NS expression still failed to induce a detectable interferon response, despite often having $>$10\% of their mRNA derived from virus (Figure~\ref{fig:tsne}).
+But other cells that lacked NS expression still failed to induce a detectable interferon response, despite often having $>$10\% of their mRNA derived from virus (Figure~\ref{fig:tsne}).
 Therefore, most infected cells fail to express interferon even when the virus lacks its major known interferon antagonist.
-Our results are in line with other work showing that NS1-deficient influenza virus fails to deterministically induce interferon in infected cells~\citep{killip2017single}.
+Our results are in line with other work showing that NS1-deficient influenza virus fails to deterministically induce interferon~\citep{killip2017single}.
 Therefore, single cells infected at low MOI with a relatively ``pure'' stock of influenza virus clearly activate innate-immune responses much less frequently than might be presumed from bulk studies that flood cells with viral stocks full of defective particles.
 
-\subsection{Influenza infection is associated with the antioxidant response}
-
-The innate immune response, often observed to be one of the most dramatic feature of influenza infection, does not appear to be a major feature of the influenza-associated host transcriptome in our single-cell data.
-We therefore sought to understand whether there are additional host pathways that are significantly altered as influenza infection progresses.
-Our data with respect to the NS segment suggests that presence or absence of segments might drive elements of the host response.
-While of significant interest, we did not feel that we had sufficient depth to analyze such fringe elements.
-We therefore restricted our analysis to only those cells in which transcripts from all eight segments were observed.
-Of these cells, we furthermore normalized to host transcripts alone -- influenza is known to depress the host transcriptome and our interest lies in those cells that are more highly expressed or repressed relative to other host elements.
-We then looked for genes whose expression appeared to covary with the number of influenza transcripts recovered from a cell, with a few additional caveats covered in Methods. 
-With a q value threshold of 10\%, we identified a total of 45 genes.
+\subsection{Genes involved in the oxidative-stress response co-vary with viral gene expression.}
+We next examined whether any host genes were differentially expressed in cells with more viral mRNA.
+We restricted this analysis to infected cells with all eight viral genes in order to focus on cellular genes that were associated with viral mRNA burden independent of any effects due to the stochastic presence or absence of particular viral transcripts.
+We identified 45 cellular genes that co-varied with viral gene expression at a false discovery rate of 0.1 (Figure~\ref{fig:cellulargenes}).
 
 \begin{figure}
 \centerline{\includegraphics[width=0.7\linewidth]{figures/p_cellular_heatmap.pdf}}
 \caption{\label{fig:cellulargenes}
-Cellular genes that are differentially expressed with respect to the amount of influenza mRNA in individual cells infected with full influenza virus containing all eight genes.
-Shown are all genes differentially expressed with $Q < 0.1$.}
+Cellular genes that co-vary in expression along with the the amount of influenza virus mRNA in individual cells expressing all eight viral genes.
+Shown are all genes that are differentially expressed at a false discovery rate of 0.1. 
+Genes for which the color goes from blue at left to red at right are expressed at higher levels in cells with more viral mRNA.}
 \figdata{The full results of the differential expression test is in \texttt{p\_sig\_cellular\_genes.csv}.}
 \figdata{The results of a gene-set analysis are in \texttt{p\_sig\_cellular\_genes.csv}.}
-\figsupp[Many of the genes that exhibit co-regulation with influenza are involved in the antioxidant response. \label{figsupp:ROStable}]{
-Table delineating those genes in (Figure~\ref{fig:cellulargenes}) associated with the antioxidant response.
+\figsupp[Many genes that co-vary with the amount of viral mRNA are involved in the response to oxidative stress. \label{figsupp:ROStable}]{
+Table delineating genes in (Figure~\ref{fig:cellulargenes}) that are associated with the response to oxidative stress.
 }{\includegraphics[width=0.7\linewidth]{figures/ROStable.pdf}}
 \end{figure}
 
-We then ordered our influenza-infected cells in pseudotime, from few influenza transcripts observed to many, and visualized expression data for these 45 genes with respect to this time course(Figure~\ref{fig:cellulargenes}).
-We observe broad patterns of both repression and increased expression.
-One of the most striking features of this dataset is the concomitant increase of antioxidant response genes with influenza transcript abundance.
-Many of these genes are known or suspected to be regulated by the Nrf2 master regulator in response to oxidative stress, and include genes whose products are involved in detoxification of reactive oxygen species or resultant products, the management of misfolded proteins, the function of the electron transport chain, or of regulating a general stress response (Figure~supplement~\ref{figsupp:ROStable}). 
-We additionally see downregulation of NOSIP, (Nitric oxide synthase interacting protein), potentially leading to elevated levels of nitric oxide. 
-Transient oxidative stress has been reported in tissue culture models of influenza infection, and is thought to act in a proviral fashion through MAPK activation driving subsequent vRNP export.
-We can observe here the cellular response to this stress, with multiple mechanisms driving an attempted return to homeostasis.
-Curiously, the antioxidant response is thought to be largely antiviral, potentially through inhibition of MAPK activity.
-Our data do not allow us to deconvolute whether the antioxidant response is driven by high levels of influenza, or vice-versa, however prior literature do suggest the former -- nevertheless we must allow that the anti-apoptotic activity of this response might be permitting cells to accumulate influenza mRNA that would otherwise have already succumbed to cell death..
-We therefore suspect that the antioxidant response is the major cellular response to increasing influenza burden.
-Nevertheless, its association with high levels of influenza mRNA suggests that if this response is antiviral, it must act at a level outside of transcription, or, in these experiments, it is likely engaged far too late to limit influenza in a meaningful fashion. 
+Many of the genes that exhibit increased expression in cells with large amounts of viral mRNA are known or suspected to be regulated by the Nrf2 master regulator in response to oxidative stress.
+These genes produce proteins that are involved in detoxification of reactive oxygen species or resultant products, the management of misfolded proteins, the electron transport chain, or a general stress response (Figure~\ref{fig:cellulargenes}~Figure~supplement~\ref{figsupp:ROStable}). 
+We additionally see reduced expression of the nitric oxide synthase interacting protein (NOSIP). 
+Transient oxidative stress to occur during virus infection, and may act in a proviral fashion via MAPK activation driving vRNP export.
+The antioxidant response is thought to be largely antiviral, potentially through inhibition of MAPK activity.
+Our data do not reveal whether the expression of genes involved in the response to oxidative stress are a cause or a symptom of higher levels of viral mRNA, and further investigation of this topic is an interesting area for future work.
+Overall, the expression of some of the host genes in Figure~\ref{fig:cellulargenes}, along with inherent stochasticity and specific mutations to viral genes in individual cells, probably explain most of the variation in viral mRNA levels observed across the infected cells in our dataset.
 
 \section{Discussion}
-
-\lipsum[9]
+Still needs to be written.
 
 \section{Methods and Materials}
 
-Guidelines can be included for standard research article sections, such as this one. 
+\subsection{Design of synonymously barcoded virus.}
 
-\lipsum[3]
+\subsection{Generation and characterization of viral stocks.}
 
-\section{Some \LaTeX{} Examples}
-\label{sec:examples}
+\subsection{Infections and single-cell sequencing.}
 
-Use section and subsection commands to organize your document. 
-\LaTeX{} handles all the formatting and numbering automatically. 
-Use ref and label commands for cross-references.
-
-\subsection{Figures and Tables}
-
-
-If you use the following prefixes for your \verb|\label|:
-%
-\begin{description}
-\item[Figures] \texttt{fig:}, e.g.~\verb|\label{fig:view}|
-\item[Tables] \texttt{tab:}, e.g.~\verb|\label{tab:example}|
-\item[Equations] \texttt{eq:}, e.g.~\verb|\label{eq:CLT}|
-\item[Boxes] \texttt{box:}, e.g.~\verb|\label{box:simple}|
-\end{description}
-%
-you can then use the convenience commands as in \verb|\FIG{cells}|, \ to generate cross-reference \FIG{view}. 
-
-\subsection{Citations}
-
-LaTeX formats citations and references automatically using the bibliography records in your .bib file, which you can edit via the project menu. 
-Use the \verb|\cite| command for an inline citation, like \cite{trapnell2014pseudo}, and the \verb|\citep| command for a citation in parentheses \citep{trapnell2014pseudo}. 
-The LaTeX template uses a slightly-modified Vancouver bibliography style. 
-If your manuscript is accepted, the eLife production team will re-format the references into the final published form. 
-\emph{It is not necessary to attempt to format the reference list yourself to mirror the final published form.}
+\subsection{Data analysis}
 
 
 \section{Acknowledgments}
