@@ -305,16 +305,15 @@ To support this idea with a larger dataset albeit at lower resolution, we genera
 We then co-infected cells with a mix of wildtype and $\Delta$HA-GFP virus and used flow cytometry to score cells for the presence of HA only (infection by wildtype virus), GFP only (infection by $\Delta$HA-GFP virus), or both (co-infection) as shown in Figure~\ref{fig:coexpression}~Figure~supplement~\ref{figsupp:flowcyto}.
 As in our single-cell sequencing data, we found that expression of HA and GFP were highly correlated, indicating that co-infected cells typically expressed roughly equal amounts of transcript from each viral variant.
 
-\subsection{Host data indicate multifaceted interferon suppression by influenza}
-By sequencing all polyadenylated transcripts we not only were able to analyze viral kinetics, but also the impact of the virus on the host transcriptome.
-Using metrics as defined above, we first binned cells according to infection state, dividing them broadly into infected and uninfected populations.
-As we might expect cells bearing more influenza transcripts to be subject to more extreme pressures, we additionally generated categories describing increasing influenza transcript abundance (<2\% and <20\% transcripts influenza-derived).
-After defining these states, we undertook tSNE dimensionality reduction to determine whether these populations could be distinguished using the data we procured (Figure~\ref{fig:tsne}A).
-Indeed these populations did appear to be discriminable, indicative of underlying biological variability (Figure~\ref{fig:tsne}B,C).
-Moreover, uninfected cells group relatively well, regardless of time point, suggesting the most important factor driving these differences is influenza infection, and not additional sample variation or paracrine signaling(Figure~\ref{fig:tsne}A,C).
+\subsection{Activation of the anti-viral response is rare in single infected cells.}
+Because our sequencing captured all polyadenylated transcripts, we can examine whether there are prominent changes in the host-cell transcriptome in sub-populations of infected cells.
+In particular, influenza virus infection can activate innate-immune sensors that lead to the transcriptional induction of type I and III interferons, and subsequently of anti-viral interferon-stimulated genes.
+In bulk cells, this interferon response is one of the most prominent transcriptional signatures of influenza-virus infection.
+However, activation of the interferon response is known to be stochastic and bi-modal at the level of single cells~\citep{shalek2013single,shalek2014single,bhushal2017cell}.
+We therefore hypothesized that we might see two sub-populations of infected cells: one in which activation of the interferon response inhibited viral transcription, and another in which the virus was able to express high levels of its mRNA by evading or blocking this response.
 
 \begin{figure}
-\centerline{\includegraphics[width=0.9\linewidth]{figures/p_small_tsne_merge.pdf}}
+\centerline{\includegraphics[width=0.8\linewidth]{figures/p_small_tsne_merge.pdf}}
 \caption{\label{fig:tsne}
 tSNE plots.
 The layout is the same in all panels, but each panel colors the cells according to a different property.
@@ -334,20 +333,25 @@ The one interferon-positive cell is lacking NS, but many other cells also lack N
 
 \end{figure}
 
-We then wished to map one of the most potent responses to viral infection, the production of interferon and subsequent generation of interferon-stimulated genes (ISGs). 
-Prior reports indicate that influenza  very rarely induces the production of interferon, and, moreover, that interferon production is  bimodal -- either on or off. 
-When we look for cells expressing either type I or type III interferons, we find a single cell producing transcripts for both classes of signaling molecule (Figure~\ref{fig:tsne}D). 
-As both type I and III interferons are thought to be expressed after activation of MAVS, downstream of RIG-I recognition of influenza, their cooccurrence is unsurprising.
-Despite the scarcity of interferon procution, even rare cells expressing interferon could have an outsized effect on ISG expression in the population.
-We therefore extended our analysis to examining a prototypical ISG, IFIT1. 
-Several cells express higher than baseline levels of IFIT1 (should we look at all datasets and see if more at 10h??), but on the whole there appears to be little paracrine signaling (Figure~\ref{fig:tsne}E).
-The cell with the highest expression of IFIT1 is also the cell generating interferon, potentially due to the high efficiency of autocrine signaling. 
+To examine whether there were distinct sub-populations among the virus-infected cells, we first used a semi-supervised t-SNE approach to cluster cells using genes that co-varied with viral infection status.
+As shown in Figure~\ref{fig:tsne}A,B, this approach effectively grouped cells by the amount of viral mRNA that they expressed.
+Any sample-to-sample variation was largely regressed away during the clustering, as the cells did not obviously group by time-point with the exception of the fact that the uninfected and 6-hour samples had few cells in the region of the plot corresponding to large amounts of viral mRNA (Figure~\ref{fig:tsne}C).
 
-The lack of interferon production in influenza-infected cells is somewhat surprising given the frequent absence of the major interferon antagonist, NS1. 
-Mutant stains lacking this protein generate high levels of interferon.
-Nevertheless, when we examine absence of NS in this dataset, we see that while the single interferon positive cell does lack expression from the NS gene segment, many cells lack NS and yet do not express interferon (Figure~\ref{fig:tsne}D,F). 
-This supports prior observations using an interferon reporter that mutant virus defective for NS1 does not induce interferon deterministically in all infected cells, but rather manifests its effects as a moderate increase in the percentage of cells producing interferon.
-Moreover, it suggests that influenza engages multiple mechanisms to evade innate immune activation, perhaps necessary due to its lifestyle as a segmented virus. 
+But to our surprise, we did not see a prominent clustering of infected cells into sub-populations as might be expected if the interferon response was strongly activated in some cells.
+To investigate further, we annotated each cell by the total number of type I and III interferon transcripts observed.
+Remarkably, only a single cell expressed detectable interferon (Figure~\ref{fig:tsne}D).
+We also examined interferon-stimulated genes, which are induced by autocrine and paracrine interferon signaling.
+Figure~\ref{fig:tsne}E shows expression of one such interferon-stimulated gene, IFIT1.
+As with interferon itself, expression of IFIT1 was rare and most prominent in the single interferon-positive cell, presumably due to the higher efficiency of autocrine versus paracrine signaling.
+Notably, interferon and interferon-stimulated genes were also relatively ineffective at blocking viral transcription in the single cell in which they were potently induced, since $>$10\% of the mRNA in this cell was derived from virus (Figure~\ref{fig:tsne}A,B,D,E).
+
+We posited that the paucity of interferon activation might be due to the activity of influenza virus's major interferon antagonist, the NS1 protein.
+We therefore identified cells that expressed substantial amounts of viral mRNA but lacked the NS gene (Figure~\ref{fig:tsne}F).
+Consistent with the idea that NS1 is important for suppressing interferon, the one interferon-positive cell lacked detectable expression of the NS gene.
+But other cells also that lacked NS expression still failed to induce a detectable interferon response, despite often having $>$10\% of their mRNA derived from virus (Figure~\ref{fig:tsne}).
+Therefore, most infected cells fail to express interferon even when the virus lacks its major known interferon antagonist.
+Our results are in line with other work showing that NS1-deficient influenza virus fails to deterministically induce interferon in infected cells~\citep{killip2017single}.
+Therefore, single cells infected at low MOI with a relatively ``pure'' stock of influenza virus clearly activate innate-immune responses much less frequently than might be presumed from bulk studies that flood cells with viral stocks full of defective particles.
 
 \subsection{Influenza infection is associated with the antioxidant response}
 
@@ -361,7 +365,7 @@ We then looked for genes whose expression appeared to covary with the number of 
 With a q value threshold of 10\%, we identified a total of 45 genes.
 
 \begin{figure}
-\centerline{\includegraphics[width=0.8\linewidth]{figures/p_cellular_heatmap.pdf}}
+\centerline{\includegraphics[width=0.7\linewidth]{figures/p_cellular_heatmap.pdf}}
 \caption{\label{fig:cellulargenes}
 Cellular genes that are differentially expressed with respect to the amount of influenza mRNA in individual cells infected with full influenza virus containing all eight genes.
 Shown are all genes differentially expressed with $Q < 0.1$.}
