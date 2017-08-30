@@ -87,6 +87,7 @@ At bottom are locations of the synonymous mutations relative to the typical dist
 {\bf (B)} 
 The wild-type and synonymously barcoded viruses transcribe their genes with similar kinetics. 
 Shown is the abundance of the viral hemagglutinin (HA) transcript relative to the cellular housekeeping gene L32 as assessed by qPCR in A549 cells infected at an MOI of 0.5 (as determined on MDCK-SIAT1 cells).
+Error bars $\pm$ S.D., n=3.
 {\bf (C)}  
 A549 cells were infected with an equal mixture of mutant and wild-type virus. 
 Immediately prior to collection, cells were physically separated into droplets and cDNA libraries were generated containing the indicated barcodes. 
@@ -110,13 +111,15 @@ We confirmed that our viral stocks induced much less interferon than a stock pro
 {\bf (A)}
 Our viral stocks have a higher ratio of infectious particles to HA virion RNA compared to a high-defective stock propagated at high MOI.
 HA viral RNA was quantified by qPCR on virions. 
+Error bars $\pm$ S.D., n=6 (qPCR replicates). 
 {\bf (B)} 
 Our viral stocks have a higher ratio of infectious particles to particles capable of expressing the viral HA protein.
 A549 cells were infected with all three viral stocks at an MOI of 0.1, and the percentage of cells expressing HA protein at 9 hours post-infection was quantified by antibody staining and flow cytometry.
 {\bf (C)} 
 Our viral stocks are less immunostimulatory than virus propagated at high MOI. 
 Measurements of \textit{IFNB1} transcript by qPCR normalized to the housekeeping gene L32 in A549 cells at 10 hours post infection at an MOI of 0.5.
-MOIs were calculated by TCID50 on MDCK-SIAT1 cells.}
+MOIs were calculated by TCID50 on MDCK-SIAT1 cells.
+Error bars $\pm$ S.D., n=3}
 \figsupp[Full flow cytometry data for panel B . \label{figsupp:HAstain}]{
 Full flow cytometry date for  Figure~\ref{fig:viruspopulations}B. All populations infected at an MOI of 0.1 as calculated by TCID50 on MDCK-SIAT1 cells. 
 {\bf (A)} Uninfected gating control
@@ -222,6 +225,8 @@ Cells with high viral burden always express all the RNP genes, but some cells wi
 Box plots showing the per-cell viral burden among cells with $>$0.5\% of their mRNA from virus, binned by whether or not the cells express each viral gene.
 A Wilcoxon signed-rank test was used to test the null hypothesis that absence of each gene does not affect viral burden: **** = $P < 10^{-4}$, *** = $P < 10^{-3}$,  * = $P < 0.05$.
 Similar results are obtained if we examine only the 10-hour timepoint (Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:10hrfluburdenbyflugene}).
+Top and bottom of box bounds first and third quartiles of dataset, line dividing the box is at the median observation.
+Whiskers extend to the highest or lowest point within 1.5x the interquartile range, outliers shown as circles.
 {\bf (C)}
 Fraction of infected cells that express all four RNP genes and also express each of the four other genes, as well as the fraction that express \emph{all} four of the other genes.
 The fraction of cells that express all four other genes is well predicted by simply multiplying the frequencies of cells that express each of these genes individually, indicating that gene absence is approximately independent across these four genes.
@@ -229,7 +234,7 @@ The fraction of cells that express all four other genes is well predicted by sim
 \figsupp[Secondary transcription from newly synthesized RNPs is a major source of viral mRNA during bulk infections.\label{figsupp:cyclohexamide}]{
 A549 cells were infected at an MOI of 0.2 as calculated on MDCK-SIAT1 cels in either the presence or absence of the protein-translation inhibitor cyclohexamide, and viral mRNA was quantified at 8 hours post-infection by qPCR.
 The cyclohexamide prevents translation of new PB2, PB1, PA, and NP protein, and so prevents the formation of the new RNPs needed for secondary transcription.
-The bars show the relative amount of HA and PB2 mRNA in the absence versus the presence of cyclohexamide.
+The bars show the relative amount of HA and PB2 mRNA in the absence versus the presence of cyclohexamide. Error $\pm$ S.D. n=3. 
 }{\includegraphics[width=0.3\linewidth]{figures/Primary_transcription_measurements/Cyclohexamide.pdf}}
 \figsupp[Like panel (B) but for the 10-hr sample only.\label{figsupp:10hrfluburdenbyflugene}]{
 The absence of viral RNP genes but \emph{not} non-RNP genes remains significantly associated with reduced viral burden when we examine only the 10-hr sample, which is the single time point with the most data points.
@@ -265,6 +270,8 @@ The fraction of viral mRNA from each viral gene for each cell.
 {\bf (B)}
 Box plots showing the distribution of the fraction of viral mRNA per cell from each viral gene.
 The black lines at the notches are the medians, and the tops and bottoms of boxes indicate the first and third quartiles.
+Whiskers extend to the highest or lowest data point observed within 1.5x the interquartile range, outliers shown as circles.
+Notches extend 1.58x the interquartile range divided by the square root of the number of observations. 
 {\bf (C)}, {\bf (D)} 
 The same plots, but only including cells for which we observed at least one molecule of each viral gene.
 }
@@ -389,13 +396,90 @@ Still needs to be written.
 
 \section{Methods and Materials}
 
-\subsection{Design of synonymously barcoded virus.}
+\subsection{Tissue culture and viral rescue}
+Cell lines used in this study were: the human lung epithelial carcinoma line, A549, obtained from ATCC, the canine kidney cell line overexpressing human SIAT1, MDCK-SIAT1, obtained from Sigma Aldrich, and the human embryonic kidney cell line, 293t, obtained from ATCC. 
+All cells were maintained in D10 (DMEM supplemented with 10\% heat-inactivated FBS, 2 mM L-glutamine, 100 U of penicillin/ml, and 100 \si{\micro}g of streptomycin/ml) at 37 \si{\degreeCelsius} at 5 \% CO\textsubscript{2}.
+We generated viral stocks using a previously-defined reverse-genetics approach. 
+In brief, to generate wild-type virus we transfected bidirectional plasmids encoding the eight segments of A/WSN/1933 (kindly provided by Robert Webster of St. Jude Children's Research Hospital) into a coculture of 293t and MDCK-SIAT1 cells seeded at a ratio of 8:1. 
+At 24 hours post-transfection, we changed media from D10 to influenza growth media (IGM Opti-MEM supplemented with 0.01\% heat-inactivated FBS, 0.3\% BSA, 100 U of penicillin/ml, 100  \si{\micro}g of streptomycin/ml, and 100 \si{\micro}g of calcium chloride/ml).
+At 48 hours post-transfection we harvested the virus-containing supernatant, removed cellular material by centrifugation at 300 x g's for 4 minutes, and stored aliquots at -80 \si{\degreeCelsius }. 
+We then determined the TCID50 of these stocks on MDCK-SIAT1 cells.
+Viral aliquots were then used to initiate an infection at an MOI of 0.01 on MDCK-SIAT1 cells in order to expand viral stocks and provide partial purging of defective viruses.
+Viral supernatant was harvested at 36 hours post-infection, prior to the onset of noticeable cytopathic effect. 
+Aliquots were again frozen at -80  \si{\degreeCelsius }, titered, and used in our single-cell experiments.
+Synonymously barcoded virus was generated identically to wild-type viral stocks, using plasmids encoding the synonymously-encoded viral segments described in (supplemental data).
+Mutant virus containing a gene encoding eGFP in place of the HA gene segment was generated using previously-described methods for growing HA-deficient virus, utilizing MDCK-SIAT1 cells expressing HA from a constituitive CMV promoter.
+A unidirectional vector for generating viral vRNA encoding eGFP flanked by HA packaging sequences was generated from a previously described vector, pHH21. 
+In order to obtain sufficient titers, HA-eGFP virus was expanded for 44 hours after initiating infection at an MOI of 0.01 rather than 36 hours.
 
-\subsection{Generation and characterization of viral stocks.}
+\subsection{qPCR measurements of infection kinetics}
+For qPCR measurements of viral transcriptional kinetics and interferon induction, A549 cells were seeded at 3 x 10\textsuperscript{5} cells / well in a 6-well tissue culture plate in D10 the day prior to infection. 
+On the day of infection, a single well was trypsonized and enumerated, providing a measurement for MOI calculation.
+Immediately before infecting, D10 was replaced with IGM and the indicated treatment applied.
+For cells incubated with cyclohexamide, the compount was added to a final concentration of 50  \si{\micro}g/ml at the time of infection -- previously confirmed to be sufficient to halt viral protein production.
+RNA was purified using the QIAGEN RNeasy plus mini kit following manufacturer's suggestions, and purity and concentration was measured using UV absorbance prior to cDNA synthesis. 
+cDNA was synthesized using an oligoDT primer and the SuperScript\textsuperscript{TM} III first-strand synthesis supermix from ThermoFisher using manufacturer's directions. 
+Transcript abundance was measured using SYBR\textsuperscript{TM}  green PCR master mix, using a combined anneal/extension step of 60 \si{\degreeCelsius } for one minute with the primers listed in (Supplemental table).
+Biological triplicates were performed for all samples.
+For measurements of viral genomic HA content, vRNA was harvested from 80 \si{\micro}l of viral supernatant by the addition of 600 \si{\micro}l of RLT plus before proceeding with the standard QIAGEN Rneasy plus miniprep kit protocol, and cDNA was generated using  SuperScript\textsuperscript{TM} III first-strand synthesis supermix with primers specific for vRNA using the manufacturer's protocol for random-hexamer priming.
+qPCR was then performed as for mRNA measurements.
+In order to obtain molecular resolution on our measurements of HA vRNA, a standard curve was generated from three independent dilutions of the HA-encoding bidirectional plasmid used in our viral rescue. 
+All vRNA values represent three independent RNA extractions with two replicate qPCR measurements. 
 
-\subsection{Infections and single-cell sequencing.}
+\subsection{Flow cytometric analyses of infection}
+A549 cells were seeded in a 6-well plate and infected as described for qPCR analyses.
+Cells were harvested by trypsonization, resuspended in phosphate-buffered saline supplemented with 2\% heat-inactivated FBS, and stained with 10  \si{\micro}g/ml of H17-L19, a mouse monoclonal antibody confirmed to bind to WSN HA in a prior study.
+After subsequent washes in supplemented PBS, cells were stained with a goat anti-mouse IgG antibody conjugated to APC.
+Cells were then washed, fixed in 1\% formaldehyde, and washed further before a final resuspension and analysis. 
+After gating for single-cells in FlowJo, data were subsequently extracted using the R package, flowCore.
+Extracted data were then analyzed using a custom Python script, and gates determined.
+Guassian kernel density estimates were obtained using the scipy stats package method, guassian\_kde, using automatic bandwidth determination.
 
-\subsection{Data analysis}
+\subsection{Generation of single cell infection data}
+All samples were processed using the 10x Chromium Single Cell 3' platform, both in initial, tagged, cDNA generation and in final library preparation.
+All time points, save for the 8 hour repeat, were performed on the same day as described below.
+A549 cells were seeded as described above in a 6-well plate, with two wells per time point. 
+A single well of cells was trypsonized and counted prior to initiation of the experiment for the purposes of calculating MOI.
+Wild-type and synonymously barcoded virus were mixed to an estimated ratio of 1:1 based on prior, exploratory, single-cell analyses (data not shown). 
+At the initiation of our experiment, all cells were changed from D10 to IGM, regardless of the desired time point.
+Cells were then infected with an intended, flow cytometry calculated, MOI of 0.3, in order of time point -- 10 hour, then 8 hour, then 6 hour time points, spaced two hours apart.
+This MOI was calculated in the absence of an additional washing step, and so potentially represents an overestimate of our final infectious dose.
+One hour post infection, media was changed to fresh IGM.
+All cells were then harvested for single-cell analysis concurrently -- ensuring all had spent equivalent time in changed media and normalizing potential batch effects across samples.
+For our replicate 8 hour time point, cells were infected as above, save for no wash step was included, the flow cytometry informed MOI was instead 0.1, and the sample was prepared on a different day.
+After harvest, cells were counted using disposable hemocytometers and diluted to equivalent concentrations with an intended capture of 3000 cells/sample following the guidlines provided by 10x genomics.
+All subsequent steps followed 10x genomics guidelines through library preparation.
+Samples were sequenced on an Illumina HiSeq. 
+
+\subsection{Computational analysis of single cell transcriptomes}
+Sequencing data were aligned and a gene-cell-barcode matrix determined using the 10x Genomics software package, CellRanger v. 2.0.0. 
+Wild-type and synonymous viral transcripts were identified using a custom python script, and these annotations appended to the gene-cell-barcode matrix for further analysis.
+These matrices were then evaluated using the R package Monocle, version 2.4.0.
+Cell barcodes associated with 2.5-fold less or more UMI counts were considered to be potential doublets or inefficient/empty reactions, and were excluded from further downstream analyses.
+In order to empirically determine a cutoff for potential lysis-derived influenza reads we used the 10 hour time point, which had the highest influenza transcript count.
+The relative purity of barcodes was calculated out to the 35th percentile of influenza-associated reads.
+These values were plotted against the number of UMIs attributed to influenza, and a curve was fitted using the loess function in R. 
+The derivative of the resultant curve was calculated, and the threshold set at the minimum value wherein the derivative is less than 0 -- indicating the point below which purity drops indicating a significant contribution of lysis-derived rather than infection-derived reads.
+Cells meeting this threshold were defined as influneza-infected, and those failing to do so were excluded from further analysis.
+For each time point an additional number of cells, either 50 or the number of infected cells determined by our threshold above, whichever was larger, with no detectable influenza transcripts were also included for further analysis.
+
+Using Monocle?s cell hierarchy function, cells were binned into those with no influenza, and those with reads derived from influeza. 
+Influenza-infected cells were further described to possess <2\%, >2\%, and >20\% of reads derived from influenza using nested cell classes. 
+Candidate marker genes for t-distributed stochastic neighbor embedding (tSNE) dimensionality reduction that would allow us to seperate these populations were then determined using the Monocle function markerDiffTable, excluding the effects of sample variation and the number of genes identified in a given cell, using a q-value cutoff of 0.01.
+The specificity of these markers was determined using the function calculateMarkerSpecificity -- the top 40 markers were retained, and used to place populations in a two-dimensional plane based on tSNE dimensionality reduction.
+
+Analyses of host expression required alteration to the standard Monocle pipeline and subsetting of our dataset.
+First, we only considered host genes in our analyses, as the massive contribution of viral variation could swamp out more nuanced effects.
+Second, as influenza has the capacity to suppress the host transcriptome, and itself ?takes up? UMIs that are attributed to a cell, we decided to assign the cell?s size factor, a scalar value representing efficiency of UMI capture, based on host transcripts alone. 
+We excluded uninfected cells from these analyses, as well as those influenza-infected cells that lacked a gene from any of the eight segments. 
+Lastly, cells which contained a fraction of influenza-derived reads of greater than 25\% were assessed at a value of 25\% such that they did not contribute an undue weight to our analysis. 
+Genes whose expression covaried with the fraction of mRNAs in a cell derived from influenza were then identified, using the Monocle function differentialGeneTest, and removing variance explained by sample to sample variation. 
+Retaining those meeting a q-value threshold of 0.1, the expression of these genes was visualized on a per-cell basis, arranging cells in order of increasing percentage of reads derived from influenza.
+
+As an additional analysis, we ranked cells within each sample according to the relative percentage of reads derived from influneza.
+As above, we only considered cells expressing genes from all eight viral genomic segments, and determined size factors based on the host transcriptome alone.
+Genes whose expression correlated with influenza ranking were then determined using the Monocel function deifferentialGeneTest, again removing variance explained by sample to sample variation and using a q-value threshold of 0.1. 
+Cells were then arranged my ranking within each sample, in order of increasing percentage of reads derived from influenza within a sample, and differentially-regulated genes were visualized.
 
 
 \section{Acknowledgments}
