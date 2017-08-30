@@ -455,30 +455,30 @@ Samples were sequenced on an Illumina HiSeq.
 Sequencing data were aligned and a gene-cell-barcode matrix determined using the 10x Genomics software package, CellRanger v. 2.0.0. 
 Wild-type and synonymous viral transcripts were identified using a custom python script, and these annotations appended to the gene-cell-barcode matrix for further analysis.
 These matrices were then evaluated using the R package Monocle, version 2.4.0.
-Cell barcodes associated with 2.5-fold less or more UMI counts were considered to be potential doublets or inefficient/empty reactions, and were excluded from further downstream analyses.
+Cell barcodes associated with 2.5-fold fewer or more UMI counts than the sample median were considered to be potential doublets or inefficient/empty reactions, and were excluded from further downstream analyses.
 In order to empirically determine a cutoff for potential lysis-derived influenza reads we used the 10 hour time point, which had the highest influenza transcript count.
 The relative purity of barcodes was calculated out to the 35th percentile of influenza-associated reads.
 These values were plotted against the number of UMIs attributed to influenza, and a curve was fitted using the loess function in R. 
-The derivative of the resultant curve was calculated, and the threshold set at the minimum value wherein the derivative is less than 0 -- indicating the point below which purity drops indicating a significant contribution of lysis-derived rather than infection-derived reads.
-Cells meeting this threshold were defined as influneza-infected, and those failing to do so were excluded from further analysis.
+The derivative of the resultant curve was calculated, and the threshold set at the minimum value wherein the derivative is less than 0 -- indicating the point below which there is a sacrifice in sample purity, indicating an increase in the relative proportion of extracellular-derived influenza reads.
+Cells meeting this threshold were defined as infected, and those failing to do so were excluded from further analysis.
 For each time point an additional number of cells, either 50 or the number of infected cells determined by our threshold above, whichever was larger, with no detectable influenza transcripts were also included for further analysis.
 
-Using Monocle?s cell hierarchy function, cells were binned into those with no influenza, and those with reads derived from influeza. 
-Influenza-infected cells were further described to possess <2\%, >2\%, and >20\% of reads derived from influenza using nested cell classes. 
-Candidate marker genes for t-distributed stochastic neighbor embedding (tSNE) dimensionality reduction that would allow us to seperate these populations were then determined using the Monocle function markerDiffTable, excluding the effects of sample variation and the number of genes identified in a given cell, using a q-value cutoff of 0.01.
+Using Monocle?s cell hierarchy function, cells were binned into those with no influenza, and those with reads derived from influenza. 
+Influenza infected cells were further described to possess <2\%, >2\%, and >20\% of reads derived from influenza using nested cell classes. 
+Candidate marker genes for t-distributed stochastic neighbor embedding (tSNE) dimensionality reduction that would allow us to separate these populations were then determined using the Monocle function markerDiffTable, excluding the effects of sample variation and the number of genes identified in a given cell, using a q-value cutoff of 0.01.
 The specificity of these markers was determined using the function calculateMarkerSpecificity -- the top 40 markers were retained, and used to place populations in a two-dimensional plane based on tSNE dimensionality reduction.
 
 Analyses of host expression required alteration to the standard Monocle pipeline and subsetting of our dataset.
 First, we only considered host genes in our analyses, as the massive contribution of viral variation could swamp out more nuanced effects.
-Second, as influenza has the capacity to suppress the host transcriptome, and itself ?takes up? UMIs that are attributed to a cell, we decided to assign the cell?s size factor, a scalar value representing efficiency of UMI capture, based on host transcripts alone. 
+Second, as influenza has the capacity to suppress the host transcriptome, and moreover contributes significantly to the total number UMIs that are attributed to a cell, we decided to assign the cell?s size factor, a scalar value representing efficiency of UMI capture, based on host transcripts alone. 
 We excluded uninfected cells from these analyses, as well as those influenza-infected cells that lacked a gene from any of the eight segments. 
 Lastly, cells which contained a fraction of influenza-derived reads of greater than 25\% were assessed at a value of 25\% such that they did not contribute an undue weight to our analysis. 
-Genes whose expression covaried with the fraction of mRNAs in a cell derived from influenza were then identified, using the Monocle function differentialGeneTest, and removing variance explained by sample to sample variation. 
+Genes whose expression co-varied with the fraction of mRNAs in a cell derived from influenza were then identified, using the Monocle function differentialGeneTest, after removing variance explained by sample to sample variation. 
 Retaining those meeting a q-value threshold of 0.1, the expression of these genes was visualized on a per-cell basis, arranging cells in order of increasing percentage of reads derived from influenza.
 
-As an additional analysis, we ranked cells within each sample according to the relative percentage of reads derived from influneza.
+As an additional analysis, we ranked cells within each sample according to the relative percentage of reads derived from influenza.
 As above, we only considered cells expressing genes from all eight viral genomic segments, and determined size factors based on the host transcriptome alone.
-Genes whose expression correlated with influenza ranking were then determined using the Monocel function deifferentialGeneTest, again removing variance explained by sample to sample variation and using a q-value threshold of 0.1. 
+Genes whose expression correlated with influenza ranking were then determined using the Monocle function differentialGeneTest, again removing variance explained by sample to sample variation and using a q-value threshold of 0.1. 
 Cells were then arranged my ranking within each sample, in order of increasing percentage of reads derived from influenza within a sample, and differentially-regulated genes were visualized.
 
 
