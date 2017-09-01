@@ -428,46 +428,50 @@ We then generated GFP-carrying virus by reverse-genetics in previously described
 A unidirectional vector for generating viral vRNA encoding eGFP flanked by HA packaging sequences was generated from a previously described vector, pHH21~\citep{Neumann:1999ws}. 
 To obtain sufficient titers, this HA-eGFP virus was expanded for 44 than than 36 hours after initiating infection at an MOI of 0.01.
 
-\subsection{qPCR measurements of infection kinetics}
-For qPCR measurements of viral transcriptional kinetics and interferon induction, A549 cells were seeded at 3 x 10\textsuperscript{5} cells / well in a 6-well tissue culture plate in D10 the day prior to infection. 
-On the day of infection, a single well was trypsonized and enumerated, providing a measurement for MOI calculation.
-Immediately before infecting, D10 was replaced with influenza growth media and the indicated treatment applied.
-For cells incubated with cycloheximide, the compound was added to a final concentration of 50  \si{\micro}g/ml at the time of infection -- previously confirmed to be sufficient to halt viral protein production~\citep{Killip:2014kz}.
-RNA was purified using the QIAGEN RNeasy plus mini kit following manufacturer's suggestions, and purity and concentration was measured using UV absorbance prior to cDNA synthesis. 
+\subsection{qPCR}
+For the qPCR in Figure~\ref{fig:viruspopulations} and Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:cyclohexamide}, A549 cells were seeded at 3$\times$10\textsuperscript{5} cells / well in a 6-well tissue culture plate in D10 the day prior to infection. 
+On the day of infection, a single well was trypsinized and the cells were counted in order to determine the appropriate amount of virus to use to achieve the intended MOI.
+Immediately before infection, D10 was replaced with influenza growth media.
+For cells incubated with cyclohexamide, the compound was added to a final concentration of 50  \si{\micro}g/ml at the time of infection -- previously confirmed to be sufficient to halt viral protein production~\citep{Killip:2014kz}.
+RNA was purified using the QIAGEN RNeasy plus mini kit following manufacturer's instructions. 
 cDNA was synthesized using an oligoDT primer and the SuperScript\textsuperscript{TM} III first-strand synthesis supermix from ThermoFisher using manufacturer's directions. 
-Transcript abundance was measured using SYBR\textsuperscript{TM}  green PCR master mix, using a combined anneal/extension step of 60 \si{\degreeCelsius } for one minute with the primers listed in (Supplemental table).
+Transcript abundance was measured using SYBR\textsuperscript{TM} green PCR master mix, using a combined anneal/extension step of 60 \si{\degreeCelsius } for one minute with the primers listed in \jdbcomment{just list the primers here, as there aren't that many of them}.
 Biological triplicates were performed for all samples.
-For measurements of viral genomic HA content, vRNA was harvested from 80 \si{\micro}l of viral supernatant by the addition of 600 \si{\micro}l of RLT plus before proceeding with the standard QIAGEN Rneasy plus miniprep kit protocol, and cDNA was generated using  SuperScript\textsuperscript{TM} III first-strand synthesis supermix with primers specific for vRNA using the manufacturer's protocol for random-hexamer priming~\citep{Xue:2017dl,Hoffmann:2001vj}.
+For measurements of viral genomic HA content, vRNA was harvested from 80 \si{\micro}l of viral supernatant by the addition of 600 \si{\micro}l of RLT plus before proceeding with the standard QIAGEN Rneasy plus miniprep kit protocol, and cDNA was generated using  SuperScript\textsuperscript{TM} III first-strand synthesis supermix with primers specific for vRNA \jdbcomment{what are these primers? If they are the same ones given above, indicate that. If there are from one of the references that are at the end of this sentence, then indicate that.} using the manufacturer's protocol for random-hexamer priming~\citep{Xue:2017dl,Hoffmann:2001vj}.
 qPCR was then performed as for mRNA measurements.
-In order to obtain molecular resolution on our measurements of HA vRNA, a standard curve was generated from three independent dilutions of the HA-encoding bidirectional plasmid used in our viral rescue. 
+In order to obtain molecular resolution on our measurements of HA vRNA, a standard curve was generated from three independent dilutions of the HA-encoding reverse genetics plasmid. 
 All vRNA values represent three independent RNA extractions with two replicate qPCR measurements. 
 
-\subsection{Flow cytometric analyses of infection}
-A549 cells were seeded in a 6-well plate and infected as described for qPCR analyses.
-Cells were harvested by trypsonization, resuspended in phosphate-buffered saline supplemented with 2\% heat-inactivated FBS, and stained with 10  \si{\micro}g/ml of H17-L19, a mouse monoclonal antibody confirmed to bind to WSN HA in a prior study~\citep{Doud:2017bw}.
+\subsection{Flow cytometry titering and analyses}
+To determine viral titers in terms of HA-expressing units and for the flow cytometry in Figure~\ref{fig:coexpression}-Figure~supplement~\ref{figsupp:flowcyto}, A549 cells were seeded in a 6-well plate and infected as described above for the qPCR analyses.
+Cells were harvested by trypsinization, resuspended in phosphate-buffered saline supplemented with 2\% heat-inactivated FBS, and stained with 10 \si{\micro}g/ml of H17-L19, a mouse monoclonal antibody confirmed to bind to WSN HA in a prior study~\citep{Doud:2017bw}.
 After subsequent washes in supplemented PBS, cells were stained with a goat anti-mouse IgG antibody conjugated to APC.
-Cells were then washed, fixed in 1\% formaldehyde, and washed further before a final resuspension and analysis. 
-After gating for single-cells in FlowJo, data were subsequently extracted using the R package, flowCore~\citep{LeMeur:2007uo}.
-Extracted data were then analyzed using a custom Python script, and gates determined.
+Cells were then washed, fixed in 1\% formaldehyde\jdbcomment{are you sure it is formaldehyde and not paramformaldehyde?}, and washed further before a final resuspension and analysis. 
+To determine HA-expressing units, we then determined the fraction of cells that were HA positive and calculated the HA-expressing units from these fractions assuming a Poisson infection process.
+
+For Figure~\ref{fig:coexpression}-Figure~supplement~\ref{figsupp:flowcyto}, after gating for single-cells in FlowJo\jdbcomment{What do you mean gating for single cells? The gates select populations of cells}, data were subsequently extracted using the R package flowCore~\citep{LeMeur:2007uo} and analyzed using a custom Python script.
 Guassian kernel density estimates were obtained using the scipy stats package method, guassian\_kde, using automatic bandwidth determination~\citep{vanderWalt:2017dp}.
 
-\subsection{Generation of single cell infection data}
-All samples were processed using the 10x Chromium Single Cell 3' platform, both in initial, tagged, cDNA generation and in final library preparation.
-All time points, save for the 8 hour repeat, were performed on the same day as described below.
-A549 cells were seeded as described above in a 6-well plate, with two wells per time point. 
-A single well of cells was trypsonized and counted prior to initiation of the experiment for the purposes of calculating MOI.
-Wild-type and synonymously barcoded virus were mixed to an estimated ratio of 1:1 based on prior, exploratory, single-cell analyses (data not shown). 
-At the initiation of our experiment, all cells were changed from D10 to influenza growth media, regardless of the desired time point.
-Cells were then infected with an intended, flow cytometry calculated, MOI of 0.3, in order of time point -- 10 hour, then 8 hour, then 6 hour time points, spaced two hours apart.
-This MOI was calculated in the absence of an additional washing step, and so potentially represents an overestimate of our final infectious dose.
-One hour post infection, media was changed to fresh influenza growth media.
-All cells were then harvested for single-cell analysis concurrently -- ensuring all had spent equivalent time in changed media and normalizing potential batch effects across samples.
-For our replicate 8 hour time point, cells were infected as above, save for no wash step was included, the flow cytometry informed MOI was instead 0.1, and the sample was prepared on a different day.
-After harvest, cells were counted using disposable hemocytometers and diluted to equivalent concentrations with an intended capture of 3000 cells/sample following the guidelines provided by 10x genomics.
-All subsequent steps followed 10x genomics guidelines through library preparation.
-Samples were sequenced on an Illumina HiSeq. 
+\subsection{Infections for single-cell mRNA sequencing}
+All samples were processed using the 10x Chromium Single Cell 3' platform~\cite{zheng2017massively}, both in initial, tagged, cDNA generation and in final library preparation \jdbcomment{say the version of the reagents used -- v1 or v2? Also, in the preceding sentence, what do you mean by both the initial cDNA generation and in final library preparation? Can't you just say that you used 10X without specifying both?}.
+All time points except for the 8-hour repeat, were performed on the same day.
 
-\subsection{Computational analysis of single cell transcriptomes}
+For the infections, A549 cells were seeded in a 6-well plate, with two wells per time point. 
+A single well of cells was trypsinized and counted prior to initiation of the experiment for the purposes of calculating MOI.
+Wild-type and synonymously barcoded virus were mixed to an estimated ratio of 1:1 based on prior, exploratory, single-cell analyses (data not shown). 
+At the initiation of our experiment, the wells for all time points were changed from D10 to influenza growth media.
+Cells were then infected with 0.3 HA-expressing units of virus per cell (a determined by flow cytometry).
+The infections were performed in order of time point: first the 10-hour time point, then the 8-hour, and then the 6-hour time point.
+At one hour after infection, the media for each time point was changed to fresh influenza growth media.
+Note that the HA-expressing units were calculated without this additional washing step, and so likely represent an overestimate of our final infectious dose (consistent with the fact that fewer than 30\% of cells appear infected in the single-cell sequencing data).
+All cells were then harvested for single-cell analysis concurrently -- ensuring all had spent equivalent time in changed media .
+For our replicate 8-hour time point, cells were infected as above except that the cells were infected at 0.1 HA-expressing units of virus per cell but no wash step was performed, and the sample was prepared on a different day.
+After harvest, cells were counted using disposable hemocytometers and diluted to equivalent concentrations with an intended capture of 3000 cells/sample following the manufacturer's provided by 10x Genomics for the Chromium Single Cell platform.
+All subsequent steps through library preparation followed the manufacturer's protocol.
+Samples were sequenced on an Illumina HiSeq. 
+The deep sequencing data are available on the Sequence Read Archive under accession \jdbcomment{Jesse will upload and add this.}
+
+\subsection{Computational analysis of single-cell mRNA sequencing data}
 Sequencing data were aligned and a gene-cell-barcode matrix determined using the 10x Genomics software package, CellRanger v. 2.0.0. 
 Wild-type and synonymous viral transcripts were identified using a custom python script, and these annotations appended to the gene-cell-barcode matrix for further analysis.
 These matrices were then evaluated using the R package Monocle, version 2.4.0~\citep{Qiu:2017dw,Trapnell:2014kg}.
@@ -496,7 +500,6 @@ As an additional analysis, we ranked cells within each sample according to the r
 As above, we only considered cells expressing genes from all eight viral genomic segments, and determined size factors based on the host transcriptome alone.
 Genes whose expression correlated with influenza ranking were then determined using the Monocle function differentialGeneTest, again removing variance explained by sample to sample variation and using a q-value threshold of 0.1. 
 Cells were then arranged my ranking within each sample, in order of increasing percentage of reads derived from influenza within a sample, and differentially-regulated genes were visualized.
-
 
 \section{Acknowledgments}
 
