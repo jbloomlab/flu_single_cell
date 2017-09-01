@@ -16,6 +16,8 @@
 
 \renewcommand{\floatpagefraction}{1}
 
+\newcommand{\jdbcomment}[1]{\emph{\color{red} [#1]}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% ARTICLE SETUP
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -94,16 +96,17 @@ A549 cells were infected with an equal mixture of mutant and wild-type virus.
 Immediately prior to collection, cells were physically separated into droplets and cDNA libraries were generated containing the indicated barcodes. 
 The libraries were deep sequenced, and the data processed to create a matrix that gives the number of molecules of each transcript observed in each cell.
 Infected cells were further annotated by whether their viral mRNAs derived from wild-type virus, synonymously barcoded virus, or both.
+\jdbcomment{Make the matrix more in line with the data that we actually see. Make the counts of the different host genes reasonably similar between cells. We think most host genes have pretty similar expression across cells, but your example shows all having at least 2-fold difference and some much larger. So adjust the numbers to be more similar among cells. Also, in A and the matrix in C, just write out ``wildtype'', ``synonymous'', and ``not detected'' (or ``none``) -- there is plenty of space, so no need to use acronyms.}
 }
 \figdata{Sequences of wild-type and barcoded viruses are in \texttt{viralsequences.fasta}.}
 \end{figure}
 
 We took care to generate stocks of virus that were relatively ``pure'' of defective particles.
-Stocks of viruses typically contain an array of biologically active viral particles, some of which are defective for replication owing to mutations or deletions in essential viral genes ~\citep{von1954incomplete,huang1970defective,Brooke:2014ch,Fonville:2015cg,Lauring:2010if,Dimmock:2014dk}.
-These defective particles become prevalent when a virus is grown at high multiplicity of infection (MOI), where complementation permits the growth of otherwise deleterious genotypes ~\citep{Lopez:2014en}.
+Stocks of viruses typically contain an array of biologically active viral particles, some of which are defective for replication owing to mutations or deletions in essential viral genes~\citep{von1954incomplete,huang1970defective,Brooke:2014ch,Fonville:2015cg,Lauring:2010if,Dimmock:2014dk}.
+These defective particles become prevalent when a virus is grown at high multiplicity of infection (MOI), where complementation permits the growth of otherwise deleterious genotype.
 To minimize the levels of defective particles, we propagated our viral stocks at low MOI for a relatively brief period of time~\citep{Xue:2016bw}.
 We then validated that our stocks exhibited greater purity of infectious particles than a stock propagated at high MOI by verifying that they had a higher ratio of infectious particles to both virion RNA (Figure~\ref{fig:viruspopulations}A) and particles capable of inducing expression of a single viral protein (Figure~\ref{fig:viruspopulations}B).
-In addition, viral stocks with many defective particles are more immunostimulatory~\citep{Tapia:2013kf}.
+In addition, viral stocks with many defective particles are more immunostimulatory~\citep{Tapia:2013kf,Lopez:2014en}.
 We confirmed that our viral stocks induced much less interferon than a stock propagated at higher MOI (Figure~\ref{fig:viruspopulations}C).
 
 \begin{figure}
@@ -113,23 +116,26 @@ We confirmed that our viral stocks induced much less interferon than a stock pro
 Our viral stocks have a higher ratio of infectious particles to HA virion RNA compared to a high-defective stock propagated at high MOI.
 HA viral RNA was quantified by qPCR on virions. 
 Error bars $\pm$ S.D., n=6 (qPCR replicates). 
+\jdbcomment{Can you invert the y-axis on this plot so that it shows TCID50 / HA.}
 {\bf (B)} 
 Our viral stocks have a higher ratio of infectious particles to particles capable of expressing the viral HA protein.
 A549 cells were infected with all three viral stocks at an MOI of 0.1, and the percentage of cells expressing HA protein at 9 hours post-infection was quantified by antibody staining and flow cytometry.
 {\bf (C)} 
 Our viral stocks are less immunostimulatory than virus propagated at high MOI. 
 Measurements of \textit{IFNB1} transcript by qPCR normalized to the housekeeping gene L32 in A549 cells at 10 hours post infection at an MOI of 0.5.
-MOIs were calculated by TCID50 on MDCK-SIAT1 cells.
-Error bars $\pm$ S.D., n=3}
+Error bars $\pm$ S.D., n=3.
+Note that the MOIs were calculated by TCID50 on MDCK-SIAT1 cells, whereas the experiments in this figure involved infection of A549 cells.
+}
 \figsupp[Full flow cytometry data for panel B . \label{figsupp:HAstain}]{
-Full flow cytometry date for  Figure~\ref{fig:viruspopulations}B. All populations infected at an MOI of 0.1 as calculated by TCID50 on MDCK-SIAT1 cells. 
-{\bf (A)} Uninfected gating control
-{\bf (B)} Cells infected with wild-type virus
-{\bf (C)} Cells infected with synonymously barcoded virus
-{\bf (D)} Cells infected with a stock of wild-type virus propagated at a high MOI, therefore enriched in defective virus.
+Full flow cytometry date for  Figure~\ref{fig:viruspopulations}B. 
+A549 cells were infected at an MOI of 0.1 as calculated by TCID50 on MDCK-SIAT1 cells. 
+{\bf (A)} Uninfected gating control.
+{\bf (B)} Cells infected with the wild-type virus stock used in our experiments.
+{\bf (C)} Cells infected with synonymously barcoded virus stock used in our experiments.
+{\bf (D)} Cells infected with a stock of wild-type virus propagated at a high MOI, and therefore enriched in defective particles.
 }{\includegraphics[width=0.7\linewidth]{figures/Validating_barcode_virus/HA_stain_supplement.png}}\end{figure}
 
-\subsection{Single cells show a wide range of expression of viral transcripts.}
+\subsection{Single cells show an extremely wide range of expression of viral mRNA.}
 We infected A549 cells at low MOI with a mixture of the wild-type and synonymously barcoded viruses, and collected cells for sequencing at 6, 8, and 10 hours post-infection, including a replicate of the 8-hour timepoint.
 We recovered between 3,000 and 4,000 cells for each sample (Figure~\ref{fig:cells}A). 
 As expected for a low-MOI infection, most cells expressed little or no viral mRNA (Figure~\ref{fig:cells}B).
@@ -209,10 +215,10 @@ For instance, the plot for the 8-hour sample shows that roughly 50\% of all vira
 
 \subsection{Absence of viral genes partially explains cell-to-cell variability in viral transcript abundance.}
 The influenza genome is segmented, and cells can fail to express a viral mRNA if the encoding gene segment is not packaged in the infecting virion or fails to initiate transcription after infection.
-Indeed, several groups have reported that the majority of infected cells fail to express at least one viral gene~\citep{Brooke:2013kb, Heldt:2015iz}. 
+Indeed, several groups have reported that the majority of infected cells fail to express at least one viral gene~\citep{Brooke:2013kb, Heldt:2015iz,Dou:2017cp}. 
 We wondered if the absence of specific viral genes might be associated with reduced amounts of viral mRNA within single infected cells.
-In particular, transcription of influenza virus mRNAs is performed by the viral ribonucleoprotein (RNP) complex, which consists of the three proteins that encode the tripartite polymerase (PB2, PB1, and PA) as well as nucleoprotein (NP).
-Each viral gene segment is associated with one RNP in incoming infecting virions, but secondary transcription by newly synthesized RNPs requires the presence of the viral genes for each of the four constituent RNP proteins so that the cell can produce more RNP proteins~\citep{Vreede:2004ip}.
+In particular, transcription of influenza virus mRNAs is performed by the viral ribonucleoprotein (RNP) complex, which consists of the three proteins that encode the tripartite polymerase (PB2, PB1, and PA) as well as nucleoprotein (NP)~\cite{huang1990determination}.
+Each viral gene segment is associated with one RNP in incoming infecting virions, but secondary transcription by newly synthesized RNPs requires the presence of the viral genes for each of the four constituent RNP proteins so that the cell can produce more RNP proteins~\citep{Vreede:2004ip,eisfeld2015centre}.
 This secondary transcription is a major source of viral mRNAs, as evidenced by the fact that blocking synthesis of the RNP proteins reduces the amount of viral mRNA by several orders of magnitude in bulk cells (Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:cyclohexamide}).
 
 \begin{figure}[t!]
@@ -224,13 +230,13 @@ Fraction of mRNA in each infected cell derived from virus as a function of the n
 Cells with high viral burden always express all the RNP genes, but some cells with high viral burden lack each of the other viral genes.
 {\bf (B)}
 Box plots showing the per-cell viral burden among cells with $>$0.5\% of their mRNA from virus, binned by whether or not the cells express each viral gene.
-A Wilcoxon signed-rank test was used to test the null hypothesis that absence of each gene does not affect viral burden: **** = $P < 10^{-4}$, *** = $P < 10^{-3}$,  * = $P < 0.05$.
+A Wilcoxon signed-rank test was used to test the null hypothesis that absence of each gene does not affect viral burden: **** = $P < 10^{-4}$, *** = $P < 10^{-3}$,  * = $P < 0.05$, ns = not significant.
 Similar results are obtained if we examine only the 10-hour timepoint (Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:10hrfluburdenbyflugene}).
-Top and bottom of box bounds first and third quartiles of dataset, line dividing the box is at the median observation.
-Whiskers extend to the highest or lowest point within 1.5x the interquartile range, outliers shown as circles.
+Top and bottom of box bound the first and third quartiles; the line in the box is at the median.
+Whiskers extend to the highest or lowest point within1.5$\times$ the interquartile range, and outliers are shown as circles.
 {\bf (C)}
-Fraction of infected cells that express all four RNP genes and also express each of the four other genes, as well as the fraction that express \emph{all} four of the other genes.
-The fraction of cells that express all four other genes is well predicted by simply multiplying the frequencies of cells that express each of these genes individually, indicating that gene absence is approximately independent across these four genes.
+Among cells that express all four RNP genes, this panel shows the fraction of that express each of the four other genes, as well as the fraction that express \emph{all} four of the other genes.
+The fraction that express all four other genes is well predicted by simply multiplying the frequencies of cells that express each of these genes individually, indicating that gene absence is approximately independent across these four genes.
 }
 \figsupp[Secondary transcription from newly synthesized RNPs is a major source of viral mRNA during bulk infections.\label{figsupp:cyclohexamide}]{
 A549 cells were infected at an MOI of 0.2 as calculated on MDCK-SIAT1 cels in either the presence or absence of the protein-translation inhibitor cyclohexamide, and viral mRNA was quantified at 8 hours post-infection by qPCR.
@@ -244,10 +250,10 @@ The difference for NP is no longer statistically significant due to low counts o
 \figdata{The numerical data for panel (C) are in \texttt{p\_missing\_genes.csv}.}
 \end{figure}
 
-We examined the total fraction of mRNA in each cell that derives from virus versus the relative expression of each viral gene (Figure~\ref{fig:fluburdenbyflugene}A). 
-Cells that lack an RNP gene never derive more than a few percent of their mRNAs from virus, demonstrating that the presence of these RNP genes is essential for high levels of viral transcription.
+We examined the total amount of viral mRNA versus the expression of each viral gene (Figure~\ref{fig:fluburdenbyflugene}A). 
+Cells that lack an RNP gene never derive more than a few percent of their mRNAs from virus, confirming the expected result that all four RNP genes are essential for high levels of viral transcription.
 However, we observe cells that lack each of the other non-RNP genes but still derive $\approx$40\% of their mRNAs from virus, suggesting that none of the other genes are important for high levels of viral transcription.
-These results are statistically supported by Figure~\ref{fig:fluburdenbyflugene}B, which shows that absence of any RNP gene but \emph{not} any of the other viral genes is associated with reduced amounts of viral mRNA. 
+These results are statistically supported by Figure~\ref{fig:fluburdenbyflugene}B, which shows that absence of any RNP gene but \emph{not} any other viral gene is associated with reduced amounts of viral mRNA. 
 However, gene absence clearly does not explain all of the variability in viral gene expression, since even cells expressing all viral genes exhibit a very wide distribution in the amount of viral mRNA that they express. 
 The rest of this variability must be due to additional mechanisms such as differences in host-cell state, viral mutations not detectable by our 3'-end sequencing approach, or inherent stochasticity.  
 
@@ -284,7 +290,7 @@ Total viral mRNA varies by orders of magnitude, but the fraction from any given 
 The relative levels of each viral mRNA in our cells are similar to prior bulk measurements made by Northern blots~\citep{Hatada:1989vz}, which also found an expression hierarchy of M $>$ NS $\gg$ NP $>$ NA $>$ HA $\gg$ PB2 $\sim$ PB1 $\sim$ PA.
 The cell-to-cell consistency in the relative expression of different viral genes generally becomes even tighter if we limit the analysis only to cells that express all eight viral genes (Figure~\ref{fig:fluexpr}C,D).
 Therefore, with the exception of complete gene absence, the factors that drive the dramatic cell-to-cell variability in the amount of viral mRNA appear to have roughly similar effects on all viral genes in a given cell.
-This finding is consistent with prior work showing positive correlations among the abundance of several viral gene segments in individual cells.
+This finding is consistent with prior work showing positive correlations among the abundance of several viral gene segments in individual cells \jdbcomment{What is the reference here?}.
 
 \subsection{Co-infection can provide infected cells with the full complement of viral genes.}
 Our sequencing enables us to identify the rare cells that were co-infected with both wild-type and synonymously barcoded viral variants.
@@ -292,13 +298,13 @@ Overall, we captured 10 such co-infected cells that had $>$5\% of their mRNA der
 Seven of these 10 cells expressed all eight viral genes.
 Remarkably, the majority (4 of 7) of these cells would \emph{not} have expressed all the viral genes in the absence of co-infection, since they have at least one gene exclusively derived from each viral variant.
 For instance, the cell with 11.2\% of its mRNA from virus in the upper right of Figure~\ref{fig:coexpression} expresses M only from the wildtype viral variant, and NP and HA only from the synonymously barcoded variant.
-Our data therefore provide direct single-cell support for the idea that co-infection can rescue missing viral genes~\citep{Brooke:2013kb,Fonville:2015cg}.
+Our data therefore provide direct single-cell support for the idea that co-infection can rescue missing viral genes~\citep{Brooke:2013kb,Fonville:2015cg,aguilera2017plaques}.
 
 \begin{figure}
 \centerline{\includegraphics[width=0.9\linewidth]{figures/p_coinfection.pdf}}
 \caption{\label{fig:coexpression}
 The abundance of each viral transcript in cells that are co-infected with the two viral variants and have $>$5\% of their mRNA derived from virus.
-The bars show the logarithm of the numbers of each viral mRNA detected, and are colored in linear proportion to the fraction of that mRNAs derived from wild-type or synonymously barcoded virus.
+The bars show the logarithms of the numbers of each viral mRNA detected, and are colored in linear proportion to the fraction of that mRNAs derived from wild-type or synonymously barcoded virus.
 }
 \figsupp[Co-infected cells express roughly equal amounts of a gene from each infecting viral variant. \label{figsupp:flowcyto}]{
 {\bf(A)} Cells were co-infected with a mix of wild-type virus and virus in which the HA gene was replaced by GFP flanked by the terminal regions of the HA gene segment. 
@@ -318,11 +324,11 @@ To support this idea with a larger dataset albeit at lower resolution, we genera
 We then co-infected cells with a mix of wildtype and $\Delta$HA-GFP virus and used flow cytometry to score cells for the presence of HA only (infection by wildtype virus), GFP only (infection by $\Delta$HA-GFP virus), or both (co-infection) as shown in Figure~\ref{fig:coexpression}~Figure~supplement~\ref{figsupp:flowcyto}.
 As in our single-cell sequencing data, we found that expression of HA and GFP were highly correlated, indicating that co-infected cells typically expressed roughly equal amounts of transcript from each viral variant.
 
-\subsection{Activation of the anti-viral response is rare in single infected cells.}
+\subsection{Activation of the interferon response is rare in single infected cells.}
 Because our sequencing captured all polyadenylated transcripts, we can examine whether there are prominent changes in the host-cell transcriptome in sub-populations of infected cells.
 In particular, influenza virus infection can trigger innate-immune sensors that lead to the transcriptional induction of type I and III interferons, and subsequently of anti-viral interferon-stimulated genes~\citep{Killip:2015dw,Iwasaki:2014dw,Crotta:2013ef}.
 In bulk cells, this interferon response is one of the most prominent transcriptional signatures of influenza-virus infection~\citep{Geiss:2002a}.
-However, activation of the interferon response is stochastic and bi-modal at the level of single cells~\citep{Chen:2010cr,Shalek:2014ey,Shalek:2013ej}.
+However, activation of the interferon response is stochastic and bi-modal at the level of single cells~\citep{Chen:2010cr,Shalek:2014ey,Shalek:2013ej,PerezCidoncha:2014jr,bhushal2017cell}.
 We therefore hypothesized that we might see two sub-populations of infected cells: one in which the interferon response inhibited viral transcription, and another in which the virus was able to express high levels of its mRNA by evading or blocking this response.
 
 \begin{figure}
@@ -346,7 +352,7 @@ The one interferon-positive cell is lacking NS, but many interferon-negative cel
 
 \end{figure}
 
-To examine whether there were distinct sub-populations of virus-infected cells, we used a semi-supervised t-SNE approach to cluster cells by genes that co-varied with viral infection status \citep{Trapnell:2014kg,VanderMaaten:2008tm}.
+To examine whether there were distinct sub-populations of virus-infected cells, we used a semi-supervised t-SNE approach~\citep{VanderMaaten:2008tm} to cluster cells by genes that co-varied with viral infection status.
 As shown in Figure~\ref{fig:tsne}A,B, this approach effectively grouped cells by the amount of viral mRNA that they expressed.
 Sample-to-sample variation was regressed away during the clustering, as cells did not obviously group by time-point, with expected exception that the uninfected and 6-hour samples had few cells in the region of the plot corresponding to large amounts of viral mRNA (Figure~\ref{fig:tsne}C).
 
@@ -367,7 +373,7 @@ Our results are in line with other work showing that NS1-deficient influenza vir
 Therefore, single cells infected at low MOI with a relatively ``pure'' stock of influenza virus clearly activate innate-immune responses much less frequently than might be presumed from bulk studies that flood cells with viral stocks full of defective particles.
 
 \subsection{Genes involved in the oxidative-stress response co-vary with viral gene expression.}
-We next examined whether any host genes were differentially expressed in cells with more viral mRNA.
+We examined whether any host genes were differentially expressed in cells with more viral mRNA.
 We restricted this analysis to infected cells with all eight viral genes in order to focus on cellular genes that were associated with viral mRNA burden independent of any effects due to the stochastic presence or absence of particular viral transcripts.
 We identified 45 cellular genes that co-varied with viral gene expression at a false discovery rate of 0.1 (Figure~\ref{fig:cellulargenes}).
 
@@ -376,7 +382,8 @@ We identified 45 cellular genes that co-varied with viral gene expression at a f
 \caption{\label{fig:cellulargenes}
 Cellular genes that co-vary in expression along with the the amount of influenza virus mRNA in individual cells expressing all eight viral genes.
 Shown are all genes that are differentially expressed at a false discovery rate of 0.1. 
-Genes for which the color goes from blue at left to red at right are expressed at higher levels in cells with more viral mRNA. Scale is {\color{red} not sure what to put here} }
+Genes for which the color goes from blue at left to red at right are expressed at higher levels in cells with more viral mRNA. 
+\jdbcomment{scale shows?} }
 \figdata{The full results of the differential expression test is in \texttt{p\_sig\_cellular\_genes.csv}.}
 \figdata{The results of a gene-set analysis are in \texttt{p\_sig\_cellular\_genes.csv}.}
 \figsupp[Many genes that co-vary with the amount of viral mRNA are involved in the response to oxidative stress. \label{figsupp:ROStable}]{
@@ -385,7 +392,7 @@ Table delineating genes in (Figure~\ref{fig:cellulargenes}) that are associated 
 \end{figure}
 
 Many of the genes that exhibit increased expression in cells with large amounts of viral mRNA are known or suspected to be regulated by the Nrf2 master regulator in response to oxidative stress.
-These genes produce proteins that are involved in detoxification of reactive oxygen species or resultant products, the management of misfolded proteins, the electron transport chain, or a general stress response (Figure~\ref{fig:cellulargenes}~Figure~supplement~\ref{figsupp:ROStable}). 
+These genes produce proteins that are involved in detoxification of reactive oxygen species or resultant products, the management of misfolded proteins, the electron transport chain, or a general stress response (Figure~\ref{fig:cellulargenes}-Figure~supplement~\ref{figsupp:ROStable}). 
 We additionally see reduced expression of the nitric oxide synthase interacting protein (NOSIP). 
 Transient oxidative stress is known to occur during viral infection, and may act in a proviral fashion via MAPK activation driving vRNP export~\citep{Amatore:2014cs}.
 The antioxidant response is thought to be largely antiviral, potentially through inhibition of MAPK activity \citep{Lin:2016ec,Sgarbanti:2014ht}.
