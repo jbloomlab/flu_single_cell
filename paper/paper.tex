@@ -58,19 +58,37 @@ Overall, highlights remarkable heterogeneity in the outcome of infection.
 
 
 \section{Introduction}
+Recent advances in sequencing and visualization technologies have revealed that cell-to-cell heterogeneity is a fundamental feature of biological processes -- impacting events from bacterial entrance into quiescent states to organogenesis in multicellular organisms~\citep{JohnstonJr:2010jn}.
+Due to this heterogeneity, biological pathways generated from bulk population data may not accurately describe the timing, order, or even the identity of events within single cells ~\citep{Trapnell:2014kg}.
+Nearly no other feature of biological life is as defined by heterogeneity as viral infection, wherein events can be highly stochastic due to the incredible combination of both genetic and non-genetic sources of variation.
 
-Heterogeneity is important in a lot of cellular processes even when isogenic~\citep{Shalek:2014ey,Shalek:2013ej}.
+The contribution of heterogeneity to infectious processes has been well appreciated in the study of viral quasispecies, wherein pathogenesis is best described as an emergent process dependent upon underlying genetic diversity ~\citep{Lauring:2010if}.
+This concept has revolutionized the study of RNA viruses: including polio, hepatitis C, and influenza \citep{Echeverria:2015ew, Kuroda:2010gt}. 
+Direct evidence of the contribution of the quasispecies to pathogenesis has been observed -- for instance mutant strains of polio that produce less variation exhibit significantly less fitness in animal models of infection despite displaying wild-type replication kinetics \emph{in vitro}~\citep{Vignuzzi:2005ju}.
+However, these studies have largely been limited to population-level analyses, which can link standing diversity to complex biological phenomena but are unable to deconvolute precise events in individual infected cells.
 
-Population (genetic) heterogeneity is also important. 
-Viral quasispecies, cancer single-cell, etc.
-Salmonella paper (PhoP).
+Non-genetic variation has also been described to contribute to the host response to infection. 
+Single-cell transcriptomic analyses have revealed incredibly coordinated responses driven by stochasticity, even in tissue culture models using genetically homogeneous cells.
+This heterogeneity in response has been observed both with respect to pure ligands such as lipopolysaccharide, wherein differences must be host-cell intrinsic ~\citep{Shalek:2014ey,Shalek:2013ej,Rand:2012kl}, and with respect to pathogens, wherein differences are likely a complex mixture of host-cell intrinsic and pathogen-specific heterogeneity ~\citep{Avraham:2015cj}. 
+Moreover, stochasticity is observed both in interferon production, which drives the anti-pathogen state, and the expression of the downstream effector molecules of innate immunity.
+As inflammation is a potentially deleterious process, restricting a response to a small subset of cells upon initial recognition of a threat might be particularly advantageous.
 
-Literature on viral burst-size heterogeneity.
-This goes back to Delbruck, Andino polio paper~\citep{Schulte:2014br}, the MDCK / flu paper.
+Influenza, a segmented negative sense RNA virus, places a significant infectious burden on the global population and yet, despite many decades of study, there is still significant conjecture regarding those features of viral populations that drive observed phenotypes.
+Cells infected with this virus exhibit a wide degree of heterogeneity, including a number of semi-infectious events wherein the full complement of viral gene products is absent~\citep{Brooke:2013kb, Heldt:2015iz,Dou:2017cp}.
+This has broadly been observed to impact rates of recombination, however its contribution to other viral behaviors remains unclear~\citep{Fonville:2015cg}. 
+Influenza-infected cells are also observed to exhibit a wide-breadth of productivity -- exhibiting a 3-log range in infectious progeny even in high-MOI infections~\citep{Heldt:2015iz}. 
+This appears to be a general trend of many RNA viral infections, from phage to polio, and the features underlying these observations appear multitudinous~\citep{DELBRUCK:1945wo, Schulte:2014br}. 
 
-Discuss segmented nature of influenza.
-Maybe in the context of how this could further increase heterogeneity because there is a lot of potential for entire genes to be missing.
-Includes Yewdell and Lowen papers.
+We now hope to apply new single-cell transcriptomic technologies to the study of influenza replication in a tissue culture model of infection.
+Early single-cell transcriptomic approaches were laborious -- requiring the generation of sequencing libraries on individual cells~\citep{Tang:2009kj,ld:2012gj}.
+Breakthroughs in microfluidics helped to automate this process, but retained strictly parallel processing of sequencing libraries.
+More recent technologies have introduced more complex means of barcoding and partitioning cells, allowing for the generation of libraries consisting of thousands of cells with ?single pot? downstream processing.
+These include the use of reverse-phase emulsions, gravity capture, and even \emph{in situ} reverse transcription after cellular partitioning~\citep{JunSSi,Gierahn:2017bc,Klein:2015ki,Macosko:2015ht}. 
+We hope to leverage these technological advances in the study of influenza, using transcriptomic analysis to understand the phenotypic heterogeneity that abounds during infection with this virus. 
+
+
+
+ 
 
 \section{Results}
 
@@ -317,8 +335,7 @@ At 10 hours post-infection, cells were analyzed by flow cytometry for HA and eGF
 Shown are the quantile-normalized HA and eGFP signals for double-positive cells. 
 Cells are colored by density, using a Gaussian kernel density estimate. 
 {\bf(C)},{\bf(D)},{\bf(E)} Gating controls, single infection with eGFP virus, single infection with wild-type virus, and uninfected cells, respectively. 
-{\bf(F)} Gaussian kernel density estimate on HA positive cells from {\bf(C)}
-}{\includegraphics[width=\linewidth]{figures/Pseudovirus_flow_cytometry/coinfFlow_D03.png}}
+}{\includegraphics[width=\linewidth]{figures/Pseudovirus_flow_cytometry/coinfFlow_D02.png}}
 \figdata{The raw data plotted in this figure are in \texttt{p\_co-infection.csv}.}
 \figdata{The sequence of the HA viral RNA carrying the GFP gene is in \texttt{HAflank-eGFP.fasta}.\label{figdata:HAflank}}
 \end{figure} 
@@ -406,28 +423,27 @@ Overall, the expression of some of the host genes in Figure~\ref{fig:cellulargen
 
 \section{Discussion}
 We have generated total transcriptome measurements of individual influenza-infected cells -- providing additional insight into the processes that drive influenza replication and its impact on the host at the cellular level.
-Many of our observations closely match those made by other methods, validating our approach and granting us confidence in exploring more nuanced features of our data.
+The dataset we have generated is largely consistent with prior flow cytometry-based analyses, allowing us to build upon those prior observations with a more holistic view, beginning to understand the consequences of heterogeneity in influenza.
 Overall we find that influenza replication is defined broadly by both significant stochasticity and significant robustness, and that a view of viral infection as either strictly deterministic or incredibly chaotic fails to accurately describe the infectious process.
 Moreover we found that stress, likely induced by oxidative damage, appears to define the cellular response to infection.
 
 One of the most striking features of stochasticity with respect to influenza infection is the absence of genes corresponding to a given genomic segment, observed both by ourselves and others~\citep{Brooke:2013kb,Dou:2017cp}
 While there is significant speculation, and some indirect evidence, regarding the step of viral replication at which these genes are lost, there currently exists no strong consensus as to its identity -- indeed there may be no single event wholly responsible the stochastic loss of viral gene expression ~\citep{Brooke:2017gm, Heldt:2015iz}
 Regardless it does not seem unreasonable to surmise that this is a consequence of possessing a segmented genome. If so, it can be reasonably concluded that at some phase of viral replication, whether packaging, delivery to the nucleus, production of replicative intermediates, or some as-yet unsurmised step, the components of the viral genome must act in at least a semi-independent fashion. 
+
 A consequence of this stochasticity is a subpopulation of infected cells that express significantly lower levels of viral transcripts. 
 Consistent with prior population-level studies of transcription, we find that absence of any of the four viral gene products necessary to form the viral polymerase leads to a dramatic drop in the levels of mRNA transcripts detected~\citep{Vreede:2004ip,eisfeld2015centre}. 
 Our results are in slight contrast to a prior flow cytometric analysis of protein expression that described a relatively minor drop in expression associated with absence of viral ribonucleoprotein~\citep{Brooke:2013kb}.
-This discrepancy could be explained by two possibilities. 
-The first is that mRNA levels are not wholly predictive of viral protein abundance. 
-The second is that flow cytometry depends on a user-defined dynamic range of sensitivity as well as positive and negative gates, and that the potential 2-3 log difference in population means was either not captured in the sensitivity of the instrument or that gates on positive populations excluded bone-fide positives. 
-Indeed, gating on HA staining using a strict cutoff based on an uninfected population alone produces a curve that is consistent with a bimodal distribution of HA expression (Figure ~\ref{fig:coexpression} Figure Supplement ~\ref{figsupp:flowcyto}F).
+This discrepancy could be explained by two possibilities: the first is that mRNA measurements may not be wholly reflective of protein levels, and the second is that flow cytometry requires decisions regarding sensor sensitivity and positive gates and the potential biases that those decisions incur.
+While sequencing-based analysis comes with its own set of caveats, the detection threshold is 'baked-in' and so potentially less subject to bias.
 
 However, despite extensive heterogeneity, there seems to be robustness to the infectious lifecycle.
 For example, influenza, regardless of the viral burden, exhibits relatively constrained ratios between the viral transcripts.
 This suggests that the processes that are driving heterogeneity of influenza mRNA abundance act equivalently throughout the viral genome.
 Potential mechanisms include components such as binding and entry kinetics that act on a virion and thus on all segments packaged therein, limitations of transcription rate that are dependent upon the same pool of cellular resources, or potentially even feedback-dependent mechanisms controlling viral transcription. 
 
-Perhaps even more important to influenza?s success in the face of stochasticity is the capacity of the virus to control the host innate immune response despite a large number of non-infectious events. 
-While non-infectious events might be considered metabolic ?waste?, they would, theoretically, not impact the growth of successful viral infections. 
+Perhaps even more important to influenza's success in the face of stochasticity is the capacity of the virus to control the host innate immune response despite a large number of non-infectious events. 
+While non-infectious events might be considered metabolic 'waste', they would, theoretically, not impact the growth of successful viral infections. 
 However, recognition of any virus, infectious or not, and production of interferon, would impact the entire viral population. 
 While we cannot extrapolate much from our single interferon-positive cell, it can be stated that interferon induction by influenza is rare in our dataset. 
 This is consistent with prior experiments using reporter cell lines,  which places the induction at ~1\% of cells with detectable influenza protein expression -- albeit this value is likely sensitive to differences in viral propagation and strain utilized ~\citep{Killip:2017ef, Chen:2010cr}. 
@@ -458,7 +474,6 @@ All cells were maintained in D10 media (DMEM supplemented with 10\% heat-inactiv
 Wildtype A/WSN/1933 (H1N1) influenza virus was generated by reverse genetics using the plasmids pHW181-PB2, pHW182-PB1, pHW183-PA, pHW184-HA, pHW185-NP, pHW186-NA, pHW187-M, and pHW188-NS~\citep{hoffmann2000dna}.
 The sequences of the viral RNAs encoded in these plasmids are in Figure~\ref{fig:workflow}-source~data~\ref{figdata:viralsequences}.
 Reverse-genetics plasmids encoding the synonymously barcoded WSN virus were created by using site-directed mutagenesis to introduce two synonymous mutations near the 3' end of the mRNA for each viral gene.
-The synonymous mutations were chosen to introduce nucleotides that are common in naturally occurring H1N1 viruses to avoid unwanted attenuation.
 The sequences of the synonymously barcoded viral RNAs are in Figure~\ref{fig:workflow}-source~data~\ref{figdata:viralsequences}
 To generate viruses from these plasmids, we transfected an equimolar mix of all eight plasmids into cocultures of 293T and MDCK-SIAT1 cells seeded at a ratio of 8:1. 
 At 24 hours post-transfection, we changed media from D10 to influenza growth media (Opti-MEM supplemented with 0.01\% heat-inactivated FBS, 0.3\% BSA, 100 U of penicillin/ml, 100  \si{\micro}g of streptomycin/ml, and 100 \si{\micro}g of calcium chloride/ml).
