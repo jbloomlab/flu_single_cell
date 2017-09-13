@@ -47,13 +47,13 @@
 \maketitle
 
 \begin{abstract}
-Influenza virus infection induces large changes in cellular transcription.
-Previously this has mostly been looked at using bulk measurements
-Here we examine the process at the level of single cells.
-We find extremely wide variation in the extent of viral gene transcription across infected cells.
-IFN induction is very rare.
-Some cellular pathways may be consistently altered in cells with high burden of viral transcripts.
-Overall, highlights remarkable heterogeneity in the outcome of infection.
+Viral infection can cause large changes in a cell's transcriptome, but these changes have mostly been studied by bulk measurements on many cells.
+We use single-cell mRNA sequencing to examine the consequences of influenza virus infection in individual cells.
+We find extremely wide cell-to-cell variation in viral gene expression -- viral transcripts compose no more than a few percent of total mRNA in most infected cells, but a few cells derive over half their mRNA from virus.
+Many infected cells fail to express at least one viral gene, and this gene absence explains some of the variation in viral transcriptional load.
+Activation of innate immune pathways is rare, even in cells that fail to express influenza virus's major interferon antagonist.
+We identify some cellular genes that co-vary in abundance with the amount of viral mRNA.
+Overall, our results highlight the extensive cell-to-cell heterogeneity in the transcriptional consequences of viral infection.
 \end{abstract}
 
 
@@ -414,7 +414,18 @@ Our data do not reveal whether the expression of genes involved in the response 
 Overall, the expression of some of the host genes in Figure~\ref{fig:cellulargenes}, along with inherent stochasticity and specific mutations to viral genes in individual cells, probably explain most of the variation in viral mRNA levels observed across the infected cells in our dataset.
 
 \section{Discussion}
-We have generated total transcriptome measurements of individual influenza-infected cells -- providing additional insight into the processes that drive influenza replication and its impact on the host at the cellular level.
+We have quantified the total transcriptome composition of single cells infected with influenza virus.
+While we certainly observe a general increase in the amount of viral mRNA over time as expected from bulk measurements~\citep{Hatada:1989vz,Shapiro:1987ur}, there is wide variation in viral gene expression among individual infected cells.
+
+One of the most striking forms of heterogeneity is the complete failure of some infected cells to express one or more viral genes, which we estimate occurs in about half the infected cells in our experiments.
+The absence of viral genes in infected cells has been noted previously using more targeted approaches~\citep{Brooke:2013kb,Heldt:2015iz,Dou:2017cp}, and our work provides a holistic view by quantifying the the total viral transcriptional load as a function of the level of each mRNA.
+We find that absence of any of the four genes that encode the viral RNP leads to a dramatic drop in the total amount of viral mRNA in an infected cell, consistent with prior bulk studies of viral transcription~\citep{Vreede:2004ip,eisfeld2015centre}.
+Interestingly, the \emph{reason} some cells fail to express some viral genes remains unclear.
+The prototypical influenza virion packages one copy of each of the eight gene segments~\citep{noda2006architecture,hutchinson2010genome}, but some virions surely package fewer~\citep{brooke2014influenza}.
+However, it is also possible that much of the viral gene absence is due to stochastic loss of viral RNPs after infection but prior to the initiation of viral transcription in the nucleus.
+Further work will be needed to distinguish between these possibilities.
+
+ -- providing additional insight into the processes that drive influenza replication and its impact on the host at the cellular level.
 The dataset we have generated is largely consistent with prior flow cytometry-based analyses, allowing us to build upon those prior observations with a more holistic view, beginning to understand the consequences of heterogeneity in influenza.
 Overall we find that influenza replication is defined broadly by both significant stochasticity and significant robustness, and that a view of viral infection as either strictly deterministic or incredibly chaotic fails to accurately describe the infectious process.
 Moreover we found that stress, likely induced by oxidative damage, appears to define the cellular response to infection.
@@ -423,16 +434,6 @@ It is immediately apparent that a model of influenza infection wherein there is 
 While infection certainly proceeds over time, with gradual increase in influenza transcript abundance, the level of transcripts expressed in cells varies wildly.
 While some of these differences are likely due to temporal variation in binding and internalization, it will be interesting in follow-up experiments to determine whether there is an ultimate level of influenza transcript that is invariably reached or whether the variation we observe is indicative of a final setpoint.
 Indeed, our analyses of host transcriptomes suggests that those cells expressing higher levels of influenza are distinguishable, even at 6 hours, from later time points expressing similar influenza burden, giving an indication that there are features above-and-beyond temporal variation driving differences in viral mRNA expression\jdbcomment{If we make this point we need to add the ranked graph to the results and address it} .
-
-One of the most striking features of stochasticity with respect to influenza infection is the absence of genes corresponding to a given genomic segment, observed both by ourselves and others~\citep{Brooke:2013kb,Dou:2017cp}
-While there is significant speculation, and some indirect evidence, regarding the step of viral replication at which these genes are lost, there currently exists no strong consensus as to its identity -- indeed there may be no single event wholly responsible the stochastic loss of viral gene expression ~\citep{Brooke:2017gm, Heldt:2015iz}
-Regardless it does not seem unreasonable to surmise that this is a consequence of possessing a segmented genome. If so, it can be reasonably concluded that at some phase of viral replication, whether packaging, delivery to the nucleus, production of replicative intermediates, or some as-yet unsurmised step, the components of the viral genome must act in at least a semi-independent fashion. 
-
-A consequence of this stochasticity is a subpopulation of infected cells that express significantly lower levels of viral transcripts. 
-Consistent with prior population-level studies of transcription, we find that absence of any of the four viral gene products necessary to form the viral polymerase leads to a dramatic drop in the levels of mRNA transcripts detected~\citep{Vreede:2004ip,eisfeld2015centre}. 
-Our results are in slight contrast to a prior flow cytometric analysis of protein expression that described a relatively minor drop in expression associated with absence of viral ribonucleoprotein~\citep{Brooke:2013kb}.
-This discrepancy could be explained by two possibilities: the first is that mRNA measurements may not be wholly reflective of protein levels, and the second is that flow cytometry requires decisions regarding sensor sensitivity and positive gates and the potential biases that those decisions incur.
-While sequencing-based analysis comes with its own set of caveats, the detection threshold is 'baked-in' and so potentially less subject to bias.
 
 However, despite extensive heterogeneity, there seems to be robustness to the infectious lifecycle.
 For example, influenza, regardless of the viral burden, exhibits relatively constrained ratios between the viral transcripts.
