@@ -11,7 +11,7 @@
 \usepackage[version=4]{mhchem}
 \usepackage{siunitx}
 \DeclareSIUnit\Molar{M}
-\usepackage{indentfirst} %I prefer to have indents following section headings, I find it to be more consistent in style throughout document
+%\usepackage{indentfirst} %I prefer to have indents following section headings, I find it to be more consistent in style throughout document
 \usepackage{natbib}
 \usepackage{float}
 
@@ -27,7 +27,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% ARTICLE SETUP
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Extreme heterogeneity of influenza virus transcription in single cells}
+\title{Extreme heterogeneity of influenza virus transcriptional load in single cells}
 
 \author[1]{Alistair B. Russell}
 \author[2]{Cole Trapnell}
@@ -58,37 +58,27 @@ Overall, highlights remarkable heterogeneity in the outcome of infection.
 
 
 \section{Introduction}
-Recent advances in sequencing and visualization technologies have revealed that cell-to-cell heterogeneity is a fundamental feature of biological processes -- impacting events from bacterial entrance into quiescent states to organogenesis in multicellular organisms~\citep{JohnstonJr:2010jn}.
-Due to this heterogeneity, biological pathways generated from bulk population data may not accurately describe the timing, order, or even the identity of events within single cells ~\citep{Trapnell:2014kg}.
-Nearly no other feature of biological life is as defined by heterogeneity as viral infection, wherein events can be highly stochastic due to the incredible combination of both genetic and non-genetic sources of variation.
+Viruses can cause massive and rapid changes in a cell's transcriptome as they churn out viral mRNAs and hijack cellular machinery.
+For instance, cells infected with influenza virus at high multiplicity of infection (MOI) express an \emph{average} of 50,000 to 100,000 viral mRNAs per cell, corresponding to 5 to 25\% of all cellular mRNA~\citep{Hatada:1989vz}.
+In addition, infection can trigger innate-immune sensors that induce the expression of cellular anti-viral genes~\citep{Killip:2015dw,Iwasaki:2014dw,Crotta:2013ef}.
+This anti-viral response is another prominent transcriptional signature of high-MOI influenza virus infection in bulk cells~\citep{Geiss:2002a}.
 
-The contribution of heterogeneity to infectious processes has been well appreciated in the study of viral quasispecies, wherein pathogenesis is best described as an emergent process dependent upon underlying genetic diversity ~\citep{Lauring:2010if}.
-This concept has revolutionized the study of RNA viruses: including polio, hepatitis C, and influenza \citep{Echeverria:2015ew, Kuroda:2010gt}. 
-Direct evidence of the contribution of the quasispecies to pathogenesis has been observed -- for instance mutant strains of polio that produce less variation exhibit significantly less fitness in animal models of infection despite displaying wild-type replication kinetics \emph{in vitro}~\citep{Vignuzzi:2005ju}.
-However, these studies have largely been limited to population-level analyses, which can link standing diversity to complex biological phenomena but are unable to deconvolute precise events in individual infected cells.
+However, initiation of an actual influenza infection typically involves just a few virions infecting a few cells~\citep{varble2014influenza,mccrone2017evolutionary}. 
+The dynamics of viral infection in these individual cells may not mirror bulk measurements made on many cells infected at high MOI.
+Over 70 years ago, \citet{Delbruck:1945wo} showed that there was a $\sim$100-fold range in the number of progeny virions produced per cell by clonal bacteria infected with clonal bacteriophage.
+Subsequent work has shown similar heterogeneity in the number of progeny virions per cell during infection with other viruses~\citep{Zhu:2009ea,Schulte:2014br,combe2015single,Akpinar:2016gt}, including influenza virus~\citep{Heldt:2015iz}.
 
-Non-genetic variation has also been described to contribute to the host response to infection. 
-Single-cell transcriptomic analyses have revealed incredibly coordinated responses driven by stochasticity, even in tissue culture models using genetically homogeneous cells.
-This heterogeneity in response has been observed both with respect to pure ligands such as lipopolysaccharide, wherein differences must be host-cell intrinsic ~\citep{Shalek:2014ey,Shalek:2013ej,Rand:2012kl}, and with respect to pathogens, wherein differences are likely a complex mixture of host-cell intrinsic and pathogen-specific heterogeneity ~\citep{Avraham:2015cj}. 
-Moreover, stochasticity is observed both in interferon production, which drives the anti-pathogen state, and the expression of the downstream effector molecules of innate immunity.
-As inflammation is a potentially deleterious process, restricting a response to a small subset of cells upon initial recognition of a threat might be particularly advantageous.
+In the case of influenza virus infection, targeted single-cell measurements of specific proteins or RNAs have shed light on some factors that contribute to cell-to-cell heterogeneity. 
+The influenza virus genome consists of eight negative-sense RNA segments, and many infected cells fail to express one more of these RNAs~\citep{Heldt:2015iz,Dou:2017cp} or their encoded proteins~\citep{Brooke:2013kb}.
+In addition, the activation of innate-immune responses is inherently stochastic~\citep{Shalek:2013ej,Shalek:2014ey,bhushal2017cell}, and only some influenza-infected cells express anti-viral interferon genes~\citep{PerezCidoncha:2014jr,Killip:2017ef}.
+However, the extent of cell-to-cell variation in these and other host and viral factors remains unclear, as does the association among them in individual infected cells.
 
-Influenza, a segmented negative sense RNA virus, places a significant infectious burden on the global population and yet, despite many decades of study, there is still significant conjecture regarding those features of viral populations that drive observed phenotypes.
-Cells infected with this virus exhibit a wide degree of heterogeneity, including a number of semi-infectious events wherein the full complement of viral gene products is absent~\citep{Brooke:2013kb, Heldt:2015iz,Dou:2017cp}.
-This has broadly been observed to impact rates of recombination, however its contribution to other viral behaviors remains unclear~\citep{Fonville:2015cg}. 
-Influenza-infected cells are also observed to exhibit a wide-breadth of productivity -- exhibiting a 3-log range in infectious progeny even in high-MOI infections~\citep{Heldt:2015iz}. 
-This appears to be a general trend of many RNA viral infections, from phage to polio, and the features underlying these observations appear multitudinous~\citep{DELBRUCK:1945wo, Schulte:2014br}. 
-
-We now hope to apply new single-cell transcriptomic technologies to the study of influenza replication in a tissue culture model of infection.
-Early single-cell transcriptomic approaches were laborious -- requiring the generation of sequencing libraries on individual cells~\citep{Tang:2009kj,ld:2012gj}.
-Breakthroughs in microfluidics helped to automate this process, but retained strictly parallel processing of sequencing libraries.
-More recent technologies have introduced more complex means of barcoding and partitioning cells, allowing for the generation of libraries consisting of thousands of cells with ?single pot? downstream processing.
-These include the use of reverse-phase emulsions, gravity capture, and even \emph{in situ} reverse transcription after cellular partitioning~\citep{JunSSi,Gierahn:2017bc,Klein:2015ki,Macosko:2015ht}. 
-We hope to leverage these technological advances in the study of influenza, using transcriptomic analysis to understand the phenotypic heterogeneity that abounds during infection with this virus. 
-
-
-
- 
+Here we use single-cell mRNA sequencing to quantify the levels of all cellular and viral mRNAs in cells infected with influenza virus at low MOI.
+We find extremely large variation in the amount of viral mRNA expressed in individual cells.
+Both co-infection and activation of innate-immune pathways are rare in our low-MOI infections, and do not appear to be the major drivers of cell-to-cell heterogeneity in viral transcriptional load.
+Individual infected cells often fail to express specific viral genes, and such gene absence explains some but certainly not all of the cell-to-cell heterogeneity.
+A variety of cellular genes, including ones involved in the oxidative-stress response, co-vary with viral transcriptional load.
+Overall, our work demonstrates remarkable heterogeneity in the transcriptional outcome of influenza virus infection among nominally identical cells infected with a relatively pure population of virions under controlled conditions.
 
 \section{Results}
 
@@ -126,7 +116,7 @@ Infected cells were further annotated by whether their viral mRNAs derived from 
 
 We took care to generate stocks of virus that were relatively ``pure'' of defective particles.
 Stocks of viruses typically contain an array of biologically active viral particles, some of which are defective for replication owing to mutations or deletions in essential viral genes~\citep{von1954incomplete,huang1970defective,Brooke:2014ch,Fonville:2015cg,Lauring:2010if,Dimmock:2014dk}.
-These defective particles become prevalent when a virus is grown at high multiplicity of infection (MOI), where complementation permits the growth of otherwise deleterious genotypes.
+These defective particles become prevalent when a virus is grown at high MOI, where complementation permits the growth of otherwise deleterious genotypes.
 To minimize the levels of defective particles, we propagated our viral stocks at low MOI for a relatively brief period of time~\citep{Xue:2016bw}.
 We validated that our stocks exhibited greater purity of infectious particles than a stock propagated at high MOI by verifying that they had a higher ratio of infectious particles to virion RNA (Figure~\ref{fig:viruspopulations}A) and to particles capable of inducing expression of a single viral protein (Figure~\ref{fig:viruspopulations}B).
 In addition, viral stocks with many defective particles are more immunostimulatory~\citep{Tapia:2013kf,Lopez:2014en}.
@@ -202,6 +192,7 @@ Because most cells are not infected, we subsampled the uninfected cells to the n
 Strikingly, the extreme variation in the number of viral transcripts per cell remains even after we apply these rigorous criteria for annotating infected cells (Figure~\ref{fig:viralbarcodes}E). 
 The fraction of viral mRNA per infected cell follows a roughly exponential distribution, with many cells having few viral transcripts and a few cells having many.
 At 6 and 8 hours $<$10\% of infected cells are responsible for over half the viral transcripts, while at 10 hours $\approx$15\% of infected cells produce over half the viral transcripts (Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:cumulfracflu}).
+Notably, co-infected cells do not express dramatically more viral mRNA than other cells (Figure~\ref{fig:viralbarcodes}), suggesting that the initial infectious dose is not the major driver of cell-to-cell variation at least in our low-MOI infections.
 
 \begin{figure}[t!]
 \centerline{\includegraphics[width=0.9\linewidth]{figures/p_frac_flu_summary.pdf}}
@@ -321,7 +312,7 @@ Overall, we captured 10 such co-infected cells that had $>$5\% of their mRNA der
 Seven of these 10 cells expressed all eight viral genes.
 Remarkably, the majority (4 of 7) of these cells would \emph{not} have expressed all the viral genes in the absence of co-infection, since they have at least one gene exclusively derived from each viral variant.
 For instance, the cell with 11.2\% of its mRNA from virus in the upper right of Figure~\ref{fig:coexpression} expresses M only from the wildtype viral variant, and NP and HA only from the synonymously barcoded variant.
-Our data therefore provide direct single-cell support for the idea that co-infection can rescue missing viral genes~\citep{Brooke:2013kb,Fonville:2015cg,aguilera2017plaques}.
+Our data therefore provide direct single-cell support for the idea that co-infection can rescue missing viral genes~\citep{Brooke:2013kb,brooke2014influenza,Fonville:2015cg,aguilera2017plaques}.
 
 \begin{figure}
 \centerline{\includegraphics[width=0.9\linewidth]{figures/p_coinfection.pdf}}
@@ -350,8 +341,8 @@ As in our single-cell sequencing data, we found that expression of HA and GFP we
 \subsection{Activation of the interferon response is rare in single infected cells.}
 Because our sequencing captured all polyadenylated transcripts, we can examine whether there are prominent changes in the host-cell transcriptome in sub-populations of infected cells.
 Influenza virus infection can trigger innate-immune sensors that lead to the transcriptional induction of type I and III interferons, and subsequently of anti-viral interferon-stimulated genes~\citep{Killip:2015dw,Iwasaki:2014dw,Crotta:2013ef}.
-In bulk cells, this interferon response is one of the most prominent transcriptional signatures of influenza-virus infection~\citep{Geiss:2002a}.
-However, activation of the interferon response is stochastic and bi-modal at the level of single cells~\citep{Chen:2010cr,Shalek:2014ey,Shalek:2013ej,PerezCidoncha:2014jr,bhushal2017cell}.
+%In bulk cells, this interferon response is one of the most prominent transcriptional signatures of influenza-virus infection~\citep{Geiss:2002a}.
+However, activation of the interferon response is stochastic and bi-modal at the level of single cells~\citep{Chen:2010cr,Shalek:2013ej,Shalek:2014ey,PerezCidoncha:2014jr,bhushal2017cell}.
 We therefore hypothesized that we might see two sub-populations of infected cells: one in which the interferon response inhibited viral transcription, and another in which the virus was able to express high levels of its mRNA by evading or blocking this response.
 
 \begin{figure}
@@ -395,7 +386,7 @@ Therefore, most infected cells fail to express interferon even when the virus la
 Our results are in line with other work showing that NS1-deficient influenza virus fails to deterministically induce interferon~\citep{Killip:2017ef,Kallfass:2013kp}.
 Therefore, single cells infected at low MOI with a relatively ``pure'' stock of influenza virus only rarely activate innate-immune responses.
 
-\subsection{Genes involved in the oxidative-stress response co-vary with viral gene expression.}
+\subsection{Some host genes co-vary with viral gene expression.}
 We examined whether any host genes were differentially expressed in cells with more viral mRNA.
 We restricted this analysis to infected cells with all eight viral genes in order to focus on cellular genes that were associated with viral mRNA burden independent of effects due to the presence or absence of particular viral transcripts.
 We identified 45 cellular genes that co-varied with viral gene expression at a false discovery rate of 0.1 (Figure~\ref{fig:cellulargenes}).
@@ -470,6 +461,30 @@ Our results with influenza have provided significant support for earlier analysi
 We stand now at an exciting moment in virology, as technology allows us to observe population-level measurements as emergent phenomena defined by underlying individual stochasticity rather than analyzing viral replication in a strictly deterministic framework.
 It is our hope that this work will serve not only as a window into influenza replication, but as a part of a grander design in re-examining and understanding the fundamental features of viral infection.
 
+MATERIAL FROM INTRODUCTION THAT MIGHT BE USEFUL HERE:
+
+Recent advances in sequencing and visualization technologies have revealed that cell-to-cell heterogeneity is a fundamental feature of biological processes -- impacting events from bacterial entrance into quiescent states to organogenesis in multicellular organisms~\citep{JohnstonJr:2010jn}.
+Due to this heterogeneity, biological pathways generated from bulk population data may not accurately describe the timing, order, or even the identity of events within single cells ~\citep{Trapnell:2014kg}.
+Nearly no other feature of biological life is as defined by heterogeneity as viral infection, wherein events can be highly stochastic due to the incredible combination of both genetic and non-genetic sources of variation.
+
+The contribution of heterogeneity to infectious processes has been well appreciated in the study of viral quasispecies, wherein pathogenesis is best described as an emergent process dependent upon underlying genetic diversity ~\citep{Lauring:2010if}.
+This concept has revolutionized the study of RNA viruses: including polio, hepatitis C, and influenza \citep{Echeverria:2015ew, Kuroda:2010gt}. 
+Direct evidence of the contribution of the quasispecies to pathogenesis has been observed -- for instance mutant strains of polio that produce less variation exhibit significantly less fitness in animal models of infection despite displaying wild-type replication kinetics \emph{in vitro}~\citep{Vignuzzi:2005ju}.
+However, these studies have largely been limited to population-level analyses, which can link standing diversity to complex biological phenomena but are unable to deconvolute precise events in individual infected cells.
+
+Non-genetic variation has also been described to contribute to the host response to infection. 
+Single-cell transcriptomic analyses have revealed incredibly coordinated responses driven by stochasticity, even in tissue culture models using genetically homogeneous cells.
+This heterogeneity in response has been observed both with respect to pure ligands such as lipopolysaccharide, wherein differences must be host-cell intrinsic ~\citep{Shalek:2014ey,Shalek:2013ej,Rand:2012kl}, and with respect to pathogens, wherein differences are likely a complex mixture of host-cell intrinsic and pathogen-specific heterogeneity ~\citep{Avraham:2015cj}. 
+Moreover, stochasticity is observed both in interferon production, which drives the anti-pathogen state, and the expression of the downstream effector molecules of innate immunity.
+As inflammation is a potentially deleterious process, restricting a response to a small subset of cells upon initial recognition of a threat might be particularly advantageous.
+
+
+We now hope to apply new single-cell transcriptomic technologies to the study of influenza replication in a tissue culture model of infection.
+Early single-cell transcriptomic approaches were laborious -- requiring the generation of sequencing libraries on individual cells~\citep{Tang:2009kj,ld:2012gj}.
+Breakthroughs in microfluidics helped to automate this process, but retained strictly parallel processing of sequencing libraries.
+More recent technologies have introduced more complex means of barcoding and partitioning cells, allowing for the generation of libraries consisting of thousands of cells with ?single pot? downstream processing.
+These include the use of reverse-phase emulsions, gravity capture, and even \emph{in situ} reverse transcription after cellular partitioning~\citep{JunSSi,Gierahn:2017bc,Klein:2015ki,Macosko:2015ht}. 
+We hope to leverage these technological advances in the study of influenza, using transcriptomic analysis to understand the phenotypic heterogeneity that abounds during infection with this virus.
 
 \section{Methods and Materials}
 
