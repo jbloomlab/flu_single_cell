@@ -50,7 +50,7 @@
 Viral infection can cause large changes in a cell's transcriptome, but these changes have mostly been studied by bulk measurements on many cells.
 We use single-cell mRNA sequencing to examine the consequences of influenza virus infection in individual cells.
 We find extremely wide cell-to-cell variation in viral gene expression -- viral transcripts compose no more than a few percent of total mRNA in most infected cells, but a few cells derive over half their mRNA from virus.
-Many infected cells fail to express at least one viral gene, and this gene absence explains some of the variation in viral transcriptional load.
+Some infected cells fail to express at least one viral gene, and this gene absence partially explains the variation in viral transcriptional load.
 Activation of innate immune pathways is rare, even in cells that fail to express influenza virus's major interferon antagonist.
 We identify some cellular genes that co-vary in abundance with the amount of viral mRNA.
 Overall, our results highlight the extensive cell-to-cell heterogeneity in the transcriptional consequences of viral infection.
@@ -255,18 +255,23 @@ A549 cells were infected at an MOI of 0.2 as calculated on MDCK-SIAT1 cells in e
 The cyclohexamide prevents translation of new PB2, PB1, PA, and NP protein, and so prevents the formation of the new RNPs needed for secondary transcription.
 The bars show the relative amount of HA and PB2 mRNA in the absence versus the presence of cyclohexamide. Error $\pm$ S.D. n=3. 
 }{\includegraphics[width=0.3\linewidth]{figures/Primary_transcription_measurements/Cyclohexamide.pdf}}
+\figsupp[Like panel (A), but shows samples individually.\label{figsupp:fluburdensamplebreakdown}]{
+The fraction of mRNA in each infected cell derived as a function of the normalized expression of each viral gene, shown for the 10-hour and 8-hour samples individually (the other samples had too few infected cells for this analysis to be useful).
+Points are colored as in Figure~\ref{fig:fluburdenbyflugene}.
+}{\includegraphics[width=0.8\linewidth]{figures/p_flu_burden_flu_gene_by_sample.pdf}}
 \figsupp[Like panel (B) but for the 10-hr sample only.\label{figsupp:10hrfluburdenbyflugene}]{
 The absence of viral RNP genes but \emph{not} non-RNP genes remains significantly associated with reduced viral burden when we examine only the 10-hr sample, which is the single time point with the most data points.
 The difference for NP is no longer statistically significant due to low counts of infected cells lacking NP, but the trend remains.
+We do not show statistical analyses for other samples, as the number of infected cells is too low for meaningful statistical analyses.
 }{\includegraphics[width=\linewidth]{figures/p_10hr_flu_burden_flu_gene_test}}
 \figdata{The numerical data for panel (C) are in \texttt{p\_missing\_genes.csv}.}
 \end{figure}
 
-We examined the total amount of viral mRNA versus the expression of each viral gene (Figure~\ref{fig:fluburdenbyflugene}A). 
+We examined the total amount of viral mRNA versus the expression of each viral gene (Figure~\ref{fig:fluburdenbyflugene}A, Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:fluburdensamplebreakdown}). 
 Cells that lack an RNP gene never derive more than a few percent of their mRNAs from virus, confirming the expected result that all four RNP genes are essential for high levels of viral transcription.
 However, we observe cells that lack each of the other non-RNP genes but still derive $\approx$40\% of their mRNAs from virus, suggesting that none of the other genes are important for high levels of viral transcription.
 These results are statistically supported by Figure~\ref{fig:fluburdenbyflugene}B, which shows that absence of any RNP gene but \emph{not} any other viral gene is associated with reduced amounts of viral mRNA. 
-However, gene absence clearly does not explain all of the variability in viral gene expression, since even cells expressing all viral genes exhibit a very wide distribution in the amount of viral mRNA that they express. 
+However, gene absence clearly does not explain all of the variability in viral gene expression, since even cells expressing all viral genes exhibit a very wide distribution in the amount of viral mRNA that they express(Figure~\ref{fig:fluburdenbyflugene}A, Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:fluburdensamplebreakdown}). 
 The rest of this variability must be due to additional mechanisms such as differences in host-cell state, viral mutations not detectable by our 3'-end sequencing approach, or inherent stochasticity.  
 
 We also quantified the fraction of infected cells that completely failed to express a given gene.
@@ -415,7 +420,7 @@ Overall, the expression of some of the host genes in Figure~\ref{fig:cellulargen
 
 \section{Discussion}
 We have quantified the total transcriptome composition of single cells infected with influenza virus.
-While we certainly observe a general increase in the amount of viral mRNA over time as expected from bulk measurements~\citep{Hatada:1989vz,Shapiro:1987ur}, there is wide variation in viral gene expression among individual infected cells.
+While we observe a general increase in the amount of viral mRNA over time as expected from bulk measurements~\citep{Hatada:1989vz,Shapiro:1987ur}, there is wide variation in viral gene expression among individual infected cells.
 
 One of the most striking forms of heterogeneity is the complete failure of some infected cells to express one or more viral genes, which we estimate occurs in about half the infected cells in our experiments.
 The absence of viral genes in infected cells has been noted previously using more targeted approaches~\citep{Brooke:2013kb,Heldt:2015iz,Dou:2017cp}, and our work provides a holistic view by quantifying the the total viral transcriptional load as a function of the level of each mRNA.
@@ -424,6 +429,8 @@ Interestingly, the \emph{reason} some cells fail to express some viral genes rem
 The prototypical influenza virion packages one copy of each of the eight gene segments~\citep{noda2006architecture,hutchinson2010genome}, but some virions surely package fewer~\citep{brooke2014influenza}.
 However, it is also possible that much of the viral gene absence is due to stochastic loss of viral RNPs after infection but prior to the initiation of viral transcription in the nucleus.
 Further work will be needed to distinguish between these possibilities.
+
+However, the absence of specific viral genes in some cells explains only a fraction of the variation in amount of viral mRNA, which still varies by over ...
 
  -- providing additional insight into the processes that drive influenza replication and its impact on the host at the cellular level.
 The dataset we have generated is largely consistent with prior flow cytometry-based analyses, allowing us to build upon those prior observations with a more holistic view, beginning to understand the consequences of heterogeneity in influenza.
@@ -435,10 +442,6 @@ While infection certainly proceeds over time, with gradual increase in influenza
 While some of these differences are likely due to temporal variation in binding and internalization, it will be interesting in follow-up experiments to determine whether there is an ultimate level of influenza transcript that is invariably reached or whether the variation we observe is indicative of a final setpoint.
 Indeed, our analyses of host transcriptomes suggests that those cells expressing higher levels of influenza are distinguishable, even at 6 hours, from later time points expressing similar influenza burden, giving an indication that there are features above-and-beyond temporal variation driving differences in viral mRNA expression\jdbcomment{If we make this point we need to add the ranked graph to the results and address it} .
 
-However, despite extensive heterogeneity, there seems to be robustness to the infectious lifecycle.
-For example, influenza, regardless of the viral burden, exhibits relatively constrained ratios between the viral transcripts.
-This suggests that the processes that are driving heterogeneity of influenza mRNA abundance act equivalently throughout the viral genome.
-Potential mechanisms include components such as binding and entry kinetics that act on a virion and thus on all segments packaged therein, limitations of transcription rate that are dependent upon the same pool of cellular resources, or potentially even feedback-dependent mechanisms controlling viral transcription. 
 
 Perhaps even more important to influenza's success in the face of stochasticity is the capacity of the virus to control the host innate immune response despite a large number of non-infectious events. 
 While non-infectious events might be considered metabolic 'waste', they would, theoretically, not impact the growth of successful viral infections. 
