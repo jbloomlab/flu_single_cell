@@ -49,20 +49,20 @@
 \maketitle
 
 \begin{abstract}
-Viral infection can cause large changes in a cell's transcriptome, but these changes have mostly been studied by bulk measurements on many cells.
-We use single-cell mRNA sequencing to examine the consequences of influenza virus infection in individual cells.
-We find extremely wide cell-to-cell variation in viral gene expression -- viral transcripts compose no more than a few percent of total mRNA in most infected cells, but a few cells derive over half their mRNA from virus.
-Some infected cells fail to express at least one viral gene, and this gene absence partially explains the variation in viral transcriptional load.
-Activation of innate immune pathways is rare, even in cells that fail to express influenza virus's major interferon antagonist.
-We identify some cellular genes that co-vary in abundance with the amount of viral mRNA.
-Overall, our results highlight extensive cell-to-cell heterogeneity in the transcriptional consequences of viral infection.
+Viral infection can dramatically alter a cell's transcriptome.
+However, these changes have mostly been studied by bulk measurements on many cells.
+Here we use single-cell mRNA sequencing to examine the transcriptional consequences of influenza virus infection.
+We find extremely wide cell-to-cell variation in production of viral gene transcripts -- viral transcripts compose less than a percent of total mRNA in many infected cells, but a few cells derive over half their mRNA from virus.
+Some infected cells fail to express at least one viral gene, and this gene absence partially explains variation in viral transcriptional load.
+Despite variation in total viral load, the relative abundances of viral mRNAs are fairly consistent across infected cells.
+Activation of innate immune pathways is rare, but some cellular genes co-vary in abundance with the amount of viral mRNA.
+Overall, our results highlight the complexity of viral infection at the level of single cells.
 \end{abstract}
-
 
 \section{Introduction}
 Viruses can cause massive and rapid changes in a cell's transcriptome as they churn out viral mRNAs and hijack cellular machinery.
 For instance, cells infected with influenza virus at high multiplicity of infection (MOI) express an \emph{average} of 50,000 to 100,000 viral mRNAs per cell, corresponding to 5 to 25\% of all cellular mRNA~\citep{hatada1989control}.
-In addition, infection can trigger innate-immune sensors that induce the expression of cellular anti-viral genes~\citep{Killip:2015dw,Iwasaki:2014dw,crotta2013type}.
+Infection can also trigger innate-immune sensors that induce the expression of cellular anti-viral genes~\citep{Killip:2015dw,Iwasaki:2014dw,crotta2013type}.
 This anti-viral response is another prominent transcriptional signature of high-MOI influenza virus infection in bulk cells~\citep{Geiss:2002a}.
 
 However, initiation of an actual influenza infection typically involves just a few virions infecting a few cells~\citep{varble2014influenza,mccrone2017evolutionary}. 
@@ -95,7 +95,7 @@ The wild-type and synonymously barcoded viruses transcribe their genes with simi
 The abundance of the viral hemagglutinin (HA) transcript relative to the cellular housekeeping gene L32 was assessed by qPCR in A549 cells infected at an MOI of 0.5 (as determined on MDCK-SIAT1 cells).
 Error bars $\pm$ S.D., n=3.
 {\bf (C)}  
-For the single-cell mRNA sequencing, A549 cells were infected with an equal mixture of mutant and wild-type virus. 
+For the single-cell mRNA sequencing, A549 cells were infected with an equal mixture of wild-type and synonymously barcoded virus. 
 Immediately prior to collection, cells were physically separated into droplets and cDNA libraries were generated containing the indicated barcodes. 
 The libraries were deep sequenced, and the data processed to create a matrix that gives the number of molecules of each transcript observed in each cell.
 Infected cells were further annotated by whether their viral mRNAs derived from wild-type virus, synonymously barcoded virus, or both.
@@ -309,7 +309,7 @@ Total viral mRNA varies by orders of magnitude, but the fraction from any given 
 The relative levels of each viral mRNA in our cells are similar to prior bulk measurements made by Northern blots~\citep{hatada1989control}, which also found an expression hierarchy of M $>$ NS $\gg$ NP $>$ NA $>$ HA $\gg$ PB2 $\sim$ PB1 $\sim$ PA.
 The cell-to-cell consistency in the relative expression of different viral genes is even tighter if we limit the analysis only to cells that express all eight viral genes (Figure~\ref{fig:fluexpr}C,D).
 Therefore, with the exception of complete gene absence, the factors that drive the dramatic cell-to-cell variability in the amount of viral mRNA have roughly similar effects on all viral genes in a given cell.
-This finding is consistent with prior work showing positive correlations among the abundance of several viral genes in individual cells~\citep{Heldt:2015iz}.
+This finding is consistent with prior work showing positive correlations among the abundance of several viral genome segments in individual cells~\citep{Heldt:2015iz}.
 
 \subsection{Co-infection can provide infected cells with the full complement of viral genes.}
 Our sequencing enables us to identify the rare cells that were co-infected with both wild-type and synonymously barcoded viral variants.
@@ -503,7 +503,7 @@ To determine viral titers in terms of HA-expressing units and for the flow cytom
 Cells were harvested by trypsinization, resuspended in phosphate-buffered saline supplemented with 2\% heat-inactivated FBS, and stained with 10 \si{\micro}g/ml of H17-L19, a mouse monoclonal antibody confirmed to bind to WSN HA in a prior study~\citep{Doud:2017bw}.
 After washing in PBS plus 2\% FBS, the cells were stained with a goat anti-mouse IgG antibody conjugated to APC.
 Cells were then washed, fixed in 1\% formaldehyde, and washed further before a final resuspension and analysis. 
-We then determined the fraction of cells that were HA positive and calculated the HA-expressing units assuming a Poisson infection process.
+We then determined the fraction of cells that were HA positive and calculated the HA-expressing units.
 
 For Figure~\ref{fig:coexpression}-Figure~supplement~\ref{figsupp:flowcyto}, after gating to exclude multiplets in FlowJo, data were extracted using the R package flowCore~\citep{LeMeur:2007uo} and analyzed using a custom Python script.
 Guassian kernel density estimates were obtained using the scipy stats package method, guassian\_kde, using automatic bandwidth determination~\citep{vanderWalt:2017dp}.
