@@ -400,7 +400,8 @@ We identified 45 cellular genes that co-varied with viral gene expression at a f
 \caption{\label{fig:cellulargenes}
 Cellular genes that co-vary in expression along with the the amount of influenza virus mRNA in individual cells expressing all eight viral genes.
 Shown are all genes that are differentially expressed at a false discovery rate of 0.1. 
-Genes for which the color goes from blue at left to red at right are expressed at higher levels in cells with more viral mRNA. 
+Genes for which the color goes from blue at left to red at right are expressed at higher levels in cells with more viral mRNA.
+The scale bar indicates the fold-increase or decrease over the mean, truncated at 3-fold on both sides. 
 }
 \figdata{The full results of the differential expression test is in \texttt{p\_sig\_cellular\_genes.csv}.}
 \figdata{The results of a gene-set analysis are in \texttt{p\_sig\_cellular\_genes.csv}.}
@@ -566,6 +567,7 @@ Cellular genes with expression that co-varied with the fraction of viral mRNAs i
 Figure~\ref{fig:cellulargenes} shows all genes that were significantly associated with the fraction of mRNA from virus at a false discovery rate of 0.1.
 
 \section{Acknowledgments}
+We thank Xiaojie Qiu for helpful advice about use of the Monocle software package.
 We thank the Fred Hutch Genomics Core for performing the Illumina deep sequencing.
 
 %\nocite{*} % This command displays all refs in the bib file
