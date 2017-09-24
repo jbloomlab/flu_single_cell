@@ -150,28 +150,26 @@ A549 cells were infected at an MOI of 0.1 as calculated by TCID50 on MDCK-SIAT1 
 }{\includegraphics[width=0.7\linewidth]{figures/Validating_barcode_virus/HA_stain_supplement.png}}\end{figure}
 
 \subsection{Single cells show an extremely wide range of expression of viral mRNA.}
-We infected A549 cells at low MOI with a mixture of the wild-type and synonymously barcoded viruses, and collected cells for sequencing at 6, 8, and 10 hours post-infection, including a replicate of the 8-hour timepoint.
+We infected A549 cells at low MOI with a mixture of the wild-type and synonymously barcoded viruses, and collected cells for sequencing at 6, 8, and 10 hours post-infection, including a replicate a 8-hours.
 We replaced the infection inoculum with fresh media at one-hour post-infection, thereby ensuring that most infection was initiated during a narrow time window.
 The exception was the replicate 8-hour sample, for which we did \emph{not} perform this media change and instead left the cells in the original infection inoculum.
 We recovered between 3,000 and 4,000 cells for each sample (Figure~\ref{fig:cells}A). 
 As expected for a low-MOI infection, most cells expressed little or no viral mRNA (Figure~\ref{fig:cells}B).
 Also as expected, the amount of viral mRNA per cell among infected cells increased over time (Figure~\ref{fig:cells}B).
 But what was most notable was how widely the number of viral mRNA molecules varied among infected cells.
-While the fraction of mRNA derived from virus was $<$0.1\% for most cells, viral mRNA constituted half the transcriptome in a few cells at 8 and 10 hours (Figure~\ref{fig:cells}C).
+While the fraction of mRNA derived from virus was $<$0.1\% for most cells, viral mRNA constituted half the transcriptome in a few cells at 8 and 10 hours (Figure~\ref{fig:cells}B).
 
 \begin{figure}
-\centerline{\includegraphics[width=0.9\linewidth]{figures/p_cell_mRNA_summary.pdf}}
+\centerline{\includegraphics[width=\linewidth]{figures/p_cell_mRNA_summary.pdf}}
 \caption{\label{fig:cells}
-There is a very wide distribution in the number of viral mRNAs detected per cell.
+There is a very wide distribution in the amount of viral mRNA per cell.
 {\bf (A)} 
 Number of cells sequenced for each sample.
 {\bf (B)} 
-Cumulative distribution of the fraction of mRNA derived from influenza virus for each sample.
-For each point on the x-axis, the y-axis indicates the fraction of cells with at least that much of their mRNA from virus.
-{\bf (C)} 
-The number of cellular and viral mRNAs for each cell is plotted as a point.
+The number of cellular and viral mRNAs detected for each cell is plotted as a point.
 The blue lines show the overall distribution of the number of cellular mRNAs per cell.
-Cells outside the red lines were considered outliers (possibly derived from two cells per droplet), and were excluded from subsequent analyses.
+The orange rug plot at the left of each panel shows the distribution of the number of viral mRNAs per cell.
+Cells outside the dotted green lines were considered outliers with suspiciously low or high amounts of cellular mRNA (possibly derived from two cells per droplet), and were excluded from all subsequent analyses.
 }
 \end{figure}
 
@@ -544,7 +542,7 @@ A Jupyter notebook that performs these analyses is in Supplementary~file~\ref{su
 
 The annotated cell-gene matrix was analyzed in R, primarily using the Monocle package (version 2.4.0)~\citep{Qiu:2017dw,Trapnell:2014kg}.
 A Jupyter notebook that performs these analyses is in Supplementary~file~\ref{suppfile:code}.
-For each sample, cell barcodes that had $>$2.5-fold fewer or more UMI counts mapping to cellular transcripts than the sample mean were excluded from downstream analyses (see red vertical lines in Figure~\ref{fig:cells}C).
+For each sample, cell barcodes that had $>$2.5-fold fewer or more UMI counts mapping to cellular transcripts than the sample mean were excluded from downstream analyses (see red vertical lines in Figure~\ref{fig:cells}B).
 
 In order to determine an appropriate cutoff for how many reads a cell needed to contain in order to be classified as infected, we calculated the mean viral barcode purity across all cells that contained at least a given fraction of viral mRNA and had multiple viral reads that could be assigned a barcode (Figure~\ref{fig:viralbarcodes}B,C).
 We then determined the threshold fraction of viral mRNA at which the mean purity no longer increased as a function of the amount of viral mRNA.
