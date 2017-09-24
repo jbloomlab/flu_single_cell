@@ -193,12 +193,13 @@ Bar heights denote the number viral mRNAs on a log\textsubscript{10} scale, bar 
 {\bf (B)}
 Same as (A), but each bar is colored according to the relative fraction of the more common (major) and less common (minor) virus variant.
 At low levels of viral mRNA there is often a roughly equal mix, suggesting contamination with viral mRNAs leaked from lysed cells.
-At higher levels of viral mRNA, cells generally have only one viral variant, suggesting infection initiated by a single particle.
+At higher levels of viral mRNA, cells generally have only one viral variant, suggesting infection initiated by a single virion.
 A few cells are also obviously co-infected with both viral variants.
 {\bf (C)}
-We determined a cutoff for calling ``true'' infections by fitting a curve to the mean barcode purity of all cells with greater than a given fraction of their mRNA derived from virus.
+We determined a cutoff for calling ``true'' infections by finding the amount of viral mRNA per cell at which the viral barcode purity no longer increases with more viral mRNA.
 The purity is the fraction of all viral mRNA in a cell derived from the most abundant viral barcode in that cell.
-We called the cutoff at the point at which purity stops increasing with the fraction of viral mRNA.
+We fit a curve to the mean purity of all cells with more than the indicated amount of viral mRNA, and drew the cutoff at the point where this curve stopped increasing with the fraction of total mRNA derived from virus.
+See the Methods for details.
 {\bf (D)}
 The number of cells identified as infected and co-infected for each sample, as well as the number of cells with any viral read.
 For all subsequent analyses, we subsampled the number of uninfected cells per sample to the greater of 50 or the number of infected cells.
