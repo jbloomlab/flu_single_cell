@@ -151,7 +151,8 @@ A549 cells were infected at an MOI of 0.1 as calculated by TCID50 on MDCK-SIAT1 
 
 \subsection{Single cells show an extremely wide range of expression of viral mRNA.}
 We infected A549 cells at low MOI with a mixture of the wild-type and synonymously barcoded viruses, and collected cells for sequencing at 6, 8, and 10 hours post-infection, including a replicate of the 8-hour timepoint.
-For all samples except for the replicate 8-hour timepoint, we replaced the infection inoculum with fresh media after one hour, thereby ensuring that most infection was initiated during a narrow time window.
+We replaced the infection inoculum with fresh media at one-hour post-infection, thereby ensuring that most infection was initiated during a narrow time window.
+The exception was the replicate 8-hour sample, for which we did \emph{not} perform this media change and instead left the cells in the original infection inoculum.
 We recovered between 3,000 and 4,000 cells for each sample (Figure~\ref{fig:cells}A). 
 As expected for a low-MOI infection, most cells expressed little or no viral mRNA (Figure~\ref{fig:cells}B).
 Also as expected, the amount of viral mRNA per cell among infected cells increased over time (Figure~\ref{fig:cells}B).
@@ -198,6 +199,7 @@ At higher levels of viral mRNA, cells generally have only one viral variant, sug
 A few cells are also obviously co-infected with both viral variants.
 {\bf (C)}
 We determined a cutoff for calling ``true'' infections by fitting a curve to the mean barcode purity of all cells with greater than a given fraction of their mRNA derived from virus.
+The purity is the fraction of all viral mRNA in a cell derived from the most abundant viral barcode in that cell.
 We called the cutoff at the point at which purity stops increasing with the fraction of viral mRNA.
 {\bf (D)}
 The number of cells identified as infected and co-infected for each sample, as well as the number of cells with any viral read.
@@ -208,6 +210,7 @@ Distribution of the fraction of mRNA per cell derived from virus for both infect
 \figsupp[Number of viral barcodes called.\label{figsupp:barcodescalled}]{
 The number of viral barcodes called for each sample and gene segment. 
 Viral transcripts are classified as \emph{syn} if they mapped to a synonymously barcoded influenza transcript, \emph{wt} if they mapped to a wild-type influenza transcript, \emph{invalid} if multiple reads for the same UMI differed on the status of the viral barcode, and as \emph{uncalled} if none of the reads for that UMI overlapped the region of the viral transcript containing the viral barcode.
+For calculations of the number of reads in a cell derived from each viral barcode for each viral gene, the total number of detected molecules of that gene are multiplied by the fraction of those molecules with assignable barcodes that are assigned to that barcode.
 }{\includegraphics[width=\linewidth]{figures/synbarcodes_umistats.jpg}}
 \figsupp[Fraction of total viral mRNA derived from a given fraction of infected cells.\label{figsupp:cumulfracflu}]{
 The total fraction of all viral mRNA among infected cells that is attributable to a given fraction of these cells.
@@ -385,10 +388,9 @@ Notably, interferon and interferon-stimulated genes were also relatively ineffec
 We posited that the paucity of interferon induction might be due to the activity of influenza virus's major interferon antagonist, the NS1 protein~\citep{garcia1998influenza,hale2008multifunctional}.
 We therefore identified cells that expressed substantial amounts of viral mRNA but lacked the NS gene (Figure~\ref{fig:tsne}F).
 Consistent with the idea that NS1 is important for suppressing interferon, the one interferon-positive cell lacked detectable expression of the NS gene.
-But other cells that lacked NS expression still failed to induce a detectable interferon response, despite often having $>$10\% of their mRNA derived from virus (Figure~\ref{fig:tsne}).
-Therefore, most infected cells fail to express interferon even when the virus lacks its major interferon antagonist.
-Our results are in line with other work showing that NS1-deficient influenza virus fails to deterministically induce interferon~\citep{Killip:2017ef,Kallfass:2013kp}.
-Therefore, single cells infected at low MOI with a relatively ``pure'' stock of influenza virus only rarely activate innate-immune responses.
+But other cells that lacked NS expression still failed to induce a detectable interferon response, despite often having a substantial amount of their mRNA derived from virus (Figure~\ref{fig:tsne}).
+This result is in line with other work showing that NS1-deficient influenza virus does not deterministically induce interferon~\citep{Killip:2017ef,Kallfass:2013kp}.
+Therefore, many individual infected cells fail to activate innate-immune responses even when the virus lacks its major interferon antagonist.
 
 \subsection{Some host genes co-vary with viral gene expression.}
 We examined whether any host genes were differentially expressed in cells with more viral mRNA.
@@ -424,25 +426,28 @@ While we observe a general increase in the amount of viral mRNA over time as exp
 
 The most obvious form of heterogeneity is the complete failure of some infected cells to express one or more viral genes, which we estimate occurs in about half the infected cells in our experiments.
 The absence of some viral genes in some infected cells has been noted previously~\citep{Brooke:2013kb,Heldt:2015iz,Dou:2017cp}, and our work provides a holistic view by quantifying the the total viral transcriptional load as a function of the level of each mRNA.
-We find that absence of any of the four genes that encode the viral RNP leads to a dramatic drop in the total amount of viral mRNA, consistent with prior bulk studies~\citep{Vreede:2004ip,eisfeld2015centre}.
+We find that cells lacking expression of any of the four genes that encode the viral RNP express much less total viral mRNA, consistent with prior bulk studies~\citep{Vreede:2004ip,eisfeld2015centre}.
 Interestingly, the \emph{reason} some cells fail to express some viral genes remains unclear.
 The prototypical influenza virion packages one copy of each of the eight gene segments~\citep{noda2006architecture,hutchinson2010genome}, but some virions surely package fewer~\citep{brooke2014influenza}.
 However, it is also possible that much of the viral gene absence is due to stochastic loss of viral RNPs after infection but prior to the initiation of viral transcription in the nucleus.
-%Further work is needed to distinguish between these possibilities.
 
 The absence of viral genes only partially explains the cell-to-cell variation in amount of viral mRNA, which still varies from $<$1\% to $>$50\% among cells expressing all the viral genes.
 It is likely that other viral genetic factors explain some of this remaining heterogeneity.
 The 3'-end sequencing strategy used in our experiments detects the presence of a viral gene, but does not identify whether that gene contains a mutation that might hinder viral replication.
-However, viral mutations are also unlikely to explain all the observed heterogeneity, since the current consensus estimates of influenza virus's mutation rate suggest that the typical virion in a stock such as the one used in our experiment should contain less than one mutation per genome~\citep{parvin1986measurement,suarez1992heterogeneity,suarez1994estimation,nobusawa2006comparison,bloom2014experimentally,pauly2017novel}.
+However, viral mutations are also unlikely to explain all the observed heterogeneity, since current consensus estimates of influenza virus's mutation rate suggest that the typical virion in a stock such as the one used in our experiment should contain less than one mutation per genome~\citep{parvin1986measurement,suarez1992heterogeneity,suarez1994estimation,nobusawa2006comparison,bloom2014experimentally,pauly2017novel}.
 
 The rest of the heterogeneity must be due to some combination of cellular factors and inherent stochasticity.
-We do find some features of the cellular transcriptome that co-vary with the amount of influenza mRNA in individual cells. 
-In particular, the viral load in individual cells is positively associated with the expression of genes involved in response to cellular stresses, including oxidative stress.
-It will be interesting to determine if these cellular transcriptional signatures are simply a consequence of the stress imposed by a large burden of viral replication, or if their stronger activation in some cells is a causative factor that promotes viral transcription.
-However, it would not be surprising if a substantial amount of the cell-to-cell heterogeneity cannot be ascribed to pre-existing features of the viral genome or cellular state. 
-Apparently stochastic heterogeneity is a common feature of many processes that have been examined at a single-cell level~\citep{cai2006stochastic,raj2006stochastic,buganim2012single,shalek2013single,avraham2015pathogen} -- especially when those processes are initiated by very small numbers of initial molecules~\citep{elowitz2002stochastic}, as is the case for low-MOI viral infection.
+Some features of the cellular transcriptome co-vary with the amount of influenza mRNA. 
+In particular, the viral load in individual cells is associated with the expression of genes involved in response to cellular stresses, including oxidative stress.
+It will be interesting to determine if these cellular transcriptional signatures are simply a consequence of the stress imposed by viral replication, or if their stronger activation in some cells is a causative factor that promotes viral transcription.
+However, it also would not be surprising if a substantial amount of the cell-to-cell heterogeneity cannot be ascribed to pre-existing features of either the viral genome or cellular state. 
+Apparently stochastic heterogeneity is a common feature of many processes at a single-cell level~\citep{cai2006stochastic,raj2006stochastic,buganim2012single,shalek2013single,avraham2015pathogen} -- especially when those processes are initiated by very small numbers of initial molecules~\citep{elowitz2002stochastic}, as is the case for low-MOI viral infection.
 
-One factor that rather surprisingly does \emph{not} appreciably contribute to the heterogeneity in our experiments is activation of innate-immune interferon pathways.
+Our data do suggest that the factors driving the heterogeneity in viral transcriptional load exert relatively concordant effects on all viral genes in a given cell.
+Specifically, despite the extreme heterogeneity in total viral mRNA per cell, the relative levels of the viral mRNAs are reasonably consistent across cells, and generally reflective of classical bulk measurements~\citep{hatada1989control}.
+Therefore, despite the stochasticity inherent in initiating transcription and replication of each gene from a single copy carried by the incoming virion, as long as a gene is not completely lost then the virus possesses mechanisms to control its relative expression~\citep{Shapiro:1987ur,hatada1989control,perez2010influenza,heldt2012modeling,chua2013influenza}.
+
+One factor that surprisingly does \emph{not} appreciably contribute to the heterogeneity in our experiments is activation of innate-immune interferon pathways.
 Only one of the hundreds of virus-infected cells expresses any detectable interferon, despite the fact that a number of cells fail to express the influenza-virus interferon antagonist NS1.
 It is known that interferon activation is stochastic at the level of single cells in response to both synthetic ligands~\citep{shalek2013single,shalek2014single,bhushal2017cell} and actual infection~\citep{Rand:2012kl,PerezCidoncha:2014jr,avraham2015pathogen,Killip:2017ef}.
 But interferon expression is a prominent transcriptional signature of high-MOI influenza virus infection of bulk cells, including in the epithelial cell line and at the time-points used in our experiments~\citep{Geiss:2002a,sutejo2012activation}.
@@ -450,15 +455,10 @@ So it is notable how rarely single cells express interferon.
 Interferon expression would surely be more common at later times or with a viral stock passaged at higher MOI, since paracrine interferon signaling~\citep{crotta2013type} and accumulation of defective viral particles enhance innate-immune detection~\citep{Tapia:2013kf,Lopez:2014en}.
 However, the early events of physiological influenza infection involve just a few virions~\citep{varble2014influenza,mccrone2017evolutionary}, and so it is interesting to speculate whether rare events such as interferon activation during the first few cycles of viral replication could contribute to heterogeneity in the eventual outcome of infection.
 
-Interestingly, despite the extreme heterogeneity in the amount of total viral mRNA per cell, the relative levels of the various viral mRNAs are more consistent across cells.
-If we ignore the fact that some cells completely fail to express specific viral genes, we find that the relative levels of the different viral mRNAs are similar across cells and generally reflective of classical bulk measurements~\citep{hatada1989control}.
-This finding suggests that despite the stochasticity inherent in initiating transcription and replication of each gene from a single copy carried by the incoming virion, the virus possesses mechanisms to control relative gene expression~\citep{Shapiro:1987ur,hatada1989control,perez2010influenza,heldt2012modeling,chua2013influenza}.
-It also suggests that the sources of cell-to-cell heterogeneity in viral transcriptional load must exert relatively concordant effects on all viral genes.
-
 Overall, our work shows the power and importance of charactering cellular infection at the level of single cells~\citep{avraham2015pathogen}.
 The dynamics of viral infection in any given cell is shaped by the genetic composition of the incoming virion, the host-cell state, the bi-modality of innate-immune activation, and the inherent stochasticity of molecular processes initiated by a single copy of each viral gene.
 We have shown how the confluence of these factors leads to extreme cell-to-cell heterogeneity in the transcriptional outcome of influenza virus infection.
-We anticipate that further deconstruction of the contributions of each factor will enable a deeper understanding of how the bulk features of infection emerge from the heterogeneous processes occurring within individual virus-infected cells.
+Further deconstruction of the contributions of each factor will enable a deeper understanding of how the bulk features of infection emerge from the processes occurring within individual virus-infected cells.
 
 \section{Methods and Materials}
 
@@ -537,6 +537,8 @@ The human transcriptome was generated by filtering genome assembly GRCh38 for pr
 The influenza virus transcriptome was generated from the reverse-complement of the wildtype WSN viral RNA sequences as encoded in the reverse-genetics plasmids (Figure~\ref{fig:workflow}-source~data~\ref{figdata:viralsequences}).
 CellRanger calls cells based on the number of observed cell barcodes, and creates a cell-gene matrix.
 We used custom Python code to annotate the cells in this matrix by the number of viral reads that could be assigned to the wildtype and synonymously barcoded virus.
+Only about half of the viral reads overlapped the barcoded regions of the genes (Figure~\ref{fig:workflow}A) and could therefore be assigned to a viral barcode (Figure~\ref{fig:viralbarcodes}-Figures~supplement~\ref{figsupp:barcodescalled}).
+So for calculations of the number of reads in a cell derived from each viral barcode for each viral gene, the total number of detected molecules of that gene are multiplied by the fraction of those molecules with assignable barcodes that are assigned to that barcode.
 This annotated cell-gene matrix is in Supplementary~file~\ref{suppfile:cellgenematrix}.
 A Jupyter notebook that performs these analyses is in Supplementary~file~\ref{suppfile:code}.
 
@@ -567,8 +569,7 @@ Cellular genes with expression that co-varied with the fraction of viral mRNAs i
 Figure~\ref{fig:cellulargenes} shows all genes that were significantly associated with the fraction of mRNA from virus at a false discovery rate of 0.1.
 
 \section{Acknowledgments}
-We thank Xiaojie Qiu for helpful advice about use of the Monocle software package.
-We thank the Fred Hutch Genomics Core for performing the Illumina deep sequencing.
+We thank Xiaojie Qiu for advice about use of the Monocle software package, David Bacsik and Robert Bradley for comments on the manuscript, and the Fred Hutch Genomics Core for performing the Illumina deep sequencing.
 
 %\nocite{*} % This command displays all refs in the bib file
 \bibliography{references}
