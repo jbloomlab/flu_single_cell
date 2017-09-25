@@ -273,8 +273,7 @@ Cells that lack an RNP gene never derive more than a few percent of their mRNAs 
 However, we observe cells that lack each of the other non-RNP genes but still derive $\approx$40\% of their mRNAs from virus, suggesting that none of the other genes are important for high levels of viral transcription.
 These results are statistically supported by Figure~\ref{fig:fluburdenbyflugene}B, which shows that absence of any RNP gene but \emph{not} any other viral gene is associated with reduced amounts of viral mRNA. 
 However, gene absence clearly does not explain all of the variability in viral gene expression, since even cells expressing all viral genes exhibit a very wide distribution in the amount of viral mRNA that they express.
-Specifically, at both 8 and 10 hours, the amount of viral mRNA in individual cells expressing all eight viral genes still ranges from $<$1\% to $>$50\% (Figure~\ref{fig:fluburdenbyflugene}A, Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:fluburdensamplebreakdown}). 
-%The rest of this variability must be due to additional mechanisms such as differences in host-cell state, viral mutations not detectable by our 3'-end sequencing approach, or inherent stochasticity.  
+Specifically, at both 8 and 10 hours, the amount of viral mRNA in individual cells expressing all eight viral genes still ranges from $<$1\% to $>$50\% (Figure~\ref{fig:fluburdenbyflugene}A, Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:fluburdensamplebreakdown}).   
 
 We also quantified the fraction of infected cells that completely failed to express a given gene.
 We limited this analysis to examining the presence / absence of the non-RNP genes in cells expressing all four RNP genes, since we might fail to detect viral transcripts that are actually present at low levels in RNP-deficient cells due to the lower viral burden in these cells.
@@ -290,7 +289,7 @@ Does the relative expression of viral genes exhibit similar cell-to-cell variabi
 To address this question, we focused on cells that derived $>$5\% of their mRNA from virus, since estimates of relative viral gene expression will be less noisy in cells with more viral mRNAs.
 
 \begin{figure}
-\centerline{\includegraphics[width=0.9\linewidth]{figures/p_flu_expr_aledit.pdf}}
+\centerline{\includegraphics[width=0.9\linewidth]{figures/p_flu_expr.pdf}}
 \caption{\label{fig:fluexpr}
 Relative expression of influenza virus genes in highly infected cells (>5\% of total mRNA from virus).
 {\bf (A)} 
@@ -312,6 +311,7 @@ The relative levels of each viral mRNA in our cells are similar to prior bulk me
 The cell-to-cell consistency in the relative expression of different viral genes is even tighter if we limit the analysis only to cells that express all eight viral genes (Figure~\ref{fig:fluexpr}C,D).
 Therefore, with the exception of complete gene absence, the factors that drive the dramatic cell-to-cell variability in the amount of viral mRNA have roughly similar effects on all viral genes in a given cell.
 This finding is consistent with prior work showing positive correlations among the abundance of several viral genome segments in individual cells~\citep{Heldt:2015iz}.
+It is also reminiscent of the observation that total cellular mRNA varies among single cells as a function of factors such as volume that affect all mRNA species concordantly~\citep{padovan2015single}.
 
 \subsection{Co-infection can provide infected cells with the full complement of viral genes.}
 Our sequencing enables us to identify the rare cells that were co-infected with both wild-type and synonymously barcoded viral variants.
@@ -399,10 +399,11 @@ We identified 45 cellular genes that co-varied with viral gene expression at a f
 \begin{figure}
 \centerline{\includegraphics[width=0.7\linewidth]{figures/p_cellular_heatmap.pdf}}
 \caption{\label{fig:cellulargenes}
-Cellular genes that co-vary in expression along with the the amount of influenza virus mRNA in individual cells expressing all eight viral genes.
-Shown are all genes that are differentially expressed at a false discovery rate of 0.1. 
+Cellular genes that co-vary in expression with the amount of viral mRNA in cells expressing all eight viral genes.
+The columns are cells, ordered from left to right by the fraction of mRNA derived from virus.
+Each row is a gene that is differentially expressed as a function of the fraction of mRNA derived from virus at a false discovery rate of 0.1. 
 Genes for which the color goes from blue at left to red at right are expressed at higher levels in cells with more viral mRNA.
-The scale bar indicates the fold-increase or decrease over the mean, truncated at 3-fold on both sides. 
+The scale bar indicates the number of standard deviations above or below the mean expression, truncated at 3-fold on both sides. 
 }
 \figdata{The full results of the differential expression test is in \texttt{p\_sig\_cellular\_genes.csv}.}
 \figdata{The results of a gene-set analysis are in \texttt{p\_sig\_cellular\_genes.csv}.}
@@ -424,7 +425,7 @@ We have quantified the total transcriptome composition of single cells infected 
 While we observe a general increase in the amount of viral mRNA over time as expected from bulk measurements~\citep{hatada1989control,Shapiro:1987ur}, there is wide variation in viral gene expression among individual infected cells.
 
 The most obvious form of heterogeneity is the complete failure of some infected cells to express one or more viral genes, which we estimate occurs in about half the infected cells in our experiments.
-The absence of some viral genes in some infected cells has been noted previously~\citep{Brooke:2013kb,Heldt:2015iz,Dou:2017cp}, and our work provides a holistic view by quantifying the the total viral transcriptional load as a function of the level of each mRNA.
+The absence of some viral genes in some infected cells has been noted previously~\citep{Brooke:2013kb,Heldt:2015iz,Dou:2017cp}, and our work provides a holistic view by quantifying the total viral transcriptional load as a function of the level of each mRNA.
 We find that cells lacking expression of any of the four genes that encode the viral RNP express much less total viral mRNA, consistent with prior bulk studies~\citep{Vreede:2004ip,eisfeld2015centre}.
 Interestingly, the \emph{reason} some cells fail to express some viral genes remains unclear.
 The prototypical influenza virion packages one copy of each of the eight gene segments~\citep{noda2006architecture,hutchinson2010genome}, but some virions surely package fewer~\citep{brooke2014influenza}.
@@ -525,7 +526,7 @@ For our replicate 8-hour time point, cells were infected as above except that th
 After harvest, cells were counted using disposable hemocytometers and diluted to equivalent concentrations with an intended capture of 3000 cells/sample following the manufacturer's provided by 10x Genomics for the Chromium Single Cell platform.
 All subsequent steps through library preparation followed the manufacturer's protocol.
 Samples were sequenced on an Illumina HiSeq. 
-The deep sequencing data are available on the Sequence Read Archive under accession \jdbcomment{needs to be added.}
+The deep sequencing data are available on the Sequence Read Archive under accession \jdbcomment{Upload in progress.}
 
 \subsection{Computational analysis of single-cell mRNA sequencing data}
 Jupyter notebooks that perform all of the computational analyses are available in Supplementary~file~\ref{suppfile:code} and at \url{https://github.com/jbloomlab/flu_single_cell} \jdbcomment{This GitHub repository will be made public upon acceptance of the manuscript. If you are a reviewer who needs access, please contact the editor.}.
