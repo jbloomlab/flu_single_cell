@@ -7,3 +7,4 @@
 *.suppinfo
 !figures/*.pdf
 editnotes.pdf
+figures/*.tgz

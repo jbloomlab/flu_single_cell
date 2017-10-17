@@ -52,9 +52,9 @@
 Viral infection can dramatically alter a cell's transcriptome.
 However, these changes have mostly been studied by bulk measurements on many cells.
 Here we use single-cell mRNA sequencing to examine the transcriptional consequences of influenza virus infection.
-We find extremely wide cell-to-cell variation in production of viral gene transcripts -- viral transcripts compose less than a percent of total mRNA in many infected cells, but a few cells derive over half their mRNA from virus.
-Some infected cells fail to express at least one viral gene, and this gene absence partially explains variation in viral transcriptional load.
-Despite variation in total viral load, the relative abundances of viral mRNAs are fairly consistent across infected cells.
+We find extremely wide cell-to-cell variation in the productivity of viral transcription -- viral transcripts comprise less than a percent of total mRNA in many infected cells, but a few cells derive over half their mRNA from virus.
+Some infected cells fail to express at least one viral gene, but this gene absence only partially explains variation in viral transcriptional load.
+Despite variation in viral load, the relative abundances of viral mRNAs are fairly consistent across infected cells.
 Activation of innate immune pathways is rare, but some cellular genes co-vary in abundance with the amount of viral mRNA.
 Overall, our results highlight the complexity of viral infection at the level of single cells.
 \end{abstract}
@@ -302,7 +302,8 @@ Notches extend 1.58x the interquartile range divided by the square root of the n
 {\bf (C)}, {\bf (D)} 
 The same plots, but only including cells for which we observed at least one molecule of each viral gene.
 }
-\figdata{The raw data are in \texttt{p\_flu\_expr.csv}.}
+\figdata{The raw data for all cells are in \texttt{p\_flu\_expr\_all.csv}.}
+\figdata{The raw data for fully infected cells are in \texttt{p\_flu\_expr\_fullyinfected.csv}.}
 \end{figure}
 
 In contrast to the extreme variability in the total viral mRNA per cell, the fraction of this mRNA derived from each gene is much more consistent across cells (Figure~\ref{fig:fluexpr}A).
@@ -406,7 +407,7 @@ Genes for which the color goes from blue at left to red at right are expressed a
 The scale bar indicates the number of standard deviations above or below the mean expression, truncated at 3-fold on both sides. 
 }
 \figdata{The full results of the differential expression test is in \texttt{p\_sig\_cellular\_genes.csv}.}
-\figdata{The results of a gene-set analysis are in \texttt{p\_sig\_cellular\_genes.csv}.}
+\figdata{The results of a gene-set analysis are in \texttt{p\_pathway\_enrichment.tsv}.}
 \figsupp[Many genes that co-vary with viral load are involved in the oxidative stress response. \label{figsupp:ROStable}]{
 Table delineating genes in Figure~\ref{fig:cellulargenes} that are associated with the response to oxidative stress~\citep{Duong:2017ju,Jung:2017jz,Lee:2017ba,Peuchant:2017hj,MacLeod:2016kt,Jiang:2016cf,Gorrini:2013jv,Miura:2013fr,Kim:2009gi,Banning:2005cz,Murray:2003ie,Doyle:1999ts}.
 }{\includegraphics[width=0.7\linewidth]{figures/ROStable.pdf}}
@@ -585,7 +586,9 @@ The ZIP file also includes associated custom scripts.}
 
 \begin{suppfile}
 \caption{\label{suppfile:cellgenematrix}
-The annotated cell-gene matrix in Matrix Market Format.}
+The annotated cell-gene matrix in Matrix Market Format.
+\jdbcomment{This file is too large for the \textit{eLife} submission system. We will communicate with the editors to get it uploaded for a final accepted version, or we will post it on DataDryad. If you are a reviewer and need access, please contact the editor.}
+}
 \end{suppfile}
 
 \end{document}
