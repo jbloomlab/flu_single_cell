@@ -6,3 +6,5 @@ The paper is formatted for *eLife* using the [template provided here](https://ww
 
 The other `LaTex` document contains a summary of key references.
 The source is in [key_refs.tex](key_refs.tex), and the compiled PDF is [key_refs.pdf](key_refs.pdf).
+
+The response to the *eLife* reviews are in [ResponseToReviews.pdf](ResponseToReviews.pdf).
