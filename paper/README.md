@@ -8,3 +8,5 @@ The other `LaTex` document contains a summary of key references.
 The source is in [key_refs.tex](key_refs.tex), and the compiled PDF is [key_refs.pdf](key_refs.pdf).
 
 The response to the *eLife* reviews are in [ResponseToReviews.pdf](ResponseToReviews.pdf).
+
+The LaTex file for original version submitted to *eLife* is [eLife_original_submission.tex](eLife_original_submission.tex).
