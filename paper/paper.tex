@@ -181,7 +181,7 @@ However, most cells are infected by at most one virion, and so the reads from tr
 Figure~\ref{fig:viralbarcodes}A shows the fraction of viral reads in individual cells from each viral variant, and Figure~\ref{fig:viralbarcodes}B indicates the fraction of viral reads from the most abundant variant in that cell.
 Most cells with large amounts of viral mRNA have viral transcripts exclusively derived from one viral variant -- indicating non-random partitioning as expected from viral infection.
 However, cells with a small amount of viral mRNA often have viral transcripts from both variants, as expected from the random partitioning associated with simple mRNA leakage.
-Finally, a few cells with large amounts of viral mRNA have viral transcripts from both variants, reflecting co-infection.
+Finally, a few cells with large amounts of viral mRNA have viral transcripts from both variants, likely reflecting co-infection.
 
 \begin{figure}[t!]
 \centerline{\includegraphics[width=0.9\linewidth]{figures/p_frac_flu_summary.pdf}}
@@ -242,7 +242,7 @@ This secondary transcription is a major source of viral mRNAs, as evidenced by t
 \caption{\label{fig:fluburdenbyflugene}
 The absence of viral genes explains some of the variability in the amount of viral mRNA per cell.
 {\bf (A)} 
-Fraction of mRNA in each infected cell derived from virus as a function of the normalized expression of each viral gene in that cell, taken over all time points.
+The normalized expression of each viral gene as a function of the total fraction of mRNA in each infected cell derived from virus, taken over all time points.
 Cells with high viral burden always express all RNP genes, but some cells with high viral burden lack each of the other genes.
 {\bf (B)}
 Box and whisker plots showing the per-cell viral burden among cells with $>$0.5\% of their mRNA from virus, binned by whether or not the cells express each gene.
@@ -312,7 +312,6 @@ The relative levels of each viral mRNA in our cells are similar to prior bulk me
 The cell-to-cell consistency in the relative expression of different viral genes is even tighter if we limit the analysis only to cells that express all eight viral genes (Figure~\ref{fig:fluexpr}C,D).
 Therefore, with the exception of complete gene absence, the factors that drive the dramatic cell-to-cell variability in the amount of viral mRNA have roughly similar effects on all viral genes in a given cell.
 This finding is consistent with prior work showing positive correlations among the abundance of several viral genome segments in individual cells~\citep{Heldt:2015iz}.
-It is also reminiscent of the observation that total cellular mRNA varies among single cells as a function of factors such as volume that affect all mRNA species concordantly~\citep{padovan2015single}.
 
 \subsection{Co-infection can provide infected cells with the full complement of viral genes.}
 Our sequencing enables us to identify the rare cells that were co-infected with both wild-type and synonymously barcoded viral variants.
@@ -456,7 +455,7 @@ So it is notable how rarely single cells express interferon.
 Interferon expression would surely be more common at later times or with a viral stock passaged at higher MOI, since paracrine interferon signaling~\citep{crotta2013type} and accumulation of defective viral particles enhance innate-immune detection~\citep{Tapia:2013kf,Lopez:2014en}.
 However, the early events of physiological influenza infection involve just a few virions~\citep{varble2014influenza,mccrone2017evolutionary}, and so it is interesting to speculate whether rare events such as interferon activation during the first few cycles of viral replication could contribute to heterogeneity in the eventual outcome of infection.
 
-Overall, our work shows the power and importance of charactering cellular infection at the level of single cells~\citep{avraham2015pathogen}.
+Overall, our work shows the power and importance of characterizing cellular infection at the level of single cells~\citep{avraham2015pathogen}.
 The dynamics of viral infection in any given cell is shaped by the genetic composition of the incoming virion, the host-cell state, the bi-modality of innate-immune activation, and the inherent stochasticity of molecular processes initiated by a single copy of each viral gene.
 We have shown how the confluence of these factors leads to extreme cell-to-cell heterogeneity in the transcriptional outcome of influenza virus infection.
 Further deconstruction of the contributions of each factor will enable a deeper understanding of how the bulk features of infection emerge from the processes occurring within individual virus-infected cells.
