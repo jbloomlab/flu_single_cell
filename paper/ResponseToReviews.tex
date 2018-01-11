@@ -109,8 +109,20 @@ We have the oxidative stress thing to add as a figure supplement.
 
 4. All analysis of viral gene expression seems to be at the segment level. How do different transcripts expressed from the same gene segment compare (i.e. NS1 and NEP)? 
 
-{\color{red}
-We have to explain that we can't reliably distinguish NEP/NS1 and M1/M2 for technical reasons that also affect essentially all other single-cell RNAseq.
+{\color{black}
+This is an important point that we failed to adequately discuss in the original manuscript.
+As the reviews note, two of the influenza transcripts (M1 / M2  and NS1 / NS2) are generated from alternative splicing of gene segments.
+However, each pair of these transcripts share the same 3' end.
+Most current single-cell mRNA sequencing strategies, including the 10X platform that we use, can only sequence the 3' end of the transcript.
+The reason is that the cell barcode is appended to this end, and so Illumina sequencing can only extend to regions proximal to the 3' end if they are still to capture the barcode (as is required for single-cell mRNA sequencing).
+Therefore, these techniques cannot accurately identify alternative splicing -- this is simply an inherent limitation of the current techniques.
+We now clearly explain this fact in the following added text:
+\begin{quote}
+\textsl{
+Note that influenza virus expresses ten major gene transcripts from its eight gene segments, as the M and NS segments are alternatively spliced to produce the M1 / M2 and NS1 / NEP transcript, respectively (Dubois et al, 2014).
+However, an inherent limitation of current established single-cell mRNA sequencing techniques is that they only sequence the 3' end of the transcript (Zheng et al., 2017; Macosko et al., 2015; Klein et al., 2015; Cao et al, 2017).
+Since the alternative spliceoforms M1 / M2 and NS1 / NEP share the same 3' ends, we cannot distinguish them and therefore will refer simply to the combined counts of transcripts from each of these alternatively spliced segments as the M and NS genes.}
+\end{quote}
 }
 
 5. The determination of the minimum required influenza fraction (Figure 4) is based on sound logic; however, we are concerned that the observed results do not fully align with this model. Specifically, while the 10hr experiment looks reasonable, the distributions of wildtype/synonymous mixed cells in other experiments do not appear to show the same trend (most notable for 6hr and 8hr samples, where almost no mixed cells are observed at low fractions). In that regard, using the 10hr dataset to estimate thresholds for all of the other samples does not seem appropriate. 

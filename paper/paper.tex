@@ -268,8 +268,12 @@ We do not show statistical analyses for other samples, as the number of infected
 \figdata{The numerical data for panel (C) are in \texttt{p\_missing\_genes.csv}.}
 \end{figure}
 
-We examined the total amount of viral mRNA versus the expression of each viral gene (Figure~\ref{fig:fluburdenbyflugene}A, Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:fluburdensamplebreakdown}). 
-Cells that lack an RNP gene never derive more than a few percent of their mRNAs from virus, confirming the expected result that all four RNP genes are essential for high levels of viral transcription.
+We examined the total amount of viral mRNA versus the expression of the genes from each viral segment (Figure~\ref{fig:fluburdenbyflugene}A, Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:fluburdensamplebreakdown}). 
+Note that influenza virus expresses ten major gene transcripts from its eight gene segments, as the M and NS segments are alternatively spliced to produce the M1 / M2 and NS1 / NEP transcript, respectively~\citep{dubois2014influenza}.
+However, an inherent limitation of current established single-cell mRNA sequencing techniques is that they only sequence the 3' end of the transcript~\citep{zheng2017massively,macosko2015highly,Klein:2015ki,cao2017comprehensive}.
+Since the alternative spliceoforms M1 / M2 and NS1 / NEP share the same 3' ends, we cannot distinguish them and therefore will refer simply to the combined counts of transcripts from each of these alternatively spliced segments as the M and NS genes.
+
+Cells that lack an RNP gene never derive more than a few percent of their mRNAs from virus, confirming the expected result that all four RNP genes are essential for high levels of viral transcription (Figure~\ref{fig:fluburdenbyflugene}A, Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:fluburdensamplebreakdown}).
 However, we observe cells that lack each of the other non-RNP genes but still derive $\approx$40\% of their mRNAs from virus, suggesting that none of the other genes are important for high levels of viral transcription.
 These results are statistically supported by Figure~\ref{fig:fluburdenbyflugene}B, which shows that absence of any RNP gene but \emph{not} any other viral gene is associated with reduced amounts of viral mRNA. 
 However, gene absence clearly does not explain all of the variability in viral gene expression, since even cells expressing all viral genes exhibit a very wide distribution in the amount of viral mRNA that they express.
