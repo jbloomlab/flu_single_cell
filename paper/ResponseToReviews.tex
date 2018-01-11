@@ -141,8 +141,16 @@ Gently explain why this is not relevant for the point we're trying to make.
 
 - Fig. 3B: While I appreciate the density of information presented by this figure, the authors' main point concerning heterogeneity in the viral proportion of total mRNA reads might be made more clearly by simply plotting the relative proportion of mRNAs that are viral per cell. 
 
-{\color{red}
-We can add suggested plot if it isn't already there, it might already be 4E.
+{\color{black}
+The reviewer points out that Figure 3B is a complicated way to show the heterogeneity in total mRNA.
+In response to this comment, we have also added a more straightforward presentation in Figure 3 - Figure supplement 1, which shows the distribution of the viral proportion as a cumulative fraction plot.
+This new plot should address the reviewer's point.
+
+Incidentally, the most obvious way to plot these data would initially simply seem to be a histogram or kernel density plot with fraction of mRNA from virus on the x-axis, and proportion of cells on the y-axis.
+However, such a plot turns out to be visually un-interpretable, because so much of the density is at zero (un-infected cells) that it is impossible to see any information for other parts of the plot for any reasonable y-axis scaling. 
+This problem can be remedied by \emph{only} showing infected cells (getting rid of the huge bump in density at zero due to un-infected cells) -- but that can only be done after we have introduced a criterion to define which cells are infected, which doesn't happen until later in the text (and we want to show all the data before this censoring).
+Therefore, we also plot a more straightforward histogram display in Figure 4E for only the infected cells after censoring un-infected cells.
+We believe the combination of Figure 3B, the new Figure 3 - Figure - supplement 1, and Figure 4E effectively capture all the effects given these complexities of visual display for data distributed in such an asymmetric way.
 }
 
 - Line 110: Should say "likely reflecting co-infection" 

@@ -147,15 +147,16 @@ A549 cells were infected at an MOI of 0.1 as calculated by TCID50 on MDCK-SIAT1 
 {\bf (B)} Cells infected with the wild-type virus stock used in our experiments.
 {\bf (C)} Cells infected with synonymously barcoded virus stock used in our experiments.
 {\bf (D)} Cells infected with a stock of wild-type virus propagated at a high MOI, and therefore enriched in defective particles.
-}{\includegraphics[width=0.7\linewidth]{figures/Validating_barcode_virus/HA_stain_supplement.png}}\end{figure}
+}{\includegraphics[width=0.7\linewidth]{figures/Validating_barcode_virus/HA_stain_supplement.png}}
+\end{figure}
 
 \subsection{Single cells show an extremely wide range of expression of viral mRNA.}
 We infected A549 cells at low MOI with a mixture of the wild-type and synonymously barcoded viruses, and collected cells for sequencing at 6, 8, and 10 hours post-infection, including a replicate a 8-hours.
 We replaced the infection inoculum with fresh media at one-hour post-infection, thereby ensuring that most infection was initiated during a narrow time window.
 The exception was the replicate 8-hour sample, for which we did \emph{not} perform this media change and instead left the cells in the original infection inoculum.
 We recovered between 3,000 and 4,000 cells for each sample (Figure~\ref{fig:cells}A). 
-As expected for a low-MOI infection, most cells expressed little or no viral mRNA (Figure~\ref{fig:cells}B).
-Also as expected, the amount of viral mRNA per cell among infected cells increased over time (Figure~\ref{fig:cells}B).
+As expected for a low-MOI infection, most cells expressed little or no viral mRNA (Figure~\ref{fig:cells}B and Figure~\ref{fig:cells}-Figure~supplement~\ref{figsupp:viral_mRNA_cumulfrac}).
+Also as expected, the amount of viral mRNA per cell among infected cells increased over time (Figure~\ref{fig:cells}B and Figure~\ref{fig:cells}-Figure~supplement~\ref{figsupp:viral_mRNA_cumulfrac}).
 But what was most notable was how widely the number of viral mRNA molecules varied among infected cells.
 While the fraction of mRNA derived from virus was $<$0.1\% for most cells, viral mRNA constituted half the transcriptome in a few cells at 8 and 10 hours (Figure~\ref{fig:cells}B).
 
@@ -170,7 +171,11 @@ The number of cellular and viral mRNAs detected for each cell is plotted as a po
 The blue lines show the overall distribution of the number of cellular mRNAs per cell.
 The orange rug plot at the left of each panel shows the distribution of the number of viral mRNAs per cell.
 Cells outside the dotted green lines were considered outliers with suspiciously low or high amounts of cellular mRNA (possibly derived from two cells per droplet), and were excluded from all subsequent analyses.
+Figure~\ref{fig:cells}-Figure~supplement~\ref{figsupp:viral_mRNA_cumulfrac} shows the exact distributions of the fraction of viral mRNA per cell.
 }
+\figsupp[Cumulative fraction plot of proportion of total mRNA from virus. \label{figsupp:viral_mRNA_cumulfrac}]{
+For each sample, this plot shows the fraction of all cells that derive at least the indication fraction of their mRNA from influenza virus.
+}{\includegraphics[width=0.5\linewidth]{figures/p_mRNA_per_cell_cumul.pdf}}
 \end{figure}
 
 A complicating factor is that uninfected cells could have small amounts of viral mRNA due to leakage of transcripts from lysed cells.
