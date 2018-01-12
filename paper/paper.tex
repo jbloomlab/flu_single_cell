@@ -223,11 +223,11 @@ For instance, the plot for the 8-hour sample shows that roughly 50\% of all vira
 
 \figsupp[Flow cytometry analysis of viral protein production of cells contingent on infectious dose or coinfection state. \label{figsupp:flowdose}]
 {
-(Top) Expression of a viral proteins in cells infected at high (MOI 5 as calculated by TCID50 on MDCK-SIAT1 cells) or low (MOI 0.1) initial infectious dose.
-Cells were concurrently stained for HA and NS1 10 hours post infection.
+(Top) Expression of viral proteins in cells infected at high (MOI 5 as calculated by TCID50 on MDCK-SIAT1 cells) or low (MOI 0.1) initial infectious dose.
+Cells were concurrently stained for HA and NS1 proteins 10 hours post infection.
 HA staining was analyzed in cells positive for NS1 (left), and NS1 staining was analyzed in cells positive for HA (right).
-While a higher dose leads to more cells expressing high amounts of viral protein, it does not substantially increase the amount of viral protein in either the low-expressing or high-expressing cells. 
-Therefore, higher viral dose does not lead to a large continuous increase in viral protein production among all cells -- rather, it mostly changes the distribution of where cells fall in the highly heterogeneous distribution of viral protein production.
+While a higher dose leads to more cells expressing high amounts of viral protein, it does not greatly increase the amount of viral protein in either the low-expressing or high-expressing cells. 
+Therefore, higher viral dose does not lead to a large continuous increase in viral protein production among all cells -- rather, it mostly changes the proportions of cells that fall in different parts of the highly heterogeneous distribution.
 (Bottom) Cells were co-infected with a mix of wild-type virus and virus in which the HA gene was replaced by GFP flanked by the terminal regions of the HA gene segment. 
 At 10 hours post-infection, cells were stained for NS1 and HA expression and analyzed by flow cytometry.
 Cells could be annotated as infected by one or more infectious particles (wild-type or pseudovirus alone) or at least two infectious particles (coinfection).
@@ -239,14 +239,18 @@ Replicates shown.
 We determined the threshold amount of viral mRNA per cell at which the barcode partitioning clearly resulted from infection rather than leakage (Figure~\ref{fig:viralbarcodes}C), and used this threshold to annotate cells that we were confident were truly infected.
 We also annotated as co-infected cells above this threshold that had mRNA from both viral variants.
 Figure~\ref{fig:viralbarcodes}D shows the number of cells annotated as infected and co-infected for each sample -- these cells are just a small fraction of the number of cells with any viral read.
-These annotation thresholds are conservative, and will miss some true low-level infections, as well as any co-infections with the same viral variant.
-However, it is important that the analyses below are restricted to cells that are truly infected with virus, so we accepted the loss of some low-level infections in order to avoid false positives.
+These annotation thresholds are conservative, and may miss some true low-level infections.
+However, it is important that the analyses below are restricted to cells that are truly infected with virus, so we accepted the possible loss of some low-level infections in order to avoid false positives.
+In addition, the synonymous viral barcodes only identify co-infections by viruses with different barcodes -- since the barcodes are at roughly equal proportion, we expect to miss about half of the co-infections.
+Since we annotate about $\sim$10\% of the infected cells as co-infected by viruses with different barcodes (Figure~\ref{fig:viralbarcodes}D), we expect another $\sim$10\% of the infected cells to also be co-infected but not annotated as so by our approach.
 Because most cells are not infected, we subsampled the uninfected cells to the numbers shown in Figure~\ref{fig:viralbarcodes}D to balance the proportions of infected and uninfected cells for all subsequent analyses.
 
 Strikingly, the extreme variation in the number of viral transcripts per cell remains even after we apply these rigorous criteria for annotating infected cells (Figure~\ref{fig:viralbarcodes}E). 
 The fraction of viral mRNA per infected cell follows a roughly exponential distribution, with many cells having few viral transcripts and a few cells having many.
 At 6 and 8 hours $<$10\% of infected cells are responsible for over half the viral transcripts, while at 10 hours $\approx$15\% of infected cells produce over half the viral transcripts (Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:cumulfracflu}).
-Notably, co-infected cells do not express dramatically more viral mRNA than other cells (Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:flowdose}), suggesting that the initial infectious dose is not the major driver of cell-to-cell variation in our low-MOI infections.
+Notably, Figure~\ref{fig:viralbarcodes}E shows that there are co-infected cells with both low and high amounts of viral mRNA, suggesting that the initial infectious dose does not drive a simple continuous increase in viral transcript production.
+In support of this view, we used flow cytometry to quantify the levels of individual viral proteins in cells infected at various MOIs or for which we could delineate co-infection status (Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:flowdose}).
+This analysis shows that sub-populations of cells that express similarly low and high levels of viral proteins persist across a wide range of infectious doses, although co-infection can influence the relative proportion of infected cells that fall into these sub-populations (Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:flowdose}).
 
 \subsection{Absence of viral genes partially explains cell-to-cell variability in viral load.}
 The influenza genome is segmented, and cells can fail to express a viral mRNA if the encoding gene segment is not packaged in the infecting virion or fails to initiate transcription after infection.

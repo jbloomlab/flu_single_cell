@@ -31,7 +31,7 @@ We believe that addressing the points below would help ameliorate some of the sh
 
 {\color{black}
 This is a fair summary of our work.
-We agree that our approach is powerful, and thank you for recognizing our efforts to fully describe pitfalls and effectively present the complex datasets.
+Thank you for recognizing the power of the approach and our efforts to fully describe pitfalls and effectively present the complex datasets.
 
 As you note, our approach does not uncover any truly new biological phenomenon, and (as you also note) we honestly describe how our results end up mostly confirming older observations made using more indirect methods.
 However, there is substantial value to explicitly observing these processes in single cells, even if the findings are mostly in line with existing circumstantial evidence from bulk studies or less comprehensive single-cell approaches (e.g., flow cytometry).
@@ -91,10 +91,28 @@ Any such model is probably pretty bogus and oversimplified, so we'd want to do t
 
 2. While the silent tagging method used to address co-infection is clever and appreciated, the issue is not fully settled. The dismissal of co-infection as a factor influencing cell-to-cell variation in lines 127-9 is based on too few cells to draw any conclusions, and thus needs to be tempered. Also, there is likely to be a significant amount of cryptic co-infection with identical barcode viruses (expected to be similar to that of mixed barcodes, ~10\%) that could influence measured heterogeneity. These points should be made in the text. 
 
-{\color{red}
-The text will be revised to ensure that we don't say co-infection is unimportant. We're just saying that low MOI, it doesn't explain everything. 
+{\color{black}
+These are very good points.
+We have added the following text that clearly draws out the fact that our approach will only identify half the co-infections:
+\begin{quote}
+\textsl{
+In addition, the synonymous viral barcodes only identify co-infections by viruses with different barcodes -- since the barcodes are at roughly equal proportion, we expect to miss about half of the co-infections.
+Since we annotate about $\sim$10\% of the infected cells as co-infected by viruses with different barcodes (Figure 4D), we expect another $\sim$10\% of the infected cells to also be co-infected but not annotated as so by our approach.
+}
+\end{quote}
 
-In addition, we will add the new Figure 4 - figure supplement 3 which shows HA or NS1 expression in cells infected at low or high MOI.
+The reviewers are correct that our statement about the role of co-infection in influencing cell-to-cell variation was too strong.
+We have clarified this statement.
+We have also added a figure supplement (Figure 4-Figure supplement 3) which uses an independent method (flow cytometry staining of individual viral proteins) to support the fact that even at high infectious dose both low- and high-producing cells remain, although their relative proportions change.
+This figure supplement also supports our clarified statement that viral mRNA (or protein) production is not a simple continuous function of infectious dose, but is also affected by other sources of heterogeneity.
+The new text reads:
+\begin{quote}
+\textsl{
+Notably, Figure 4E shows that there are co-infected cells with both low and high amounts of viral mRNA, suggesting that the initial infectious dose does not drive a simple continuous increase in viral transcript production.
+In support of this view, we used flow cytometry to quantify the levels of individual viral proteins in cells infected at various MOIs or for which we could delineate co-infection status (Figure 4-Figure supplement 3).
+This analysis shows that sub-populations of cells that express similarly low and high levels of viral proteins persist across a wide range of infectious doses, although co-infection can influence the relative proportion of infected cells that fall into these sub-populations (Figure 4-Figure supplement 3).
+}
+\end{quote}
 }
 
 3. The analysis of host cell transcripts positively or negatively associated with high viral mRNA expression is pretty minimal. Do the host genes identified here match up with the results of previous studies that screened for host pro- and anti-viral factors (reviewed in Watanabe et al. DOI: 10.1016/j.chom.2010.05.008)? Also, targeted gene knockdown or over-expression experiments could help establish the causality underlying these relationships. 
