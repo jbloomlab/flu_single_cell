@@ -190,7 +190,7 @@ However, cells with a small amount of viral mRNA often have viral transcripts fr
 Finally, a few cells with large amounts of viral mRNA have viral transcripts from both variants, likely reflecting co-infection.
 
 \begin{figure}[t!]
-\centerline{\includegraphics[width=0.85\linewidth]{figures/p_frac_flu_summary.pdf}}
+\centerline{\includegraphics[width=0.83\linewidth]{figures/p_frac_flu_summary.pdf}}
 \caption{\label{fig:viralbarcodes}
 Synonymous barcodes on the viral mRNAs distinguish true infections from cells that contain viral mRNAs derived from leakage of lysed cells.
 {\bf (A)}
@@ -212,6 +212,7 @@ The number of cells identified as infected and co-infected for each sample, as w
 For all subsequent analyses, we subsampled the number of uninfected cells per sample to the greater of 50 or the number of infected cells.
 {\bf (E)} 
 Distribution of the fraction of mRNA per cell derived from virus for both infected and co-infected cells.
+Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:cumulfracflu} shows these same data in a cumulative fraction plots and calculates Gini coefficients to quantify the heterogeneity in viral mRNA load.
 }
 \figsupp[Number of viral barcodes called.\label{figsupp:barcodescalled}]{
 The number of viral barcodes called for each sample and gene segment. 
@@ -228,9 +229,11 @@ We called the threshold at this point of maximum purity (dotted green line).
 For the 6hr and 8hr samples there is no indication of contamination from lysis-derived reads, as Figure~\ref{fig:viralbarcodes}B shows no increase in mixed barcodes in low viral mRNA cells.
 Therefore, for these samples we simply set a threshold of requiring at least 2$\times$10$^{-4}$ of the total mRNA to come from virus, which corresponds to $\sim$2 viral mRNAs for the typical cell with $10^4$ total reads (Figure~\ref{fig:cells}B).
 }{\includegraphics[width=\linewidth]{figures/p_purity_threshold.pdf}}
-\figsupp[Fraction of total viral mRNA derived from a given fraction of infected cells.\label{figsupp:cumulfracflu}]{
+\figsupp[Fraction of total viral mRNA from a given fraction of infected cells, and associated Gini coefficients.\label{figsupp:cumulfracflu}]{
 The total fraction of all viral mRNA among infected cells that is attributable to a given fraction of these cells.
-For instance, the plot for the 8-hour sample shows that roughly 50\% of all viral mRNA is derived from 10\% of the infected cells.
+For instance, the plot for the 8hrs sample shows that $\sim$50\% of all viral mRNA is derived from $\sim$8\% of the infected cells.
+The facet titles above each plot also give the Gini coefficient~\citep{gini1921measurement} that calculates the heterogeneity in the distribution of viral mRNA among infected cells.
+Gini coefficients of 0 indicate a perfectly even distribution across cells, and Gini coefficients of 1 indicate a maximally skewed distribution.
 }{\includegraphics[width=\linewidth]{figures/p_cumul_flu.pdf}}
 
 \figsupp[Flow cytometry analysis of viral protein production of cells contingent on infectious dose or coinfection state. \label{figsupp:flowdose}]
@@ -262,6 +265,11 @@ Because most cells are not infected, we subsampled the uninfected cells to the n
 Strikingly, the extreme variation in the number of viral transcripts per cell remains even after we apply these rigorous criteria for annotating infected cells (Figure~\ref{fig:viralbarcodes}E). 
 The fraction of viral mRNA per infected cell follows a roughly exponential distribution, with many cells having few viral transcripts and a few cells having many.
 At 6 and 8 hours $<$10\% of infected cells are responsible for over half the viral transcripts, while at 10 hours $<$15\% of infected cells produce over half the viral transcripts (Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:cumulfracflu}).
+One way to quantify the heterogeneity of a distribution is to calculate the Gini coefficient~\cite{gini1921measurement}, which ranges from 0 for a completely uniform distribution, to 1 for a maximally skewed distribution.
+Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:cumulfracflu} shows the Gini coefficients for the distribution of viral mRNA across infected cells for each sample.
+The Gini coefficients are $\ge$0.64 for all samples.
+As a fun point of comparison, these Gini coefficients indicate that the distribution of viral mRNA across infected cells is more uneven than the distribution of income in the United States~\citep{alvaredo2011note}. 
+
 Notably, Figure~\ref{fig:viralbarcodes}E shows that there are co-infected cells with both low and high amounts of viral mRNA, suggesting that the initial infectious dose does not drive a simple continuous increase in viral transcript production.
 In support of this view, we used flow cytometry to quantify the levels of individual viral proteins in cells infected at various MOIs or for which we could delineate co-infection status (Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:flowdose}).
 This analysis shows that sub-populations of cells that express similarly low and high levels of viral proteins persist across a wide range of infectious doses, although co-infection can influence the relative proportion of infected cells that fall into these sub-populations (Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:flowdose}).
