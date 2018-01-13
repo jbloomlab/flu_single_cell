@@ -590,7 +590,7 @@ Cells were classified as co-infected if both viral variants had an RNA level tha
 
 For the semi-supervised t-SNE clustering, we used Monocle's cell hierarchy function to bin cells into those with no viral mRNA, <2\% viral mRNA, between 2\% and 20\% viral mRNA, and >20\%. 
 Candidate marker genes for t-SNE dimensionality reduction were then determined using the Monocle function markerDiffTable, excluding the effects of sample variation and the number of genes identified in a given cell, using a q-value cutoff of 0.01.
-The specificity of these markers was determined using the function calculateMarkerSpecificity -- the top 40 markers were retained, and used to place populations in a two-dimensional plane based on tSNE dimensionality reduction.
+The specificity of these markers was determined using the function calculateMarkerSpecificity -- the top 50 markers were retained, and used to place populations in a two-dimensional plane based on tSNE dimensionality reduction.
 
 For the analyses of cellular genes that differed in expression as a function of the amount of viral mRNA, we only considered cells that expressed all 8 viral mRNAs to avoid effects driven simply by viral gene absence.
 We also only considered cellular genes in the differential gene analysis, since viral gene expression will tautologically co-vary with the amount of viral mRNA.
