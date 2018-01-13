@@ -189,7 +189,7 @@ However, cells with a small amount of viral mRNA often have viral transcripts fr
 Finally, a few cells with large amounts of viral mRNA have viral transcripts from both variants, likely reflecting co-infection.
 
 \begin{figure}[t!]
-\centerline{\includegraphics[width=0.9\linewidth]{figures/p_frac_flu_summary.pdf}}
+\centerline{\includegraphics[width=0.85\linewidth]{figures/p_frac_flu_summary.pdf}}
 \caption{\label{fig:viralbarcodes}
 Synonymous barcodes on the viral mRNAs distinguish true infections from cells that contain viral mRNAs derived from leakage of lysed cells.
 {\bf (A)}
@@ -201,9 +201,10 @@ At low levels of viral mRNA there is often a roughly equal mix, suggesting conta
 At higher levels of viral mRNA, cells generally have only one viral variant, suggesting infection initiated by a single virion.
 A few cells are also obviously co-infected with both viral variants.
 {\bf (C)}
-We determined a cutoff for calling ``true'' infections by finding the amount of viral mRNA per cell at which the viral barcode purity no longer increases with more viral mRNA.
+We determined a threshold for calling ``true'' infections by finding the amount of viral mRNA per cell at which the viral barcode purity no longer increases with more viral mRNA.
 The purity is the fraction of all viral mRNA in a cell derived from the most abundant viral barcode in that cell.
-We fit a curve to the mean purity of all cells with more than the indicated amount of viral mRNA, and drew the cutoff at the point where this curve stopped increasing with the fraction of total mRNA derived from virus.
+We fit a curve (orange line) to the mean purity of all cells with more than the indicated amount of viral mRNA, and drew the cutoff (dotted green line) at the point where this curve stopped increasing with the fraction of total mRNA derived from virus.
+This plot illustrates the process for the 10-hour sample, see Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:thresholds} for similar plots for other samples.
 See the Methods for details.
 {\bf (D)}
 The number of cells identified as infected and co-infected for each sample, as well as the number of cells with any viral read.
@@ -216,6 +217,16 @@ The number of viral barcodes called for each sample and gene segment.
 Viral transcripts are classified as \emph{syn} if they mapped to a synonymously barcoded influenza transcript, \emph{wt} if they mapped to a wild-type influenza transcript, \emph{invalid} if multiple reads for the same UMI differed on the status of the viral barcode, and as \emph{uncalled} if none of the reads for that UMI overlapped the region of the viral transcript containing the viral barcode.
 For calculations of the number of reads in a cell derived from each viral barcode for each viral gene, the total number of detected molecules of that gene are multiplied by the fraction of those molecules with assignable barcodes that are assigned to that barcode.
 }{\includegraphics[width=\linewidth]{figures/synbarcodes_umistats.jpg}}
+\figsupp[Thresholds for calling infected cells. \label{figsupp:thresholds}]{
+Cell lysis can lead cells to the spurious association of small amounts of extraneous mRNA with individual cells.
+We wanted to avoid classifying as infected cells that had simply acquired such lysis-derived viral mRNA.
+The amount of lysis-derived viral mRNA will vary among samples as a function of both the lysis rate during the cell preparation (which always varies slightly from sample to sample in the 10X procedure) and with the amount of total viral mRNA for that sample (the more viral mRNA, the more there is to be acquired from lysed cells).
+As is shown in Figure~\ref{fig:viralbarcodes}B, the 8hr-2 and 10hr sample clearly have an enrichment of mixed barcodes in cells with small numbers of viral mRNA.
+For each sample, we calculated the mean purity of all cells with at least the indicated amount of viral mRNA, and determined the threshold amount of viral mRNA where purity no longer increased by finding the first maxima in a loess curve fit (orange line).
+We called the threshold at this point of maximum purity (dotted green line).
+For the 6hr and 8hr samples there is no indication of contamination from lysis-derived reads, as Figure~\ref{fig:viralbarcodes}B shows no increase in mixed barcodes in low viral mRNA cells.
+Therefore, for these samples we simply set a threshold of requiring at least 2$\times$10$^{-4}$ of the total mRNA to come from virus, which corresponds to $\sim$2 viral mRNAs for the typical cell with $10^4$ total reads (Figure~\ref{fig:cells}B).
+}{\includegraphics[width=\linewidth]{figures/p_purity_threshold.pdf}}
 \figsupp[Fraction of total viral mRNA derived from a given fraction of infected cells.\label{figsupp:cumulfracflu}]{
 The total fraction of all viral mRNA among infected cells that is attributable to a given fraction of these cells.
 For instance, the plot for the 8-hour sample shows that roughly 50\% of all viral mRNA is derived from 10\% of the infected cells.
@@ -238,7 +249,7 @@ Replicates shown.
 }{\includegraphics[width=\linewidth]{figures/Coinf.jpg}}
 \end{figure}
 
-We determined the threshold amount of viral mRNA per cell at which the barcode partitioning clearly resulted from infection rather than leakage (Figure~\ref{fig:viralbarcodes}C), and used this threshold to annotate cells that we were confident were truly infected.
+We determined the threshold amount of viral mRNA per cell for each sample at which the barcode partitioning clearly resulted from infection rather than leakage (Figure~\ref{fig:viralbarcodes}C and Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:thresholds}), and used these thresholds to annotate cells that we were confident were truly infected.
 We also annotated as co-infected cells above this threshold that had mRNA from both viral variants.
 Figure~\ref{fig:viralbarcodes}D shows the number of cells annotated as infected and co-infected for each sample -- these cells are just a small fraction of the number of cells with any viral read.
 These annotation thresholds are conservative, and may miss some true low-level infections.
@@ -249,7 +260,7 @@ Because most cells are not infected, we subsampled the uninfected cells to the n
 
 Strikingly, the extreme variation in the number of viral transcripts per cell remains even after we apply these rigorous criteria for annotating infected cells (Figure~\ref{fig:viralbarcodes}E). 
 The fraction of viral mRNA per infected cell follows a roughly exponential distribution, with many cells having few viral transcripts and a few cells having many.
-At 6 and 8 hours $<$10\% of infected cells are responsible for over half the viral transcripts, while at 10 hours $\approx$15\% of infected cells produce over half the viral transcripts (Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:cumulfracflu}).
+At 6 and 8 hours $<$10\% of infected cells are responsible for over half the viral transcripts, while at 10 hours $<$15\% of infected cells produce over half the viral transcripts (Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:cumulfracflu}).
 Notably, Figure~\ref{fig:viralbarcodes}E shows that there are co-infected cells with both low and high amounts of viral mRNA, suggesting that the initial infectious dose does not drive a simple continuous increase in viral transcript production.
 In support of this view, we used flow cytometry to quantify the levels of individual viral proteins in cells infected at various MOIs or for which we could delineate co-infection status (Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:flowdose}).
 This analysis shows that sub-populations of cells that express similarly low and high levels of viral proteins persist across a wide range of infectious doses, although co-infection can influence the relative proportion of infected cells that fall into these sub-populations (Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:flowdose}).
@@ -290,7 +301,7 @@ The absence of viral RNP genes but \emph{not} non-RNP genes remains significantl
 The difference for NP is no longer statistically significant due to low counts of infected cells lacking NP, but the trend remains.
 We do not show statistical analyses for other samples, as the number of infected cells is too low.
 }{\includegraphics[width=\linewidth]{figures/p_10hr_flu_burden_flu_gene_test}}
-\figdata{The numerical data for panel (C) are in \texttt{p\_missing\_genes.csv}.}
+\figdata{\label{figdata:fracmissing} The numerical data for panel (C) are in \texttt{p\_missing\_genes.csv}.}
 \end{figure}
 
 We examined the total amount of viral mRNA versus the expression of the genes from each viral segment (Figure~\ref{fig:fluburdenbyflugene}A, Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:fluburdensamplebreakdown}). 
@@ -306,9 +317,9 @@ Specifically, at both 8 and 10 hours, the amount of viral mRNA in individual cel
 
 We also quantified the fraction of infected cells that completely failed to express a given gene.
 We limited this analysis to examining the presence / absence of the non-RNP genes in cells expressing all four RNP genes, since we might fail to detect viral transcripts that are actually present at low levels in RNP-deficient cells due to the lower viral burden in these cells.
-At the 8- and 10-hour time points, between 5\% and 17\% of cells fail to express any one of the four non-RNP genes (Figure~\ref{fig:fluburdenbyflugene}C).
-The absence of a given gene appears to be an independent event, as the probability of observing all four non-RNP genes in a cell is well predicted by simply multiplying the probabilities of observing each gene individually (Figure~\ref{fig:fluburdenbyflugene}C). 
-If we extrapolate the frequencies at which cells lack non-RNP genes to the RNP genes, then we would predict that 40-50\% of infected cells express mRNAs from all eight genes.
+At the 8- and 10-hour time points, between 5\% and 17\% of cells fail to express any one of the four non-RNP genes (Figure~\ref{fig:fluburdenbyflugene}C and Figure~\ref{fig:fluburdenbyflugene}-source~data~\ref{figdata:fracmissing}).
+The absence of a given gene appears to be an independent event, as the probability of observing all four non-RNP genes in a cell is well predicted by simply multiplying the probabilities of observing each gene individually (Figure~\ref{fig:fluburdenbyflugene}C and Figure~\ref{fig:fluburdenbyflugene}-source~data~\ref{figdata:fracmissing}). 
+If we extrapolate the frequencies at which cells lack non-RNP genes to the RNP genes, then we would predict that 35-50\% of infected cells express mRNAs from all eight genes.
 This estimate of the frequency at which infected cells express mRNAs from all eight gene segments is slightly higher than previous estimates of 13\%~\citep{Brooke:2013kb} and 20\%~\citep{Dou:2017cp}.
 At least one difference is that \citet{Brooke:2013kb} stained for proteins whereas we examined the expression of mRNAs -- it is likely that some cells contain mutated viral genes that fail to produce stable protein even when mRNA is expressed.
 	
@@ -318,8 +329,9 @@ Does the relative expression of viral genes exhibit similar cell-to-cell variabi
 To address this question, we focused on cells that derived $>$5\% of their mRNA from virus, since estimates of relative viral gene expression will be less noisy in cells with more viral mRNAs.
 
 \begin{figure}
-\centerline{\includegraphics[width=0.9\linewidth]{figures/p_flu_expr_manualedits.pdf}}
+\centerline{\includegraphics[width=0.9\linewidth]{figures/p_flu_expr.pdf}}
 \caption{\label{fig:fluexpr}
+\jdbcomment{add expression wedges}
 Relative expression of influenza virus genes in highly infected cells (>5\% of total mRNA from virus).
 {\bf (A)} 
 The fraction of viral mRNA from each viral gene for each cell. 
@@ -382,8 +394,9 @@ However, activation of the interferon response is stochastic and bi-modal at the
 We therefore hypothesized that we might see two sub-populations of infected cells: one in which the interferon response inhibited viral transcription, and another in which the virus was able to express high levels of its mRNA by evading or blocking this response.
 
 \begin{figure}
-\centerline{\includegraphics[width=0.9\linewidth]{figures/p_small_tsne_merge_manualarrow.pdf}}
+\centerline{\includegraphics[width=0.9\linewidth]{figures/p_small_tsne_merge.pdf}}
 \caption{\label{fig:tsne}
+\jdbcomment{add arrow}
 A t-SNE plot created by semi-supervised clustering using genes that co-vary with viral infection status.
 Each point is a single cell, and each panel shows an identical layout but colors the cells according to a different property.
 {\bf (A), (B)}
@@ -423,11 +436,12 @@ Therefore, many individual infected cells fail to activate innate-immune respons
 \subsection{Some host genes co-vary with viral gene expression.}
 We examined whether any host genes were differentially expressed in cells with more viral mRNA.
 We restricted this analysis to infected cells with all eight viral genes in order to focus on cellular genes that were associated with viral mRNA burden independent of effects due to the presence or absence of particular viral transcripts.
-We identified 45 cellular genes that co-varied with viral gene expression at a false discovery rate of 0.1 (Figure~\ref{fig:cellulargenes}).
+We identified 43 cellular genes that co-varied with viral gene expression at a false discovery rate of 0.1 (Figure~\ref{fig:cellulargenes}).
 
 \begin{figure}
-\centerline{\includegraphics[width=0.7\linewidth]{figures/p_cellular_heatmap_manualedit.pdf}}
+\centerline{\includegraphics[width=0.7\linewidth]{figures/p_cellular_heatmap.pdf}}
 \caption{\label{fig:cellulargenes}
+\jdbcomment{add gray arrow wedge}
 Cellular genes that co-vary in expression with the amount of viral mRNA in cells expressing all eight viral genes.
 The columns are cells, ordered from left to right by the fraction of mRNA derived from virus.
 Each row is a gene that is differentially expressed as a function of the fraction of mRNA derived from virus at a false discovery rate of 0.1. 
@@ -577,12 +591,14 @@ The annotated cell-gene matrix was analyzed in R, primarily using the Monocle pa
 A Jupyter notebook that performs these analyses is in Supplementary~file~\ref{suppfile:code}.
 For each sample, cell barcodes that had $>$2.5-fold fewer or more UMI counts mapping to cellular transcripts than the sample mean were excluded from downstream analyses (see red vertical lines in Figure~\ref{fig:cells}B).
 
-In order to determine an appropriate cutoff for how many reads a cell needed to contain in order to be classified as infected, we calculated the mean viral barcode purity across all cells that contained at least a given fraction of viral mRNA and had multiple viral reads that could be assigned a barcode (Figure~\ref{fig:viralbarcodes}B,C).
+In order to determine an appropriate cutoff for how many reads a cell needed to contain in order to be classified as infected, we calculated the mean viral barcode purity across all cells that contained at least a given fraction of viral mRNA and had multiple viral reads that could be assigned a barcode (Figure~\ref{fig:viralbarcodes}B,C and Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:thresholds}).
 We then determined the threshold fraction of viral mRNA at which the mean purity no longer increased as a function of the amount of viral mRNA.
 This threshold represents the point at which we have effectively eliminated cells that have low barcode purity simply due to lysis-acquired reads sampled randomly from both viral barcodes.
-The 10-hour sample has the most viral mRNA, and so is expected to have the most lysis-associated influenza reads.
-We therefore determined the threshold using just this sample, and then applied this threshold to all samples.
-The threshold is shown in Figure~\ref{fig:viralbarcodes}C.
+As is apparent from Figure~\ref{fig:viralbarcodes}B, only the 10-hour sample and the 8-hour-2 sample have the excess of mixed barcodes among cells with low amounts of viral mRNA.
+The likely reason is that these samples have more total viral mRNA (and so there is more available mRNA to be acquired from lysed cells); in addition, there is always some experimental variability in the amount of cell lysis during the 10X sequencing process, and these samples may simply have the most.
+So the above threshold procedure is appropriate for those two samples.
+For the other samples, we simply set a minimum threshold of requiring at least a fraction 2$\times$$10^{-4}$ reads to come from viral mRNA as explained in the legend to Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:thresholds}.
+The thresholds for each sample are shown in Figure~\ref{fig:viralbarcodes}C and Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:thresholds}.
 This procedure is expected to be conservative, and may miss some truly infected cells with very low amounts of viral mRNA.
 For subsequent analyses, we retained all infected cells and a subsample of uninfected cells (the greater of 50 or the number of infected cells for that sample).
 The rationale for subsampling the uninfected cell is that the vast majority of cells are uninfected, and we did not want these cells to completely dominate the downstream analyses.
@@ -602,7 +618,6 @@ Figure~\ref{fig:cellulargenes} shows all genes that were significantly associate
 \section{Acknowledgments}
 We thank Xiaojie Qiu for advice about use of the Monocle software package, David Bacsik and Robert Bradley for comments on the manuscript, and the Fred Hutch Genomics Core for performing the Illumina deep sequencing.
 
-%\nocite{*} % This command displays all refs in the bib file
 \bibliography{references}
 
 \clearpage

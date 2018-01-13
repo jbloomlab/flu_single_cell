@@ -103,14 +103,14 @@ Since we annotate about $\sim$10\% of the infected cells as co-infected by virus
 
 The reviewers are correct that our statement about the role of co-infection in influencing cell-to-cell variation was too strong.
 We have clarified this statement.
-We have also added a figure supplement (Figure 4-Figure supplement 3) which uses an independent method (flow cytometry staining of individual viral proteins) to support the fact that even at high infectious dose both low- and high-producing cells remain, although their relative proportions change.
+We have also added a figure supplement (Figure 4-Figure supplement 4) which uses an independent method (flow cytometry staining of individual viral proteins) to support the fact that even at high infectious dose both low- and high-producing cells remain, although their relative proportions change.
 This figure supplement also supports our clarified statement that viral mRNA (or protein) production is not a simple continuous function of infectious dose, but is also affected by other sources of heterogeneity.
 The new text reads:
 \begin{quote}
 \textsl{
 Notably, Figure 4E shows that there are co-infected cells with both low and high amounts of viral mRNA, suggesting that the initial infectious dose does not drive a simple continuous increase in viral transcript production.
-In support of this view, we used flow cytometry to quantify the levels of individual viral proteins in cells infected at various MOIs or for which we could delineate co-infection status (Figure 4-Figure supplement 3).
-This analysis shows that sub-populations of cells that express similarly low and high levels of viral proteins persist across a wide range of infectious doses, although co-infection can influence the relative proportion of infected cells that fall into these sub-populations (Figure 4-Figure supplement 3).
+In support of this view, we used flow cytometry to quantify the levels of individual viral proteins in cells infected at various MOIs or for which we could delineate co-infection status (Figure 4-Figure supplement 4).
+This analysis shows that sub-populations of cells that express similarly low and high levels of viral proteins persist across a wide range of infectious doses, although co-infection can influence the relative proportion of infected cells that fall into these sub-populations (Figure 4-Figure supplement 4).
 }
 \end{quote}
 }
@@ -147,8 +147,14 @@ Since the alternative spliceoforms M1 / M2 and NS1 / NEP share the same 3' ends,
 
 5. The determination of the minimum required influenza fraction (Figure 4) is based on sound logic; however, we are concerned that the observed results do not fully align with this model. Specifically, while the 10hr experiment looks reasonable, the distributions of wildtype/synonymous mixed cells in other experiments do not appear to show the same trend (most notable for 6hr and 8hr samples, where almost no mixed cells are observed at low fractions). In that regard, using the 10hr dataset to estimate thresholds for all of the other samples does not seem appropriate. 
 
-{\color{red}
-Valid point, maybe we should look at sample-specific cutoffs.
+{\color{black}
+This is a good point. 
+We now use the procedure in Figure 4C to call thresholds \emph{separately} for each sample as the reviewers suggest.
+The sample-specific calling is shown in Figure 4-Figure supplement 3.
+These new thresholds lead to a modest increase in the number of cells called as virally infected for the earlier timepoint samples.
+These newly called cells therefore slightly shift the quantitative values in all subsequent analyses, although the changes are very small and all results remain unchanged.
+
+The reason that the earlier timepoints have less mixed barcodes is because these earlier samples have much less total viral mRNA -- and when their is less viral mRNA in total, there is also less available to be acquired from lysed cells.
 }
 
 \section*{MINOR COMMENTS}
@@ -210,7 +216,13 @@ Good point that we'll address already in first comment.}
 
 -Figure 4C: the threshold line appears to be a bit to the right of the global maximum - going through the description, it was not clear why that should be the case. 
 
-{\color{red} Needs to be explained}
+{\color{black} 
+This is a good observation. 
+We were determining the threshold as the maximum of a loess fit to the data. 
+Previously, the loess fitting parameters caused the fit line to overshoot, putting the threshold a bit to the right.
+We have adjusted span parameter in the loess fitting, which fixes the overshoot.
+The revised Figure 4C shows the loess fit in orange as well as the threshold in dotted green -- and the threshold now goes right through the maximum.
+}
 
 -Why was media change skipped in the replicate experiment? 
 
