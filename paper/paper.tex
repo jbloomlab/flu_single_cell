@@ -281,9 +281,11 @@ The absence of viral genes explains some of the variability in the amount of vir
 {\bf (A)} 
 The normalized expression of each viral gene as a function of the total fraction of mRNA in each infected cell derived from virus, taken over all time points.
 Cells with high viral burden always express all RNP genes, but some cells with high viral burden lack each of the other genes.
+Plots for individual samples are in Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:fluburdensamplebreakdown}, and a plot that excludes known coinfected cells is in Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:fluburden_nocoinfection}.
 {\bf (B)}
 Box and whisker plots showing the per-cell viral burden among cells with $>$0.5\% of their mRNA from virus, binned by whether or not the cells express each gene.
 A Wilcoxon signed-rank test was used to test the null hypothesis that absence of each gene does not affect viral burden: **** = $P < 10^{-4}$, *** = $P < 10^{-3}$,  * = $P < 0.05$, ns = not significant.
+The trends are similar if we look only at the 10-hour sample (Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:10hrfluburdenbyflugene}) or exclude known co-infected cells (Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:fluburdenbyflugene_nocoinfection}).
 {\bf (C)}
 The fraction of cells that express each of the four other genes among cells that express all RNP genes, as well as the fraction that express \emph{all} four of the other genes.
 The fraction that express all four genes is well predicted by simply multiplying the frequencies of cells that express each gene individually, indicating that gene absence is approximately independent across these genes.
@@ -294,27 +296,33 @@ The cyclohexamide prevents translation of new PB2, PB1, PA, and NP protein, and 
 The bars show the relative amount of HA and PB2 mRNA in the absence versus the presence of cyclohexamide. Error $\pm$ S.D. n=3. 
 }{\includegraphics[width=0.3\linewidth]{figures/Primary_transcription_measurements/Cyclohexamide.pdf}}
 \figsupp[Like panel (A), but shows samples individually.\label{figsupp:fluburdensamplebreakdown}]{
-The fraction of mRNA in each infected cell derived as a function of the normalized expression of each viral gene, shown for the 10-hour and 8-hour samples individually (the other samples had too few infected cells for this analysis to be useful).
+The normalized expression of each viral gene as a function of the fraction of total mRNA derived from virus, shown for the 10-hour and 8-hour samples individually (the other samples had too few infected cells for this analysis to be useful).
 Points are colored as in Figure~\ref{fig:fluburdenbyflugene}A.
 }{\includegraphics[width=0.8\linewidth]{figures/p_flu_burden_flu_gene_by_sample.pdf}}
+\figsupp[Like panel (A), but excludes coinfected cells with mixed viral barcodes.\label{figsupp:fluburden_nocoinfection}]{
+The normalized expression of each viral gene as a function of the fraction of total mRNA derived from virus, excluding cells that were annotated as coinfected based on the presence of both viral barcodes.
+}{\includegraphics[width=0.8\linewidth]{figures/p_flu_burden_flu_gene_no_coinfect.pdf}}
 \figsupp[Like panel (B) but for the 10-hr sample only.\label{figsupp:10hrfluburdenbyflugene}]{
 The absence of viral RNP genes but \emph{not} non-RNP genes remains significantly associated with reduced viral burden when we examine only the 10-hr sample, which is the single time point with the most data points.
 The difference for NP is no longer statistically significant due to low counts of infected cells lacking NP, but the trend remains.
 We do not show statistical analyses for other samples, as the number of infected cells is too low.
 }{\includegraphics[width=\linewidth]{figures/p_10hr_flu_burden_flu_gene_test}}
+\figsupp[Like panel (B) but excludes coinfected cells with mixed viral barcodes.\label{figsupp:fluburdenbyflugene_nocoinfection}]{
+All findings in Figure~\ref{fig:fluburdenbyflugene}B remain unchanged if we exclude cells called as coinfected based on the presence of mixed viral barcodes.
+}{\includegraphics[width=\linewidth]{figures/p_no_coinfect_flu_burden_flu_gene_test}}
 \figdata{\label{figdata:fracmissing} The numerical data for panel (C) are in \texttt{p\_missing\_genes.csv}.}
 \end{figure}
 
-We examined the total amount of viral mRNA versus the expression of the genes from each viral segment (Figure~\ref{fig:fluburdenbyflugene}A, Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:fluburdensamplebreakdown}). 
+We examined the total amount of viral mRNA versus the expression of the genes from each viral segment (Figure~\ref{fig:fluburdenbyflugene}A, Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:fluburdensamplebreakdown}, Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:fluburden_nocoinfection}). 
 Note that influenza virus expresses ten major gene transcripts from its eight gene segments, as the M and NS segments are alternatively spliced to produce the M1 / M2 and NS1 / NEP transcript, respectively~\citep{dubois2014influenza}.
 However, an inherent limitation of current established single-cell mRNA sequencing techniques is that they only sequence the 3' end of the transcript~\citep{zheng2017massively,macosko2015highly,Klein:2015ki,cao2017comprehensive}.
 Since the alternative spliceoforms M1 / M2 and NS1 / NEP share the same 3' ends, we cannot distinguish them and therefore will refer simply to the combined counts of transcripts from each of these alternatively spliced segments as the M and NS genes.
 
-Cells that lack an RNP gene never derive more than a few percent of their mRNAs from virus, confirming the expected result that all four RNP genes are essential for high levels of viral transcription (Figure~\ref{fig:fluburdenbyflugene}A, Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:fluburdensamplebreakdown}).
+Cells that lack an RNP gene never derive more than a few percent of their mRNAs from virus, confirming the expected result that all four RNP genes are essential for high levels of viral transcription (Figure~\ref{fig:fluburdenbyflugene}A, Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:fluburdensamplebreakdown}, Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:fluburden_nocoinfection}).
 However, we observe cells that lack each of the other non-RNP genes but still derive $\approx$40\% of their mRNAs from virus, suggesting that none of the other genes are important for high levels of viral transcription.
 These results are statistically supported by Figure~\ref{fig:fluburdenbyflugene}B, which shows that absence of any RNP gene but \emph{not} any other viral gene is associated with reduced amounts of viral mRNA. 
 However, gene absence clearly does not explain all of the variability in viral gene expression, since even cells expressing all viral genes exhibit a very wide distribution in the amount of viral mRNA that they express.
-Specifically, at both 8 and 10 hours, the amount of viral mRNA in individual cells expressing all eight viral genes still ranges from $<$1\% to $>$50\% (Figure~\ref{fig:fluburdenbyflugene}A, Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:fluburdensamplebreakdown}).   
+Specifically, at both 8 and 10 hours, the amount of viral mRNA in individual cells expressing all eight viral genes still ranges from $<$1\% to $>$50\% (Figure~\ref{fig:fluburdenbyflugene}A, Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:fluburdensamplebreakdown}, Figure~\ref{fig:fluburdenbyflugene}-Figure~supplement~\ref{figsupp:fluburden_nocoinfection}).   
 
 We also quantified the fraction of infected cells that completely failed to express a given gene.
 We limited this analysis to examining the presence / absence of the non-RNP genes in cells expressing all four RNP genes, since we might fail to detect viral transcripts that are actually present at low levels in RNP-deficient cells due to the lower viral burden in these cells.
