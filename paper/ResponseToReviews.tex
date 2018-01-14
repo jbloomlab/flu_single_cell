@@ -77,15 +77,10 @@ Therefore, variability in the timing of infection is not the dominant cause of t
 
 - Another potential contributor is the cell cycle status of the infected cells. Did the host transcript data shed light on whether cell cycle status influenced viral transcription levels? This is especially important to address given that some of the genes showing association with the viral burden are cell-cycle related. 
 
-{\color{red}
-Cole had some suggestions of how we could do a few analyses that address this:
-
-This is a super tricky thing to do - I have not seen computational methods that I trust described in the literature for detecting genes that co-vary with cell cycle. Aviv has a method that seems reasonable at first blush but I have some concerns with in terms of the details.
-I have had better luck testing for genes that are differentially expressed between post-mitotic/quiescent and those that are actively cycling
-
-What would first do is add up the transcript counts for well known markers of actively proliferating cells (CCNB2 is my favorite, but I you could sum a bunch of cyclins and CDKs) to get a ?proliferation index? for each cell. Then look at the distribution of this - I would expect it to be lognormal for a population of cells that are robustly growing. For cells that are mostly quiescent (e.g. a confluent epithelial plate), I would guess the transcript levels for the cells would be low, maybe with a long tail to the right. Then you would add the proliferation index values as a new column in the pData table in Monocle. Then you can use the index as a variable in the model formula for differentialGeneTest. This will give you genes that positively correlate with the proliferation index.
-The trouble is establishing what values of the index really correspond to actively cycling cells. Ideally, you?d have a bimodal distribution and you?d be able to set some clear threshold, but in practice this doesn?t usually happen. In general, this is pretty tricky to do without built-in controls (e.g. sets of cells that are sorted on DNA content, arrested with some drug, or what have you).
-So I am generally incline to take these sort of analyses with a huge grain of salt.
+{\color{black}
+We have expanded the analysis to specifically look at cell-cycle related genes.
+A gene-set analysis (Figure 9-Figure source data 2) finds that the G2-M cell-cycle checkpoint is associated with viral mRNA, with the expression of genes in this pathway typically expressed at lower levels in cells with more viral mRNA.
+This analysis is now discussed in the second-to-last paragraph of the Results.
 }
 
 - In assessing to what extent lack of RNP expression accounts for the viral mRNA expression variability (page 6, paragraph 2), we think it is important to take into account potential extracellular contamination. Specifically, it would be more convincing if the analysis omitted cells with mixed wildtype/synonymous clones. 
@@ -143,14 +138,19 @@ This analysis shows that sub-populations of cells that express similarly low and
 
 3. The analysis of host cell transcripts positively or negatively associated with high viral mRNA expression is pretty minimal. Do the host genes identified here match up with the results of previous studies that screened for host pro- and anti-viral factors (reviewed in Watanabe et al. DOI: 10.1016/j.chom.2010.05.008)? Also, targeted gene knockdown or over-expression experiments could help establish the causality underlying these relationships. 
 
-{\color{red}
-In response, gently point out that this isn't actually the point.
+{\color{black}
+We have substantially expanded the last section of the Results that focuses on cellular gene expression.
+We call out the gene-set enrichments, which show that genes involved in oxidative stress responses are at higher levels in cells with more viral mRNA.
+The possible pro-viral role of transient oxidative stress has been reported before, and we have performed new experiments (Figure 9-Figure supplement 2) that directly support it is pro-viral, suggesting causality.
 
-It's not that analysis is minimal, it's that there isn't anything.
+We also compare the genes that we find significantly associated with viral mRNA to the 128 genes highlighted by Watanabe et al (2010) as having been found multiple times in genome-wide studies.
+There is no overlap.
+This fact is discussed in the last paragraph of the Results.
+We theorize that this is because most of the cell-to-cell heterogeneity during infection of ``normal'' (e.g., not genetically perturbed) cells is \emph{not} due to changes in expression of the type of large-effect genes that are typically identified in genome-wide screens.
+Rather, our results would seem to suggest that a substantial amount of the heterogeneity is due to viral / stochastic factors (e.g., failure to express certain viral genes), or perhaps more subtle changes in cellular state such as transient oxidative stress.
 
-Then we can somehow work in the Watanabe reference.
-
-We have the oxidative stress thing to add as a figure supplement.
+Importantly, we do \emph{not} believe that the main value of our approach is as a sort of single-cell gene knockdown screen to identify pro- or anti-viral genes.
+Our goal is to figure out the actual extent and sources of cell-to-cell heterogeneity, which may not be due to primarily alterations in the expression level of single host genes with large effects.
 }
 
 4. All analysis of viral gene expression seems to be at the segment level. How do different transcripts expressed from the same gene segment compare (i.e. NS1 and NEP)? 

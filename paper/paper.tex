@@ -424,7 +424,6 @@ As in our single-cell sequencing data, we found that expression of HA and GFP we
 \subsection{Activation of the interferon response is rare in single infected cells.}
 Because our sequencing captured all polyadenylated transcripts, we can examine whether there are prominent changes in the host-cell transcriptome in sub-populations of infected cells.
 Influenza virus infection can trigger innate-immune sensors that lead to the transcriptional induction of type I and III interferons, and subsequently of anti-viral interferon-stimulated genes~\citep{Killip:2015dw,Iwasaki:2014dw,crotta2013type}.
-%In bulk cells, this interferon response is one of the most prominent transcriptional signatures of influenza-virus infection~\citep{Geiss:2002a}.
 However, activation of the interferon response is stochastic and bi-modal at the level of single cells~\citep{Chen:2010cr,shalek2013single,shalek2014single,PerezCidoncha:2014jr,bhushal2017cell,hagai2017gene}.
 We therefore hypothesized that we might see two sub-populations of infected cells: one in which the interferon response inhibited viral transcription, and another in which the virus was able to express high levels of its mRNA by evading or blocking this response.
 
@@ -471,10 +470,10 @@ Therefore, many individual infected cells fail to activate innate-immune respons
 \subsection{Some host genes co-vary with viral gene expression.}
 We examined whether any host genes were differentially expressed in cells with more viral mRNA.
 We restricted this analysis to infected cells with all eight viral genes in order to focus on cellular genes that were associated with viral mRNA burden independent of effects due to the presence or absence of particular viral transcripts.
-We identified 43 cellular genes that co-varied with viral gene expression at a false discovery rate of 0.1 (Figure~\ref{fig:cellulargenes}).
+We identified 43 cellular genes that co-varied with viral mRNA expression at a false discovery rate of 0.1 (Figure~\ref{fig:cellulargenes}, Figure~\ref{fig:cellulargenes}-source~data~\ref{figdata:cellulargenes}).
 
-\begin{figure}
-\centerline{\includegraphics[width=0.7\linewidth]{figures/p_cellular_heatmap.pdf}}
+\begin{figure}[t!]
+\centerline{\includegraphics[width=0.63\linewidth]{figures/p_cellular_heatmap.pdf}}
 \caption{\label{fig:cellulargenes}
 \jdbcomment{add gray arrow wedge}
 Cellular genes that co-vary in expression with the amount of viral mRNA in cells expressing all eight viral genes.
@@ -483,20 +482,39 @@ Each row is a gene that is differentially expressed as a function of the fractio
 Genes for which the color goes from blue at left to red at right are expressed at higher levels in cells with more viral mRNA.
 The scale bar indicates the number of standard deviations above or below the mean expression, truncated at 3-fold on both sides. 
 }
-\figdata{The full results of the differential expression test is in \texttt{p\_sig\_cellular\_genes.csv}.}
-\figdata{The results of a gene-set analysis are in \texttt{p\_pathway\_enrichment.csv}.}
+
+\figdata{The full results of the differential expression test are in \texttt{p\_sig\_cellular\_genes.csv}. \label{figdata:cellulargenes}}
+
+\figdata{A gene-set analysis for pathways associated with the amount of viral mRNA is in \texttt{p\_pathway\_enrichment.csv}. \label{figdata:geneset}}
+
 \figsupp[Many genes that co-vary with viral load are involved in the oxidative stress response. \label{figsupp:ROStable}]{
 Table delineating genes in Figure~\ref{fig:cellulargenes} that are associated with the response to oxidative stress~\citep{Duong:2017ju,Jung:2017jz,Lee:2017ba,Peuchant:2017hj,MacLeod:2016kt,Jiang:2016cf,Gorrini:2013jv,Miura:2013fr,Kim:2009gi,Banning:2005cz,Murray:2003ie,Doyle:1999ts}.
 }{\includegraphics[width=0.7\linewidth]{figures/ROStable.pdf}}
+
+\figsupp[Pre-treating to induce oxidative stress increases the fraction of infected cells expressing detectable viral protein. \label{figsupp:oxidative}]
+{
+\jdbcomment{Alistair, can you add figure and caption showing the increase in the percent of flu positive cells after treatment. It should just be possible to put the methods for this experiment in the figure caption.}
+}
+{\jdbcomment{add figure}}
+
 \end{figure}
 
-Many of the genes with increased expression in cells with more viral mRNA are known or suspected to be regulated by the Nrf2 master regulator in response to oxidative stress.
+A gene-set analysis shows that many cellular genes that are associated with the amount of viral mRNA are involved in the response to reactive oxygen species or hypoxia (Figure~\ref{fig:cellulargenes}-Figure~supplement~\ref{figdata:geneset}). 
+Genes known or suspected to be regulated by the Nrf2 master regulator in response to oxidative stress are often expressed at higher levels in cells with more viral mRNA (Figure~\ref{fig:cellulargenes}).
 These genes produce proteins that are involved in detoxification of reactive oxygen species or resultant products, the management of misfolded proteins, the electron transport chain, or a general stress response (Figure~\ref{fig:cellulargenes}-Figure~supplement~\ref{figsupp:ROStable}). 
 We additionally see reduced expression of the nitric oxide synthase interacting protein (NOSIP). 
 Transient oxidative stress is known to occur during viral infection, and may act in a proviral fashion via MAPK activation driving vRNP export~\citep{Amatore:2014cs}.
 The antioxidant response is thought to be largely antiviral, potentially through inhibition of MAPK activity \citep{Lin:2016ec,Sgarbanti:2014ht}.
-Our data do not reveal whether the expression of genes involved in the response to oxidative stress are a cause or a symptom of higher levels of viral mRNA, and further investigation of this topic is an interesting area for future work.
-%Overall, the expression of some of the host genes in Figure~\ref{fig:cellulargenes}, along with inherent stochasticity and specific mutations to viral genes in individual cells, probably explain most of the variation in viral mRNA levels observed across the infected cells in our dataset.
+To directly test the effect of transient oxidative stress, we compared the fraction of cells that expressed detectable viral protein when infected either with or without pre-treatment to induce oxidative stress.
+Figure~\ref{fig:cellulargenes}-Figure~supplement~\ref{figsupp:oxidative} shows that the cells pre-treated to induce oxidative stress exhibited more frequent detectable expression of viral protein.
+These results, in conjunction with the differential expression test in Figure~\ref{fig:cellulargenes} and the prior work mentioned above, suggest that oxidative stress acts in a proviral fashion. 
+
+The gene-set analysis also found that the amount of viral mRNA was associated with the expression of genes involved in the G2-M cell-cycle checkpoint (Figure~\ref{fig:cellulargenes}-Figure~supplement~\ref{figdata:geneset}).
+The cell-cycle associated genes CCND3, MKI67, UBE2S, and CENPF are all expressed at significantly lower levels in cells with more viral mRNA (Figure~\ref{fig:cellulargenes}).
+However, our data are not sufficient to determine whether the lower expression of these genes is a cause or effect of the reduction in viral mRNA.
+
+Interestingly, none of the cellular genes that are significantly associated with the amount of viral mRNA in our study are among the 128 genes that \citet{watanabe2010cellular} report as having been identified multiple times in genome-wide screens for factors affecting influenza virus replication.
+One possible explanation is that most of the cell-to-cell heterogeneity in our experiments might arise from viral factors, pure stochasticity, or more subtle alterations in host-cell state -- not due to changes in expression of the type of single large-effect genes that are usually identified in genome-wide knockdown / knockout studies.
 
 \section{Discussion}
 We have quantified the total transcriptome composition of single cells infected with influenza virus.
@@ -650,6 +668,7 @@ Additionally, because influenza virus has the capacity to degrade or prevent the
 Finally, we assigned all cells a ceiling fraction of mRNA from virus of 25\% so that a few extremely high-expressing cells did not dominate. 
 Cellular genes with expression that co-varied with the fraction of viral mRNAs in a cell were then determined using the Monocle differentialGeneTest, after removing variance explained by sample to sample variation. 
 Figure~\ref{fig:cellulargenes} shows all genes that were significantly associated with the fraction of mRNA from virus at a false discovery rate of 0.1.
+We performed the gene set analysis using the P -alues from the Monocle differentialGeneTest with \texttt{piano}~\citep{varemo2013enriching} using the hallmark gene set from GSEA v6~\citep{subramanian2005gene} and Fisher's method.
 
 \section{Acknowledgments}
 We thank Xiaojie Qiu for advice about use of the Monocle software package, David Bacsik and Robert Bradley for comments on the manuscript, and the Fred Hutch Genomics Core for performing the Illumina deep sequencing.
