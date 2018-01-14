@@ -49,10 +49,30 @@ As you will see, we have been able to address all of the major questions and sug
 
 - The first is variation in the timing of the early stages of infection. No steps appear to have been taken to synchronize infection, or to limit secondary spread of the virus within the cultures. Could heterogeneity in the timing of binding/entry/fusion/trafficking explain a lot of the variation observed? 
 
-{\color{red}
-Our argument here would be that washed cells in 8-2 essentially do this. Alistair is generating data by flow with heterogeneity with washing +/- synchronization of infection. The thought is this will show that synchronization doesn't matter with respect to HA protein heterogeneity. This would be a new supporting figure.
+{\color{black}
+This is an important point.
+We did not synchronize infection, although for our 8-hour samples, we washed the cells one hour after infection for one sample (8hr) but not the other (8hr-2) in order to help evaluate the importance of infection timing.
+The heterogeneity was similar between these two samples, as demonstrated by the new quantification method (Gini coefficients) suggested by the reviewers in a later comment.
 
-The co-infection barcodes provide good evidence against much secondary spread. We can explain that.
+We have also performed new experiments where we infected cells with synchronized infections by pre-binding virus on ice, washing it away, and then raising the temperature (this is a previously described procedure in the influenza virus literature).
+Analysis of this experiment by flow cytometry staining is shown in the new Figure 4-Figure supplement 4, and shows that these synchronized infections look very similar to ones that are neither synchronized nor washed in terms of viral protein expression.
+
+Finally, the barcoded viruses (Figure 4B) provide strong evidence against secondary infection, since secondary infection would tend to lead to mixed-barcode cells because during secondary infections there would be many of progeny viruses of both barcodes.
+
+In addition to adding Figure 4-Figure supplement 4, we have added the following text related to this point:
+
+\begin{quote}
+\textsl{
+One possible source of heterogeneity in the amount of viral mRNA per cell is variability in the timing of infection.
+If some cells are infected earlier in the experiment than others, then they might have substantially more viral mRNA.
+However, several lines of evidence indicate that this is not the major cause of heterogeneity across cells.
+First, the sample for which the infection inoculum was never removed (8hr-2) only shows slightly more heterogeneity than samples for which the inoculum was washed away after one hour (Figure 4E, Figure 4-Figure~supplement~3), despite the fact that the potential time window for infection is much longer in the former sample.
+Second, in an independent experiment, we performed completely synchronized infections by pre-binding virus to cells on ice and then washing away unbound virus before bringing the cells to 37$^{\circ}$C.
+As shown in Figure 4-Figure~supplement 4, flow cytometry staining found that the heterogeneity in the levels of individual viral proteins was not markedly different for these synchronized infections than in the absence of pre-binding and washing.
+Finally, viral mRNA expression from the secondary spread of virus from infected cells does not appreciably occur during the timeframes of our experiments, since Figure 4B does not show the pervasive presence of mixed barcodes that would occur in this case.
+Therefore, variability in the timing of infection is not the dominant cause of the cell-to-cell heterogeneity in our experiments.
+}
+\end{quote}
 }
 
 - Another potential contributor is the cell cycle status of the infected cells. Did the host transcript data shed light on whether cell cycle status influenced viral transcription levels? This is especially important to address given that some of the genes showing association with the viral burden are cell-cycle related. 
@@ -86,7 +106,7 @@ The results remain essentially unchanged from the ones analyzing the full set of
 {\color{black}
 The idea of quantifying the variability in viral mRNA across infected cells is a good one.
 We have done this using the Gini coefficient.
-The results are in Figure 4--Figure supplement 4, and are referred to in the text related to that figure.
+The results are in Figure 4--Figure supplement 3, and are referred to in the text related to that figure.
 As a fun point of comparison, the Gini coefficients for the variability of viral mRNA across cells ($\ge$0.64 for all samples) exceeds the Gini coefficient for the unevenness of income distribution in the United States.
 }
     
@@ -109,14 +129,14 @@ Since we annotate about $\sim$10\% of the infected cells as co-infected by virus
 
 The reviewers are correct that our statement about the role of co-infection in influencing cell-to-cell variation was too strong.
 We have clarified this statement.
-We have also added a figure supplement (Figure 4-Figure supplement 4) which uses an independent method (flow cytometry staining of individual viral proteins) to support the fact that even at high infectious dose both low- and high-producing cells remain, although their relative proportions change.
+We have also added a figure supplement (Figure 4-Figure supplement 5) which uses an independent method (flow cytometry staining of individual viral proteins) to support the fact that even at high infectious dose both low- and high-producing cells remain, although their relative proportions change.
 This figure supplement also supports our clarified statement that viral mRNA (or protein) production is not a simple continuous function of infectious dose, but is also affected by other sources of heterogeneity.
 The new text reads:
 \begin{quote}
 \textsl{
 Notably, Figure 4E shows that there are co-infected cells with both low and high amounts of viral mRNA, suggesting that the initial infectious dose does not drive a simple continuous increase in viral transcript production.
-In support of this view, we used flow cytometry to quantify the levels of individual viral proteins in cells infected at various MOIs or for which we could delineate co-infection status (Figure 4-Figure supplement 4).
-This analysis shows that sub-populations of cells that express similarly low and high levels of viral proteins persist across a wide range of infectious doses, although co-infection can influence the relative proportion of infected cells that fall into these sub-populations (Figure 4-Figure supplement 4).
+In support of this view, we used flow cytometry to quantify the levels of individual viral proteins in cells infected at various MOIs or for which we could delineate co-infection status (Figure 4-Figure supplement 5).
+This analysis shows that sub-populations of cells that express similarly low and high levels of viral proteins persist across a wide range of infectious doses, although co-infection can influence the relative proportion of infected cells that fall into these sub-populations (Figure 4-Figure supplement 5).
 }
 \end{quote}
 }

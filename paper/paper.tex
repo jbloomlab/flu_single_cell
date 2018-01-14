@@ -155,11 +155,13 @@ A549 cells were infected at an MOI of 0.1 as calculated by TCID50 on MDCK-SIAT1 
 We infected A549 cells at low MOI with a mixture of the wild-type and synonymously barcoded viruses, and collected cells for sequencing at 6, 8, and 10 hours post-infection, performing two slightly different variants of the experiment for the 8-hour timepoint.
 For most of the samples, we replaced the infection inoculum with fresh media at one-hour post-infection, thereby ensuring that most infection was initiated during a narrow time window.
 However, for the second 8-hour sample (which we denote as ``8hr-2'' in the figures), we did \emph{not} perform this media change and instead left the cells in the original infection inoculum.
+The rationale for including a sample without a media change was to determine the importance of synchronicity of the timing of infection as discussed later in this subsection.
+
 We recovered between 3,000 and 4,000 cells for each sample (Figure~\ref{fig:cells}A). 
 As expected for a low-MOI infection, most cells expressed little or no viral mRNA (Figure~\ref{fig:cells}B and Figure~\ref{fig:cells}-Figure~supplement~\ref{figsupp:viral_mRNA_cumulfrac}).
-Also as expected, the amount of viral mRNA per cell among infected cells increased over time (Figure~\ref{fig:cells}B and Figure~\ref{fig:cells}-Figure~supplement~\ref{figsupp:viral_mRNA_cumulfrac}).
+Also as expected, the amount of viral mRNA per cell among infected cells increased over time (Figure~\ref{fig:cells}B, Figure~\ref{fig:cells}-Figure~supplement~\ref{figsupp:viral_mRNA_cumulfrac}).
 But what was most notable was how widely the number of viral mRNA molecules varied among infected cells.
-While the fraction of mRNA derived from virus was $<$0.1\% for most cells, viral mRNA constituted half the transcriptome in a few cells at 8 and 10 hours (Figure~\ref{fig:cells}B).
+While the fraction of mRNA derived from virus was $<$0.1\% for most cells, viral mRNA constituted half the transcriptome in a few cells at 8 and 10 hours (Figure~\ref{fig:cells}B, Figure~\ref{fig:cells}-Figure~supplement~\ref{figsupp:viral_mRNA_cumulfrac}).
 
 \begin{figure}
 \centerline{\includegraphics[width=\linewidth]{figures/p_cell_mRNA_summary.pdf}}
@@ -190,7 +192,7 @@ However, cells with a small amount of viral mRNA often have viral transcripts fr
 Finally, a few cells with large amounts of viral mRNA have viral transcripts from both variants, likely reflecting co-infection.
 
 \begin{figure}[t!]
-\centerline{\includegraphics[width=0.83\linewidth]{figures/p_frac_flu_summary.pdf}}
+\centerline{\includegraphics[width=0.85\linewidth]{figures/p_frac_flu_summary.pdf}}
 \caption{\label{fig:viralbarcodes}
 Synonymous barcodes on the viral mRNAs distinguish true infections from cells that contain viral mRNAs derived from leakage of lysed cells.
 {\bf (A)}
@@ -214,11 +216,13 @@ For all subsequent analyses, we subsampled the number of uninfected cells per sa
 Distribution of the fraction of mRNA per cell derived from virus for both infected and co-infected cells.
 Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:cumulfracflu} shows these same data in a cumulative fraction plots and calculates Gini coefficients to quantify the heterogeneity in viral mRNA load.
 }
+
 \figsupp[Number of viral barcodes called.\label{figsupp:barcodescalled}]{
 The number of viral barcodes called for each sample and gene segment. 
 Viral transcripts are classified as \emph{syn} if they mapped to a synonymously barcoded influenza transcript, \emph{wt} if they mapped to a wild-type influenza transcript, \emph{invalid} if multiple reads for the same UMI differed on the status of the viral barcode, and as \emph{uncalled} if none of the reads for that UMI overlapped the region of the viral transcript containing the viral barcode.
 For calculations of the number of reads in a cell derived from each viral barcode for each viral gene, the total number of detected molecules of that gene are multiplied by the fraction of those molecules with assignable barcodes that are assigned to that barcode.
 }{\includegraphics[width=\linewidth]{figures/synbarcodes_umistats.jpg}}
+
 \figsupp[Thresholds for calling infected cells. \label{figsupp:thresholds}]{
 Cell lysis can lead cells to the spurious association of small amounts of extraneous mRNA with individual cells.
 We wanted to avoid classifying as infected cells that had simply acquired such lysis-derived viral mRNA.
@@ -229,25 +233,30 @@ We called the threshold at this point of maximum purity (dotted green line).
 For the 6hr and 8hr samples there is no indication of contamination from lysis-derived reads, as Figure~\ref{fig:viralbarcodes}B shows no increase in mixed barcodes in low viral mRNA cells.
 Therefore, for these samples we simply set a threshold of requiring at least 2$\times$10$^{-4}$ of the total mRNA to come from virus, which corresponds to $\sim$2 viral mRNAs for the typical cell with $10^4$ total reads (Figure~\ref{fig:cells}B).
 }{\includegraphics[width=\linewidth]{figures/p_purity_threshold.pdf}}
-\figsupp[Fraction of total viral mRNA from a given fraction of infected cells, and associated Gini coefficients.\label{figsupp:cumulfracflu}]{
+
+\figsupp[Cumulative distributions of viral mRNA per cell and Gini coefficients.\label{figsupp:cumulfracflu}]{
 The total fraction of all viral mRNA among infected cells that is attributable to a given fraction of these cells.
 For instance, the plot for the 8hrs sample shows that $\sim$50\% of all viral mRNA is derived from $\sim$8\% of the infected cells.
 The facet titles above each plot also give the Gini coefficient~\citep{gini1921measurement} that calculates the heterogeneity in the distribution of viral mRNA among infected cells.
 Gini coefficients of 0 indicate a perfectly even distribution across cells, and Gini coefficients of 1 indicate a maximally skewed distribution.
 }{\includegraphics[width=\linewidth]{figures/p_cumul_flu.pdf}}
 
-\figsupp[Flow cytometry analysis of viral protein production of cells contingent on infectious dose or coinfection state. \label{figsupp:flowdose}]
+\figsupp[Synchronization of infection does not greatly affect heterogeneity. \label{figsupp:synchronize}]
+{\jdbcomment{Alistair, can you add caption}
+}{\jdbcomment{Alistair, can you add add figure}}
+
+\figsupp[Effects of infectious dose or coinfection state. \label{figsupp:flowdose}]
 {
 {\bf (A)}
-Expression of viral proteins in cells infected at high (MOI 5 as calculated by TCID50 on MDCK-SIAT1 cells) or low (MOI 0.1) initial infectious dose.
+Flow cytometry analysis of expression of viral proteins in cells infected at high (MOI 5 as calculated by TCID50 on MDCK-SIAT1 cells) or low (MOI 0.1) initial infectious dose.
 Cells were concurrently stained for HA and NS1 proteins 10 hours post infection.
 HA staining was analyzed in cells positive for NS1 (left), and NS1 staining was analyzed in cells positive for HA (right).
 While a higher dose leads to more cells expressing high amounts of viral protein, it does not greatly increase the amount of viral protein in either the low-expressing or high-expressing cells. 
 Therefore, higher viral dose does not lead to a large continuous increase in viral protein production among all cells -- rather, it mostly changes the proportions of cells that fall in different parts of the highly heterogeneous distribution.
 {\bf (B)}
-Cells were co-infected with a mix of wild-type virus and virus in which the HA gene was replaced by GFP flanked by the terminal regions of the HA gene segment at an MOI of 0.1 for each virus. 
-At 10 hours post-infection, cells were stained for NS1 and HA expression and analyzed by flow cytometry.
-Cells could be annotated as infected by one or more infectious particles (wild-type or pseudovirus alone) or at least two infectious particles (coinfection).
+Cells were co-infected with a mix of wild-type virus and pseudovirus in which the HA gene was replaced by GFP flanked by the terminal regions of the HA gene segment at an MOI of 0.1 for each virus. 
+At 10 hours post-infection, cells were stained for NS1 and HA expression and analyzed by flow cytometry for these proteins and GFP.
+Cells could be annotated as infected by virions of the same type (wild-type infection indicated by presence of HA, or pseudovirus infection indicated by the presence of GFP) or both types of virions (indicated by presence of HA and GFP).
 Coinfected cells, like cells infected at a higher infectious dose, occupy different positions in the distribution of viral protein production but do not not exhibit a continuous increase in viral protein production.
 Replicates shown.
 }{\includegraphics[width=\linewidth]{figures/Coinf.jpg}}
@@ -265,10 +274,19 @@ Because most cells are not infected, we subsampled the uninfected cells to the n
 Strikingly, the extreme variation in the number of viral transcripts per cell remains even after we apply these rigorous criteria for annotating infected cells (Figure~\ref{fig:viralbarcodes}E). 
 The fraction of viral mRNA per infected cell follows a roughly exponential distribution, with many cells having few viral transcripts and a few cells having many.
 At 6 and 8 hours $<$10\% of infected cells are responsible for over half the viral transcripts, while at 10 hours $<$15\% of infected cells produce over half the viral transcripts (Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:cumulfracflu}).
-One way to quantify the heterogeneity of a distribution is to calculate the Gini coefficient~\cite{gini1921measurement}, which ranges from 0 for a completely uniform distribution, to 1 for a maximally skewed distribution.
+One way to quantify the heterogeneity of a distribution is to calculate the Gini coefficient~\citep{gini1921measurement}, which ranges from 0 for a completely uniform distribution, to 1 for a maximally skewed distribution.
 Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:cumulfracflu} shows the Gini coefficients for the distribution of viral mRNA across infected cells for each sample.
 The Gini coefficients are $\ge$0.64 for all samples.
 As a fun point of comparison, these Gini coefficients indicate that the distribution of viral mRNA across infected cells is more uneven than the distribution of income in the United States~\citep{alvaredo2011note}. 
+
+One possible source of heterogeneity in the amount of viral mRNA per cell is variability in the timing of infection.
+If some cells are infected earlier in the experiment than others, then they might have substantially more viral mRNA.
+However, several lines of evidence indicate that this is not the major cause of heterogeneity across cells.
+First, the sample for which the infection inoculum was never removed (8hr-2) only shows slightly more heterogeneity than samples for which the inoculum was washed away after one hour (Figure~\ref{fig:viralbarcodes}E, Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:cumulfracflu}), despite the fact that the potential time window for infection is much longer in the former sample.
+Second, in an independent experiment, we performed completely synchronized infections by pre-binding virus to cells on ice and then washing away unbound virus before bringing the cells to 37$^{\circ}$C~\jdbcomment{Alistair, can you add relevant citation for this method?}.
+As shown in Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:synchronize}, flow cytometry staining found that the heterogeneity in the levels of individual viral proteins was not markedly different for these synchronized infections than in the absence of pre-binding and washing.
+Finally, viral mRNA expression from the secondary spread of virus from infected cells does not appreciably occur during the timeframes of our experiments, since Figure~\ref{fig:viralbarcodes}B does not show the pervasive presence of mixed barcodes that would occur in this case.
+Therefore, variability in the timing of infection is not the dominant cause of the cell-to-cell heterogeneity in our experiments.
 
 Notably, Figure~\ref{fig:viralbarcodes}E shows that there are co-infected cells with both low and high amounts of viral mRNA, suggesting that the initial infectious dose does not drive a simple continuous increase in viral transcript production.
 In support of this view, we used flow cytometry to quantify the levels of individual viral proteins in cells infected at various MOIs or for which we could delineate co-infection status (Figure~\ref{fig:viralbarcodes}-Figure~supplement~\ref{figsupp:flowdose}).
