@@ -301,7 +301,7 @@ Each viral gene segment is associated with one RNP in incoming infecting virions
 This secondary transcription is a major source of viral mRNAs, as evidenced by the fact that blocking synthesis of the RNP proteins reduces the amount of viral mRNA by several orders of magnitude in bulk cells (\FIGSUPP[fluburdenbyflugene]{cyclohexamide}).
 
 \begin{figure}[t!]
-\centerline{\includegraphics[width=0.9\linewidth]{figures/p_flu_burden_flu_gene_merge.pdf}}
+\centerline{\includegraphics[width=0.83\linewidth]{figures/p_flu_burden_flu_gene_merge.pdf}}
 \caption{\label{fig:fluburdenbyflugene}
 The absence of viral genes explains some of the variability in the amount of viral mRNA per cell.
 {\bf (A)} 
@@ -344,6 +344,8 @@ All findings in \FIG{fluburdenbyflugene}B remain unchanged if we exclude cells c
 
 \figdata{\label{figdata:fracmissing} The numerical data for panel (C) are in \texttt{p\_missing\_genes.csv}.}
 
+\figdata{\label{figdata:simplemodel} Simulation with a simple model for the expected heterogeneity due to Poisson co-infection and presence / absence of the full RNP is in \texttt{simple\_Poisson\_model.html}.}
+
 \end{figure}
 
 We examined the total amount of viral mRNA versus the expression of the genes from each viral segment (\FIG{fluburdenbyflugene}A, \FIGSUPP[fluburdenbyflugene]{fluburdensamplebreakdown}, \FIGSUPP[fluburdenbyflugene]{fluburden_nocoinfection}). 
@@ -355,7 +357,8 @@ Cells that lack an RNP gene never derive more than a few percent of their mRNAs 
 However, we observe cells that lack each of the other non-RNP genes but still derive $\approx$40\% of their mRNAs from virus, suggesting that none of the other genes are important for high levels of viral transcription.
 These results are statistically supported by \FIG{fluburdenbyflugene}B, which shows that absence of any RNP gene but \emph{not} any other viral gene is associated with reduced amounts of viral mRNA. 
 However, gene absence clearly does not explain all of the variability in viral gene expression, since even cells expressing all viral genes exhibit a very wide distribution in the amount of viral mRNA that they express.
-Specifically, at both 8 and 10 hours, the amount of viral mRNA in individual cells expressing all eight viral genes still ranges from $<$1\% to $>$50\% (\FIG{fluburdenbyflugene}A, \FIGSUPP[fluburdenbyflugene]{fluburdensamplebreakdown}, \FIGSUPP[fluburdenbyflugene]{fluburden_nocoinfection}).   
+Specifically, at both 8 and 10 hours, the amount of viral mRNA in individual cells expressing all eight viral genes still ranges from $<$1\% to $>$50\% (\FIG{fluburdenbyflugene}A, \FIGSUPP[fluburdenbyflugene]{fluburdensamplebreakdown}, \FIGSUPP[fluburdenbyflugene]{fluburden_nocoinfection}).  
+Furthermore, the actual distribution of viral mRNA per infected cell (\FIG{viralbarcodes}E) is does not match the mostly bi-modal shape expected under a simple model where RNP gene absence and Poisson co-infection are the only factors (\FIG{fluburdenbyflugene}--source~data~\ref{figdata:simplemodel}), indicating that there are additional sources of variability beyond whether cells have full complement of RNP genes. 
 
 We also quantified the fraction of infected cells that completely failed to express a given gene.
 We limited this analysis to examining the presence / absence of the non-RNP genes in cells expressing all four RNP genes, since we might fail to detect viral transcripts that are actually present at low levels in RNP-deficient cells due to the lower viral burden in these cells.
