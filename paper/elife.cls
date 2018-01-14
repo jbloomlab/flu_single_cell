@@ -3,7 +3,7 @@
 % Created by Overleaf (writeLaTeX).
 %
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{elife}[2017/07/04, v1.4]
+\ProvidesClass{elife}[2017/09/21, v1.5]
 
 \RequirePackage[english]{babel}
 
@@ -333,7 +333,7 @@
     \refstepcounter{figsupp}%
     {%
     \ifstrequal{#1}{none}{}{%
-      \small\textbf{Figure~\thefigure--Figure supplement \arabic{figsupp}.} \ifstrempty{#1}{#2}{#1}}\par}
+      \small\textbf{Figure~\thefigure--Figure supplement \arabic{figsupp}.} \ifstrempty{#1}{#2}{#1}}}\par
     \addtostream{suppinfo}{%
       \noindent\protect\begin{minipage}{\linewidth}
       \protect #3\noexpand\par
@@ -386,6 +386,11 @@
 
 % Other desired commands
 \renewcommand{\equationautorefname}{Eq.}
+%% Added autoref support for \figsupp
+\newcommand{\figsuppautorefname}{Figure Supplement}
+\newcommand{\FIGSUPP}[2][]{%
+  \ifstrequal{#1}{}{}{\autoref{fig:#1}--}\autoref{figsupp:#2}%
+}
 \newcommand{\FIG}[1]{\autoref{fig:#1}}
 \newcommand{\TABLE}[1]{\autoref{tab:#1}}
 \newcommand{\EQ}[1]{\autoref{eq:#1}}
