@@ -376,7 +376,7 @@ To address this question, we focused on cells that derived $>$5\% of their mRNA 
 \begin{figure}
 \centerline{\includegraphics[width=0.9\linewidth]{figures/p_flu_expr.pdf}}
 \caption{\label{fig:fluexpr}
-\jdbcomment{add expression wedges}
+\jdbcomment{Alistair, can you add expression wedges for panels A and C?}
 Relative expression of influenza virus genes in highly infected cells (>5\% of total mRNA from virus).
 {\bf (A)} 
 The fraction of viral mRNA from each viral gene for each cell. 
@@ -441,14 +441,14 @@ We therefore hypothesized that we might see two sub-populations of infected cell
 \begin{figure}
 \centerline{\includegraphics[width=0.9\linewidth]{figures/p_small_tsne_merge.pdf}}
 \caption{\label{fig:tsne}
-\jdbcomment{add arrow}
+\jdbcomment{Alistair, can you add an arrow pointing to the IFN positive cell in panels D, E, and F.}
 A t-SNE plot created by semi-supervised clustering using genes that co-vary with viral infection status.
 Each point is a single cell, and each panel shows an identical layout but colors the cells according to a different property.
 {\bf (A), (B)}
 Cells colored by the fraction of their mRNA derived from virus.
 {\bf (C)}
 Cells colored by the experimental sample.
-{\bf (D), (E)}
+{\bf (D)}
 Cells colored by the number of detected transcripts from type I and III interferons (IFN).
 Only one cell has detectable interferon expression (in orange, indicated with arrow).
 {\bf (E)}
@@ -486,7 +486,7 @@ We identified 43 cellular genes that co-varied with viral mRNA expression at a f
 \begin{figure}[t!]
 \centerline{\includegraphics[width=0.63\linewidth]{figures/p_cellular_heatmap.pdf}}
 \caption{\label{fig:cellulargenes}
-\jdbcomment{add gray arrow wedge}
+\jdbcomment{Alistair, can you add a gray arrow wedge indicating expression increases from left to right.}
 Cellular genes that co-vary in expression with the amount of viral mRNA in cells expressing all eight viral genes.
 The columns are cells, ordered from left to right by the fraction of mRNA derived from virus.
 Each row is a gene that is differentially expressed as a function of the fraction of mRNA derived from virus at a false discovery rate of 0.1. 
@@ -506,7 +506,7 @@ Table delineating genes in \FIG{cellulargenes} that are associated with the resp
 {
 \jdbcomment{Alistair, can you add figure and caption showing the increase in the percent of flu positive cells after treatment. It should just be possible to put the methods for this experiment in the figure caption.}
 }
-{\jdbcomment{add figure}}
+{\jdbcomment{Alistair, and you add the figure.}}
 
 \end{figure}
 
@@ -638,7 +638,7 @@ All subsequent steps through library preparation followed the manufacturer's pro
 Samples were sequenced on an Illumina HiSeq. 
 
 \subsection{Computational analysis of single-cell mRNA sequencing data}
-Jupyter notebooks that perform all of the computational analyses are available in Supplementary~file~\ref{suppfile:code} and at \url{https://github.com/jbloomlab/flu_single_cell} \jdbcomment{This GitHub repository will be made public upon acceptance of the manuscript. If you are a reviewer who needs access, please contact the editor.}.
+Jupyter notebooks that perform all of the computational analyses are available in Supplementary~file~\ref{suppfile:code} and at \url{https://github.com/jbloomlab/flu_single_cell} \jdbcomment{This GitHub repository will be made public upon acceptance of the manuscript.}
 
 Briefly, the raw deep sequencing data were processed using the 10X Genomics software package CellRanger (version 2.0.0).
 The reads were aligned to a concatenation of the human and influenza virus transcriptomes.
@@ -693,13 +693,14 @@ We thank Xiaojie Qiu for advice about use of the Monocle software package, David
 \caption{\label{suppfile:code}
 Computer code for the analyses.
 This ZIP file contains a Jupyter notebook that runs CellRanger to align and annotate the reads, and a Jupyter notebook that uses Monocle to analyze the cell-gene matrix.
-The ZIP file also includes associated custom scripts.}
+The ZIP file also includes associated custom scripts.
+To just run the Monocle analysis in \texttt{monocle\_analysis.ipynb} on a pre-generated cell-gene matrix, unpack Supplementary~file~\ref{suppfile:cellgenematrix} into \texttt{./results/cellgenecounts/}.}
 \end{suppfile}
 
 \begin{suppfile}
 \caption{\label{suppfile:cellgenematrix}
 The annotated cell-gene matrix in Matrix Market Format.
-\jdbcomment{This file is too large for the \textit{eLife} submission system. We will communicate with the editors to get it uploaded for a final accepted version, or we will post it on DataDryad. If you are a reviewer and need access, please contact the editor.}
+This is the matrix generated in \texttt{./results/cellgenecounts/} by running the CellRanger analysis in \texttt{align\_and\_annotate.ipynb} in Supplementary~file~\ref{suppfile:code}.
 }
 \end{suppfile}
 
