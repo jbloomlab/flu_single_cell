@@ -242,8 +242,14 @@ Gini coefficients of 0 indicate a perfectly even distribution across cells, and 
 }{\includegraphics[width=\linewidth]{figures/p_cumul_flu.pdf}}
 
 \figsupp[Synchronization of infection does not greatly affect heterogeneity. \label{figsupp:synchronize}]
-{\jdbcomment{Alistair, can you add caption}
-}{\jdbcomment{Alistair, can you add add figure}}
+{Flow cytometry analysis of expression of viral proteins in cells infected at an MOI of 0.1 (unsynchronized) or 0.2 (synchronized) as calculated by TCID50 on MDCK-SIAT1 cells. 
+The higher MOI for synchronized infections was to attempt to account for loss of virus in washing steps.
+Infections were synchronized by pre-adsorbing virus at 4$^{\circ}$C for 1h prior to initiation of infection by shifting temperature to 37$^{\circ}$C using pre-warmed media.
+Cells were concurrently stained for HA and NS1 proteins 10 hours post initiation of infection.
+Synchronization resulted in a small decrease in variability, particularly in intermediately-stained cells, but not a massive shift in distribution. 
+Replicates shown.
+}{\includegraphics[width=\linewidth]{figures/synchronize.jpg}}
+
 
 \figsupp[Effects of infectious dose or coinfection state. \label{figsupp:flowdose}]
 {
@@ -283,7 +289,7 @@ One possible source of heterogeneity in the amount of viral mRNA per cell is var
 If some cells are infected earlier in the experiment than others, then they might have substantially more viral mRNA.
 However, several lines of evidence indicate that this is not the major cause of heterogeneity across cells.
 First, the sample for which the infection inoculum was never removed (8hr-2) only shows slightly more heterogeneity than samples for which the inoculum was washed away after one hour (\FIG{viralbarcodes}E, \FIGSUPP[viralbarcodes]{cumulfracflu}), despite the fact that the potential time window for infection is much longer in the former sample.
-Second, in an independent experiment, we performed completely synchronized infections by pre-binding virus to cells on ice and then washing away unbound virus before bringing the cells to 37$^{\circ}$C~\jdbcomment{Alistair, can you add relevant citation for this method?}.
+Second, in an independent experiment, we performed completely synchronized infections by pre-binding virus to cells on ice and then washing away unbound virus before bringing the cells to 37$^{\circ}$C~\citep{Dapat:2014kv}.
 As shown in \FIGSUPP[viralbarcodes]{synchronize}, flow cytometry staining found that the heterogeneity in the levels of individual viral proteins was not markedly different for these synchronized infections than in the absence of pre-binding and washing.
 Finally, viral mRNA expression from the secondary spread of virus from infected cells does not appreciably occur during the timeframes of our experiments, since \FIG{viralbarcodes}B does not show the pervasive presence of mixed barcodes that would occur in this case.
 Therefore, variability in the timing of infection is not the dominant cause of the cell-to-cell heterogeneity in our experiments.
@@ -376,7 +382,6 @@ To address this question, we focused on cells that derived $>$5\% of their mRNA 
 \begin{figure}
 \centerline{\includegraphics[width=0.9\linewidth]{figures/p_flu_expr.pdf}}
 \caption{\label{fig:fluexpr}
-\jdbcomment{Alistair, can you add expression wedges for panels A and C?}
 Relative expression of influenza virus genes in highly infected cells (>5\% of total mRNA from virus).
 {\bf (A)} 
 The fraction of viral mRNA from each viral gene for each cell. 
@@ -441,7 +446,6 @@ We therefore hypothesized that we might see two sub-populations of infected cell
 \begin{figure}
 \centerline{\includegraphics[width=0.9\linewidth]{figures/p_small_tsne_merge.pdf}}
 \caption{\label{fig:tsne}
-\jdbcomment{Alistair, can you add an arrow pointing to the IFN positive cell in panels D, E, and F.}
 A t-SNE plot created by semi-supervised clustering using genes that co-vary with viral infection status.
 Each point is a single cell, and each panel shows an identical layout but colors the cells according to a different property.
 {\bf (A), (B)}
@@ -486,7 +490,6 @@ We identified 43 cellular genes that co-varied with viral mRNA expression at a f
 \begin{figure}[t!]
 \centerline{\includegraphics[width=0.63\linewidth]{figures/p_cellular_heatmap.pdf}}
 \caption{\label{fig:cellulargenes}
-\jdbcomment{Alistair, can you add a gray arrow wedge indicating expression increases from left to right.}
 Cellular genes that co-vary in expression with the amount of viral mRNA in cells expressing all eight viral genes.
 The columns are cells, ordered from left to right by the fraction of mRNA derived from virus.
 Each row is a gene that is differentially expressed as a function of the fraction of mRNA derived from virus at a false discovery rate of 0.1. 
@@ -499,15 +502,15 @@ The scale bar indicates the number of standard deviations above or below the mea
 \figdata{A gene-set analysis for pathways associated with the amount of viral mRNA is in \texttt{p\_pathway\_enrichment.csv}. \label{figdata:geneset}}
 
 \figsupp[Many genes that co-vary with viral load are involved in the oxidative stress response. \label{figsupp:ROStable}]{
-\jdbcomment{Alistair, can you remove GPX2, which is no longer significant.}
 Table delineating genes in \FIG{cellulargenes} that are associated with the response to oxidative stress~\citep{Duong:2017ju,Jung:2017jz,Lee:2017ba,Peuchant:2017hj,MacLeod:2016kt,Jiang:2016cf,Gorrini:2013jv,Miura:2013fr,Kim:2009gi,Banning:2005cz,Murray:2003ie,Doyle:1999ts}.
 }{\includegraphics[width=0.7\linewidth]{figures/ROStable.pdf}}
 
-\figsupp[Pre-treating to induce oxidative stress increases the fraction of infected cells expressing detectable viral protein. \label{figsupp:oxidative}]
-{
-\jdbcomment{Alistair, can you add figure and caption showing the increase in the percent of flu positive cells after treatment. It should just be possible to put the methods for this experiment in the figure caption.}
-}
-{\jdbcomment{Alistair, and you add the figure.}}
+\figsupp[Pre-treating to reduce oxidative stress decreases the fraction of infected cells expressing detectable viral protein. \label{figsupp:oxidative}]
+{Cells were treated as indicated with 15 mM N-acetylcysteine (NAC), an antioxidant, and infected at an MOI of 0.1 as calculated by TCID50 on MDCK-SIAT1 cells. 
+At 10 hours post-infection, cells were analyzed by flow cytometry for HA expression.
+Percentage HA-positive cells and gating shown.
+Replicates shown.
+}{\includegraphics[width=0.7\linewidth]{figures/antiox.jpg}}
 
 \end{figure}
 
@@ -517,8 +520,8 @@ These genes produce proteins that are involved in detoxification of reactive oxy
 We additionally see reduced expression of the nitric oxide synthase interacting protein (NOSIP). 
 Transient oxidative stress is known to occur during viral infection, and may act in a proviral fashion via MAPK activation driving vRNP export~\citep{Amatore:2014cs}.
 The antioxidant response is thought to be largely antiviral, potentially through inhibition of MAPK activity \citep{Lin:2016ec,Sgarbanti:2014ht}.
-To directly test the effect of transient oxidative stress, we compared the fraction of cells that expressed detectable viral protein when infected either with or without pre-treatment to induce oxidative stress.
-\FIGSUPP[cellulargenes]{oxidative} shows that the cells pre-treated to induce oxidative stress exhibited more frequent detectable expression of viral protein.
+To directly test the effect of transient oxidative stress, we compared the fraction of cells that expressed detectable viral protein when infected either with or without pre-treatment to suppress oxidative stress.
+\FIGSUPP[cellulargenes]{oxidative} shows that the cells pre-treated with an antioxidant exhibited less frequent detectable expression of viral protein.
 These results, in conjunction with the differential expression test in \FIG{cellulargenes} and the prior work mentioned above, suggest that oxidative stress acts in a proviral fashion. 
 
 The gene-set analysis also found that the amount of viral mRNA was associated with the expression of genes involved in the G2-M cell-cycle checkpoint (\FIG{cellulargenes}-source~data~\ref{figdata:geneset}).
@@ -609,16 +612,18 @@ A standard curve was generated from three independent dilutions of the HA-encodi
 All vRNA values represent three independent RNA extractions with two replicate qPCR measurements. 
 
 \subsection{Flow cytometry titering and analyses}
-To determine viral titers in terms of HA-expressing units and for the flow cytometry in \FIGSUPP[coexpression]{flowcyto} and \FIGSUPP[viralbarcodes]{flowdose}, A549 cells were seeded in a 6-well plate and infected as described above for the qPCR analyses.
+To determine viral titers in terms of HA-expressing units and for the flow cytometry, A549 cells were seeded in a 6-well plate and infected as described above for the qPCR analyses.
 Cells were harvested by trypsinization, resuspended in phosphate-buffered saline supplemented with 2\% heat-inactivated FBS, and stained with 10 \si{\micro}g/ml of H17-L19, a mouse monoclonal antibody confirmed to bind to WSN HA in a prior study~\citep{Doud:2017bw}.
 After washing in PBS supplemented with 2\% FBS, the cells were stained with a goat anti-mouse IgG antibody conjugated to APC.
 Cells were then washed, fixed in 1\% formaldehyde, and washed further before a final resuspension and analysis. 
 We then determined the fraction of cells that were HA positive and calculated the HA-expressing units.
-For NS1 staining in \FIGSUPP[viralbarcodes]{flowdose}, cells stained for HA as described above were permeabilized using BD Cytofix/Cytoperm following manufacturer's instructions, stained with anti-NS1 (GTX125990, Genetex) at 4.4 \si{\micro}g/ml, washed,  stained with a  goat anti-rabbit IgG antibody conjugated to Alexa Fluor 405. washed, and analyzed.
-For \FIGSUPP[coexpression]{flowcyto} and \FIGSUPP[viralbarcodes]{flowdose}, after gating to exclude multiplets in FlowJo, data were extracted using the R package flowCore~\citep{LeMeur:2007uo} and analyzed using a custom Python script.
-For \FIGSUPP[viralbarcodes]{flowdose} channels were additionally compensated in FLowJo.
+For NS1 staining, cells stained for HA as described above were permeabilized using BD Cytofix/Cytoperm following manufacturer's instructions, stained with anti-NS1 (GTX125990, Genetex) at 4.4 \si{\micro}g/ml, washed,  stained with a  goat anti-rabbit IgG antibody conjugated to Alexa Fluor 405. washed, and analyzed.
+To analyze the effect of N-acetylcysteine, the compound was added to cells in D10 9h prior to media change and infection, and included in infection media.
+Stocks of N-acetylcysteine were reconstituted immediately prior to use, and the pH of growth media supplemented with this compound was adjusted using sodium hydroxide.
+After channels were compensated and cells gated to exclude multiplets and debris in FlowJo, data were extracted using the R package flowCore~\citep{LeMeur:2007uo} and analyzed using a custom Python script.
 Guassian kernel density estimates were obtained using the scipy stats package method, guassian\_kde, using automatic bandwidth determination~\citep{vanderWalt:2017dp}.
-For \FIGSUPP[viralbarcodes]{flowdose}, the percentage of influenza-infected cells was determined by HA staining alone, and the top quantile of NS1-stained cells matching that percentage were taken as the NS1 positive population.
+For gating on NS1 positive cells, the percentage of influenza-infected cells was determined by HA staining alone, and the top quantile of NS1-stained cells matching that percentage were taken as the NS1 positive population.
+
 
 \subsection{Infections for single-cell mRNA sequencing}
 Single-cell sequencing libraries were generated using the 10x Chromium Single Cell 3' platform~\citep{zheng2017massively} using the V1 reagents.
