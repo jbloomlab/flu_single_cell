@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL eLife_original_submission.tex   Sun Jan 14 18:09:58 2018
-%DIF ADD paper.tex                       Sun Jan 14 17:59:21 2018
+%DIF ADD paper.tex                       Tue Jan 16 14:03:06 2018
 %%% ELIFE ARTICLE TEMPLATE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% PREAMBLE 
@@ -175,7 +175,7 @@ A549 cells were infected at an MOI of 0.1 as calculated by TCID50 on MDCK-SIAT1 
 {\bf (C)} Cells infected with synonymously barcoded virus stock used in our experiments.
 {\bf (D)} Cells infected with a stock of wild-type virus propagated at a high MOI, and therefore enriched in defective particles.
 }{\includegraphics[width=0.7\linewidth]{figures/Validating_barcode_virus/HA_stain_supplement.png}}
-\end{figure}
+\DIFaddendFL \end{figure}
 
 \subsection{Single cells show an extremely wide range of expression of viral mRNA.}
 We infected A549 cells at low MOI with a mixture of the wild-type and synonymously barcoded viruses, and collected cells for sequencing at 6, 8, and 10 hours post-infection, \DIFdelbegin \DIFdel{including a replicate a 8-hours.
@@ -204,10 +204,10 @@ The orange rug plot at the left of each panel shows the distribution of the numb
 Cells outside the dotted green lines were considered outliers with suspiciously low or high amounts of cellular mRNA (possibly derived from two cells per droplet), and were excluded from all subsequent analyses.
 \DIFaddbeginFL \FIGSUPP[cells]{viral_mRNA_cumulfrac} \DIFaddFL{shows the exact distributions of the fraction of viral mRNA per cell.
 }\DIFaddendFL }
-\DIFaddbeginFL \figsupp[Cumulative fraction plot of proportion of total mRNA from virus. \label{figsupp:viral_mRNA_cumulfrac}]{
-For each sample, this plot shows the fraction of all cells that derive at least the indication fraction of their mRNA from influenza virus.
+\figsupp[\DIFaddFL{Cumulative fraction plot of proportion of total mRNA from virus.} \label{figsupp:viral_mRNA_cumulfrac}]{
+\DIFaddFL{  For each sample, this plot shows the fraction of all cells that derive at least the indication fraction of their mRNA from influenza virus.}
 }{\includegraphics[width=0.5\linewidth]{figures/p_mRNA_per_cell_cumul.pdf}}
-\DIFaddendFL \end{figure}
+\end{figure}
 
 A complicating factor is that uninfected cells could have small amounts of viral mRNA due to leakage of transcripts from lysed cells.
 It is therefore important to establish a threshold for identifying truly infected cells.
@@ -261,34 +261,40 @@ For calculations of the number of reads in a cell derived from each viral barcod
 %DIFDELCMD < %%%
 \DIFdelendFL \DIFaddbeginFL 
 
-\figsupp[Thresholds for calling infected cells. \label{figsupp:thresholds}]{
-Cell lysis can lead cells to the spurious association of small amounts of extraneous mRNA with individual cells.
+\figsupp[\DIFaddFL{Thresholds for calling infected cells.} \label{figsupp:thresholds}]{
+\DIFaddFL{Cell lysis can lead cells to the spurious association of small amounts of extraneous mRNA with individual cells.
 We wanted to avoid classifying as infected cells that had simply acquired such lysis-derived viral mRNA.
 The amount of lysis-derived viral mRNA will vary among samples as a function of both the lysis rate during the cell preparation (which always varies slightly from sample to sample in the 10X procedure) and with the amount of total viral mRNA for that sample (the more viral mRNA, the more there is to be acquired from lysed cells).
-As is shown in \FIG{viralbarcodes}B, the 8hr-2 and 10hr sample clearly have an enrichment of mixed barcodes in cells with small numbers of viral mRNA.
+As is shown in} \FIG{viralbarcodes}\DIFaddFL{B, the 8hr-2 and 10hr sample clearly have an enrichment of mixed barcodes in cells with small numbers of viral mRNA.
 For each sample, we calculated the mean purity of all cells with at least the indicated amount of viral mRNA, and determined the threshold amount of viral mRNA where purity no longer increased by finding the first maxima in a loess curve fit (orange line).
 We called the threshold at this point of maximum purity (dotted green line).
-For the 6hr and 8hr samples there is no indication of contamination from lysis-derived reads, as \FIG{viralbarcodes}B shows no increase in mixed barcodes in low viral mRNA cells.
-Therefore, for these samples we simply set a threshold of requiring at least 2$\times$10$^{-4}$ of the total mRNA to come from virus, which corresponds to $\sim$2 viral mRNAs for the typical cell with $10^4$ total reads (\FIG{cells}B).
+For the 6hr and 8hr samples there is no indication of contamination from lysis-derived reads, as} \FIG{viralbarcodes}\DIFaddFL{B shows no increase in mixed barcodes in low viral mRNA cells.
+Therefore, for these samples we simply set a threshold of requiring at least 2$\times$10$^{-4}$ of the total mRNA to come from virus, which corresponds to $\sim$2 viral mRNAs for the typical cell with $10^4$ total reads (}\FIG{cells}\DIFaddFL{B).}
 }{\includegraphics[width=\linewidth]{figures/p_purity_threshold.pdf}}
 
-\figsupp[Cumulative distributions of viral mRNA per cell and Gini coefficients.\label{figsupp:cumulfracflu}]{
+\figsupp[Cumulative distributions of viral mRNA per cell \DIFaddFL{and Gini coefficients}.\label{figsupp:cumulfracflu}]{
 The total fraction of all viral mRNA among infected cells that is attributable to a given fraction of these cells.
 For instance, the plot for the 8hrs sample shows that $\sim$50\% of all viral mRNA is derived from $\sim$8\% of the infected cells.
-The facet titles above each plot also give the Gini coefficient~\citep{gini1921measurement} that calculates the heterogeneity in the distribution of viral mRNA among infected cells.
-Gini coefficients of 0 indicate a perfectly even distribution across cells, and Gini coefficients of 1 indicate a maximally skewed distribution.
+\DIFaddFL{The facet titles above each plot also give the Gini coefficient}~\citep{gini1921measurement} \DIFaddFL{that calculates the heterogeneity in the distribution of viral mRNA among infected cells. Gini coefficients of 0 indicate a perfectly even distribution across cells, and Gini coefficients of 1 indicate a maximally skewed distribution.}
 }{\includegraphics[width=\linewidth]{figures/p_cumul_flu.pdf}}
 
-\figsupp[Synchronization of infection does not greatly affect heterogeneity. \label{figsupp:synchronize}]
-{\jdbcomment{Alistair, can you add caption}
-}{\jdbcomment{Alistair, can you add add figure}}
+\figsupp[\DIFaddFL{Synchronization of infection does not greatly affect heterogeneity.} \label{figsupp:synchronize}]
+{\DIFaddFL{Flow cytometry analysis of expression of viral proteins in cells infected at an MOI of 0.1 (unsynchronized) or 0.2 (synchronized) as calculated by TCID50 on MDCK-SIAT1 cells. 
+The higher MOI for synchronized infections was to attempt to account for loss of virus in washing steps.
+Infections were synchronized by pre-adsorbing virus at 4$^{\circ}$C for 1h prior to initiation of infection by shifting temperature to 37$^{\circ}$C using pre-warmed media.
+Cells were concurrently stained for HA and NS1 proteins at 10 hours after initiation of infection, and then analyzed by flow cytometry.
+The level of HA protein was quantified in cells that were identified as infected based on being positive for NS1 protein (top), and the level of NS1 protein was quantified in cells that were identified as infected based on being positive for HA protein (bottom)
+Synchronization resulted in a small decrease in variability in the levels of each viral protein, particularly in cells with intermediate levels.
+But the effects were small compared to the overall variability in the protein levels, indicating timing of infection makes only a small contribution to the observed heterogeneity. 
+Data are shown for three independent replicates.
+}}{\includegraphics[width=\linewidth]{figures/synchronize.jpg}}
 
 \figsupp[Effects of infectious dose or coinfection state. \label{figsupp:flowdose}]
 {
 {\bf \DIFaddFL{(A)}}
 \DIFaddFL{Flow cytometry analysis of expression of viral proteins in cells infected at high (MOI 5 as calculated by TCID50 on MDCK-SIAT1 cells) or low (MOI 0.1) initial infectious dose.
-Cells were concurrently stained for HA and NS1 proteins 10 hours post infection.
-HA staining was analyzed in cells positive for NS1 (left), and NS1 staining was analyzed in cells positive for HA (right).
+Cells were concurrently stained for HA and NS1 proteins at 10 hours after initiation of infection, and then analyzed by flow cytometry.
+The level of HA protein was quantified in cells that were identified as infected based on being positive for NS1 protein (left), and the level of NS1 protein was quantified in cells that were identified as infected based on being positive for HA protein (right)
 While a higher dose leads to more cells expressing high amounts of viral protein, it does not greatly increase the amount of viral protein in either the low-expressing or high-expressing cells. 
 Therefore, higher viral dose does not lead to a large continuous increase in viral protein production among all cells -- rather, it mostly changes the proportions of cells that fall in different parts of the highly heterogeneous distribution.
 }{\bf \DIFaddFL{(B)}}
@@ -296,7 +302,7 @@ Therefore, higher viral dose does not lead to a large continuous increase in vir
 At 10 hours post-infection, cells were stained for NS1 and HA expression and analyzed by flow cytometry for these proteins and GFP.
 Cells could be annotated as infected by virions of the same type (wild-type infection indicated by presence of HA, or pseudovirus infection indicated by the presence of GFP) or both types of virions (indicated by presence of HA and GFP).
 Coinfected cells, like cells infected at a higher infectious dose, occupy different positions in the distribution of viral protein production but do not not exhibit a continuous increase in viral protein production.
-Replicates shown.
+Data are shown for three independent replicates.
 }}{\includegraphics[width=\linewidth]{figures/Coinf.jpg}}
 \DIFaddendFL} \end{figure}
 
@@ -328,7 +334,9 @@ As a fun point of comparison, these Gini coefficients indicate that the distribu
 If some cells are infected earlier in the experiment than others, then they might have substantially more viral mRNA.
 However, several lines of evidence indicate that this is not the major cause of heterogeneity across cells.
 First, the sample for which the infection inoculum was never removed (8hr-2) only shows slightly more heterogeneity than samples for which the inoculum was washed away after one hour (}\FIG{viralbarcodes}\DIFadd{E, }\FIGSUPP[viralbarcodes]{cumulfracflu}\DIFadd{), despite the fact that the potential time window for infection is much longer in the former sample.
-Second, in an independent experiment, we performed completely synchronized infections by pre-binding virus to cells on ice and then washing away unbound virus before bringing the cells to 37$^{\circ}$C~}\jdbcomment{Alistair, can you add relevant citation for this method?}\DIFadd{.
+Second, in an independent experiment, we performed completely synchronized infections by pre-binding virus to cells on ice and then washing away unbound virus before bringing the cells to 37$^{\circ}$C~\mbox{%DIFAUXCMD
+\citep{Dapat:2014kv}}%DIFAUXCMD
+.
 As shown in }\FIGSUPP[viralbarcodes]{synchronize}\DIFadd{, flow cytometry staining found that the heterogeneity in the levels of individual viral proteins was not markedly different for these synchronized infections than in the absence of pre-binding and washing.
 Finally, viral mRNA expression from the secondary spread of virus from infected cells does not appreciably occur during the timeframes of our experiments, since }\FIG{viralbarcodes}\DIFadd{B does not show the pervasive presence of mixed barcodes that would occur in this case.
 Therefore, variability in the timing of infection is not the dominant cause of the cell-to-cell heterogeneity in our experiments.
@@ -386,8 +394,8 @@ The normalized expression of each viral gene as a function of the fraction of to
 Points are colored as in \FIG{fluburdenbyflugene}A.
 }{\includegraphics[width=0.8\linewidth]{figures/p_flu_burden_flu_gene_by_sample.pdf}}
 
-\figsupp[Like panel (A), but excludes coinfected cells with mixed viral barcodes.\label{figsupp:fluburden_nocoinfection}]{
-The normalized expression of each viral gene as a function of the fraction of total mRNA derived from virus, excluding cells that were annotated as coinfected based on the presence of both viral barcodes.
+\figsupp[\DIFaddFL{Like panel (A), but excludes coinfected cells with mixed viral barcodes.}\label{figsupp:fluburden_nocoinfection}]{
+\DIFaddFL{The normalized expression of each viral gene as a function of the fraction of total mRNA derived from virus, excluding cells that were annotated as coinfected based on the presence of both viral barcodes.}
 }{\includegraphics[width=0.8\linewidth]{figures/p_flu_burden_flu_gene_no_coinfect.pdf}}
 
 \DIFaddendFL \figsupp[Like panel (B) but for the 10-hr sample only.\label{figsupp:10hrfluburdenbyflugene}]{
@@ -399,13 +407,13 @@ We do not show statistical analyses for other samples, as the number of infected
 %DIFDELCMD < %%%
 \DIFdelendFL \DIFaddbeginFL 
 
-\figsupp[Like panel (B) but excludes coinfected cells with mixed viral barcodes.\label{figsupp:fluburdenbyflugene_nocoinfection}]{
-All findings in \FIG{fluburdenbyflugene}B remain unchanged if we exclude cells called as coinfected based on the presence of mixed viral barcodes.
+\figsupp[\DIFaddFL{Like panel (B) but excludes coinfected cells with mixed viral barcodes.}\label{figsupp:fluburdenbyflugene_nocoinfection}]{
+\DIFaddFL{All findings in} \FIG{fluburdenbyflugene}B \DIFaddFL{remain unchanged if we exclude cells called as coinfected based on the presence of mixed viral barcodes.}
 }{\includegraphics[width=\linewidth]{figures/p_no_coinfect_flu_burden_flu_gene_test}}
 
 \figdata{\label{figdata:fracmissing} The numerical data for panel (C) are in \texttt{p\_missing\_genes.csv}.}
 
-\figdata{\label{figdata:simplemodel} Simulation with a simple model for the expected heterogeneity due to Poisson co-infection and presence / absence of the full RNP is in \texttt{simple\_Poisson\_model.html}.}
+\figdata{\label{figdata:simplemodel} \DIFaddFL{Simulation with a simple model for the expected heterogeneity due to Poisson co-infection and presence / absence of the full RNP is in \texttt{simple\_Poisson\_model.html}.}}
 
 \DIFaddendFL} \end{figure}
 
@@ -426,7 +434,7 @@ These results are statistically supported by \FIG{fluburdenbyflugene}B, which sh
 However, gene absence clearly does not explain all of the variability in viral gene expression, since even cells expressing all viral genes exhibit a very wide distribution in the amount of viral mRNA that they express.
 Specifically, at both 8 and 10 hours, the amount of viral mRNA in individual cells expressing all eight viral genes still ranges from $<$1\% to $>$50\% (\FIG{fluburdenbyflugene}A, \FIGSUPP[fluburdenbyflugene]{fluburdensamplebreakdown}\DIFdelbegin \DIFdel{).   
 }\DIFdelend \DIFaddbegin \DIFadd{, }\FIGSUPP[fluburdenbyflugene]{fluburden_nocoinfection}\DIFadd{).  
-Furthermore, the actual distribution of viral mRNA per infected cell (}\FIG{viralbarcodes}\DIFadd{E) is does not match the mostly bi-modal shape expected under a simple model where RNP gene absence and Poisson co-infection are the only factors (}\FIG{fluburdenbyflugene}\DIFadd{--source~data~\ref{figdata:simplemodel}), indicating that there are additional sources of variability beyond whether cells have full complement of RNP genes. 
+Furthermore, the actual distribution of viral mRNA per infected cell (}\FIG{viralbarcodes}\DIFadd{E) does not match the mostly bi-modal shape expected under a simple model where RNP gene absence and Poisson co-infection are the only factors (}\FIG{fluburdenbyflugene}\DIFadd{--source~data~\ref{figdata:simplemodel}), indicating that there are additional sources of variability beyond whether cells have full complement of RNP genes. 
 }\DIFaddend 
 
 We also quantified the fraction of infected cells that completely failed to express a given gene.
@@ -443,12 +451,9 @@ Does the relative expression of viral genes exhibit similar cell-to-cell variabi
 To address this question, we focused on cells that derived $>$5\% of their mRNA from virus, since estimates of relative viral gene expression will be less noisy in cells with more viral mRNAs.
 
 \begin{figure}
-\DIFdelbeginFL %DIFDELCMD < \centerline{\includegraphics[width=0.9\linewidth]{figures/p_flu_expr_manualedits.pdf}}
-%DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \centerline{\includegraphics[width=0.9\linewidth]{figures/p_flu_expr.pdf}}
-\DIFaddendFL \caption{\label{fig:fluexpr}
-\DIFaddbeginFL \jdbcomment{Alistair, can you add expression wedges for panels A and C?}
-\DIFaddendFL Relative expression of influenza virus genes in highly infected cells (>5\% of total mRNA from virus).
+\centerline{\includegraphics[width=0.9\linewidth]{figures/p_flu_expr_manualedits.pdf}}
+\caption{\label{fig:fluexpr}
+Relative expression of influenza virus genes in highly infected cells (>5\% of total mRNA from virus).
 {\bf (A)} 
 The fraction of viral mRNA from each viral gene for each cell. 
 {\bf (B)}
@@ -463,7 +468,7 @@ The same plots, but only including cells for which we observed at least one mole
 \figdata{The raw data for fully infected cells are in \texttt{p\_flu\_expr\_fullyinfected.csv}.}
 \end{figure}
 
-In contrast to the extreme variability in the total viral mRNA per cell, the fraction of this mRNA derived from each gene is much more consistent across cells (\FIG{fluexpr}A).
+In contrast to the extreme variability in the total viral mRNA per cell, the fraction of this \DIFaddbegin \DIFadd{viral }\DIFaddend mRNA derived from each gene is much more consistent across cells (\FIG{fluexpr}A).
 Total viral mRNA varies by orders of magnitude, but the fraction from any given viral gene is fairly tightly clustered around the median value for all cells (\FIG{fluexpr}B).
 The relative levels of each viral mRNA in our cells are similar to prior bulk measurements made by Northern blots~\citep{hatada1989control}, which also found an expression hierarchy of M $>$ NS $\gg$ NP $>$ NA $>$ HA $\gg$ PB2 $\sim$ PB1 $\sim$ PA.
 The cell-to-cell consistency in the relative expression of different viral genes is even tighter if we limit the analysis only to cells that express all eight viral genes (\FIG{fluexpr}C,D).
@@ -518,10 +523,9 @@ We therefore hypothesized that we might see two sub-populations of infected cell
 \begin{figure}
 \DIFdelbeginFL %DIFDELCMD < \centerline{\includegraphics[width=0.9\linewidth]{figures/p_small_tsne_merge_manualarrow.pdf}}
 %DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \centerline{\includegraphics[width=0.9\linewidth]{figures/p_small_tsne_merge.pdf}}
+\DIFdelendFL \DIFaddbeginFL \centerline{\includegraphics[width=0.9\linewidth]{figures/p_small_tsne_merge_manualedits.pdf}}
 \DIFaddendFL \caption{\label{fig:tsne}
-\DIFaddbeginFL \jdbcomment{Alistair, can you add an arrow pointing to the IFN positive cell in panels D, E, and F.}
-\DIFaddendFL A t-SNE plot created by semi-supervised clustering using genes that co-vary with viral infection status.
+A t-SNE plot created by semi-supervised clustering using genes that co-vary with viral infection status.
 Each point is a single cell, and each panel shows an identical layout but colors the cells according to a different property.
 {\bf (A), (B)}
 Cells colored by the fraction of their mRNA derived from virus.
@@ -566,10 +570,9 @@ We identified \DIFdelbegin \DIFdel{45 }\DIFdelend \DIFaddbegin \DIFadd{43 }\DIFa
 %DIFDELCMD < \centerline{\includegraphics[width=0.7\linewidth]{figures/p_cellular_heatmap_manualedit.pdf}}
 %DIFDELCMD < %%%
 \DIFdelendFL \DIFaddbeginFL \begin{figure}[t!]
-\centerline{\includegraphics[width=0.63\linewidth]{figures/p_cellular_heatmap.pdf}}
+\centerline{\includegraphics[width=0.65\linewidth]{figures/p_cellular_heatmap_manualedits.pdf}}
 \DIFaddendFL \caption{\label{fig:cellulargenes}
-\DIFaddbeginFL \jdbcomment{Alistair, can you add a gray arrow wedge indicating expression increases from left to right.}
-\DIFaddendFL Cellular genes that co-vary in expression with the amount of viral mRNA in cells expressing all eight viral genes.
+Cellular genes that co-vary in expression with the amount of viral mRNA in cells expressing all eight viral genes.
 The columns are cells, ordered from left to right by the fraction of mRNA derived from virus.
 Each row is a gene that is differentially expressed as a function of the fraction of mRNA derived from virus at a false discovery rate of 0.1. 
 Genes for which the color goes from blue at left to red at right are expressed at higher levels in cells with more viral mRNA.
@@ -577,10 +580,6 @@ The scale bar indicates the number of standard deviations above or below the mea
 }
 \DIFdelbeginFL %DIFDELCMD < \figdata{The full results of the differential expression test is in \texttt{p\_sig\_cellular\_genes.csv}.}
 %DIFDELCMD < \figdata{The results of a gene-set analysis are in \texttt{p\_pathway\_enrichment.tsv}.}
-%DIFDELCMD < \figsupp[Many genes that co-vary with viral load are involved in the oxidative stress response. %DIFDELCMD < \label{figsupp:ROStable}%%%
-]{
-%DIFDELCMD < Table delineating genes in \FIG{cellulargenes} that are associated with the response to oxidative stress~\citep{Duong:2017ju,Jung:2017jz,Lee:2017ba,Peuchant:2017hj,MacLeod:2016kt,Jiang:2016cf,Gorrini:2013jv,Miura:2013fr,Kim:2009gi,Banning:2005cz,Murray:2003ie,Doyle:1999ts}.
-%DIFDELCMD < }{\includegraphics[width=0.7\linewidth]{figures/ROStable.pdf}}
 %DIFDELCMD < %%%
 \DIFdelendFL \DIFaddbeginFL 
 
@@ -588,18 +587,19 @@ The scale bar indicates the number of standard deviations above or below the mea
 
 \figdata{A gene-set analysis for pathways associated with the amount of viral mRNA is in \texttt{p\_pathway\_enrichment.csv}. \label{figdata:geneset}}
 
-\figsupp[Many genes that co-vary with viral load are involved in the oxidative stress response. \label{figsupp:ROStable}]{
-\jdbcomment{Alistair, can you remove GPX2, which is no longer significant.}
+\DIFaddendFL \figsupp[Many genes that co-vary with viral load are involved in the oxidative stress response. \label{figsupp:ROStable}]{
 Table delineating genes in \FIG{cellulargenes} that are associated with the response to oxidative stress~\citep{Duong:2017ju,Jung:2017jz,Lee:2017ba,Peuchant:2017hj,MacLeod:2016kt,Jiang:2016cf,Gorrini:2013jv,Miura:2013fr,Kim:2009gi,Banning:2005cz,Murray:2003ie,Doyle:1999ts}.
 }{\includegraphics[width=0.7\linewidth]{figures/ROStable.pdf}}
+\DIFaddbeginFL 
 
-\figsupp[Pre-treating to induce oxidative stress increases the fraction of infected cells expressing detectable viral protein. \label{figsupp:oxidative}]
-{
-\jdbcomment{Alistair, can you add figure and caption showing the increase in the percent of flu positive cells after treatment. It should just be possible to put the methods for this experiment in the figure caption.}
-}
-{\jdbcomment{Alistair, and you add the figure.}}
+\figsupp[\DIFaddFL{Pre-treating to reduce oxidative stress decreases the fraction of infected cells expressing detectable viral protein.} \label{figsupp:oxidative}]
+{\DIFaddFL{Cells were treated as indicated with 15 mM N-acetylcysteine (NAC), an antioxidant, and infected at an MOI of 0.1 as calculated by TCID50 on MDCK-SIAT1 cells. 
+At 10 hours post-infection, cells were analyzed by flow cytometry for HA expression.
+The percentage of HA-positive cells is indicated on the flow cytometry plots.
+Data are shown for three independent replicates.
+}}{\includegraphics[width=0.7\linewidth]{figures/antiox.jpg}}
 
-\DIFaddendFL} \end{figure}
+\DIFaddendFL \end{figure}
 
 \DIFdelbegin \DIFdel{Many of the genes with increased expression in cells with more }\DIFdelend \DIFaddbegin \DIFadd{A gene-set analysis shows that many cellular genes that are associated with the amount of }\DIFaddend viral mRNA are \DIFaddbegin \DIFadd{involved in the response to reactive oxygen species or hypoxia (}\FIG{cellulargenes}\DIFadd{-source~data~\ref{figdata:geneset}). 
 Genes }\DIFaddend known or suspected to be regulated by the Nrf2 master regulator in response to oxidative stress \DIFaddbegin \DIFadd{are often expressed at higher levels in cells with more viral mRNA (}\FIG{cellulargenes}\DIFadd{)}\DIFaddend .
@@ -607,8 +607,8 @@ These genes produce proteins that are involved in detoxification of reactive oxy
 We additionally see reduced expression of the nitric oxide synthase interacting protein (NOSIP). 
 Transient oxidative stress is known to occur during viral infection, and may act in a proviral fashion via MAPK activation driving vRNP export~\citep{Amatore:2014cs}.
 The antioxidant response is thought to be largely antiviral, potentially through inhibition of MAPK activity \citep{Lin:2016ec,Sgarbanti:2014ht}.
-\DIFdelbegin \DIFdel{Our data do not reveal whether the expression of genes involved in the response to oxidative stress are }\DIFdelend \DIFaddbegin \DIFadd{To directly test the effect of transient oxidative stress, we compared the fraction of cells that expressed detectable viral protein when infected either with or without pre-treatment to induce oxidative stress.
-}\FIGSUPP[cellulargenes]{oxidative} \DIFadd{shows that the cells pre-treated to induce oxidative stress exhibited more frequent detectable expression of viral protein.
+\DIFdelbegin \DIFdel{Our data do not reveal whether the expression of genes involved in the response to oxidative stress are }\DIFdelend \DIFaddbegin \DIFadd{To directly test the effect of transient oxidative stress, we compared the fraction of cells that expressed detectable viral protein when infected either with or without pre-treatment to suppress oxidative stress.
+}\FIGSUPP[cellulargenes]{oxidative} \DIFadd{shows that the cells pre-treated with an antioxidant exhibited less frequent detectable expression of viral protein.
 These results, in conjunction with the differential expression test in }\FIG{cellulargenes} \DIFadd{and the prior work mentioned above, suggest that oxidative stress acts in a proviral fashion. 
 }
 
@@ -621,7 +621,7 @@ However, our data are not sufficient to determine whether the lower expression o
 \DIFaddbegin \DIFadd{Interestingly, none of the cellular genes that are significantly associated with the amount of viral mRNA in our study are among the 128 genes that \mbox{%DIFAUXCMD
 \citet{watanabe2010cellular} }%DIFAUXCMD
 report as having been identified multiple times in genome-wide screens for factors affecting influenza virus replication.
-One possible explanation is that most of the cell-to-cell heterogeneity in our experiments might arise from viral factors, pure stochasticity, or more subtle alterations in host-cell state -- not due to changes in expression of the type of single large-effect genes that are usually identified in genome-wide knockdown / knockout studies.
+One possible explanation is that most of the cell-to-cell heterogeneity in our experiments might arise from viral segment absence or mutations, pure stochasticity, or more subtle alterations in host-cell state -- not due to changes in expression of the type of single large-effect genes that are usually identified in genome-wide knockdown / knockout studies.
 }
 
 \DIFaddend \section{Discussion}
@@ -706,7 +706,8 @@ A standard curve was generated from three independent dilutions of the HA-encodi
 All vRNA values represent three independent RNA extractions with two replicate qPCR measurements. 
 
 \subsection{Flow cytometry titering and analyses}
-To determine viral titers in terms of HA-expressing units and for the flow cytometry in \FIGSUPP[coexpression]{flowcyto} \DIFaddbegin \DIFadd{and }\FIGSUPP[viralbarcodes]{flowdose}\DIFaddend , A549 cells were seeded in a 6-well plate and infected as described above for the qPCR analyses.
+To determine viral titers in terms of HA-expressing units and for the flow cytometry\DIFdelbegin \DIFdel{in }%DIFDELCMD < \FIGSUPP[coexpression]{flowcyto}%%%
+\DIFdelend , A549 cells were seeded in a 6-well plate and infected as described above for the qPCR analyses.
 Cells were harvested by trypsinization, resuspended in phosphate-buffered saline supplemented with 2\% heat-inactivated FBS, and stained with 10 \si{\micro}g/ml of H17-L19, a mouse monoclonal antibody confirmed to bind to WSN HA in a prior study~\citep{Doud:2017bw}.
 After washing in PBS \DIFdelbegin \DIFdel{plus }\DIFdelend \DIFaddbegin \DIFadd{supplemented with }\DIFaddend 2\% FBS, the cells were stained with a goat anti-mouse IgG antibody conjugated to APC.
 Cells were then washed, fixed in 1\% formaldehyde, and washed further before a final resuspension and analysis. 
@@ -714,12 +715,15 @@ We then determined the fraction of cells that were HA positive and calculated th
 \DIFdelbegin %DIFDELCMD < 
 
 %DIFDELCMD < %%%
-\DIFdel{For }\DIFdelend \DIFaddbegin \DIFadd{For NS1 staining in }\FIGSUPP[viralbarcodes]{flowdose}\DIFadd{, cells stained for HA as described above were permeabilized using BD Cytofix/Cytoperm following manufacturer's instructions, stained with anti-NS1 (GTX125990, Genetex) at 4.4 \si{\micro}g/ml, washed,  stained with a  goat anti-rabbit IgG antibody conjugated to Alexa Fluor 405. washed, and analyzed.
-For }\DIFaddend \FIGSUPP[coexpression]{flowcyto} \DIFaddbegin \DIFadd{and }\FIGSUPP[viralbarcodes]{flowdose}\DIFaddend , after gating to exclude multiplets in FlowJo, data were extracted using the R package flowCore~\citep{LeMeur:2007uo} and analyzed using a custom Python script.
-\DIFaddbegin \DIFadd{For }\FIGSUPP[viralbarcodes]{flowdose} \DIFadd{channels were additionally compensated in FLowJo.
-}\DIFaddend Guassian kernel density estimates were obtained using the scipy stats package method, guassian\_kde, using automatic bandwidth determination~\citep{vanderWalt:2017dp}.
-\DIFaddbegin \DIFadd{For }\FIGSUPP[viralbarcodes]{flowdose}\DIFadd{, the percentage of influenza-infected cells was determined by HA staining alone, and the top quantile of NS1-stained cells matching that percentage were taken as the NS1 positive population.
+\DIFdel{For }%DIFDELCMD < \FIGSUPP[coexpression]{flowcyto}%%%
+\DIFdel{, after gating to exclude multiplets }\DIFdelend \DIFaddbegin \DIFadd{For NS1 staining, cells stained for HA as described above were permeabilized using BD Cytofix/Cytoperm following manufacturer's instructions, stained with anti-NS1 (GTX125990, Genetex) at 4.4 \si{\micro}g/ml, washed,  stained with a  goat anti-rabbit IgG antibody conjugated to Alexa Fluor 405, washed, and analyzed.
+To analyze the effect of N-acetylcysteine, the compound was added to cells in D10 9h prior to media change and infection, and included in infection media.
+Stocks of N-acetylcysteine were reconstituted immediately prior to use, and the pH of growth media supplemented with this compound was adjusted using sodium hydroxide.
+After channels were compensated and cells gated to exclude multiplets and debris }\DIFaddend in FlowJo, data were extracted using the R package flowCore~\citep{LeMeur:2007uo} and analyzed using a custom Python script.
+Guassian kernel density estimates were obtained using the scipy stats package method, guassian\_kde, using automatic bandwidth determination~\citep{vanderWalt:2017dp}.
+\DIFaddbegin \DIFadd{For gating on NS1 positive cells, the percentage of influenza-infected cells was determined by HA staining alone, and the top quantile of NS1-stained cells matching that percentage were taken as the NS1 positive population.
 }\DIFaddend 
+
 
 \subsection{Infections for single-cell mRNA sequencing}
 Single-cell sequencing libraries were generated using the 10x Chromium Single Cell 3' platform~\citep{zheng2017massively} using the V1 reagents.
