@@ -7,6 +7,13 @@ The virus used was a mix of wildtype and virus with synonymous "barcodes" near t
 The virus populations were also "pure" in the sense that they were passaged at low MOI to avoid accumulation of defective particles.
 Multiple timepoints were collected and analyze.
 
+## Publication and data
+The paper describing this work will [be published in _eLife_ with DOI 10.7554/eLife.32303](https://doi.org/10.7554/eLife.32303).
+A pre-print of the initial version [is on _bioRxiv_ at DOI ](https://doi.org/10.1101/193995) (note that this version is changed in some modest ways in the final _eLife_ publication).
+
+The cell-gene matrix will [be available on DataDryad with 10.5061/dryad.qp0t3](https://doi.org/10.5061/dryad.qp0t3).
+The deep-sequencing data are [on GEO under accession](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE108041).
+
 ## Authors
 Alistair Russell, [Cole Trapnell](http://cole-trapnell-lab.github.io/), [Jesse Bloom](https://research.fhcrc.org/bloom/en.html).
 
@@ -15,7 +22,7 @@ The analysis is performed by a set of Jupyter notebooks.
 
 1. The Python Jupyter notebook [align_and_annotate.ipynb][] demultiplexes and aligns the reads, annotates the flu synonymous barcodes, and generates the cell-gene matrix. It requires installation of [cellranger](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger), which performs the demultiplexing and alignment. It also uses custom Python and bash scripts found in the `./scripts/` subdirectory, and requires installation of a few common Python modules. The notebook describes the software versions used. 
 
-2. The R Jupyter notebook [monocle_analysis.ipynb][] analyzes the cell-gene matrix, making use of [Monocle][]. It generates most of the figures as well and places them in `./paper/figures`. The versions of R and associated packages are described in the notebook.
+2. The R Jupyter notebook [monocle_analysis.ipynb][] analyzes the cell-gene matrix, making use of [Monocle][]. It generates most of the figures as well and places them in `./paper/figures`. The versions of R and associated packages are described in the notebook. If you just want to run this part of the analysis, download [the cell-gene matrix from DataDryad](https://doi.org/10.5061/dryad.qp0t3) into `./results/cellgenecounts/` and skip running the first notebook that creates this matrix.
 
 3. The paper (in LaTex) is in the `./paper/` subdirectory. When compiled, the PDF is at [./paper/paper.pdf](./paper/paper.pdf).
 
