@@ -9,10 +9,10 @@ Multiple timepoints were collected and analyze.
 
 ## Publication and data
 The paper describing this work will [be published in _eLife_ with DOI 10.7554/eLife.32303](https://doi.org/10.7554/eLife.32303).
-A pre-print of the initial version [is on _bioRxiv_ at DOI ](https://doi.org/10.1101/193995) (note that this version is changed in some modest ways in the final _eLife_ publication).
+A pre-print of the initial version [is on _bioRxiv_ at DOI 10.1101/193995](https://doi.org/10.1101/193995) (note that this pre-print version is changed in some modest ways in the final _eLife_ publication).
 
 The cell-gene matrix will [be available on DataDryad with 10.5061/dryad.qp0t3](https://doi.org/10.5061/dryad.qp0t3).
-The deep-sequencing data are [on GEO under accession](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE108041).
+The deep-sequencing data are [on GEO under accession GSE108041](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE108041).
 
 ## Authors
 Alistair Russell, [Cole Trapnell](http://cole-trapnell-lab.github.io/), [Jesse Bloom](https://research.fhcrc.org/bloom/en.html).
